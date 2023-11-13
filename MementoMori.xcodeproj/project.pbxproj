@@ -59,15 +59,47 @@
 		3847EC0F2B022C1200E086EB /* MementoMori */ = {
 			isa = PBXGroup;
 			children = (
+				3847EC262B022C6F00E086EB /* Application */,
+				3847EC282B022C8200E086EB /* Resources */,
+				3847EC272B022C7900E086EB /* Scenes */,
+			);
+			path = MementoMori;
+			sourceTree = "<group>";
+		};
+		3847EC262B022C6F00E086EB /* Application */ = {
+			isa = PBXGroup;
+			children = (
 				3847EC102B022C1200E086EB /* AppDelegate.swift */,
 				3847EC122B022C1200E086EB /* SceneDelegate.swift */,
-				3847EC142B022C1200E086EB /* ViewController.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		3847EC272B022C7900E086EB /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
 				3847EC162B022C1200E086EB /* Main.storyboard */,
+				3847EC142B022C1200E086EB /* ViewController.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		3847EC282B022C8200E086EB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3847EC292B022C9000E086EB /* AppInfo */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3847EC292B022C9000E086EB /* AppInfo */ = {
+			isa = PBXGroup;
+			children = (
 				3847EC192B022C1400E086EB /* Assets.xcassets */,
 				3847EC1B2B022C1400E086EB /* LaunchScreen.storyboard */,
 				3847EC1E2B022C1400E086EB /* Info.plist */,
 			);
-			path = MementoMori;
+			path = AppInfo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,7 +325,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3UNP2C529F;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MementoMori/Info.plist;
+				INFOPLIST_FILE = MementoMori/Resources/AppInfo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -321,7 +353,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3UNP2C529F;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MementoMori/Info.plist;
+				INFOPLIST_FILE = MementoMori/Resources/AppInfo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
