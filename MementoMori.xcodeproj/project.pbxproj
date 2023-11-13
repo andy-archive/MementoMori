@@ -13,6 +13,10 @@
 		3847EC1A2B022C1400E086EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3847EC192B022C1400E086EB /* Assets.xcassets */; };
 		3847EC1D2B022C1400E086EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3847EC1B2B022C1400E086EB /* LaunchScreen.storyboard */; };
 		3847EC252B022C1E00E086EB /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 3847EC242B022C1E00E086EB /* .gitignore */; };
+		3847EC2F2B022FCE00E086EB /* UITabBarController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC2E2B022FCE00E086EB /* UITabBarController+.swift */; };
+		3847EC322B022FF800E086EB /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC312B022FF800E086EB /* Constant.swift */; };
+		3847EC352B02303200E086EB /* Constant+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC342B02303200E086EB /* Constant+UI.swift */; };
+		3847EC372B02307100E086EB /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC362B02307100E086EB /* UINavigationController+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		3847EC1C2B022C1400E086EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3847EC1E2B022C1400E086EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3847EC242B022C1E00E086EB /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		3847EC2E2B022FCE00E086EB /* UITabBarController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarController+.swift"; sourceTree = "<group>"; };
+		3847EC312B022FF800E086EB /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		3847EC342B02303200E086EB /* Constant+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constant+UI.swift"; sourceTree = "<group>"; };
+		3847EC362B02307100E086EB /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +68,7 @@
 				3847EC262B022C6F00E086EB /* Application */,
 				3847EC282B022C8200E086EB /* Resources */,
 				3847EC272B022C7900E086EB /* Scenes */,
+				3847EC2A2B022F6C00E086EB /* Utilities */,
 			);
 			path = MementoMori;
 			sourceTree = "<group>";
@@ -97,6 +106,33 @@
 				3847EC1E2B022C1400E086EB /* Info.plist */,
 			);
 			path = AppInfo;
+			sourceTree = "<group>";
+		};
+		3847EC2A2B022F6C00E086EB /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				3847EC302B022FF000E086EB /* Constants */,
+				3847EC2B2B022F8000E086EB /* Extensions */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		3847EC2B2B022F8000E086EB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3847EC2E2B022FCE00E086EB /* UITabBarController+.swift */,
+				3847EC362B02307100E086EB /* UINavigationController+.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3847EC302B022FF000E086EB /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				3847EC312B022FF800E086EB /* Constant.swift */,
+				3847EC342B02303200E086EB /* Constant+UI.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,7 +206,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3847EC372B02307100E086EB /* UINavigationController+.swift in Sources */,
+				3847EC322B022FF800E086EB /* Constant.swift in Sources */,
 				3847EC152B022C1200E086EB /* ViewController.swift in Sources */,
+				3847EC2F2B022FCE00E086EB /* UITabBarController+.swift in Sources */,
+				3847EC352B02303200E086EB /* Constant+UI.swift in Sources */,
 				3847EC112B022C1200E086EB /* AppDelegate.swift in Sources */,
 				3847EC132B022C1200E086EB /* SceneDelegate.swift in Sources */,
 			);

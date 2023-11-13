@@ -12,15 +12,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        let nav = UINavigationController(rootViewController: ViewController())
+        let navigationController = UINavigationController(rootViewController: ViewController())
         let tabBarController = UITabBarController()
         
-        tabBarController.setViewControllers([nav], animated: true)
+        navigationController.configureAppearance()
+        tabBarController.configureAppearance()
+        tabBarController.setViewControllers([navigationController], animated: true)
         
         if let items = tabBarController.tabBar.items {
-            items[0].image = UIImage(systemName: "person")
-            items[0].selectedImage = UIImage(systemName: "person.fill")
-            items[0].title = "로그인"
+            items[0].image = Constant.Image.System.house
+            items[0].selectedImage = Constant.Image.System.houseFill
+            items[0].title = Constant.Text.TabBar.house
         }
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
