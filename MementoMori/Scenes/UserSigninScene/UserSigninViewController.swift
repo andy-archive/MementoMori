@@ -7,6 +7,9 @@
 
 import UIKit
 
+import RxCocoa
+import RxSwift
+
 final class UserSigninViewController: BaseViewController {
     
     private lazy var titleLabel = SigninTitleLabel()
@@ -14,15 +17,34 @@ final class UserSigninViewController: BaseViewController {
     private lazy var textField = SigninTextField()
     private lazy var nextButton = SigninButton()
     
+    private let viewModel = UserSigninViewModel()
+    private let disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        bind()
+    }
+    
+    private func bind() {
+        let input = UserSigninViewModel.Input(text: textField.rx.text.orEmpty, nextButtonClicked: nextButton.rx.tap)
+        let output = viewModel.transform(input: input)
+        
+        output
+            .isTextValid
+            .bind(with: self, onNext: { owner, value in
+                let color = value ? Constant.Color.Button.valid : Constant.Color.Button.notValid
+                owner.nextButton.backgroundColor = color
+                owner.nextButton.isEnabled = value
+            })
+            .disposed(by: disposeBag)
     }
     
     override func configureUI() {
         super.configureUI()
         
-        titleLabel.text = "이름 입력"
-        subtitleLabel.text = "이름을 ~자 이상으로 입력해주세요 :)"
+        titleLabel.text = "이메일 입력"
+        subtitleLabel.text = "이메일을 6자 이상으로 입력해주세요 :)\n(조건) '@'과 '.'가 필수로 들어가야 합니다."
         nextButton.setTitle("다음", for: .normal)
     }
     

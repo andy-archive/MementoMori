@@ -13,6 +13,11 @@ extension Constant {
         static let background = UIColor.systemBackground
         static let groupedBackground = UIColor.systemGroupedBackground
         static let secondaryGroupedBackground = UIColor.secondarySystemGroupedBackground
+        
+        enum Button {
+            static let valid = UIColor.systemBlue
+            static let notValid = UIColor.systemGray
+        }
     }
     
     enum Image {
