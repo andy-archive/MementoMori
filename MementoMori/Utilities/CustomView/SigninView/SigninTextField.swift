@@ -1,0 +1,33 @@
+//
+//  SigninTextField.swift
+//  MementoMori
+//
+//  Created by Taekwon Lee on 2023/11/13.
+//
+
+import UIKit
+
+class SigninTextField: UITextField {
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        configureUI()
+        paddingOnLeft(inset: 20)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func configureUI() {
+        placeholder = "이름"
+        font = .systemFont(ofSize: 18)
+        textAlignment = .left
+        borderStyle = .line
+        layer.borderColor = UIColor.systemGray.cgColor
+        layer.borderWidth = 1
+        layer.cornerRadius = 15
+        clipsToBounds = true
+    }
+}

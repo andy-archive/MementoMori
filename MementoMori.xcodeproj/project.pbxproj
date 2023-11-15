@@ -20,6 +20,11 @@
 		3847EC3C2B02388900E086EB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3847EC3B2B02388900E086EB /* README.md */; };
 		3847EC402B0251A500E086EB /* UserSigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC3F2B0251A500E086EB /* UserSigninViewController.swift */; };
 		3847EC442B0252B200E086EB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC432B0252B200E086EB /* BaseViewController.swift */; };
+		3847EC482B02578900E086EB /* SigninTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC472B02578900E086EB /* SigninTextField.swift */; };
+		38CA8C222B0385AC00A9C4B7 /* SigninTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA8C212B0385AC00A9C4B7 /* SigninTitleLabel.swift */; };
+		38CA8C252B03893300A9C4B7 /* SigninSubtitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA8C242B03893300A9C4B7 /* SigninSubtitleLabel.swift */; };
+		38CA8C272B038AC000A9C4B7 /* SigninButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA8C262B038AC000A9C4B7 /* SigninButton.swift */; };
+		38CA8C2A2B038CB000A9C4B7 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA8C292B038CB000A9C4B7 /* UITextField+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +43,11 @@
 		3847EC3B2B02388900E086EB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3847EC3F2B0251A500E086EB /* UserSigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninViewController.swift; sourceTree = "<group>"; };
 		3847EC432B0252B200E086EB /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		3847EC472B02578900E086EB /* SigninTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninTextField.swift; sourceTree = "<group>"; };
+		38CA8C212B0385AC00A9C4B7 /* SigninTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninTitleLabel.swift; sourceTree = "<group>"; };
+		38CA8C242B03893300A9C4B7 /* SigninSubtitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninSubtitleLabel.swift; sourceTree = "<group>"; };
+		38CA8C262B038AC000A9C4B7 /* SigninButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninButton.swift; sourceTree = "<group>"; };
+		38CA8C292B038CB000A9C4B7 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +131,7 @@
 			children = (
 				3847EC422B02527700E086EB /* BaseView */,
 				3847EC302B022FF000E086EB /* Constants */,
+				3847EC452B02566000E086EB /* CustomView */,
 				3847EC2B2B022F8000E086EB /* Extensions */,
 			);
 			path = Utilities;
@@ -131,6 +142,7 @@
 			children = (
 				3847EC2E2B022FCE00E086EB /* UITabBarController+.swift */,
 				3847EC362B02307100E086EB /* UINavigationController+.swift */,
+				38CA8C292B038CB000A9C4B7 /* UITextField+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -166,6 +178,25 @@
 				3847EC432B0252B200E086EB /* BaseViewController.swift */,
 			);
 			path = BaseView;
+			sourceTree = "<group>";
+		};
+		3847EC452B02566000E086EB /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				38CA8C202B03859400A9C4B7 /* SigninView */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
+		38CA8C202B03859400A9C4B7 /* SigninView */ = {
+			isa = PBXGroup;
+			children = (
+				3847EC472B02578900E086EB /* SigninTextField.swift */,
+				38CA8C212B0385AC00A9C4B7 /* SigninTitleLabel.swift */,
+				38CA8C242B03893300A9C4B7 /* SigninSubtitleLabel.swift */,
+				38CA8C262B038AC000A9C4B7 /* SigninButton.swift */,
+			);
+			path = SigninView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,11 +271,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38CA8C252B03893300A9C4B7 /* SigninSubtitleLabel.swift in Sources */,
 				3847EC372B02307100E086EB /* UINavigationController+.swift in Sources */,
 				3847EC322B022FF800E086EB /* Constant.swift in Sources */,
+				3847EC482B02578900E086EB /* SigninTextField.swift in Sources */,
+				38CA8C222B0385AC00A9C4B7 /* SigninTitleLabel.swift in Sources */,
+				38CA8C272B038AC000A9C4B7 /* SigninButton.swift in Sources */,
 				3847EC152B022C1200E086EB /* ContentListViewController.swift in Sources */,
 				3847EC2F2B022FCE00E086EB /* UITabBarController+.swift in Sources */,
 				3847EC352B02303200E086EB /* Constant+UI.swift in Sources */,
+				38CA8C2A2B038CB000A9C4B7 /* UITextField+.swift in Sources */,
 				3847EC442B0252B200E086EB /* BaseViewController.swift in Sources */,
 				3847EC112B022C1200E086EB /* AppDelegate.swift in Sources */,
 				3847EC132B022C1200E086EB /* SceneDelegate.swift in Sources */,
