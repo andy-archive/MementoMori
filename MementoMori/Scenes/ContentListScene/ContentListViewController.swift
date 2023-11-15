@@ -7,11 +7,13 @@
 
 import UIKit
 
-final class ContentListViewController: UIViewController {
+final class ContentListViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .systemBackground
+    }
+    
+    override func configureUI() {
+        super.configureUI()
     }
 }
