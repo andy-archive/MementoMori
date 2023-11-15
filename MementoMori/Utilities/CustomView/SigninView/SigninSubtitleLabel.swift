@@ -20,7 +20,7 @@ class SigninSubtitleLabel: UILabel {
     }
     
     private func configureUI() {
-        font = .systemFont(ofSize: 15)
+        font = .systemFont(ofSize: Constant.FontSize.subtitle)
         textColor = Constant.Color.label
         numberOfLines = 0
     }

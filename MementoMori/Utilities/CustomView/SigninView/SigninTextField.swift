@@ -13,7 +13,7 @@ class SigninTextField: UITextField {
         super.init(frame: frame)
         
         configureUI()
-        paddingOnLeft(inset: 20)
+        paddingOnLeft(inset: Constant.Layout.UserAuth.Inset.horizontal)
     }
     
     required init?(coder: NSCoder) {
@@ -22,7 +22,7 @@ class SigninTextField: UITextField {
     
     private func configureUI() {
         placeholder = "이름"
-        font = .systemFont(ofSize: 18)
+        font = .systemFont(ofSize: Constant.FontSize.title)
         textAlignment = .left
         borderStyle = .line
         layer.borderColor = UIColor.systemGray.cgColor

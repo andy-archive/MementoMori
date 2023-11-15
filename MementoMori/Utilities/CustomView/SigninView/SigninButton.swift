@@ -21,7 +21,7 @@ final class SigninButton: UIButton {
     
     func configureUI() {
         setTitleColor(.white, for: .normal)
-        titleLabel?.font = .boldSystemFont(ofSize: 18)
+        titleLabel?.font = .boldSystemFont(ofSize: Constant.FontSize.title)
         backgroundColor = .systemBlue
         layer.borderColor = UIColor.black.cgColor
         layer.cornerRadius = 15
