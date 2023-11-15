@@ -5,15 +5,17 @@
 ### 파일 트리 구조
 ```bash
 📦 MementoMori
+├──📄 README.md
 ├──📂 MementoMori
 │   ├──📂 Application # AppDelegate & SceneDelegate
 │   ├──📂 Resources
 │   │   └──📂 AppInfo # Assets, LaunchScreen, Info.plist
 │   ├──📂 Scenes # UI
-│   │   └──📂 ContentListScene
+│   │   ├──📂 ContentListScene # 컨텐츠 목록 화면
+│   │   └──📂 UserSigninScene # 회원 가입 화면
 │   └──📂 Utilities
+│       ├──📂 Base # BaseView & CustomView
 │       ├──📂 Constants
 │       └──📂 Extensions
-├──📂 MementoMori.xcodeproj
-└──📄 README.md
+└──📂 MementoMori.xcodeproj
 ```
