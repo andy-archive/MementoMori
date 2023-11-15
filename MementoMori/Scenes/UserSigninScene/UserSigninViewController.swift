@@ -44,7 +44,8 @@ final class UserSigninViewController: BaseViewController {
         super.configureUI()
         
         titleLabel.text = "이메일 입력"
-        subtitleLabel.text = "이메일을 6자 이상으로 입력해주세요 :)\n(조건) '@'과 '.'가 필수로 들어가야 합니다."
+        subtitleLabel.text = "(조건) 6자 이상이어야 하며, '@'과 '.'는 필수입니다 :)"
+        textField.placeholder = "이메일"
         nextButton.setTitle("다음", for: .normal)
     }
     
