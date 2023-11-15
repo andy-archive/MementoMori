@@ -18,21 +18,14 @@ final class UserSigninViewModel: ViewModelType {
     }
     
     struct Output {
-        let isTextValid: BehaviorRelay<Bool>
+        let isTextValid: Observable<Bool>
     }
     
-    private let disposeBag = DisposeBag()
-    
     func transform(input: Input) -> Output {
-        
-        let isValid = BehaviorRelay(value: false)
-        
-        input
+        let isValid = input
             .text
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .map { $0.contains("@") && $0.contains(".") && $0.count >= 6 && $0.count < 50 }
-            .bind(to: isValid)
-            .disposed(by: disposeBag)
         
         return Output(isTextValid: isValid)
     }
