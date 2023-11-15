@@ -25,6 +25,9 @@
 		38CA8C252B03893300A9C4B7 /* SigninSubtitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA8C242B03893300A9C4B7 /* SigninSubtitleLabel.swift */; };
 		38CA8C272B038AC000A9C4B7 /* SigninButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA8C262B038AC000A9C4B7 /* SigninButton.swift */; };
 		38CA8C2A2B038CB000A9C4B7 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA8C292B038CB000A9C4B7 /* UITextField+.swift */; };
+		38EE8A7B2B04CD4E00E629CC /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 38EE8A7A2B04CD4E00E629CC /* RxCocoa */; };
+		38EE8A7D2B04CD4E00E629CC /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 38EE8A7C2B04CD4E00E629CC /* RxSwift */; };
+		38EE8A802B04CE2900E629CC /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 38EE8A7F2B04CE2900E629CC /* Moya */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +58,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38EE8A7D2B04CD4E00E629CC /* RxSwift in Frameworks */,
+				38EE8A7B2B04CD4E00E629CC /* RxCocoa in Frameworks */,
+				38EE8A802B04CE2900E629CC /* Moya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,6 +229,11 @@
 			dependencies = (
 			);
 			name = MementoMori;
+			packageProductDependencies = (
+				38EE8A7A2B04CD4E00E629CC /* RxCocoa */,
+				38EE8A7C2B04CD4E00E629CC /* RxSwift */,
+				38EE8A7F2B04CE2900E629CC /* Moya */,
+			);
 			productName = MementoMori;
 			productReference = 3847EC0D2B022C1200E086EB /* MementoMori.app */;
 			productType = "com.apple.product-type.application";
@@ -251,6 +262,10 @@
 				Base,
 			);
 			mainGroup = 3847EC042B022C1200E086EB;
+			packageReferences = (
+				38EE8A792B04CD4E00E629CC /* XCRemoteSwiftPackageReference "RxSwift" */,
+				38EE8A7E2B04CE2900E629CC /* XCRemoteSwiftPackageReference "Moya" */,
+			);
 			productRefGroup = 3847EC0E2B022C1200E086EB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -510,6 +525,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		38EE8A792B04CD4E00E629CC /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+		38EE8A7E2B04CE2900E629CC /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		38EE8A7A2B04CD4E00E629CC /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 38EE8A792B04CD4E00E629CC /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		38EE8A7C2B04CD4E00E629CC /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 38EE8A792B04CD4E00E629CC /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		38EE8A7F2B04CE2900E629CC /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 38EE8A7E2B04CE2900E629CC /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3847EC052B022C1200E086EB /* Project object */;
 }
