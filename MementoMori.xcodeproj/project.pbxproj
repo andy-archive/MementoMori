@@ -28,6 +28,8 @@
 		38EE8A7B2B04CD4E00E629CC /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 38EE8A7A2B04CD4E00E629CC /* RxCocoa */; };
 		38EE8A7D2B04CD4E00E629CC /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 38EE8A7C2B04CD4E00E629CC /* RxSwift */; };
 		38EE8A802B04CE2900E629CC /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 38EE8A7F2B04CE2900E629CC /* Moya */; };
+		38EE8A822B04D0AC00E629CC /* UserSigninViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE8A812B04D0AC00E629CC /* UserSigninViewModel.swift */; };
+		38EE8A842B04D29000E629CC /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE8A832B04D29000E629CC /* ViewModelType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +53,8 @@
 		38CA8C242B03893300A9C4B7 /* SigninSubtitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninSubtitleLabel.swift; sourceTree = "<group>"; };
 		38CA8C262B038AC000A9C4B7 /* SigninButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninButton.swift; sourceTree = "<group>"; };
 		38CA8C292B038CB000A9C4B7 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
+		38EE8A812B04D0AC00E629CC /* UserSigninViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninViewModel.swift; sourceTree = "<group>"; };
+		38EE8A832B04D29000E629CC /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				3847EC3F2B0251A500E086EB /* UserSigninViewController.swift */,
+				38EE8A812B04D0AC00E629CC /* UserSigninViewModel.swift */,
 			);
 			path = UserSigninScene;
 			sourceTree = "<group>";
@@ -209,6 +214,7 @@
 			children = (
 				3847EC422B02527700E086EB /* BaseView */,
 				3847EC452B02566000E086EB /* CustomView */,
+				38EE8A832B04D29000E629CC /* ViewModelType.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -297,6 +303,7 @@
 				38CA8C252B03893300A9C4B7 /* SigninSubtitleLabel.swift in Sources */,
 				3847EC372B02307100E086EB /* UINavigationController+.swift in Sources */,
 				3847EC322B022FF800E086EB /* Constant.swift in Sources */,
+				38EE8A822B04D0AC00E629CC /* UserSigninViewModel.swift in Sources */,
 				3847EC482B02578900E086EB /* SigninTextField.swift in Sources */,
 				38CA8C222B0385AC00A9C4B7 /* SigninTitleLabel.swift in Sources */,
 				38CA8C272B038AC000A9C4B7 /* SigninButton.swift in Sources */,
@@ -305,6 +312,7 @@
 				3847EC352B02303200E086EB /* Constant+UI.swift in Sources */,
 				38CA8C2A2B038CB000A9C4B7 /* UITextField+.swift in Sources */,
 				3847EC442B0252B200E086EB /* BaseViewController.swift in Sources */,
+				38EE8A842B04D29000E629CC /* ViewModelType.swift in Sources */,
 				3847EC112B022C1200E086EB /* AppDelegate.swift in Sources */,
 				3847EC132B022C1200E086EB /* SceneDelegate.swift in Sources */,
 				3847EC402B0251A500E086EB /* UserSigninViewController.swift in Sources */,

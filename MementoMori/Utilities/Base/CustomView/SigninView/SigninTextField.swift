@@ -21,7 +21,6 @@ class SigninTextField: UITextField {
     }
     
     private func configureUI() {
-        placeholder = "이름"
         font = .systemFont(ofSize: Constant.FontSize.title)
         textAlignment = .left
         borderStyle = .line
