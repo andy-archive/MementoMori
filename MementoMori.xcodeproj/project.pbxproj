@@ -31,6 +31,9 @@
 		38EE8A822B04D0AC00E629CC /* UserSigninViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE8A812B04D0AC00E629CC /* UserSigninViewModel.swift */; };
 		38EE8A842B04D29000E629CC /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE8A832B04D29000E629CC /* ViewModelType.swift */; };
 		38EE8A932B0631CB00E629CC /* EmailValidationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE8A922B0631CB00E629CC /* EmailValidationModel.swift */; };
+		38EE8A972B0632AD00E629CC /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE8A962B0632AD00E629CC /* APIManager.swift */; };
+		38EE8A9A2B06338800E629CC /* MementoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE8A992B06338800E629CC /* MementoAPI.swift */; };
+		38EE8A9F2B06387900E629CC /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE8A9E2B06387900E629CC /* APIKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +60,9 @@
 		38EE8A812B04D0AC00E629CC /* UserSigninViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninViewModel.swift; sourceTree = "<group>"; };
 		38EE8A832B04D29000E629CC /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		38EE8A922B0631CB00E629CC /* EmailValidationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidationModel.swift; sourceTree = "<group>"; };
+		38EE8A962B0632AD00E629CC /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		38EE8A992B06338800E629CC /* MementoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MementoAPI.swift; sourceTree = "<group>"; };
+		38EE8A9E2B06387900E629CC /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +102,7 @@
 			children = (
 				3847EC262B022C6F00E086EB /* Application */,
 				38EE8A912B0631A500E629CC /* Model */,
+				38EE8A952B06329700E629CC /* Network */,
 				3847EC282B022C8200E086EB /* Resources */,
 				3847EC272B022C7900E086EB /* Scenes */,
 				3847EC2A2B022F6C00E086EB /* Utilities */,
@@ -230,6 +237,16 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		38EE8A952B06329700E629CC /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				38EE8A9E2B06387900E629CC /* APIKey.swift */,
+				38EE8A962B0632AD00E629CC /* APIManager.swift */,
+				38EE8A992B06338800E629CC /* MementoAPI.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -320,9 +337,12 @@
 				38CA8C222B0385AC00A9C4B7 /* SigninTitleLabel.swift in Sources */,
 				38CA8C272B038AC000A9C4B7 /* SigninButton.swift in Sources */,
 				3847EC152B022C1200E086EB /* ContentListViewController.swift in Sources */,
+				38EE8A9A2B06338800E629CC /* MementoAPI.swift in Sources */,
 				3847EC2F2B022FCE00E086EB /* UITabBarController+.swift in Sources */,
 				3847EC352B02303200E086EB /* Constant+UI.swift in Sources */,
 				38CA8C2A2B038CB000A9C4B7 /* UITextField+.swift in Sources */,
+				38EE8A972B0632AD00E629CC /* APIManager.swift in Sources */,
+				38EE8A9F2B06387900E629CC /* APIKey.swift in Sources */,
 				3847EC442B0252B200E086EB /* BaseViewController.swift in Sources */,
 				38EE8A842B04D29000E629CC /* ViewModelType.swift in Sources */,
 				3847EC112B022C1200E086EB /* AppDelegate.swift in Sources */,

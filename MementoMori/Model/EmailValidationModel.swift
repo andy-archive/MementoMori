@@ -7,6 +7,10 @@
 
 import Foundation
 
-struct EmailValidationModel: Codable {
+struct EmailValidationRequest: Encodable {
+    let email: String
+}
+
+struct EmailValidationResponse: Decodable {
     let message: String
 }
