@@ -30,6 +30,7 @@
 		38EE8A802B04CE2900E629CC /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 38EE8A7F2B04CE2900E629CC /* Moya */; };
 		38EE8A822B04D0AC00E629CC /* UserSigninViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE8A812B04D0AC00E629CC /* UserSigninViewModel.swift */; };
 		38EE8A842B04D29000E629CC /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE8A832B04D29000E629CC /* ViewModelType.swift */; };
+		38EE8A932B0631CB00E629CC /* EmailValidationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE8A922B0631CB00E629CC /* EmailValidationModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		38CA8C292B038CB000A9C4B7 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 		38EE8A812B04D0AC00E629CC /* UserSigninViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninViewModel.swift; sourceTree = "<group>"; };
 		38EE8A832B04D29000E629CC /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
+		38EE8A922B0631CB00E629CC /* EmailValidationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidationModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				3847EC262B022C6F00E086EB /* Application */,
+				38EE8A912B0631A500E629CC /* Model */,
 				3847EC282B022C8200E086EB /* Resources */,
 				3847EC272B022C7900E086EB /* Scenes */,
 				3847EC2A2B022F6C00E086EB /* Utilities */,
@@ -219,6 +222,14 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		38EE8A912B0631A500E629CC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				38EE8A922B0631CB00E629CC /* EmailValidationModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -301,6 +312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				38CA8C252B03893300A9C4B7 /* SigninSubtitleLabel.swift in Sources */,
+				38EE8A932B0631CB00E629CC /* EmailValidationModel.swift in Sources */,
 				3847EC372B02307100E086EB /* UINavigationController+.swift in Sources */,
 				3847EC322B022FF800E086EB /* Constant.swift in Sources */,
 				38EE8A822B04D0AC00E629CC /* UserSigninViewModel.swift in Sources */,
