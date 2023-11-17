@@ -8,6 +8,7 @@
 import Foundation
 
 import Moya
+import RxSwift
 
 class APIManager {
     
@@ -17,26 +18,32 @@ class APIManager {
     
     private let provider = MoyaProvider<MementoAPI>()
     
-    func validateEmail(email: String) {
+    func validateEmail(email: String) -> Observable<EmailValidationResponse> {
         
-        let data = EmailValidationRequest(
-            email: email
-        )
-        
-        provider.request(.emailValidation(model: data)) { result in
-            switch result {
-            case .success(let value):
-                print("SUCCESS", value.statusCode, value.data)
-                
-                do {
-                    let value = try JSONDecoder().decode(EmailValidationResponse.self, from: value.data)
-                } catch {
+        return Observable<EmailValidationResponse>.create { [weak self] observer in
+            let data = EmailValidationRequest(
+                email: email
+            )
+            
+            self?.provider.request(.emailValidation(model: data)) { result in
+                switch result {
+                case .success(let value):
+                    print("SUCCESS", value.statusCode, value.data)
+                    
+                    do {
+                        let data = try JSONDecoder().decode(EmailValidationResponse.self, from: value.data)
+                        print(data, "--------------------------------")
+                        observer.onNext(data)
+                    } catch {
+                        print(error.localizedDescription)
+                        observer.onError(error)
+                    }
+                    
+                case .failure(let error):
                     print(error.localizedDescription)
                 }
-                
-            case .failure(let error):
-                print(error.localizedDescription)
             }
+            return Disposables.create()
         }
     }
 }
