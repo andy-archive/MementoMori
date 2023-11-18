@@ -21,6 +21,7 @@
 		3847EC402B0251A500E086EB /* UserJoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC3F2B0251A500E086EB /* UserJoinViewController.swift */; };
 		3847EC442B0252B200E086EB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC432B0252B200E086EB /* BaseViewController.swift */; };
 		3847EC482B02578900E086EB /* SigninTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC472B02578900E086EB /* SigninTextField.swift */; };
+		38B9203F2B08AAED006CBD1C /* Constant+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B9203E2B08AAED006CBD1C /* Constant+Network.swift */; };
 		38CA8C222B0385AC00A9C4B7 /* SigninTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA8C212B0385AC00A9C4B7 /* SigninTitleLabel.swift */; };
 		38CA8C252B03893300A9C4B7 /* SigninSubtitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA8C242B03893300A9C4B7 /* SigninSubtitleLabel.swift */; };
 		38CA8C272B038AC000A9C4B7 /* SigninButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA8C262B038AC000A9C4B7 /* SigninButton.swift */; };
@@ -53,6 +54,7 @@
 		3847EC3F2B0251A500E086EB /* UserJoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJoinViewController.swift; sourceTree = "<group>"; };
 		3847EC432B0252B200E086EB /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		3847EC472B02578900E086EB /* SigninTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninTextField.swift; sourceTree = "<group>"; };
+		38B9203E2B08AAED006CBD1C /* Constant+Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constant+Network.swift"; sourceTree = "<group>"; };
 		38CA8C212B0385AC00A9C4B7 /* SigninTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninTitleLabel.swift; sourceTree = "<group>"; };
 		38CA8C242B03893300A9C4B7 /* SigninSubtitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninSubtitleLabel.swift; sourceTree = "<group>"; };
 		38CA8C262B038AC000A9C4B7 /* SigninButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninButton.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				3847EC312B022FF800E086EB /* Constant.swift */,
+				38B9203E2B08AAED006CBD1C /* Constant+Network.swift */,
 				3847EC342B02303200E086EB /* Constant+UI.swift */,
 			);
 			path = Constants;
@@ -347,6 +350,7 @@
 				38EE8A842B04D29000E629CC /* ViewModelType.swift in Sources */,
 				3847EC112B022C1200E086EB /* AppDelegate.swift in Sources */,
 				3847EC132B022C1200E086EB /* SceneDelegate.swift in Sources */,
+				38B9203F2B08AAED006CBD1C /* Constant+Network.swift in Sources */,
 				3847EC402B0251A500E086EB /* UserJoinViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

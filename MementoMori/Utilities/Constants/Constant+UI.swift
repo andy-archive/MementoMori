@@ -18,6 +18,11 @@ extension Constant {
             static let valid = UIColor.systemBlue
             static let notValid = UIColor.systemGray
         }
+        
+        enum Label {
+            static let valid = UIColor.systemGreen
+            static let notValid = UIColor.systemRed
+        }
     }
     
     enum Image {
