@@ -19,10 +19,8 @@ final class UserSigninViewModel: ViewModelType {
     
     struct Output {
         let isTextValid: Observable<Bool>
-//        let isEmailValid: BehaviorRelay<Bool>
     }
     
-//    private var isEmailValid = false
     private let disposeBag = DisposeBag()
     
     func transform(input: Input) -> Output {
@@ -34,7 +32,7 @@ final class UserSigninViewModel: ViewModelType {
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .map { $0.contains("@") && $0.contains(".") && $0.count >= 6 && $0.count < 50 }
         
-        input // ObservableConvertibleType
+        input
             .nextButtonClicked
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(input.text) { _, query in
@@ -44,7 +42,6 @@ final class UserSigninViewModel: ViewModelType {
                 APIManager.shared.validateEmail(email: query)
             }
             .subscribe(with: self) { owner, response in
-                print(owner, response, "==================", separator: "\n")
                 message.accept(response.message)
             }
             .disposed(by: disposeBag)
