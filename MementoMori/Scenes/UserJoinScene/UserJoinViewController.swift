@@ -146,4 +146,8 @@ final class UserJoinViewController: BaseViewController {
             nextButton.heightAnchor.constraint(equalToConstant: Constant.Layout.UserAuth.Size.height)
         ])
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
 }
