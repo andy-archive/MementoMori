@@ -1,5 +1,5 @@
 //
-//  UserSigninViewController.swift
+//  UserJoinViewController.swift
 //  MementoMori
 //
 //  Created by Taekwon Lee on 2023/11/13.
@@ -10,14 +10,14 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-final class UserSigninViewController: BaseViewController {
+final class UserJoinViewController: BaseViewController {
     
     private lazy var titleLabel = SigninTitleLabel()
     private lazy var subtitleLabel = SigninSubtitleLabel()
     private lazy var textField = SigninTextField()
     private lazy var nextButton = SigninButton()
     
-    private let viewModel = UserSigninViewModel()
+    private let viewModel = UserJoinViewModel()
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -27,7 +27,7 @@ final class UserSigninViewController: BaseViewController {
     }
     
     private func bind() {
-        let input = UserSigninViewModel.Input(text: textField.rx.text.orEmpty, nextButtonClicked: nextButton.rx.tap)
+        let input = UserJoinViewModel.Input(text: textField.rx.text.orEmpty, nextButtonClicked: nextButton.rx.tap)
         let output = viewModel.transform(input: input)
         
         output

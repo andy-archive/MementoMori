@@ -1,5 +1,5 @@
 //
-//  UserSigninViewModel.swift
+//  UserJoinViewModel.swift
 //  MementoMori
 //
 //  Created by Taekwon Lee on 2023/11/15.
@@ -10,7 +10,7 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-final class UserSigninViewModel: ViewModelType {
+final class UserJoinViewModel: ViewModelType {
     
     struct Input {
         let text: ControlProperty<String>
