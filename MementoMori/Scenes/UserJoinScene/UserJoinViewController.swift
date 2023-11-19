@@ -60,6 +60,10 @@ final class UserJoinViewController: BaseViewController {
     override func configureUI() {
         super.configureUI()
         
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        nicknameTextField.delegate = self
+        
         titleLabel.text = "회원 가입"
         subtitleLabel.text = "필수 입력 사항"
         emailTextField.placeholder = "📧 이메일"
@@ -149,5 +153,20 @@ final class UserJoinViewController: BaseViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
+    }
+}
+
+//MARK: UITextFieldDelegate
+
+extension UserJoinViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case emailTextField: passwordTextField.becomeFirstResponder()
+        case passwordTextField: nicknameTextField.becomeFirstResponder()
+        default: break
+        }
+        
+        return true
     }
 }
