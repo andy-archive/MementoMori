@@ -13,8 +13,8 @@ import RxSwift
 final class UserJoinViewModel: ViewModelType {
     
     struct Input {
-        let text: ControlProperty<String>
-        let nextButtonClicked: ControlEvent<Void>
+        let emailText: ControlProperty<String>
+        let emailValidationButtonCLicked: ControlEvent<Void>
     }
     
     struct Output {
@@ -29,14 +29,14 @@ final class UserJoinViewModel: ViewModelType {
         let validationMessage = BehaviorRelay(value: String())
         
         let isTextValid = input
-            .text
+            .emailText
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .map { $0.validateEmail() }
         
         input
-            .nextButtonClicked
+            .emailValidationButtonCLicked
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
-            .withLatestFrom(input.text) { _, query in
+            .withLatestFrom(input.emailText) { _, query in
                 return query
             }
             .flatMap { query in
