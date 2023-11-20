@@ -30,6 +30,7 @@ extension Constant {
         enum System {
             static let house = UIImage(systemName: "house")
             static let houseFill = UIImage(systemName: "house.fill")
+            static let eyeSlash = UIImage(systemName: "eye.slash")
         }
     }
 }

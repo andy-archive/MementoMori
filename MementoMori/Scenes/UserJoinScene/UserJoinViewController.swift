@@ -20,6 +20,7 @@ final class UserJoinViewController: BaseViewController {
     private lazy var passwordValidationLabel = SigninSubtitleLabel()
     private lazy var nicknameTextField = SigninTextField()
     private lazy var nextButton = SigninButton()
+    private lazy var secureTextButton = SecureTextButton()
     
     private let viewModel = UserJoinViewModel()
     private let disposeBag = DisposeBag()
@@ -74,6 +75,8 @@ final class UserJoinViewController: BaseViewController {
         passwordTextField.placeholder = "🔒 비밀번호"
         passwordTextField.isSecureTextEntry = true
         passwordTextField.returnKeyType = .continue
+        passwordTextField.rightViewMode = .always
+        passwordTextField.rightView = secureTextButton
         nicknameTextField.placeholder = "🔖 닉네임"
         nextButton.setTitle("확인", for: .normal)
         

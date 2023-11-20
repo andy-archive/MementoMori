@@ -29,4 +29,10 @@ class SigninTextField: UITextField {
         layer.cornerRadius = 15
         clipsToBounds = true
     }
+    
+    override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
+        let size = bounds.height * 0.8
+        let inset: CGFloat = 20
+        return CGRect(x: bounds.width - size - inset / 2, y: inset / 4, width: size, height: size)
+    }
 }
