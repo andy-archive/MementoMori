@@ -24,7 +24,7 @@ final class SigninButton: UIButton {
         titleLabel?.font = .boldSystemFont(ofSize: Constant.FontSize.subtitle)
         backgroundColor = .systemBlue
         layer.borderColor = UIColor.black.cgColor
-        layer.cornerRadius = 15
+        layer.cornerRadius = 10
         layer.masksToBounds = true
     }
 }

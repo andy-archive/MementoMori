@@ -31,8 +31,13 @@ class SigninTextField: UITextField {
     }
     
     override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
-        let size = bounds.height * 0.8
+        let rectWidth = bounds.height * 1.2
+        let rectHeight = bounds.height * 0.6
         let inset: CGFloat = 20
-        return CGRect(x: bounds.width - size - inset / 2, y: inset / 4, width: size, height: size)
+        
+        let x = bounds.width - rectWidth - inset / 2
+        let y = inset / 2
+        
+        return CGRect(x: x, y: y, width: rectWidth, height: rectHeight)
     }
 }
