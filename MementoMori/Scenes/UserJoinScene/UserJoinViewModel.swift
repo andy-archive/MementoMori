@@ -14,12 +14,14 @@ final class UserJoinViewModel: ViewModelType {
     
     struct Input {
         let emailText: ControlProperty<String>
-        let emailValidationButtonCLicked: ControlEvent<Void>
+        let emailValidationButtonClicked: ControlEvent<Void>
+        let passwordSecureButtonClicked: ControlEvent<Void>
     }
     
     struct Output {
         let isTextValid: Observable<Bool>
         let responseMessage: BehaviorRelay<String>
+        let isPasswordSecure: BehaviorRelay<Bool>
     }
     
     private let disposeBag = DisposeBag()
@@ -27,6 +29,7 @@ final class UserJoinViewModel: ViewModelType {
     func transform(input: Input) -> Output {
         
         let validationMessage = BehaviorRelay(value: String())
+        let isPasswordSecure = BehaviorRelay(value: false)
         
         let isTextValid = input
             .emailText
@@ -34,7 +37,7 @@ final class UserJoinViewModel: ViewModelType {
             .map { $0.validateEmail() }
         
         input
-            .emailValidationButtonCLicked
+            .emailValidationButtonClicked
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(input.emailText) { _, query in
                 return query
@@ -42,11 +45,18 @@ final class UserJoinViewModel: ViewModelType {
             .flatMap { query in
                 APIManager.shared.validateEmail(email: query)
             }
-            .subscribe(with: self) { owner, response in
+            .subscribe(with: self) { _, response in
                 validationMessage.accept(response.message)
             }
             .disposed(by: disposeBag)
         
-        return Output(isTextValid: isTextValid, responseMessage: validationMessage)
+        input
+            .passwordSecureButtonClicked
+            .subscribe(with: self) { _, _ in
+                isPasswordSecure.accept(!isPasswordSecure.value)
+            }
+            .disposed(by: disposeBag)
+        
+        return Output(isTextValid: isTextValid, responseMessage: validationMessage, isPasswordSecure: isPasswordSecure)
     }
 }

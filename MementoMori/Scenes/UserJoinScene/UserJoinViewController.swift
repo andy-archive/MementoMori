@@ -36,7 +36,7 @@ final class UserJoinViewController: BaseViewController {
     }
     
     private func bind() {
-        let input = UserJoinViewModel.Input(text: emailTextField.rx.text.orEmpty, nextButtonClicked: emailValidationButton.rx.tap)
+        let input = UserJoinViewModel.Input(emailText: emailTextField.rx.text.orEmpty, emailValidationButtonClicked: emailValidationButton.rx.tap, passwordSecureButtonClicked: passwordSecureTextButton.rx.tap)
         let output = viewModel.transform(input: input)
         
         output
@@ -60,6 +60,16 @@ final class UserJoinViewController: BaseViewController {
                 }
             }
             .disposed(by: disposeBag)
+        
+        output
+            .isPasswordSecure
+            .asDriver()
+            .drive(with: self) { owner, value in
+                let image = value ? Constant.Image.System.eye : Constant.Image.System.eyeSlash
+                owner.passwordSecureTextButton.setImage(image, for: .normal)
+                owner.passwordTextField.isSecureTextEntry.toggle()
+            }
+            .disposed(by: disposeBag)
     }
     
     override func configureUI() {
@@ -81,7 +91,6 @@ final class UserJoinViewController: BaseViewController {
         emailTextField.rightView = emailValidationButton
         emailValidationButton.setTitle("확인", for: .normal)
         passwordTextField.placeholder = "🔒 비밀번호"
-        passwordTextField.isSecureTextEntry = true
         passwordTextField.returnKeyType = .continue
         passwordTextField.rightViewMode = .always
         passwordTextField.rightView = passwordSecureTextButton
