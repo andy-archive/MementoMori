@@ -31,7 +31,7 @@ final class UserJoinViewModel: ViewModelType {
         let isTextValid = input
             .text
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
-            .map { $0.contains("@") && $0.contains(".") && $0.count >= 5 && $0.count < 50 }
+            .map { $0.validateEmail() }
         
         input
             .nextButtonClicked
