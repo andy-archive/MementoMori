@@ -15,11 +15,11 @@ final class UserJoinViewController: BaseViewController {
     private lazy var titleLabel = SigninTitleLabel()
     private lazy var subtitleLabel = SigninSubtitleLabel()
     private lazy var emailTextField = SigninTextField()
+    private lazy var emailValidationButton = SigninButton()
     private lazy var emailValidationLabel = SigninSubtitleLabel()
     private lazy var passwordTextField = SigninTextField()
     private lazy var passwordValidationLabel = SigninSubtitleLabel()
     private lazy var nicknameTextField = SigninTextField()
-    private lazy var nextButton = SigninButton()
     private lazy var secureTextButton = SecureTextButton()
     
     private let viewModel = UserJoinViewModel()
@@ -32,15 +32,15 @@ final class UserJoinViewController: BaseViewController {
     }
     
     private func bind() {
-        let input = UserJoinViewModel.Input(text: emailTextField.rx.text.orEmpty, nextButtonClicked: nextButton.rx.tap)
+        let input = UserJoinViewModel.Input(text: emailTextField.rx.text.orEmpty, nextButtonClicked: emailValidationButton.rx.tap)
         let output = viewModel.transform(input: input)
         
         output
             .isTextValid
             .bind(with: self) { owner, value in
                 let color = value ? Constant.Color.Button.valid : Constant.Color.Button.notValid
-                owner.nextButton.backgroundColor = color
-                owner.nextButton.isEnabled = value
+                owner.emailValidationButton.backgroundColor = color
+                owner.emailValidationButton.isEnabled = value
             }
             .disposed(by: disposeBag)
         
@@ -72,13 +72,15 @@ final class UserJoinViewController: BaseViewController {
         emailTextField.autocapitalizationType = .none
         emailTextField.returnKeyType = .continue
         emailTextField.becomeFirstResponder()
+        emailTextField.rightViewMode = .always
+        emailTextField.rightView = emailValidationButton
         passwordTextField.placeholder = "🔒 비밀번호"
         passwordTextField.isSecureTextEntry = true
         passwordTextField.returnKeyType = .continue
         passwordTextField.rightViewMode = .always
         passwordTextField.rightView = secureTextButton
         nicknameTextField.placeholder = "🔖 닉네임"
-        nextButton.setTitle("확인", for: .normal)
+        emailValidationButton.setTitle("확인", for: .normal)
         
         view.addSubview(titleLabel)
         view.addSubview(subtitleLabel)
@@ -87,7 +89,7 @@ final class UserJoinViewController: BaseViewController {
         view.addSubview(passwordTextField)
         view.addSubview(passwordValidationLabel)
         view.addSubview(nicknameTextField)
-        view.addSubview(nextButton)
+        view.addSubview(emailValidationButton)
     }
     
     override func configureLayout() {
@@ -143,14 +145,6 @@ final class UserJoinViewController: BaseViewController {
             nicknameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.UserAuth.Inset.horizontal),
             nicknameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constant.Layout.UserAuth.Inset.horizontal),
             nicknameTextField.heightAnchor.constraint(equalToConstant: Constant.Layout.UserAuth.Size.height)
-        ])
-        
-        nextButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            nextButton.topAnchor.constraint(equalTo: nicknameTextField.safeAreaLayoutGuide.bottomAnchor, constant: Constant.Layout.UserAuth.Inset.vertical),
-            nextButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.UserAuth.Inset.horizontal),
-            nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constant.Layout.UserAuth.Inset.horizontal),
-            nextButton.heightAnchor.constraint(equalToConstant: Constant.Layout.UserAuth.Size.height)
         ])
     }
     
