@@ -12,7 +12,7 @@
 │   │   └──📂 AppInfo # Assets, LaunchScreen, Info.plist
 │   ├──📂 Scenes # UI
 │   │   ├──📂 ContentListScene # 컨텐츠 목록 화면
-│   │   └──📂 UserSigninScene # 회원 가입 화면
+│   │   └──📂 UserJoinScene # 회원 가입 화면
 │   └──📂 Utilities
 │       ├──📂 Base # BaseView & CustomView
 │       ├──📂 Constants
