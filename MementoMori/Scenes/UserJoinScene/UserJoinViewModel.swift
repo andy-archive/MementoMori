@@ -15,12 +15,14 @@ final class UserJoinViewModel: ViewModelType {
     struct Input {
         let emailText: ControlProperty<String>
         let emailValidationButtonClicked: ControlEvent<Void>
+        let passwordText: ControlProperty<String>
         let passwordSecureButtonClicked: ControlEvent<Void>
     }
     
     struct Output {
-        let isTextValid: Observable<Bool>
+        let isEmailTextValid: Observable<Bool>
         let responseMessage: BehaviorRelay<String>
+        let isPasswordTextValid: Observable<Bool>
         let isPasswordSecure: BehaviorRelay<Bool>
     }
     
@@ -29,6 +31,8 @@ final class UserJoinViewModel: ViewModelType {
     func transform(input: Input) -> Output {
         
         let validationMessage = BehaviorRelay(value: String())
+        let passwordValidationLabel = BehaviorRelay(value: String())
+        let isPasswordTextValid = PublishRelay<Bool>()
         let isPasswordSecure = BehaviorRelay(value: false)
         
         let isTextValid = input
@@ -50,6 +54,11 @@ final class UserJoinViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
+        let isPasswordValid = input
+            .passwordText
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+            .map { $0.validatePassword() }
+        
         input
             .passwordSecureButtonClicked
             .subscribe(with: self) { _, _ in
@@ -57,6 +66,6 @@ final class UserJoinViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
-        return Output(isTextValid: isTextValid, responseMessage: validationMessage, isPasswordSecure: isPasswordSecure)
+        return Output(isEmailTextValid: isTextValid, responseMessage: validationMessage, isPasswordTextValid: isPasswordValid, isPasswordSecure: isPasswordSecure)
     }
 }

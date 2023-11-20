@@ -36,11 +36,17 @@ final class UserJoinViewController: BaseViewController {
     }
     
     private func bind() {
-        let input = UserJoinViewModel.Input(emailText: emailTextField.rx.text.orEmpty, emailValidationButtonClicked: emailValidationButton.rx.tap, passwordSecureButtonClicked: passwordSecureTextButton.rx.tap)
+        
+        let input = UserJoinViewModel.Input(
+            emailText: emailTextField.rx.text.orEmpty,
+            emailValidationButtonClicked: emailValidationButton.rx.tap,
+            passwordText: passwordTextField.rx.text.orEmpty,
+            passwordSecureButtonClicked: passwordSecureTextButton.rx.tap
+        )
         let output = viewModel.transform(input: input)
         
         output
-            .isTextValid
+            .isEmailTextValid
             .bind(with: self) { owner, value in
                 let color = value ? Constant.Color.Button.valid : Constant.Color.Button.notValid
                 owner.emailValidationButton.backgroundColor = color
@@ -58,6 +64,15 @@ final class UserJoinViewController: BaseViewController {
                 if !value.isEmpty {
                     owner.emailTextField.layer.borderColor = color.cgColor
                 }
+            }
+            .disposed(by: disposeBag)
+        
+        output
+            .isPasswordTextValid
+            .bind(with: self) { owner, value in
+                let textFieldColor = value ? Constant.Color.TextField.valid : Constant.Color.TextField.notValid
+                owner.passwordTextField.layer.borderColor = textFieldColor.cgColor
+                
             }
             .disposed(by: disposeBag)
         

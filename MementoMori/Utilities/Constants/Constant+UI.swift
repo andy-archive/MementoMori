@@ -23,6 +23,11 @@ extension Constant {
             static let valid = UIColor.systemGreen
             static let notValid = UIColor.systemRed
         }
+        
+        enum TextField {
+            static let valid = UIColor.systemGray
+            static let notValid = UIColor.systemRed
+        }
     }
     
     enum Image {
