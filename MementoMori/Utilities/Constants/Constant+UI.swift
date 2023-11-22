@@ -23,6 +23,11 @@ extension Constant {
             static let valid = UIColor.systemGreen
             static let notValid = UIColor.systemRed
         }
+        
+        enum TextField {
+            static let valid = UIColor.systemGreen
+            static let notValid = UIColor.systemRed
+        }
     }
     
     enum Image {
@@ -30,7 +35,8 @@ extension Constant {
         enum System {
             static let house = UIImage(systemName: "house")
             static let houseFill = UIImage(systemName: "house.fill")
-            static let eyeSlash = UIImage(systemName: "eye.slash")
+            static let eye = UIImage(systemName: "eye")?.withTintColor(.label.withAlphaComponent(0.6), renderingMode: .alwaysOriginal)
+            static let eyeSlash = UIImage(systemName: "eye.slash")?.withTintColor(.label.withAlphaComponent(0.6), renderingMode: .alwaysOriginal)
         }
     }
 }

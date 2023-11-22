@@ -20,6 +20,6 @@ final class SecureTextButton: UIButton {
     }
     
     func configureUI() {
-        setImage(Constant.Image.System.eyeSlash?.withTintColor(.label.withAlphaComponent(0.6), renderingMode: .alwaysOriginal), for: .normal)
+        setImage(Constant.Image.System.eye, for: .normal)
     }
 }

@@ -36,11 +36,17 @@ final class UserJoinViewController: BaseViewController {
     }
     
     private func bind() {
-        let input = UserJoinViewModel.Input(text: emailTextField.rx.text.orEmpty, nextButtonClicked: emailValidationButton.rx.tap)
+        
+        let input = UserJoinViewModel.Input(
+            emailText: emailTextField.rx.text.orEmpty,
+            emailValidationButtonClicked: emailValidationButton.rx.tap,
+            passwordText: passwordTextField.rx.text.orEmpty,
+            passwordSecureButtonClicked: passwordSecureTextButton.rx.tap
+        )
         let output = viewModel.transform(input: input)
         
         output
-            .isTextValid
+            .isEmailTextValid
             .bind(with: self) { owner, value in
                 let color = value ? Constant.Color.Button.valid : Constant.Color.Button.notValid
                 owner.emailValidationButton.backgroundColor = color
@@ -60,6 +66,24 @@ final class UserJoinViewController: BaseViewController {
                 }
             }
             .disposed(by: disposeBag)
+        
+        output
+            .isPasswordTextValid
+            .bind(with: self) { owner, value in
+                let textFieldColor = value ? Constant.Color.TextField.valid : Constant.Color.TextField.notValid
+                owner.passwordTextField.layer.borderColor = textFieldColor.cgColor
+            }
+            .disposed(by: disposeBag)
+        
+        output
+            .isPasswordSecure
+            .asDriver()
+            .drive(with: self) { owner, value in
+                let image = value ? Constant.Image.System.eye : Constant.Image.System.eyeSlash
+                owner.passwordSecureTextButton.setImage(image, for: .normal)
+                owner.passwordTextField.isSecureTextEntry.toggle()
+            }
+            .disposed(by: disposeBag)
     }
     
     override func configureUI() {
@@ -74,14 +98,12 @@ final class UserJoinViewController: BaseViewController {
         requiredSubtitleLabel.text = "필수 입력 사항"
         emailTextField.placeholder = "📧 이메일"
         emailTextField.keyboardType = .emailAddress
-        emailTextField.autocapitalizationType = .none
         emailTextField.returnKeyType = .continue
         emailTextField.becomeFirstResponder()
         emailTextField.rightViewMode = .always
         emailTextField.rightView = emailValidationButton
         emailValidationButton.setTitle("확인", for: .normal)
-        passwordTextField.placeholder = "🔒 비밀번호"
-        passwordTextField.isSecureTextEntry = true
+        passwordTextField.placeholder = "🔒 비밀번호 (8자리 이상)"
         passwordTextField.returnKeyType = .continue
         passwordTextField.rightViewMode = .always
         passwordTextField.rightView = passwordSecureTextButton
