@@ -22,7 +22,7 @@ final class UserJoinViewModel: ViewModelType {
     struct Output {
         let isEmailTextValid: Observable<Bool>
         let responseMessage: BehaviorRelay<String>
-        let isPasswordTextValid: Observable<Bool>
+        let isPasswordTextValid: PublishRelay<Bool>
         let isPasswordSecure: BehaviorRelay<Bool>
     }
     
@@ -30,12 +30,11 @@ final class UserJoinViewModel: ViewModelType {
     
     func transform(input: Input) -> Output {
         
-        let validationMessage = BehaviorRelay(value: String())
-        let passwordValidationLabel = BehaviorRelay(value: String())
-        let isPasswordTextValid = PublishRelay<Bool>()
+        let messageValidation = BehaviorRelay(value: String())
+        let passwordValidation = PublishRelay<Bool>()
         let isPasswordSecure = BehaviorRelay(value: false)
         
-        let isTextValid = input
+        let emailValidation = input
             .emailText
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .map { $0.validateEmail() }
@@ -50,14 +49,19 @@ final class UserJoinViewModel: ViewModelType {
                 APIManager.shared.validateEmail(email: query)
             }
             .subscribe(with: self) { _, response in
-                validationMessage.accept(response.message)
+                messageValidation.accept(response.message)
             }
             .disposed(by: disposeBag)
         
-        let isPasswordValid = input
+        input
             .passwordText
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
-            .map { $0.validatePassword() }
+            .subscribe(with: self) { _, text in
+                if !text.isEmpty {
+                    passwordValidation.accept(text.validatePassword())
+                }
+            }
+            .disposed(by: disposeBag)
         
         input
             .passwordSecureButtonClicked
@@ -66,6 +70,6 @@ final class UserJoinViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
-        return Output(isEmailTextValid: isTextValid, responseMessage: validationMessage, isPasswordTextValid: isPasswordValid, isPasswordSecure: isPasswordSecure)
+        return Output(isEmailTextValid: emailValidation, responseMessage: messageValidation, isPasswordTextValid: passwordValidation, isPasswordSecure: isPasswordSecure)
     }
 }
