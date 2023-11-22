@@ -28,6 +28,8 @@ class SigninTextField: UITextField {
         layer.borderWidth = 1
         layer.cornerRadius = 15
         clipsToBounds = true
+        autocapitalizationType = .none
+        autocorrectionType = .no
     }
     
     override func rightViewRect(forBounds bounds: CGRect) -> CGRect {

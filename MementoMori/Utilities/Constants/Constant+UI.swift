@@ -25,7 +25,7 @@ extension Constant {
         }
         
         enum TextField {
-            static let valid = UIColor.systemGray
+            static let valid = UIColor.systemGreen
             static let notValid = UIColor.systemRed
         }
     }
