@@ -11,6 +11,7 @@ import Moya
 
 enum MementoAPI {
     case emailValidation(model: EmailValidationRequest)
+    case userJoin(model: UserJoinRequest)
 }
 
 extension MementoAPI: TargetType {
@@ -22,18 +23,22 @@ extension MementoAPI: TargetType {
     var path: String {
         switch self {
         case .emailValidation: return "validation/email"
+        case .userJoin: return "join"
         }
     }
     
     var method: Moya.Method {
         switch self {
         case .emailValidation: return .post
+        case .userJoin: return .post
         }
     }
     
     var task: Moya.Task {
         switch self {
         case .emailValidation(let data):
+            return .requestJSONEncodable(data)
+        case .userJoin(let data):
             return .requestJSONEncodable(data)
         }
     }
