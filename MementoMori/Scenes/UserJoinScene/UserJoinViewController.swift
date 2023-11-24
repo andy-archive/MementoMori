@@ -39,31 +39,20 @@ final class UserJoinViewController: BaseViewController {
         
         let input = UserJoinViewModel.Input(
             emailText: emailTextField.rx.text.orEmpty,
-            emailValidationButtonClicked: emailValidationButton.rx.tap,
             passwordText: passwordTextField.rx.text.orEmpty,
-            passwordSecureButtonClicked: passwordSecureTextButton.rx.tap
+            nicknameText: nicknameTextField.rx.text.orEmpty,
+            emailValidationButtonClicked: emailValidationButton.rx.tap,
+            passwordSecureButtonClicked: passwordSecureTextButton.rx.tap,
+            nextButtonClicked: nextButton.rx.tap
         )
         let output = viewModel.transform(input: input)
         
         output
             .isEmailTextValid
             .bind(with: self) { owner, value in
-                let color = value ? Constant.Color.Button.valid : Constant.Color.Button.notValid
-                owner.emailValidationButton.backgroundColor = color
-                owner.emailValidationButton.isEnabled = value
-            }
-            .disposed(by: disposeBag)
-        
-        output
-            .responseMessage
-            .asDriver()
-            .drive(with: self) { owner, value in
-                let color = value == Constant.NetworkResponse.EmailValidation.Message.validEmail ? Constant.Color.Label.valid : Constant.Color.Label.notValid
-                owner.emailValidationLabel.text = value
+                let color = value ? Constant.Color.Label.valid : Constant.Color.Label.notValid
                 owner.emailValidationLabel.textColor = color
-                if !value.isEmpty {
-                    owner.emailTextField.layer.borderColor = color.cgColor
-                }
+                owner.emailTextField.layer.borderColor = color.cgColor
             }
             .disposed(by: disposeBag)
         
@@ -76,12 +65,46 @@ final class UserJoinViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         output
+            .isNicknameTextValid
+            .bind(with: self) { owner, value in
+                let textFieldColor = value ? Constant.Color.TextField.valid : Constant.Color.TextField.notValid
+                owner.nicknameTextField.layer.borderColor = textFieldColor.cgColor
+            }
+            .disposed(by: disposeBag)
+        
+        output
+            .emailValidationMessage
+            .asDriver()
+            .drive(with: self) { owner, value in
+                owner.emailValidationLabel.text = value
+            }
+            .disposed(by: disposeBag)
+        
+        output
             .isPasswordSecure
             .asDriver()
             .drive(with: self) { owner, value in
                 let image = value ? Constant.Image.System.eye : Constant.Image.System.eyeSlash
                 owner.passwordSecureTextButton.setImage(image, for: .normal)
                 owner.passwordTextField.isSecureTextEntry.toggle()
+            }
+            .disposed(by: disposeBag)
+        
+        output
+            .isEmailValidationButtonEnabled
+            .bind(with: self) { owner, value in
+                let color = value ? Constant.Color.Button.valid : Constant.Color.Button.notValid
+                owner.emailValidationButton.backgroundColor = color
+                owner.emailValidationButton.isEnabled = value
+            }
+            .disposed(by: disposeBag)
+        
+        output
+            .isNextButtonEnabled
+            .bind(with: self) { owner, value in
+                let color = value ? Constant.Color.Button.valid : Constant.Color.Button.notValid
+                owner.nextButton.backgroundColor = color
+                owner.nextButton.isEnabled = value
             }
             .disposed(by: disposeBag)
     }
@@ -107,7 +130,7 @@ final class UserJoinViewController: BaseViewController {
         passwordTextField.returnKeyType = .continue
         passwordTextField.rightViewMode = .always
         passwordTextField.rightView = passwordSecureTextButton
-        nicknameTextField.placeholder = "🔖 닉네임"
+        nicknameTextField.placeholder = "🔖 닉네임 (2~20 자)"
         nicknameTextField.returnKeyType = .continue
         
         selectiveSubtitleLabel.text = "선택 입력 사항"
@@ -239,3 +262,29 @@ extension UserJoinViewController: UITextFieldDelegate {
         return true
     }
 }
+
+#if DEBUG
+import SwiftUI
+struct Preview: UIViewControllerRepresentable {
+    
+    func makeUIViewController(context: Context) -> UIViewController {
+        UserJoinViewController() // 📌 뷰컨마다 변경
+    }
+    
+    func updateUIViewController(_ uiView: UIViewController,context: Context) {
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.becomeFirstResponder()
+    }
+}
+
+struct ViewController_PreviewProvider: PreviewProvider {
+    static var previews: some View {
+        Group {
+            Preview()
+                .previewDisplayName("Preview")
+        }
+    }
+}
+#endif
