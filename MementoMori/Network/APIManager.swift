@@ -55,17 +55,22 @@ final class APIManager {
                 let decoder = JSONDecoder()
                 
                 switch result {
-                case .success(let value):
-                    
+                case .success(let response):
                     do {
-                        let data = try decoder.decode(Model.self, from: value.data)
+                        let data = try decoder.decode(Model.self, from: response.data)
                         single(.success(.success(data)))
                     } catch {
-                        single(.success(.failure(NetworkError.noResponse)))
+                        single(.success(.failure(NetworkError.badRequest)))
                     }
                     
-                case .failure(_):
-                    single(.success(.failure(NetworkError.internalServerError)))
+                case .failure(let error):
+                    guard let statusCode = error.response?.statusCode,
+                          let networkError = NetworkError(rawValue: statusCode)
+                    else {
+                        single(.success(.failure(NetworkError.internalServerError)))
+                        return
+                    }
+                    single(.success(.failure(networkError)))
                 }
             }
             
