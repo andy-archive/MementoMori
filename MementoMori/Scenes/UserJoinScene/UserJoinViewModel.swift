@@ -61,12 +61,26 @@ final class UserJoinViewModel: ViewModelType {
         input
             .emailText
             .subscribe(with: self) { owner, value in
-                if (owner.isEmailValidationMessageValid &&
-                    isEmailValidationButtonEnabled.value &&
-                     value != owner.requestedEmail) {
-                    isEmailTextValid.accept(false)
-                    emailValidationMessage.accept("이메일을 다시 입력하세요")
-                    owner.isEmailValidationMessageValid = false
+                if owner.requestedEmail.isEmpty { // 이메일 검증 요청 이전
+                    if !value.isEmpty && value.validateEmail() {
+                        isEmailValidationButtonEnabled.accept(true)
+                    } else {
+                        isEmailValidationButtonEnabled.accept(false)
+                    }
+                } else { // 이메일 검증 요청 이후
+                    if !owner.isEmailValidationMessageValid && value.validateEmail() {
+                        isEmailValidationButtonEnabled.accept(true)
+                    } else {
+                        isEmailValidationButtonEnabled.accept(false)
+                    }
+                    
+                    // 이메일 검증 요청 성공 이후 다시 이메일을 바꿨을 때
+                    if value != owner.requestedEmail && owner.isEmailValidationMessageValid {
+                        emailValidationMessage.accept("이메일을 다시 입력하세요")
+                        owner.isEmailValidationMessageValid = false
+                        isEmailTextValid.accept(false)
+                        isEmailValidationButtonEnabled.accept(true)
+                    }
                 }
             }
             .disposed(by: disposeBag)
