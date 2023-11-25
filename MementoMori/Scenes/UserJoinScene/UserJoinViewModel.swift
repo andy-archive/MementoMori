@@ -28,7 +28,7 @@ final class UserJoinViewModel: ViewModelType {
         let emailValidationMessage: BehaviorRelay<String>
         let isPasswordSecure: BehaviorRelay<Bool>
         let isEmailValidationButtonEnabled: BehaviorRelay<Bool>
-        let isNextButtonEnabled: Observable<Bool>
+        let isNextButtonEnabled: BehaviorRelay<Bool>
     }
     
     private var requestedEmail = String()
@@ -43,20 +43,21 @@ final class UserJoinViewModel: ViewModelType {
         let emailValidationMessage = BehaviorRelay(value: String())
         let isPasswordSecure = BehaviorRelay(value: false)
         let isEmailValidationButtonEnabled = BehaviorRelay(value: false)
+        let isNextButtonEnabled = BehaviorRelay(value: false)
         
-        let isNextButtonEnabled = Observable
-            .combineLatest(input.emailText, input.passwordText, input.nicknameText) { email, password, nickname in
-                self.isEmailValidationMessageValid && password.validatePassword() && nickname.validateNickname()
-            }
-        
-        input
-            .emailText
-            .subscribe(with: self) { owner, value in
-                if !value.isEmpty && value.validateEmail()  {
-                    isEmailValidationButtonEnabled.accept(true)
+        let checkJoinValidation: () -> Void =  {
+            Observable
+                .combineLatest(input.emailText, input.passwordText, input.nicknameText) { email, password, nickname in
+                    self.isEmailValidationMessageValid &&
+                    email.validateEmail() &&
+                    password.validatePassword() &&
+                    nickname.validateNickname()
                 }
-            }
-            .disposed(by: disposeBag)
+                .subscribe(with: self) { _, value in
+                    isNextButtonEnabled.accept(value)
+                }
+                .disposed(by: self.disposeBag)
+        }
         
         input
             .emailText
@@ -103,6 +104,7 @@ final class UserJoinViewModel: ViewModelType {
                     self.isEmailValidationMessageValid = true
                     isEmailTextValid.accept(true)
                     isEmailValidationButtonEnabled.accept(false)
+                    checkJoinValidation() // 성공 시 가입 버튼을 누를 수 있는지 검사
                 } else {
                     isEmailTextValid.accept(false)
                 }
