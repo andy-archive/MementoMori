@@ -29,6 +29,7 @@ final class UserJoinViewModel: ViewModelType {
         let isPasswordSecure: BehaviorRelay<Bool>
         let isEmailValidationButtonEnabled: BehaviorRelay<Bool>
         let isNextButtonEnabled: BehaviorRelay<Bool>
+        let joinResponse: PublishRelay<Result<Void>>
     }
     
     private var requestedEmail = String()
@@ -44,6 +45,7 @@ final class UserJoinViewModel: ViewModelType {
         let isPasswordSecure = BehaviorRelay(value: false)
         let isEmailValidationButtonEnabled = BehaviorRelay(value: false)
         let isNextButtonEnabled = BehaviorRelay(value: false)
+        let joinResponse = PublishRelay<Result<Void>>()
         
         let checkJoinValidation: () -> Void =  {
             Observable
@@ -58,6 +60,12 @@ final class UserJoinViewModel: ViewModelType {
                 }
                 .disposed(by: self.disposeBag)
         }
+        
+        let joinInput = Observable
+            .combineLatest(input.emailText, input.passwordText, input.nicknameText) { email, password, nickname in
+                UserJoinRequest(email: email, password: password, nick: nickname, phoneNum: nil, birthday: nil)
+            }
+            .share()
         
         input
             .emailText
@@ -138,6 +146,23 @@ final class UserJoinViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
+//        input
+//            .nextButtonClicked
+//            .debug()
+//            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+//            .withLatestFrom(joinInput)
+//            .flatMap { input in
+//                APIManager.shared.request(api: .userJoin(model: input)) // 📌 ERROR: Generic parameter 'T' could not be inferred
+//            }
+//            .subscribe(with: self) { owner, result in
+//                switch result {
+//                case .success(let result):
+//                    
+//                case .failure(let error):
+//                }
+//            }
+//            .disposed(by: disposeBag)
+        
         return Output(
             isEmailTextValid: isEmailTextValid,
             isPasswordTextValid: isPasswordTextValid,
@@ -145,7 +170,8 @@ final class UserJoinViewModel: ViewModelType {
             emailValidationMessage: emailValidationMessage,
             isPasswordSecure: isPasswordSecure,
             isEmailValidationButtonEnabled: isEmailValidationButtonEnabled,
-            isNextButtonEnabled: isNextButtonEnabled
+            isNextButtonEnabled: isNextButtonEnabled,
+            joinResponse: joinResponse
         )
     }
 }
