@@ -34,7 +34,12 @@ final class UserJoinViewModel: ViewModelType {
     
     private var requestedEmail = String()
     private var isEmailValidationMessageValid = false
+    private let userAuthRepository: AuthRepositoryProtocol
     private let disposeBag = DisposeBag()
+    
+    init(userAuthRepository: AuthRepositoryProtocol) {
+        self.userAuthRepository = userAuthRepository
+    }
     
     func transform(input: Input) -> Output {
         
@@ -146,22 +151,23 @@ final class UserJoinViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
-//        input
-//            .nextButtonClicked
-//            .debug()
-//            .throttle(.seconds(1), scheduler: MainScheduler.instance)
-//            .withLatestFrom(joinInput)
-//            .flatMap { input in
-//                APIManager.shared.request(api: .userJoin(model: input)) // 📌 ERROR: Generic parameter 'T' could not be inferred
-//            }
-//            .subscribe(with: self) { owner, result in
-//                switch result {
-//                case .success(let result):
-//                    
-//                case .failure(let error):
-//                }
-//            }
-//            .disposed(by: disposeBag)
+        input
+            .nextButtonClicked
+            .debug()
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+            .withLatestFrom(joinInput)
+            .flatMap { input in
+                self.userAuthRepository.join(userInfo: input)
+            }
+            .bind(with: self) { owner, result in
+                switch result {
+                case .success(let response):
+                    joinResponse.accept(.success(response))
+                case .failure(let error):
+                    joinResponse.accept(.failure(error))
+                }
+            }
+            .disposed(by: disposeBag)
         
         return Output(
             isEmailTextValid: isEmailTextValid,

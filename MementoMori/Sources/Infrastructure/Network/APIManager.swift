@@ -12,7 +12,7 @@ import RxSwift
 
 enum Result<T> {
     case success(T)
-    case failure(NetworkError)
+    case failure(ReusableError)
 }
 
 final class APIManager {
