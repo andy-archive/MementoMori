@@ -110,11 +110,8 @@
 		3847EC0F2B022C1200E086EB /* MementoMori */ = {
 			isa = PBXGroup;
 			children = (
-				3847EC262B022C6F00E086EB /* Application */,
-				38EE8A912B0631A500E629CC /* Model */,
-				38EE8A952B06329700E629CC /* Network */,
+				3863091E2B131141001973AA /* Sources */,
 				3847EC282B022C8200E086EB /* Resources */,
-				3847EC272B022C7900E086EB /* Scenes */,
 				3847EC2A2B022F6C00E086EB /* Utilities */,
 			);
 			path = MementoMori;
@@ -129,13 +126,14 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
-		3847EC272B022C7900E086EB /* Scenes */ = {
+		3847EC272B022C7900E086EB /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				3847EC382B02345300E086EB /* ContentListScene */,
-				3847EC3D2B02518200E086EB /* UserJoinScene */,
+				38EE8A772B04B65800E629CC /* Common */,
+				3847EC382B02345300E086EB /* ContentList */,
+				3847EC3D2B02518200E086EB /* UserJoin */,
 			);
-			path = Scenes;
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		3847EC282B022C8200E086EB /* Resources */ = {
@@ -159,7 +157,6 @@
 		3847EC2A2B022F6C00E086EB /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				38EE8A772B04B65800E629CC /* Base */,
 				3847EC302B022FF000E086EB /* Constants */,
 				3847EC2B2B022F8000E086EB /* Extensions */,
 			);
@@ -187,21 +184,21 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
-		3847EC382B02345300E086EB /* ContentListScene */ = {
+		3847EC382B02345300E086EB /* ContentList */ = {
 			isa = PBXGroup;
 			children = (
 				3847EC142B022C1200E086EB /* ContentListViewController.swift */,
 			);
-			path = ContentListScene;
+			path = ContentList;
 			sourceTree = "<group>";
 		};
-		3847EC3D2B02518200E086EB /* UserJoinScene */ = {
+		3847EC3D2B02518200E086EB /* UserJoin */ = {
 			isa = PBXGroup;
 			children = (
 				3847EC3F2B0251A500E086EB /* UserJoinViewController.swift */,
 				38EE8A812B04D0AC00E629CC /* UserJoinViewModel.swift */,
 			);
-			path = UserJoinScene;
+			path = UserJoin;
 			sourceTree = "<group>";
 		};
 		3847EC422B02527700E086EB /* BaseView */ = {
@@ -220,6 +217,42 @@
 			path = CustomView;
 			sourceTree = "<group>";
 		};
+		3863091E2B131141001973AA /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				3847EC262B022C6F00E086EB /* Application */,
+				38EE8A912B0631A500E629CC /* Domain */,
+				386309212B1325C7001973AA /* Infrastructure */,
+				3847EC272B022C7900E086EB /* Presentation */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		3863091F2B1311DA001973AA /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				38EE8A922B0631CB00E629CC /* EmailValidationModel.swift */,
+				388CFD4A2B0F264600638EFD /* UserJoinModel.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		386309202B131241001973AA /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				38EE8A832B04D29000E629CC /* ViewModelType.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		386309212B1325C7001973AA /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				38EE8A952B06329700E629CC /* Network */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
 		38CA8C202B03859400A9C4B7 /* SigninView */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,23 +265,22 @@
 			path = SigninView;
 			sourceTree = "<group>";
 		};
-		38EE8A772B04B65800E629CC /* Base */ = {
+		38EE8A772B04B65800E629CC /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				3847EC422B02527700E086EB /* BaseView */,
 				3847EC452B02566000E086EB /* CustomView */,
-				38EE8A832B04D29000E629CC /* ViewModelType.swift */,
+				386309202B131241001973AA /* Protocol */,
 			);
-			path = Base;
+			path = Common;
 			sourceTree = "<group>";
 		};
-		38EE8A912B0631A500E629CC /* Model */ = {
+		38EE8A912B0631A500E629CC /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				38EE8A922B0631CB00E629CC /* EmailValidationModel.swift */,
-				388CFD4A2B0F264600638EFD /* UserJoinModel.swift */,
+				3863091F2B1311DA001973AA /* Entities */,
 			);
-			path = Model;
+			path = Domain;
 			sourceTree = "<group>";
 		};
 		38EE8A952B06329700E629CC /* Network */ = {
