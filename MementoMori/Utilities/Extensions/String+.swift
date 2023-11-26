@@ -23,4 +23,12 @@ extension String {
         
         return isValid ? true : false
     }
+    
+    func validateNickname() -> Bool {
+        let regex = "^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,20}$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
+        let isValid = predicate.evaluate(with: self)
+        
+        return isValid ? true : false
+    }
 }

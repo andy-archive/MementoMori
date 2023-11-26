@@ -21,6 +21,8 @@
 		3847EC402B0251A500E086EB /* UserJoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC3F2B0251A500E086EB /* UserJoinViewController.swift */; };
 		3847EC442B0252B200E086EB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC432B0252B200E086EB /* BaseViewController.swift */; };
 		3847EC482B02578900E086EB /* SigninTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC472B02578900E086EB /* SigninTextField.swift */; };
+		388CFD4B2B0F264600638EFD /* UserJoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CFD4A2B0F264600638EFD /* UserJoinModel.swift */; };
+		388CFD4D2B0F2ED900638EFD /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CFD4C2B0F2ED800638EFD /* NetworkError.swift */; };
 		38B9203F2B08AAED006CBD1C /* Constant+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B9203E2B08AAED006CBD1C /* Constant+Network.swift */; };
 		38CA8C222B0385AC00A9C4B7 /* SigninTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA8C212B0385AC00A9C4B7 /* SigninTitleLabel.swift */; };
 		38CA8C252B03893300A9C4B7 /* SigninSubtitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA8C242B03893300A9C4B7 /* SigninSubtitleLabel.swift */; };
@@ -56,6 +58,8 @@
 		3847EC3F2B0251A500E086EB /* UserJoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJoinViewController.swift; sourceTree = "<group>"; };
 		3847EC432B0252B200E086EB /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		3847EC472B02578900E086EB /* SigninTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninTextField.swift; sourceTree = "<group>"; };
+		388CFD4A2B0F264600638EFD /* UserJoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJoinModel.swift; sourceTree = "<group>"; };
+		388CFD4C2B0F2ED800638EFD /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		38B9203E2B08AAED006CBD1C /* Constant+Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constant+Network.swift"; sourceTree = "<group>"; };
 		38CA8C212B0385AC00A9C4B7 /* SigninTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninTitleLabel.swift; sourceTree = "<group>"; };
 		38CA8C242B03893300A9C4B7 /* SigninSubtitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninSubtitleLabel.swift; sourceTree = "<group>"; };
@@ -242,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				38EE8A922B0631CB00E629CC /* EmailValidationModel.swift */,
+				388CFD4A2B0F264600638EFD /* UserJoinModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -252,6 +257,7 @@
 				38EE8A9E2B06387900E629CC /* APIKey.swift */,
 				38EE8A962B0632AD00E629CC /* APIManager.swift */,
 				38EE8A992B06338800E629CC /* MementoAPI.swift */,
+				388CFD4C2B0F2ED800638EFD /* NetworkError.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -356,9 +362,11 @@
 				3847EC442B0252B200E086EB /* BaseViewController.swift in Sources */,
 				38EE8A842B04D29000E629CC /* ViewModelType.swift in Sources */,
 				3847EC112B022C1200E086EB /* AppDelegate.swift in Sources */,
+				388CFD4D2B0F2ED900638EFD /* NetworkError.swift in Sources */,
 				3847EC132B022C1200E086EB /* SceneDelegate.swift in Sources */,
 				38D4066D2B0B40DE00B6F783 /* String+.swift in Sources */,
 				38B9203F2B08AAED006CBD1C /* Constant+Network.swift in Sources */,
+				388CFD4B2B0F264600638EFD /* UserJoinModel.swift in Sources */,
 				3847EC402B0251A500E086EB /* UserJoinViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

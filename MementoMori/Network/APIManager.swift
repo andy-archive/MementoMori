@@ -10,7 +10,12 @@ import Foundation
 import Moya
 import RxSwift
 
-class APIManager {
+enum Result<T> {
+    case success(T)
+    case failure(NetworkError)
+}
+
+final class APIManager {
     
     static let shared = APIManager()
     
@@ -37,6 +42,38 @@ class APIManager {
                     observer.onError(error)
                 }
             }
+            return Disposables.create()
+        }
+    }
+    
+    func request<T: Decodable>(api: MementoAPI) -> Single<Result<T>> {
+        
+        return Single.create { single -> Disposable in
+            
+            self.provider.request(api) { result in
+                
+                let decoder = JSONDecoder()
+                
+                switch result {
+                case .success(let response):
+                    do {
+                        let data = try decoder.decode(T.self, from: response.data)
+                        single(.success(.success(data)))
+                    } catch {
+                        single(.success(.failure(NetworkError.badRequest)))
+                    }
+                    
+                case .failure(let error):
+                    guard let statusCode = error.response?.statusCode,
+                          let networkError = NetworkError(rawValue: statusCode)
+                    else {
+                        single(.success(.failure(NetworkError.internalServerError)))
+                        return
+                    }
+                    single(.success(.failure(networkError)))
+                }
+            }
+            
             return Disposables.create()
         }
     }
