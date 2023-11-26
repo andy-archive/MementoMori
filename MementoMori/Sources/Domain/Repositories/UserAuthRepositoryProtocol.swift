@@ -7,6 +7,6 @@
 
 import RxSwift
 
-protocol AuthRepositoryProtocol {
-    func join(userInfo: UserJoinRequest) -> Single<Result<Void>>
+protocol UserAuthRepositoryProtocol {
+    func join(userInfo: UserJoinRequestDTO) -> Single<Result<Void>>
 }
