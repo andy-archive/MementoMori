@@ -19,26 +19,25 @@ final class UserAuthCoordinator: Coordinator {
     }
     
     func start() {
-        showUserJoin()
+//        showUserJoin()
     }
 }
 
 extension UserAuthCoordinator {
     
-    private func showUserJoin() {
-        let viewController = UserJoinViewController(
-            viewModel: UserJoinViewModel(
-                coordinator: self,
-                userJoinUseCase: UserJoinUseCase(
-                    userAuthRepository: UserAuthRepository (
-                        )
-                )
-            )
-        )
-        self.navigationController.pushViewController(viewController, animated: true)
-    }
+//    private func showUserJoin() {
+//        let viewController = UserJoinViewController(
+//            viewModel: UserJoinViewModel(
+//                coordinator: self,
+//                userJoinUseCase: UserJoinUseCase(
+//                    userAuthRepository: makeAuthRepository()
+//                )
+//            )
+//        )
+//        self.navigationController.pushViewController(viewController, animated: true)
+//    }
     
-    private func makeAuthRepository() -> AuthRepository {
-        return DefaultAuthRepository()
+    private func makeAuthRepository() -> UserAuthRepositoryProtocol {
+        return UserAuthRepository()
     }
 }

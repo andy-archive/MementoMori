@@ -31,3 +31,10 @@ final class TabBarCoordinator: Coordinator {
         tabBarController.configureAppearance()
     }
 }
+
+extension TabBarCoordinator: CoordinatorDelegate {
+    func didFinish(childCoordinator: Coordinator) {
+        self.navigationController.popToRootViewController(animated: false)
+        self.finish()
+    }
+}

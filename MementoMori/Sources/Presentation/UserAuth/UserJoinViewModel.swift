@@ -10,7 +10,7 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-final class UserJoinViewModel: ViewModelType {
+final class UserJoinViewModel: ViewModel {
     
     struct Input {
         let emailText: ControlProperty<String>
@@ -32,14 +32,14 @@ final class UserJoinViewModel: ViewModelType {
         let joinResponse: PublishRelay<NetworkResult<String>>
     }
     
-    weak var coordinator: UserAuthCoordinator?
+    weak var coordinator: AppCoordinator?
     private let userJoinUseCase: UserJoinUseCaseProtocol
     private var requestedEmail = String()
     private var isEmailValidationMessageValid = false
-    private let disposeBag = DisposeBag()
+    var disposeBag = DisposeBag()
     
     init(
-        coordinator: UserAuthCoordinator,
+        coordinator: AppCoordinator,
         userJoinUseCase: UserJoinUseCaseProtocol
     ) {
         self.coordinator = coordinator
@@ -47,7 +47,6 @@ final class UserJoinViewModel: ViewModelType {
     }
     
     func transform(input: Input) -> Output {
-        
         let checkJoinValidation: () -> Void =  {
             Observable
                 .combineLatest(input.emailText, input.passwordText, input.nicknameText) { email, password, nickname in
@@ -58,6 +57,7 @@ final class UserJoinViewModel: ViewModelType {
                 }
                 .subscribe(with: self) { [weak self] _, value in
                     self?.userJoinUseCase.isNextButtonEnabled.accept(value)
+                    self?.coordinator?.finish()
                 }
                 .disposed(by: self.disposeBag)
         }
@@ -143,7 +143,8 @@ final class UserJoinViewModel: ViewModelType {
         input
             .passwordSecureButtonClicked
             .subscribe(with: self) { [weak self] _, _ in
-                self?.userJoinUseCase.isPasswordSecure.accept(((self?.userJoinUseCase.isPasswordSecure.value) == nil))
+                guard let value = self?.userJoinUseCase.isPasswordSecure.value else { return }
+                self?.userJoinUseCase.isPasswordSecure.accept(!value)
             }
             .disposed(by: disposeBag)
         

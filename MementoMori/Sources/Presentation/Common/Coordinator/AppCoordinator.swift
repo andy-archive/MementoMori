@@ -9,26 +9,18 @@ import UIKit
 
 final class AppCoordinator: Coordinator {
     
-    private let window: UIWindow?
     weak var delegate: CoordinatorDelegate?
     var navigationController: UINavigationController
     var childCoordinators: [Coordinator]
     
-    init(_ navigationController: UINavigationController) {
+    required init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
         self.childCoordinators = []
-    }
-    
-    private func setUp(window: UIWindow?) {
-        window?.rootViewController = navigationController
-        window?.makeKeyAndVisible()
+        self.navigationController.configureAppearance()
     }
     
     func start() {
-        setUp(window: window)
         showUserJoin()
-        configureTabBar()
-        navigationController.configureAppearance()
     }
 }
 
@@ -42,24 +34,37 @@ extension AppCoordinator {
     }
     
     private func showUserJoin() {
-        let viewController = UserJoinViewController(viewModel: UserJoinViewModel(userJoinUseCase: )
-                coordinator: self
+        let viewController = UserJoinViewController(
+            viewModel: UserJoinViewModel(
+                coordinator: self,
+                userJoinUseCase: UserJoinUseCase(
+                    userAuthRepository: makeAuthRepository()
+                )
             )
         )
+        navigationController.setNavigationBarHidden(true, animated: false)
         navigationController.pushViewController(viewController, animated: false)
     }
     
-    private func configureTabBar() {
+    private func showTabBarFlow() {
         self.navigationController.popToRootViewController(animated: true)
         let tabBarCoordinator = TabBarCoordinator(self.navigationController)
         tabBarCoordinator.delegate = self
         tabBarCoordinator.start()
         self.childCoordinators.append(tabBarCoordinator)
     }
+    
+    private func makeAuthRepository() -> UserAuthRepositoryProtocol {
+        return UserAuthRepository()
+    }
 }
 
 extension AppCoordinator: CoordinatorDelegate {
     func didFinish(childCoordinator: Coordinator) {
         self.navigationController.popToRootViewController(animated: true)
+        
+        if childCoordinator is UserAuthCoordinator {
+            self.showTabBarFlow()
+        }
     }
 }

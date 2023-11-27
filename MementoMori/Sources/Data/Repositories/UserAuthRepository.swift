@@ -7,7 +7,7 @@
 
 import RxSwift
 
-struct UserAuthRepository: UserAuthRepositoryProtocol {
+final class UserAuthRepository: UserAuthRepositoryProtocol {
     
     func join(userInfo: User) -> Single<NetworkResult<User>> {
         
@@ -32,5 +32,4 @@ struct UserAuthRepository: UserAuthRepositoryProtocol {
         
         return result
     }
-
 }

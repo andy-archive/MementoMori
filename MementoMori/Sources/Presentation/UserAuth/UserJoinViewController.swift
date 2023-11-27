@@ -26,16 +26,19 @@ final class UserJoinViewController: BaseViewController {
     private lazy var birthdayTextField = SigninTextField()
     private lazy var nextButton = SigninButton()
     
-    private let viewModel = UserJoinViewModel()
-    private let disposeBag = DisposeBag()
+    private let viewModel: UserJoinViewModel
+    
+    init(viewModel: UserJoinViewModel) {
+        self.viewModel = viewModel
+        
+        super.init()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        bind()
     }
     
-    private func bind() {
+    override func bind() {
         
         let input = UserJoinViewModel.Input(
             emailText: emailTextField.rx.text.orEmpty,
@@ -107,9 +110,6 @@ final class UserJoinViewController: BaseViewController {
                 owner.nextButton.isEnabled = value
             }
             .disposed(by: disposeBag)
-        
-        output
-            .
     }
     
     override func configureUI() {
@@ -265,29 +265,3 @@ extension UserJoinViewController: UITextFieldDelegate {
         return true
     }
 }
-
-#if DEBUG
-import SwiftUI
-struct Preview: UIViewControllerRepresentable {
-    
-    func makeUIViewController(context: Context) -> UIViewController {
-        UserJoinViewController() // 📌 뷰컨마다 변경
-    }
-    
-    func updateUIViewController(_ uiView: UIViewController,context: Context) {
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.becomeFirstResponder()
-    }
-}
-
-struct ViewController_PreviewProvider: PreviewProvider {
-    static var previews: some View {
-        Group {
-            Preview()
-                .previewDisplayName("Preview")
-        }
-    }
-}
-#endif

@@ -10,7 +10,7 @@ import RxSwift
 
 final class UserJoinUseCase: UserJoinUseCaseProtocol {
     
-    var userAuthRepository: UserAuthRepositoryProtocol
+    private let userAuthRepository: UserAuthRepositoryProtocol
     
     var isEmailTextValid = PublishRelay<Bool>()
     var isPasswordTextValid = PublishRelay<Bool>()
@@ -19,7 +19,7 @@ final class UserJoinUseCase: UserJoinUseCaseProtocol {
     var isPasswordSecure = BehaviorRelay<Bool>(value: true)
     var isEmailValidationButtonEnabled = BehaviorRelay<Bool>(value: false)
     var isNextButtonEnabled = BehaviorRelay<Bool>(value: false)
-    var joinResponse: PublishRelay<NetworkResult<String>>
+    var joinResponse = PublishRelay<NetworkResult<String>>()
     
     init(
         userAuthRepository: UserAuthRepositoryProtocol

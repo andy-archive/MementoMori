@@ -17,6 +17,5 @@ protocol UserJoinUseCaseProtocol {
     var isEmailValidationButtonEnabled: BehaviorRelay<Bool> { get }
     var isNextButtonEnabled: BehaviorRelay<Bool> { get }
     var joinResponse: PublishRelay<NetworkResult<String>> { get }
-    
     func join(userInfo: User) -> Single<NetworkResult<User>>
 }

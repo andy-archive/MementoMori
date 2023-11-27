@@ -16,14 +16,13 @@ protocol Coordinator: AnyObject {
     var delegate: CoordinatorDelegate? { get set }
     var navigationController: UINavigationController { get set }
     var childCoordinators: [Coordinator] { get set }
-    
-    init(_ navigationController: UINavigationController)
-
     func start()
     func finish()
     func popViewController()
     func dismissViewController()
     func presentAlertError(title: String?, message: String?, handler: (() -> Void)?)
+    
+    init(_ navigationController: UINavigationController)
 }
 
 extension Coordinator {
@@ -51,9 +50,11 @@ extension Coordinator {
             message: message,
             preferredStyle: .alert
         )
-        let check = UIAlertAction(title: "확인", style: .default) { _ in
-        }
+        let button = UIAlertAction(title: "확인", style: .default)
         let cancel = UIAlertAction(title: "취소", style: .cancel)
+        
+        alertController.addAction(button)
+        alertController.addAction(cancel)
         
         navigationController.present(alertController, animated: true)
     }
