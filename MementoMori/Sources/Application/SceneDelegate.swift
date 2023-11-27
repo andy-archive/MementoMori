@@ -10,26 +10,13 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
+    var appCoordinator: AppCoordinator?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        let navigationController = UINavigationController(rootViewController: UserJoinViewController())
-        let tabBarController = UITabBarController()
         
-        navigationController.configureAppearance()
-        tabBarController.configureAppearance()
-        tabBarController.setViewControllers([navigationController], animated: true)
-        
-        if let items = tabBarController.tabBar.items {
-            items[0].image = Constant.Image.System.house
-            items[0].selectedImage = Constant.Image.System.houseFill
-            items[0].title = Constant.Text.TabBar.house
-        }
-        
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(windowScene: windowScene)
-        
-        window?.rootViewController = tabBarController
-        window?.makeKeyAndVisible()
+        let navigationController = UINavigationController()
+        appCoordinator = AppCoordinator(navigationController)
+        appCoordinator?.start()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

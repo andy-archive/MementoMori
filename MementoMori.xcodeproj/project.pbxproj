@@ -28,6 +28,9 @@
 		386309362B1357D2001973AA /* UserJoinResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309352B1357D2001973AA /* UserJoinResponseDTO.swift */; };
 		386309382B135C86001973AA /* EmailValidationRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309372B135C86001973AA /* EmailValidationRequestDTO.swift */; };
 		3863093A2B135C91001973AA /* EmailValidationResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309392B135C91001973AA /* EmailValidationResponseDTO.swift */; };
+		3863093C2B141C93001973AA /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3863093B2B141C93001973AA /* Coordinator.swift */; };
+		3863094E2B1457B9001973AA /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3863094D2B1457B9001973AA /* AppCoordinator.swift */; };
+		386309522B145C77001973AA /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309512B145C77001973AA /* TabBarCoordinator.swift */; };
 		388CFD4D2B0F2ED900638EFD /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CFD4C2B0F2ED800638EFD /* NetworkError.swift */; };
 		38B9203F2B08AAED006CBD1C /* Constant+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B9203E2B08AAED006CBD1C /* Constant+Network.swift */; };
 		38CA8C222B0385AC00A9C4B7 /* SigninTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA8C212B0385AC00A9C4B7 /* SigninTitleLabel.swift */; };
@@ -70,6 +73,9 @@
 		386309352B1357D2001973AA /* UserJoinResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJoinResponseDTO.swift; sourceTree = "<group>"; };
 		386309372B135C86001973AA /* EmailValidationRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidationRequestDTO.swift; sourceTree = "<group>"; };
 		386309392B135C91001973AA /* EmailValidationResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidationResponseDTO.swift; sourceTree = "<group>"; };
+		3863093B2B141C93001973AA /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		3863094D2B1457B9001973AA /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		386309512B145C77001973AA /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		388CFD4C2B0F2ED800638EFD /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		38B9203E2B08AAED006CBD1C /* Constant+Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constant+Network.swift"; sourceTree = "<group>"; };
 		38CA8C212B0385AC00A9C4B7 /* SigninTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninTitleLabel.swift; sourceTree = "<group>"; };
@@ -306,6 +312,16 @@
 			path = DataMapping;
 			sourceTree = "<group>";
 		};
+		3863093D2B141CBE001973AA /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				3863094D2B1457B9001973AA /* AppCoordinator.swift */,
+				3863093B2B141C93001973AA /* Coordinator.swift */,
+				386309512B145C77001973AA /* TabBarCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 		38CA8C202B03859400A9C4B7 /* SigninView */ = {
 			isa = PBXGroup;
 			children = (
@@ -322,6 +338,7 @@
 			isa = PBXGroup;
 			children = (
 				3847EC422B02527700E086EB /* BaseView */,
+				3863093D2B141CBE001973AA /* Coordinator */,
 				3847EC452B02566000E086EB /* CustomView */,
 				386309202B131241001973AA /* Protocol */,
 			);
@@ -434,6 +451,7 @@
 				3847EC372B02307100E086EB /* UINavigationController+.swift in Sources */,
 				3847EC322B022FF800E086EB /* Constant.swift in Sources */,
 				386309272B132A5A001973AA /* UserAuthRepositoryProtocol.swift in Sources */,
+				3863093C2B141C93001973AA /* Coordinator.swift in Sources */,
 				38EE8A822B04D0AC00E629CC /* UserJoinViewModel.swift in Sources */,
 				3863092A2B1340ED001973AA /* UserJoinUseCase.swift in Sources */,
 				38D4066B2B0B29E000B6F783 /* SecureTextButton.swift in Sources */,
@@ -449,6 +467,8 @@
 				3847EC352B02303200E086EB /* Constant+UI.swift in Sources */,
 				38CA8C2A2B038CB000A9C4B7 /* UITextField+.swift in Sources */,
 				386309382B135C86001973AA /* EmailValidationRequestDTO.swift in Sources */,
+				3863094E2B1457B9001973AA /* AppCoordinator.swift in Sources */,
+				386309522B145C77001973AA /* TabBarCoordinator.swift in Sources */,
 				386309332B1357A8001973AA /* UserJoinRequestDTO.swift in Sources */,
 				38EE8A972B0632AD00E629CC /* APIManager.swift in Sources */,
 				38EE8A9F2B06387900E629CC /* APIKey.swift in Sources */,
