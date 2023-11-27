@@ -8,5 +8,5 @@
 import RxSwift
 
 protocol UserAuthRepositoryProtocol {
-    func join(userInfo: UserJoinRequestDTO) -> Single<Result<Void>>
+    func join(userInfo: User) -> Single<NetworkResult<User>>
 }

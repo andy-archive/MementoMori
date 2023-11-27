@@ -38,7 +38,7 @@ extension NetworkError: ReusableError {
     }
 }
 
-enum SignupValidationError: Int, ReusableError {
+enum UserJoinError: Int, ReusableError {
     case badRequest = 400
     case conflict = 409
 

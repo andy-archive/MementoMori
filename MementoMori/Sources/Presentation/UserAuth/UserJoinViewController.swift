@@ -107,6 +107,9 @@ final class UserJoinViewController: BaseViewController {
                 owner.nextButton.isEnabled = value
             }
             .disposed(by: disposeBag)
+        
+        output
+            .
     }
     
     override func configureUI() {

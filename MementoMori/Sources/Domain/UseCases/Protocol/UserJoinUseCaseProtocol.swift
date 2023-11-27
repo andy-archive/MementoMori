@@ -5,7 +5,7 @@
 //  Created by Taekwon Lee on 11/26/23.
 //
 
-import RxCocoa
+import RxRelay
 import RxSwift
 
 protocol UserJoinUseCaseProtocol {
@@ -16,6 +16,7 @@ protocol UserJoinUseCaseProtocol {
     var isPasswordSecure: BehaviorRelay<Bool> { get }
     var isEmailValidationButtonEnabled: BehaviorRelay<Bool> { get }
     var isNextButtonEnabled: BehaviorRelay<Bool> { get }
-    var joinResponse: PublishRelay<Result<Void>> { get }
-    func join(user: UserJoinRequestDTO) -> Single<Void>
+    var joinResponse: PublishRelay<NetworkResult<String>> { get }
+    
+    func join(userInfo: User) -> Single<NetworkResult<User>>
 }

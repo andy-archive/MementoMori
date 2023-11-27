@@ -20,7 +20,6 @@ struct UserJoinResponseDTO: Decodable {
     
     func toDomain() -> User {
         return User(
-            id: id,
             email: email,
             password: nil,
             nick: nick,

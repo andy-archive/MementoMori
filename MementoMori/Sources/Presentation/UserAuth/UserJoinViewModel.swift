@@ -29,15 +29,20 @@ final class UserJoinViewModel: ViewModelType {
         let isPasswordSecure: BehaviorRelay<Bool>
         let isEmailValidationButtonEnabled: BehaviorRelay<Bool>
         let isNextButtonEnabled: BehaviorRelay<Bool>
-        let joinResponse: PublishRelay<Result<Void>>
+        let joinResponse: PublishRelay<NetworkResult<String>>
     }
     
+    weak var coordinator: UserAuthCoordinator?
+    private let userJoinUseCase: UserJoinUseCaseProtocol
     private var requestedEmail = String()
     private var isEmailValidationMessageValid = false
-    private let userJoinUseCase: UserJoinUseCaseProtocol
     private let disposeBag = DisposeBag()
     
-    init(userJoinUseCase: UserJoinUseCaseProtocol) {
+    init(
+        coordinator: UserAuthCoordinator,
+        userJoinUseCase: UserJoinUseCaseProtocol
+    ) {
+        self.coordinator = coordinator
         self.userJoinUseCase = userJoinUseCase
     }
     
@@ -59,7 +64,7 @@ final class UserJoinViewModel: ViewModelType {
         
         let joinInput = Observable
             .combineLatest(input.emailText, input.passwordText, input.nicknameText) { email, password, nickname in
-                UserJoinRequestDTO(email: email, password: password, nick: nickname, phoneNum: nil, birthday: nil)
+                User(email: email, password: password, nick: nickname, phoneNum: nil, birthday: nil)
             }
             .share()
         
@@ -142,22 +147,22 @@ final class UserJoinViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
-//        input
-//            .nextButtonClicked
-//            .throttle(.seconds(1), scheduler: MainScheduler.instance)
-//            .withLatestFrom(joinInput)
-//            .flatMap { input in
-//                self.userAuthRepository.join(userInfo: input)
-//            }
-//            .bind(with: self) { owner, result in
-//                switch result {
-//                case .success(let response):
-//                    self.userJoinUseCase.joinResponse.accept(.success(response))
-//                case .failure(let error):
-//                    self.userJoinUseCase.joinResponse.accept(.failure(error))
-//                }
-//            }
-//            .disposed(by: disposeBag)
+        input
+            .nextButtonClicked
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+            .withLatestFrom(joinInput)
+            .flatMap { input in
+                self.userJoinUseCase.join(userInfo: input)
+            }
+            .bind(with: self) { owner, result in
+                switch result {
+                case .success(let response):
+                    self.userJoinUseCase.joinResponse.accept(.success(response.nick))
+                case .failure(_):
+                    self.userJoinUseCase.joinResponse.accept(.failure(UserJoinError.badRequest))
+                }
+            }
+            .disposed(by: disposeBag)
         
         return Output(
             isEmailTextValid: userJoinUseCase.isEmailTextValid,

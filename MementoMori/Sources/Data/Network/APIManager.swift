@@ -10,7 +10,7 @@ import Foundation
 import Moya
 import RxSwift
 
-enum Result<T> {
+enum NetworkResult<T> {
     case success(T)
     case failure(ReusableError)
 }
@@ -46,7 +46,7 @@ final class APIManager {
         }
     }
     
-    func request<T: Decodable>(api: MementoAPI) -> Single<Result<T>> {
+    func request<T: Decodable>(api: MementoAPI, responseType: T.Type) -> Single<NetworkResult<T>> {
         
         return Single.create { single -> Disposable in
             
