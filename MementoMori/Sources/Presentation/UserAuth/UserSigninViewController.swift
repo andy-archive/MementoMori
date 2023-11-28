@@ -16,12 +16,35 @@ final class UserSigninViewController: BaseViewController {
     private lazy var signinButton = SigninButton()
     private lazy var signinValidationLabel = SigninSubtitleLabel()
     
+    private let viewModel: UserSigninViewModel
+    
+    init(viewModel: UserSigninViewModel) {
+        self.viewModel = viewModel
+        
+        super.init()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     override func bind() {
+        let input = UserSigninViewModel.Input(
+            emailText: emailTextField.rx.text.orEmpty,
+            passwordText: passwordTextField.rx.text.orEmpty,
+            signinButtonClicked: signinButton.rx.tap
+        )
         
+        let output = viewModel.transform(input: input)
+        
+        output
+            .isSigninButtonEnabled
+            .bind(with: self) { owner, value in
+                let color = value ? Constant.Color.Button.valid : Constant.Color.Button.notValid
+                owner.signinButton.backgroundColor = color
+                owner.signinButton.isEnabled = value
+            }
+            .disposed(by: disposeBag)
     }
     
     override func configureUI() {
@@ -41,6 +64,7 @@ final class UserSigninViewController: BaseViewController {
         
         passwordTextField.placeholder = "🔒 비밀번호 (8자리 이상)"
         passwordTextField.returnKeyType = .go
+        passwordTextField.isSecureTextEntry = true
         
         signinButton.setTitle("다음 ", for: .normal)
         signinButton.titleLabel?.font = .boldSystemFont(ofSize: Constant.FontSize.title)
