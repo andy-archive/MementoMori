@@ -88,6 +88,7 @@ final class UserSigninViewModel: ViewModel {
                 switch result {
                 case .success(_):
                     self?.userSigninUseCase.signinResponse.accept(.success(()))
+                    self?.coordinator?.showTabBarFlow()
                 case .failure(let error):
                     let message = UserSigninError(rawValue: error.rawValue)?.message ?? NetworkError.badRequest.message
                     self?.userSigninUseCase.signinResponse.accept(.failure(UserSigninError(rawValue: error.rawValue) ?? UserSigninError.badRequest))
@@ -98,7 +99,7 @@ final class UserSigninViewModel: ViewModel {
         input
             .joinButtonClicked
             .subscribe(with: self) { owner, _ in
-                owner.coordinator?.connectUserJoin()
+                owner.coordinator?.showUserJoinViewController()
             }
             .disposed(by: disposeBag)
         

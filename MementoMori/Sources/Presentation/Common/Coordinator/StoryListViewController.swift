@@ -1,13 +1,13 @@
 //
-//  ContentListViewController.swift
+//  StoryListViewController.swift
 //  MementoMori
 //
-//  Created by Taekwon Lee on 2023/11/13.
+//  Created by Taekwon Lee on 11/28/23.
 //
 
 import UIKit
 
-final class ContentListViewController: BaseViewController {
+final class StoryListViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,5 +15,7 @@ final class ContentListViewController: BaseViewController {
     
     override func configureUI() {
         super.configureUI()
+        
+        view.backgroundColor = .yellow
     }
 }

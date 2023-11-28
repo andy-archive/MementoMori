@@ -22,15 +22,48 @@ final class TabBarCoordinator: Coordinator {
     }
     
     func start() {
-        if let items = tabBarController.tabBar.items {
-            items[0].image = Constant.Image.System.house
-            items[0].selectedImage = Constant.Image.System.houseFill
-            items[0].title = Constant.Text.TabBar.house
+        let tabBarList: [TabBarType] = TabBarType.allCases
+        let navigationControllers: [UINavigationController] = tabBarList.map { tabBar in
+            self.configureTabBar(of: tabBar)
         }
         
-        tabBarController.configureAppearance()
+        self.configureTabController(of: navigationControllers)
     }
 }
+
+extension TabBarCoordinator {
+    
+    func configureTabBar(of tabBar: TabBarType) -> UINavigationController {
+        let navigationController = UINavigationController()
+        navigationController.tabBarItem = tabBar.tabBarItem
+        navigationController.setNavigationBarHidden(false, animated: false)
+        connectTabCoordinator(of: tabBar, to: navigationController)
+        return navigationController
+    }
+    
+    func configureTabController(of viewControllers: [UIViewController]) {
+        self.tabBarController.setViewControllers(viewControllers, animated: true)
+        self.tabBarController.selectedIndex = TabBarType.storyList.rawValue
+        self.tabBarController.configureAppearance()
+        self.navigationController.configureAppearance()
+        self.navigationController.setNavigationBarHidden(true, animated: false)
+        self.navigationController.pushViewController(tabBarController, animated: true)
+    }
+    
+    func connectTabCoordinator(of tabBar: TabBarType, to navigationController: UINavigationController) {
+        switch tabBar {
+        case .storyList:
+            self.showStoryListFlow(to: navigationController)
+        }
+    }
+    
+    func showStoryListFlow(to navigationController: UINavigationController) {
+        let storyListCoordinator = StoryListCoordinator(navigationController)
+        storyListCoordinator.start()
+    }
+}
+
+//MARK: CoordinatorDelegate
 
 extension TabBarCoordinator: CoordinatorDelegate {
     func didFinish(childCoordinator: Coordinator) {

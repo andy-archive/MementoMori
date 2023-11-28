@@ -15,7 +15,6 @@
 		383ECFDC2B15CB29004675E1 /* UserSigninDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383ECFDB2B15CB29004675E1 /* UserSigninDTO.swift */; };
 		3847EC112B022C1200E086EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC102B022C1200E086EB /* AppDelegate.swift */; };
 		3847EC132B022C1200E086EB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC122B022C1200E086EB /* SceneDelegate.swift */; };
-		3847EC152B022C1200E086EB /* ContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC142B022C1200E086EB /* ContentListViewController.swift */; };
 		3847EC1A2B022C1400E086EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3847EC192B022C1400E086EB /* Assets.xcassets */; };
 		3847EC1D2B022C1400E086EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3847EC1B2B022C1400E086EB /* LaunchScreen.storyboard */; };
 		3847EC252B022C1E00E086EB /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 3847EC242B022C1E00E086EB /* .gitignore */; };
@@ -41,6 +40,9 @@
 		386309612B14703E001973AA /* UserJoinUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309602B14703E001973AA /* UserJoinUseCase.swift */; };
 		386309632B147637001973AA /* UserAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309622B147637001973AA /* UserAuthRepository.swift */; };
 		386309662B149C51001973AA /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309652B149C51001973AA /* Authorization.swift */; };
+		387463CF2B160815009FAB2C /* TabBarType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387463CE2B160815009FAB2C /* TabBarType.swift */; };
+		387463D32B160FCE009FAB2C /* StoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387463D22B160FCE009FAB2C /* StoryListViewController.swift */; };
+		387463D52B160FEE009FAB2C /* StoryListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387463D42B160FEE009FAB2C /* StoryListCoordinator.swift */; };
 		388CFD4D2B0F2ED900638EFD /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CFD4C2B0F2ED800638EFD /* NetworkError.swift */; };
 		38B9203F2B08AAED006CBD1C /* Constant+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B9203E2B08AAED006CBD1C /* Constant+Network.swift */; };
 		38CA8C222B0385AC00A9C4B7 /* SigninTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA8C212B0385AC00A9C4B7 /* SigninTitleLabel.swift */; };
@@ -69,7 +71,6 @@
 		3847EC0D2B022C1200E086EB /* MementoMori.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MementoMori.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3847EC102B022C1200E086EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3847EC122B022C1200E086EB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3847EC142B022C1200E086EB /* ContentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListViewController.swift; sourceTree = "<group>"; };
 		3847EC192B022C1400E086EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3847EC1C2B022C1400E086EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3847EC1E2B022C1400E086EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -96,6 +97,9 @@
 		386309602B14703E001973AA /* UserJoinUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJoinUseCase.swift; sourceTree = "<group>"; };
 		386309622B147637001973AA /* UserAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthRepository.swift; sourceTree = "<group>"; };
 		386309652B149C51001973AA /* Authorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authorization.swift; sourceTree = "<group>"; };
+		387463CE2B160815009FAB2C /* TabBarType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarType.swift; sourceTree = "<group>"; };
+		387463D22B160FCE009FAB2C /* StoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StoryListViewController.swift; path = MementoMori/Sources/Presentation/Common/Coordinator/StoryListViewController.swift; sourceTree = SOURCE_ROOT; };
+		387463D42B160FEE009FAB2C /* StoryListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StoryListCoordinator.swift; path = MementoMori/Sources/Presentation/Common/Coordinator/StoryListCoordinator.swift; sourceTree = SOURCE_ROOT; };
 		388CFD4C2B0F2ED800638EFD /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		38B9203E2B08AAED006CBD1C /* Constant+Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constant+Network.swift"; sourceTree = "<group>"; };
 		38CA8C212B0385AC00A9C4B7 /* SigninTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninTitleLabel.swift; sourceTree = "<group>"; };
@@ -156,6 +160,7 @@
 		3847EC262B022C6F00E086EB /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				3863094D2B1457B9001973AA /* AppCoordinator.swift */,
 				3847EC102B022C1200E086EB /* AppDelegate.swift */,
 				3847EC122B022C1200E086EB /* SceneDelegate.swift */,
 			);
@@ -165,9 +170,9 @@
 		3847EC272B022C7900E086EB /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				386309532B14672E001973AA /* UserAuth */,
 				38EE8A772B04B65800E629CC /* Common */,
-				3847EC382B02345300E086EB /* ContentList */,
+				387463D12B160F93009FAB2C /* ContentList */,
+				386309532B14672E001973AA /* UserAuth */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -218,14 +223,6 @@
 				3847EC342B02303200E086EB /* Constant+UI.swift */,
 			);
 			path = Constants;
-			sourceTree = "<group>";
-		};
-		3847EC382B02345300E086EB /* ContentList */ = {
-			isa = PBXGroup;
-			children = (
-				3847EC142B022C1200E086EB /* ContentListViewController.swift */,
-			);
-			path = ContentList;
 			sourceTree = "<group>";
 		};
 		3847EC422B02527700E086EB /* BaseView */ = {
@@ -321,9 +318,9 @@
 		3863093D2B141CBE001973AA /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
-				3863094D2B1457B9001973AA /* AppCoordinator.swift */,
 				3863093B2B141C93001973AA /* Coordinator.swift */,
 				386309512B145C77001973AA /* TabBarCoordinator.swift */,
+				387463CE2B160815009FAB2C /* TabBarType.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -381,6 +378,15 @@
 				383ECFD42B15BF01004675E1 /* UserSigninUseCase.swift */,
 			);
 			path = UserAuth;
+			sourceTree = "<group>";
+		};
+		387463D12B160F93009FAB2C /* ContentList */ = {
+			isa = PBXGroup;
+			children = (
+				387463D42B160FEE009FAB2C /* StoryListCoordinator.swift */,
+				387463D22B160FCE009FAB2C /* StoryListViewController.swift */,
+			);
+			path = ContentList;
 			sourceTree = "<group>";
 		};
 		38CA8C202B03859400A9C4B7 /* SigninView */ = {
@@ -516,17 +522,18 @@
 				3863093C2B141C93001973AA /* Coordinator.swift in Sources */,
 				386309562B146757001973AA /* UserAuthCoordinator.swift in Sources */,
 				3863095E2B146C9C001973AA /* UserAuthDataSource.swift in Sources */,
+				387463D52B160FEE009FAB2C /* StoryListCoordinator.swift in Sources */,
 				38EE8A822B04D0AC00E629CC /* UserJoinViewModel.swift in Sources */,
 				3863092A2B1340ED001973AA /* UserJoinUseCaseProtocol.swift in Sources */,
 				38D4066B2B0B29E000B6F783 /* SecureTextButton.swift in Sources */,
 				386309312B135752001973AA /* User.swift in Sources */,
 				3847EC482B02578900E086EB /* SigninTextField.swift in Sources */,
+				387463D32B160FCE009FAB2C /* StoryListViewController.swift in Sources */,
 				383ECFD32B15B76A004675E1 /* UserSigninViewModel.swift in Sources */,
 				383ECFDC2B15CB29004675E1 /* UserSigninDTO.swift in Sources */,
 				38CA8C222B0385AC00A9C4B7 /* SigninTitleLabel.swift in Sources */,
 				38CA8C272B038AC000A9C4B7 /* SigninButton.swift in Sources */,
 				386309612B14703E001973AA /* UserJoinUseCase.swift in Sources */,
-				3847EC152B022C1200E086EB /* ContentListViewController.swift in Sources */,
 				38EE8A9A2B06338800E629CC /* MementoAPI.swift in Sources */,
 				3847EC2F2B022FCE00E086EB /* UITabBarController+.swift in Sources */,
 				3847EC352B02303200E086EB /* Constant+UI.swift in Sources */,
@@ -550,6 +557,7 @@
 				3847EC132B022C1200E086EB /* SceneDelegate.swift in Sources */,
 				38D4066D2B0B40DE00B6F783 /* String+.swift in Sources */,
 				38B9203F2B08AAED006CBD1C /* Constant+Network.swift in Sources */,
+				387463CF2B160815009FAB2C /* TabBarType.swift in Sources */,
 				3847EC402B0251A500E086EB /* UserJoinViewController.swift in Sources */,
 				383ECFD92B15C48D004675E1 /* JoinButton.swift in Sources */,
 			);

@@ -20,20 +20,13 @@ final class AppCoordinator: Coordinator {
     }
     
     func start() {
-        showUserSignin()
+        showUserSignViewController()
     }
 }
 
 extension AppCoordinator {
     
-    private func showContentList() {
-        let viewController = ContentListViewController()
-        self.navigationController.viewControllers.removeAll()
-        navigationController.setNavigationBarHidden(false, animated: false)
-        navigationController.pushViewController(viewController, animated: false)
-    }
-    
-    private func showUserSignin() {
+    private func showUserSignViewController() {
         let viewController = UserSigninViewController(
             viewModel: UserSigninViewModel(
                 coordinator: self,
@@ -46,7 +39,7 @@ extension AppCoordinator {
         navigationController.pushViewController(viewController, animated: false)
     }
     
-    func connectUserJoin() {
+    func showUserJoinViewController() {
         let viewController = UserJoinViewController(
             viewModel: UserJoinViewModel(
                 coordinator: self,
@@ -59,7 +52,7 @@ extension AppCoordinator {
         navigationController.pushViewController(viewController, animated: true)
     }
     
-    private func showTabBarFlow() {
+    func showTabBarFlow() {
         self.navigationController.popToRootViewController(animated: true)
         let tabBarCoordinator = TabBarCoordinator(self.navigationController)
         tabBarCoordinator.delegate = self
@@ -72,12 +65,10 @@ extension AppCoordinator {
     }
 }
 
+//MARK: CoordinatorDelegate
+
 extension AppCoordinator: CoordinatorDelegate {
     func didFinish(childCoordinator: Coordinator) {
         self.navigationController.popToRootViewController(animated: true)
-        
-        if childCoordinator is UserAuthCoordinator {
-            self.showTabBarFlow()
-        }
     }
 }
