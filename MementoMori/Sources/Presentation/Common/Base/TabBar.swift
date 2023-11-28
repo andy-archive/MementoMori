@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum TabBarType: Int, CaseIterable {
+enum TabBar: Int, CaseIterable {
     
     case storyList = 0
     

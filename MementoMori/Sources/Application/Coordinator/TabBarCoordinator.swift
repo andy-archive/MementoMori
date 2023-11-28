@@ -22,7 +22,7 @@ final class TabBarCoordinator: Coordinator {
     }
     
     func start() {
-        let tabBarList: [TabBarType] = TabBarType.allCases
+        let tabBarList: [TabBar] = TabBar.allCases
         let navigationControllers: [UINavigationController] = tabBarList.map { tabBar in
             self.configureTabBar(of: tabBar)
         }
@@ -33,7 +33,7 @@ final class TabBarCoordinator: Coordinator {
 
 extension TabBarCoordinator {
     
-    func configureTabBar(of tabBar: TabBarType) -> UINavigationController {
+    func configureTabBar(of tabBar: TabBar) -> UINavigationController {
         let navigationController = UINavigationController()
         navigationController.tabBarItem = tabBar.tabBarItem
         navigationController.setNavigationBarHidden(false, animated: false)
@@ -43,14 +43,14 @@ extension TabBarCoordinator {
     
     func configureTabController(of viewControllers: [UIViewController]) {
         self.tabBarController.setViewControllers(viewControllers, animated: true)
-        self.tabBarController.selectedIndex = TabBarType.storyList.rawValue
+        self.tabBarController.selectedIndex = TabBar.storyList.rawValue
         self.tabBarController.configureAppearance()
         self.navigationController.configureAppearance()
         self.navigationController.setNavigationBarHidden(true, animated: false)
         self.navigationController.pushViewController(tabBarController, animated: true)
     }
     
-    func connectTabCoordinator(of tabBar: TabBarType, to navigationController: UINavigationController) {
+    func connectTabCoordinator(of tabBar: TabBar, to navigationController: UINavigationController) {
         switch tabBar {
         case .storyList:
             self.showStoryListFlow(to: navigationController)
@@ -58,7 +58,7 @@ extension TabBarCoordinator {
     }
     
     func showStoryListFlow(to navigationController: UINavigationController) {
-        let storyListCoordinator = StoryListCoordinator(navigationController)
+        let storyListCoordinator = StoryContentCoordinator(navigationController)
         storyListCoordinator.start()
     }
 }

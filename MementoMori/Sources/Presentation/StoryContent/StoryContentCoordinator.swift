@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class StoryListCoordinator: Coordinator {
+final class StoryContentCoordinator: Coordinator {
 
     weak var delegate: CoordinatorDelegate?
     
@@ -24,7 +24,7 @@ final class StoryListCoordinator: Coordinator {
     }
 }
 
-extension StoryListCoordinator {
+extension StoryContentCoordinator {
     
     func showStoryListViewController() {
         self.navigationController.pushViewController(StoryListViewController(), animated: true)
