@@ -34,9 +34,9 @@ final class UserJoinViewModel: ViewModel {
     
     weak var coordinator: AppCoordinator?
     private let userJoinUseCase: UserJoinUseCaseProtocol
+    var disposeBag = DisposeBag()
     private var requestedEmail = String()
     private var isEmailValidationMessageValid = false
-    var disposeBag = DisposeBag()
     
     init(
         coordinator: AppCoordinator,
@@ -47,6 +47,7 @@ final class UserJoinViewModel: ViewModel {
     }
     
     func transform(input: Input) -> Output {
+        
         let checkJoinValidation: () -> Void =  {
             Observable
                 .combineLatest(input.emailText, input.passwordText, input.nicknameText) { email, password, nickname in

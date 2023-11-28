@@ -20,7 +20,7 @@ final class AppCoordinator: Coordinator {
     }
     
     func start() {
-        showUserJoin()
+        showUserSignin()
     }
 }
 
@@ -30,6 +30,19 @@ extension AppCoordinator {
         let viewController = ContentListViewController()
         self.navigationController.viewControllers.removeAll()
         navigationController.setNavigationBarHidden(false, animated: false)
+        navigationController.pushViewController(viewController, animated: false)
+    }
+    
+    private func showUserSignin() {
+        let viewController = UserSigninViewController(
+            viewModel: UserSigninViewModel(
+                coordinator: self,
+                userSigninUseCase: UserSigninUseCase(
+                    userAuthRepository: makeAuthRepository()
+                )
+            )
+        )
+        navigationController.setNavigationBarHidden(true, animated: false)
         navigationController.pushViewController(viewController, animated: false)
     }
     

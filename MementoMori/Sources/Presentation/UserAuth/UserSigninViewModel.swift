@@ -25,56 +25,50 @@ final class UserSigninViewModel: ViewModel {
     }
     
     weak var coordinator: AppCoordinator?
-    private let userJoinUseCase: UserJoinUseCaseProtocol
-    private var requestedEmail = String()
-    private var isEmailValidationMessageValid = false
+    private let userSigninUseCase: UserSigninUseCaseProtocol
     var disposeBag = DisposeBag()
     
     init(
         coordinator: AppCoordinator,
-        userJoinUseCase: UserJoinUseCaseProtocol
+        userSigninUseCase: UserSigninUseCaseProtocol
     ) {
         self.coordinator = coordinator
-        self.userJoinUseCase = userJoinUseCase
+        self.userSigninUseCase = userSigninUseCase
     }
     
     func transform(input: Input) -> Output {
-        
-        let isEmailTextValid = PublishRelay<Bool>()
-        let isPasswordTextValid = PublishRelay<Bool>()
-        let isSigninButtonEnabled = BehaviorRelay(value: false)
         
         Observable
             .combineLatest(input.emailText, input.passwordText) { email, password in
                 email.validateEmail() && password.validatePassword()
             }
-            .subscribe(with: self) { _, value in
-                isSigninButtonEnabled.accept(value)
+            .subscribe(with: self) { [weak self] _, value in
+                self?.userSigninUseCase.isSigninButtonEnabled.accept(value)
             }
             .disposed(by: self.disposeBag)
         
         input
             .emailText
-            .subscribe(with: self) { owner, value in
+            .subscribe(with: self) { [weak self] owner, value in
                 if !value.isEmpty {
-                    isEmailTextValid.accept(true)
+                    self?.userSigninUseCase.isEmailTextValid.accept(true)
                 }
             }
             .disposed(by: disposeBag)
         
         input
             .passwordText
-            .subscribe(with: self) { owner, value in
+            .subscribe(with: self) { [weak self] owner, value in
                 if !value.isEmpty {
-                    isPasswordTextValid.accept(true)
+                    self?.userSigninUseCase.isPasswordTextValid.accept(true)
                 }
             }
             .disposed(by: disposeBag)
         
         return Output(
-            isEmailTextValid: isEmailTextValid,
-            isPasswordTextValid: isPasswordTextValid,
-            isSigninButtonEnabled: isSigninButtonEnabled
+            isEmailTextValid: userSigninUseCase.isEmailTextValid,
+            isPasswordTextValid: userSigninUseCase.isPasswordTextValid,
+            isSigninButtonEnabled: userSigninUseCase.isSigninButtonEnabled
         )
     }
 }
