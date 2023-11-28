@@ -8,7 +8,6 @@
 import Foundation
 
 struct Authorization: Codable {
-    let email: String
     let token: String
     let refreshToken: String
 }

@@ -33,7 +33,7 @@ extension NetworkError: ReusableError {
         case .internalServerError:
             return "서버 에러"
         default:
-            return ""
+            return "네트워크 에러"
         }
     }
 }
@@ -48,6 +48,20 @@ enum UserJoinError: Int, ReusableError {
             return "필수값을 채워주세요."
         case .conflict:
             return "이미 가입된 유저입니다."
+        }
+    }
+}
+
+enum UserSigninError: Int, ReusableError {
+    case badRequest = 400
+    case unauthorized = 401
+
+    var message: String {
+        switch self {
+        case .badRequest:
+            return "필수값을 채워주세요."
+        case .unauthorized:
+            return "계정을 확인해주세요."
         }
     }
 }

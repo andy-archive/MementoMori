@@ -20,24 +20,17 @@ final class AppCoordinator: Coordinator {
     }
     
     func start() {
-        showUserJoin()
+        showUserSignViewController()
     }
 }
 
 extension AppCoordinator {
     
-    private func showContentList() {
-        let viewController = ContentListViewController()
-        self.navigationController.viewControllers.removeAll()
-        navigationController.setNavigationBarHidden(false, animated: false)
-        navigationController.pushViewController(viewController, animated: false)
-    }
-    
-    private func showUserJoin() {
-        let viewController = UserJoinViewController(
-            viewModel: UserJoinViewModel(
+    private func showUserSignViewController() {
+        let viewController = UserSigninViewController(
+            viewModel: UserSigninViewModel(
                 coordinator: self,
-                userJoinUseCase: UserJoinUseCase(
+                userSigninUseCase: UserSigninUseCase(
                     userAuthRepository: makeAuthRepository()
                 )
             )
@@ -46,7 +39,20 @@ extension AppCoordinator {
         navigationController.pushViewController(viewController, animated: false)
     }
     
-    private func showTabBarFlow() {
+    func showUserJoinViewController() {
+        let viewController = UserJoinViewController(
+            viewModel: UserJoinViewModel(
+                coordinator: self,
+                userJoinUseCase: UserJoinUseCase(
+                    userAuthRepository: makeAuthRepository()
+                )
+            )
+        )
+        navigationController.setNavigationBarHidden(false, animated: false)
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func showTabBarFlow() {
         self.navigationController.popToRootViewController(animated: true)
         let tabBarCoordinator = TabBarCoordinator(self.navigationController)
         tabBarCoordinator.delegate = self
@@ -59,12 +65,10 @@ extension AppCoordinator {
     }
 }
 
+//MARK: CoordinatorDelegate
+
 extension AppCoordinator: CoordinatorDelegate {
     func didFinish(childCoordinator: Coordinator) {
         self.navigationController.popToRootViewController(animated: true)
-        
-        if childCoordinator is UserAuthCoordinator {
-            self.showTabBarFlow()
-        }
     }
 }
