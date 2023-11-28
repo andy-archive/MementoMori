@@ -12,6 +12,7 @@
 		383ECFD52B15BF01004675E1 /* UserSigninUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383ECFD42B15BF01004675E1 /* UserSigninUseCase.swift */; };
 		383ECFD72B15BF2B004675E1 /* UserSigninUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383ECFD62B15BF2B004675E1 /* UserSigninUseCaseProtocol.swift */; };
 		383ECFD92B15C48D004675E1 /* JoinButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383ECFD82B15C48D004675E1 /* JoinButton.swift */; };
+		383ECFDC2B15CB29004675E1 /* UserSigninDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383ECFDB2B15CB29004675E1 /* UserSigninDTO.swift */; };
 		3847EC112B022C1200E086EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC102B022C1200E086EB /* AppDelegate.swift */; };
 		3847EC132B022C1200E086EB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC122B022C1200E086EB /* SceneDelegate.swift */; };
 		3847EC152B022C1200E086EB /* ContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC142B022C1200E086EB /* ContentListViewController.swift */; };
@@ -29,10 +30,8 @@
 		386309272B132A5A001973AA /* UserAuthRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309262B132A5A001973AA /* UserAuthRepositoryProtocol.swift */; };
 		3863092A2B1340ED001973AA /* UserJoinUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309292B1340ED001973AA /* UserJoinUseCaseProtocol.swift */; };
 		386309312B135752001973AA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309302B135752001973AA /* User.swift */; };
-		386309332B1357A8001973AA /* UserJoinRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309322B1357A8001973AA /* UserJoinRequestDTO.swift */; };
-		386309362B1357D2001973AA /* UserJoinResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309352B1357D2001973AA /* UserJoinResponseDTO.swift */; };
-		386309382B135C86001973AA /* EmailValidationRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309372B135C86001973AA /* EmailValidationRequestDTO.swift */; };
-		3863093A2B135C91001973AA /* EmailValidationResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309392B135C91001973AA /* EmailValidationResponseDTO.swift */; };
+		386309332B1357A8001973AA /* UserJoinDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309322B1357A8001973AA /* UserJoinDTO.swift */; };
+		386309382B135C86001973AA /* EmailValidationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309372B135C86001973AA /* EmailValidationDTO.swift */; };
 		3863093C2B141C93001973AA /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3863093B2B141C93001973AA /* Coordinator.swift */; };
 		3863094E2B1457B9001973AA /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3863094D2B1457B9001973AA /* AppCoordinator.swift */; };
 		386309522B145C77001973AA /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309512B145C77001973AA /* TabBarCoordinator.swift */; };
@@ -66,6 +65,7 @@
 		383ECFD42B15BF01004675E1 /* UserSigninUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninUseCase.swift; sourceTree = "<group>"; };
 		383ECFD62B15BF2B004675E1 /* UserSigninUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninUseCaseProtocol.swift; sourceTree = "<group>"; };
 		383ECFD82B15C48D004675E1 /* JoinButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinButton.swift; sourceTree = "<group>"; };
+		383ECFDB2B15CB29004675E1 /* UserSigninDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninDTO.swift; sourceTree = "<group>"; };
 		3847EC0D2B022C1200E086EB /* MementoMori.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MementoMori.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3847EC102B022C1200E086EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3847EC122B022C1200E086EB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,10 +85,8 @@
 		386309262B132A5A001973AA /* UserAuthRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthRepositoryProtocol.swift; sourceTree = "<group>"; };
 		386309292B1340ED001973AA /* UserJoinUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJoinUseCaseProtocol.swift; sourceTree = "<group>"; };
 		386309302B135752001973AA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		386309322B1357A8001973AA /* UserJoinRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJoinRequestDTO.swift; sourceTree = "<group>"; };
-		386309352B1357D2001973AA /* UserJoinResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJoinResponseDTO.swift; sourceTree = "<group>"; };
-		386309372B135C86001973AA /* EmailValidationRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidationRequestDTO.swift; sourceTree = "<group>"; };
-		386309392B135C91001973AA /* EmailValidationResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidationResponseDTO.swift; sourceTree = "<group>"; };
+		386309322B1357A8001973AA /* UserJoinDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJoinDTO.swift; sourceTree = "<group>"; };
+		386309372B135C86001973AA /* EmailValidationDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidationDTO.swift; sourceTree = "<group>"; };
 		3863093B2B141C93001973AA /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		3863094D2B1457B9001973AA /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		386309512B145C77001973AA /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
@@ -260,8 +258,8 @@
 		3863091F2B1311DA001973AA /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				386309302B135752001973AA /* User.swift */,
 				386309652B149C51001973AA /* Authorization.swift */,
+				386309302B135752001973AA /* User.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -313,10 +311,9 @@
 		3863092F2B135740001973AA /* DataMapping */ = {
 			isa = PBXGroup;
 			children = (
-				386309322B1357A8001973AA /* UserJoinRequestDTO.swift */,
-				386309352B1357D2001973AA /* UserJoinResponseDTO.swift */,
-				386309372B135C86001973AA /* EmailValidationRequestDTO.swift */,
-				386309392B135C91001973AA /* EmailValidationResponseDTO.swift */,
+				386309372B135C86001973AA /* EmailValidationDTO.swift */,
+				386309322B1357A8001973AA /* UserJoinDTO.swift */,
+				383ECFDB2B15CB29004675E1 /* UserSigninDTO.swift */,
 			);
 			path = DataMapping;
 			sourceTree = "<group>";
@@ -522,11 +519,10 @@
 				38EE8A822B04D0AC00E629CC /* UserJoinViewModel.swift in Sources */,
 				3863092A2B1340ED001973AA /* UserJoinUseCaseProtocol.swift in Sources */,
 				38D4066B2B0B29E000B6F783 /* SecureTextButton.swift in Sources */,
-				3863093A2B135C91001973AA /* EmailValidationResponseDTO.swift in Sources */,
 				386309312B135752001973AA /* User.swift in Sources */,
 				3847EC482B02578900E086EB /* SigninTextField.swift in Sources */,
 				383ECFD32B15B76A004675E1 /* UserSigninViewModel.swift in Sources */,
-				386309362B1357D2001973AA /* UserJoinResponseDTO.swift in Sources */,
+				383ECFDC2B15CB29004675E1 /* UserSigninDTO.swift in Sources */,
 				38CA8C222B0385AC00A9C4B7 /* SigninTitleLabel.swift in Sources */,
 				38CA8C272B038AC000A9C4B7 /* SigninButton.swift in Sources */,
 				386309612B14703E001973AA /* UserJoinUseCase.swift in Sources */,
@@ -537,10 +533,10 @@
 				383ECFD52B15BF01004675E1 /* UserSigninUseCase.swift in Sources */,
 				383ECFD72B15BF2B004675E1 /* UserSigninUseCaseProtocol.swift in Sources */,
 				38CA8C2A2B038CB000A9C4B7 /* UITextField+.swift in Sources */,
-				386309382B135C86001973AA /* EmailValidationRequestDTO.swift in Sources */,
+				386309382B135C86001973AA /* EmailValidationDTO.swift in Sources */,
 				3863094E2B1457B9001973AA /* AppCoordinator.swift in Sources */,
 				386309522B145C77001973AA /* TabBarCoordinator.swift in Sources */,
-				386309332B1357A8001973AA /* UserJoinRequestDTO.swift in Sources */,
+				386309332B1357A8001973AA /* UserJoinDTO.swift in Sources */,
 				38EE8A972B0632AD00E629CC /* APIManager.swift in Sources */,
 				386309662B149C51001973AA /* Authorization.swift in Sources */,
 				38EE8A9F2B06387900E629CC /* APIKey.swift in Sources */,
