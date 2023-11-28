@@ -10,7 +10,6 @@ import UIKit
 final class TabBarCoordinator: Coordinator {
     
     weak var delegate: CoordinatorDelegate?
-    
     var navigationController: UINavigationController
     var tabBarController: UITabBarController
     var childCoordinators: [Coordinator]
@@ -26,12 +25,13 @@ final class TabBarCoordinator: Coordinator {
         let navigationControllers: [UINavigationController] = tabBarList.map { tabBar in
             self.configureTabBar(of: tabBar)
         }
-        
-        self.configureTabController(of: navigationControllers)
+        self.configureTabBarController(of: navigationControllers)
     }
 }
 
-extension TabBarCoordinator {
+//MARK: TabBar, TabBarController 설정 및 연결
+
+private extension TabBarCoordinator {
     
     func configureTabBar(of tabBar: TabBar) -> UINavigationController {
         let navigationController = UINavigationController()
@@ -41,7 +41,7 @@ extension TabBarCoordinator {
         return navigationController
     }
     
-    func configureTabController(of viewControllers: [UIViewController]) {
+    func configureTabBarController(of viewControllers: [UIViewController]) {
         self.tabBarController.setViewControllers(viewControllers, animated: true)
         self.tabBarController.selectedIndex = TabBar.storyList.rawValue
         self.tabBarController.configureAppearance()
