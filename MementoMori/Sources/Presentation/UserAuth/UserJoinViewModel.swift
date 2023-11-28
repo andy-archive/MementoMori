@@ -33,8 +33,9 @@ final class UserJoinViewModel: ViewModel {
     }
     
     weak var coordinator: AppCoordinator?
+    let disposeBag = DisposeBag()
     private let userJoinUseCase: UserJoinUseCaseProtocol
-    var disposeBag = DisposeBag()
+    
     private var requestedEmail = String()
     private var isEmailValidationMessageValid = false
     

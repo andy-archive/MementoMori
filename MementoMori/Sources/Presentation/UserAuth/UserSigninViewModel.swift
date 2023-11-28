@@ -26,8 +26,8 @@ final class UserSigninViewModel: ViewModel {
     }
     
     weak var coordinator: AppCoordinator?
+    let disposeBag = DisposeBag()
     private let userSigninUseCase: UserSigninUseCaseProtocol
-    var disposeBag = DisposeBag()
     
     init(
         coordinator: AppCoordinator,
