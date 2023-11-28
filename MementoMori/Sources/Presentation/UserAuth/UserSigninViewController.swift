@@ -15,6 +15,7 @@ final class UserSigninViewController: BaseViewController {
     private lazy var passwordTextField = SigninTextField()
     private lazy var signinButton = SigninButton()
     private lazy var signinValidationLabel = SigninSubtitleLabel()
+    private lazy var joinButton = JoinButton()
     
     private let viewModel: UserSigninViewModel
     
@@ -32,7 +33,8 @@ final class UserSigninViewController: BaseViewController {
         let input = UserSigninViewModel.Input(
             emailText: emailTextField.rx.text.orEmpty,
             passwordText: passwordTextField.rx.text.orEmpty,
-            signinButtonClicked: signinButton.rx.tap
+            signinButtonClicked: signinButton.rx.tap,
+            joinButtonClicked: joinButton.rx.tap
         )
         
         let output = viewModel.transform(input: input)
@@ -76,6 +78,7 @@ final class UserSigninViewController: BaseViewController {
         view.addSubview(passwordTextField)
         view.addSubview(signinButton)
         view.addSubview(signinValidationLabel)
+        view.addSubview(joinButton)
     }
     
     override func configureLayout() {
@@ -121,8 +124,15 @@ final class UserSigninViewController: BaseViewController {
         NSLayoutConstraint.activate([
             signinValidationLabel.topAnchor.constraint(equalTo: signinButton.safeAreaLayoutGuide.bottomAnchor, constant: Constant.Layout.UserAuth.Inset.vertical / 2),
             signinValidationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.UserAuth.Inset.horizontal),
-            signinValidationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constant.Layout.UserAuth.Inset.horizontal),
-            signinValidationLabel.heightAnchor.constraint(equalToConstant: Constant.Layout.UserAuth.Size.height)
+            signinValidationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constant.Layout.UserAuth.Inset.horizontal)
+        ])
+        
+        joinButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            joinButton.topAnchor.constraint(equalTo: signinValidationLabel.safeAreaLayoutGuide.bottomAnchor, constant: Constant.Layout.UserAuth.Inset.vertical / 2),
+            joinButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.UserAuth.Inset.horizontal),
+            joinButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constant.Layout.UserAuth.Inset.horizontal),
+            joinButton.heightAnchor.constraint(equalToConstant: Constant.Layout.UserAuth.Size.height)
         ])
     }
     

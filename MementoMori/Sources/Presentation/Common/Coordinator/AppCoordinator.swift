@@ -46,7 +46,7 @@ extension AppCoordinator {
         navigationController.pushViewController(viewController, animated: false)
     }
     
-    private func showUserJoin() {
+    func connectUserJoin() {
         let viewController = UserJoinViewController(
             viewModel: UserJoinViewModel(
                 coordinator: self,
@@ -55,8 +55,8 @@ extension AppCoordinator {
                 )
             )
         )
-        navigationController.setNavigationBarHidden(true, animated: false)
-        navigationController.pushViewController(viewController, animated: false)
+        navigationController.setNavigationBarHidden(false, animated: false)
+        navigationController.pushViewController(viewController, animated: true)
     }
     
     private func showTabBarFlow() {

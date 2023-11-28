@@ -11,6 +11,7 @@
 		383ECFD32B15B76A004675E1 /* UserSigninViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383ECFD22B15B76A004675E1 /* UserSigninViewModel.swift */; };
 		383ECFD52B15BF01004675E1 /* UserSigninUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383ECFD42B15BF01004675E1 /* UserSigninUseCase.swift */; };
 		383ECFD72B15BF2B004675E1 /* UserSigninUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383ECFD62B15BF2B004675E1 /* UserSigninUseCaseProtocol.swift */; };
+		383ECFD92B15C48D004675E1 /* JoinButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383ECFD82B15C48D004675E1 /* JoinButton.swift */; };
 		3847EC112B022C1200E086EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC102B022C1200E086EB /* AppDelegate.swift */; };
 		3847EC132B022C1200E086EB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC122B022C1200E086EB /* SceneDelegate.swift */; };
 		3847EC152B022C1200E086EB /* ContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC142B022C1200E086EB /* ContentListViewController.swift */; };
@@ -64,6 +65,7 @@
 		383ECFD22B15B76A004675E1 /* UserSigninViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninViewModel.swift; sourceTree = "<group>"; };
 		383ECFD42B15BF01004675E1 /* UserSigninUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninUseCase.swift; sourceTree = "<group>"; };
 		383ECFD62B15BF2B004675E1 /* UserSigninUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninUseCaseProtocol.swift; sourceTree = "<group>"; };
+		383ECFD82B15C48D004675E1 /* JoinButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinButton.swift; sourceTree = "<group>"; };
 		3847EC0D2B022C1200E086EB /* MementoMori.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MementoMori.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3847EC102B022C1200E086EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3847EC122B022C1200E086EB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -387,11 +389,12 @@
 		38CA8C202B03859400A9C4B7 /* SigninView */ = {
 			isa = PBXGroup;
 			children = (
+				383ECFD82B15C48D004675E1 /* JoinButton.swift */,
+				38D4066A2B0B29E000B6F783 /* SecureTextButton.swift */,
+				38CA8C262B038AC000A9C4B7 /* SigninButton.swift */,
+				38CA8C242B03893300A9C4B7 /* SigninSubtitleLabel.swift */,
 				3847EC472B02578900E086EB /* SigninTextField.swift */,
 				38CA8C212B0385AC00A9C4B7 /* SigninTitleLabel.swift */,
-				38CA8C242B03893300A9C4B7 /* SigninSubtitleLabel.swift */,
-				38CA8C262B038AC000A9C4B7 /* SigninButton.swift */,
-				38D4066A2B0B29E000B6F783 /* SecureTextButton.swift */,
 			);
 			path = SigninView;
 			sourceTree = "<group>";
@@ -552,6 +555,7 @@
 				38D4066D2B0B40DE00B6F783 /* String+.swift in Sources */,
 				38B9203F2B08AAED006CBD1C /* Constant+Network.swift in Sources */,
 				3847EC402B0251A500E086EB /* UserJoinViewController.swift in Sources */,
+				383ECFD92B15C48D004675E1 /* JoinButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

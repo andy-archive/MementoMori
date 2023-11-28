@@ -16,6 +16,7 @@ final class UserSigninViewModel: ViewModel {
         let emailText: ControlProperty<String>
         let passwordText: ControlProperty<String>
         let signinButtonClicked: ControlEvent<Void>
+        let joinButtonClicked: ControlEvent<Void>
     }
     
     struct Output {
@@ -62,6 +63,13 @@ final class UserSigninViewModel: ViewModel {
                 if !value.isEmpty {
                     self?.userSigninUseCase.isPasswordTextValid.accept(true)
                 }
+            }
+            .disposed(by: disposeBag)
+        
+        input
+            .joinButtonClicked
+            .subscribe(with: self) { owner, _ in
+                owner.coordinator?.connectUserJoin()
             }
             .disposed(by: disposeBag)
         
