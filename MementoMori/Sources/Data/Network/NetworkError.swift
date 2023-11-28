@@ -12,7 +12,7 @@ protocol ReusableError: Error {
     var message: String { get }
 }
 
-enum NetworkError: Int, Error {
+enum NetworkError: Int {
     case badRequest = 400
     case conflict = 409
     case notValidKey = 420
@@ -21,7 +21,7 @@ enum NetworkError: Int, Error {
     case internalServerError = 500
 }
 
-extension NetworkError: LocalizedError, ReusableError {
+extension NetworkError: ReusableError {
     internal var message: String {
         switch self {
         case .notValidKey:
@@ -38,7 +38,7 @@ extension NetworkError: LocalizedError, ReusableError {
     }
 }
 
-enum SignupValidationError: Int, ReusableError {
+enum UserJoinError: Int, ReusableError {
     case badRequest = 400
     case conflict = 409
 

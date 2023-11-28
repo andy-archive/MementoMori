@@ -21,7 +21,22 @@
 		3847EC402B0251A500E086EB /* UserJoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC3F2B0251A500E086EB /* UserJoinViewController.swift */; };
 		3847EC442B0252B200E086EB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC432B0252B200E086EB /* BaseViewController.swift */; };
 		3847EC482B02578900E086EB /* SigninTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC472B02578900E086EB /* SigninTextField.swift */; };
-		388CFD4B2B0F264600638EFD /* UserJoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CFD4A2B0F264600638EFD /* UserJoinModel.swift */; };
+		386309272B132A5A001973AA /* UserAuthRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309262B132A5A001973AA /* UserAuthRepositoryProtocol.swift */; };
+		3863092A2B1340ED001973AA /* UserJoinUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309292B1340ED001973AA /* UserJoinUseCaseProtocol.swift */; };
+		386309312B135752001973AA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309302B135752001973AA /* User.swift */; };
+		386309332B1357A8001973AA /* UserJoinRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309322B1357A8001973AA /* UserJoinRequestDTO.swift */; };
+		386309362B1357D2001973AA /* UserJoinResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309352B1357D2001973AA /* UserJoinResponseDTO.swift */; };
+		386309382B135C86001973AA /* EmailValidationRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309372B135C86001973AA /* EmailValidationRequestDTO.swift */; };
+		3863093A2B135C91001973AA /* EmailValidationResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309392B135C91001973AA /* EmailValidationResponseDTO.swift */; };
+		3863093C2B141C93001973AA /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3863093B2B141C93001973AA /* Coordinator.swift */; };
+		3863094E2B1457B9001973AA /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3863094D2B1457B9001973AA /* AppCoordinator.swift */; };
+		386309522B145C77001973AA /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309512B145C77001973AA /* TabBarCoordinator.swift */; };
+		386309562B146757001973AA /* UserAuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309552B146757001973AA /* UserAuthCoordinator.swift */; };
+		386309592B146B74001973AA /* UserAuthDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309582B146B74001973AA /* UserAuthDataSourceProtocol.swift */; };
+		3863095E2B146C9C001973AA /* UserAuthDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3863095D2B146C9C001973AA /* UserAuthDataSource.swift */; };
+		386309612B14703E001973AA /* UserJoinUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309602B14703E001973AA /* UserJoinUseCase.swift */; };
+		386309632B147637001973AA /* UserAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309622B147637001973AA /* UserAuthRepository.swift */; };
+		386309662B149C51001973AA /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309652B149C51001973AA /* Authorization.swift */; };
 		388CFD4D2B0F2ED900638EFD /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CFD4C2B0F2ED800638EFD /* NetworkError.swift */; };
 		38B9203F2B08AAED006CBD1C /* Constant+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B9203E2B08AAED006CBD1C /* Constant+Network.swift */; };
 		38CA8C222B0385AC00A9C4B7 /* SigninTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA8C212B0385AC00A9C4B7 /* SigninTitleLabel.swift */; };
@@ -35,7 +50,6 @@
 		38EE8A802B04CE2900E629CC /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 38EE8A7F2B04CE2900E629CC /* Moya */; };
 		38EE8A822B04D0AC00E629CC /* UserJoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE8A812B04D0AC00E629CC /* UserJoinViewModel.swift */; };
 		38EE8A842B04D29000E629CC /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE8A832B04D29000E629CC /* ViewModelType.swift */; };
-		38EE8A932B0631CB00E629CC /* EmailValidationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE8A922B0631CB00E629CC /* EmailValidationModel.swift */; };
 		38EE8A972B0632AD00E629CC /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE8A962B0632AD00E629CC /* APIManager.swift */; };
 		38EE8A9A2B06338800E629CC /* MementoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE8A992B06338800E629CC /* MementoAPI.swift */; };
 		38EE8A9F2B06387900E629CC /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE8A9E2B06387900E629CC /* APIKey.swift */; };
@@ -58,7 +72,22 @@
 		3847EC3F2B0251A500E086EB /* UserJoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJoinViewController.swift; sourceTree = "<group>"; };
 		3847EC432B0252B200E086EB /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		3847EC472B02578900E086EB /* SigninTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninTextField.swift; sourceTree = "<group>"; };
-		388CFD4A2B0F264600638EFD /* UserJoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJoinModel.swift; sourceTree = "<group>"; };
+		386309262B132A5A001973AA /* UserAuthRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthRepositoryProtocol.swift; sourceTree = "<group>"; };
+		386309292B1340ED001973AA /* UserJoinUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJoinUseCaseProtocol.swift; sourceTree = "<group>"; };
+		386309302B135752001973AA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		386309322B1357A8001973AA /* UserJoinRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJoinRequestDTO.swift; sourceTree = "<group>"; };
+		386309352B1357D2001973AA /* UserJoinResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJoinResponseDTO.swift; sourceTree = "<group>"; };
+		386309372B135C86001973AA /* EmailValidationRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidationRequestDTO.swift; sourceTree = "<group>"; };
+		386309392B135C91001973AA /* EmailValidationResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidationResponseDTO.swift; sourceTree = "<group>"; };
+		3863093B2B141C93001973AA /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		3863094D2B1457B9001973AA /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		386309512B145C77001973AA /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
+		386309552B146757001973AA /* UserAuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthCoordinator.swift; sourceTree = "<group>"; };
+		386309582B146B74001973AA /* UserAuthDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthDataSourceProtocol.swift; sourceTree = "<group>"; };
+		3863095D2B146C9C001973AA /* UserAuthDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthDataSource.swift; sourceTree = "<group>"; };
+		386309602B14703E001973AA /* UserJoinUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJoinUseCase.swift; sourceTree = "<group>"; };
+		386309622B147637001973AA /* UserAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthRepository.swift; sourceTree = "<group>"; };
+		386309652B149C51001973AA /* Authorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authorization.swift; sourceTree = "<group>"; };
 		388CFD4C2B0F2ED800638EFD /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		38B9203E2B08AAED006CBD1C /* Constant+Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constant+Network.swift"; sourceTree = "<group>"; };
 		38CA8C212B0385AC00A9C4B7 /* SigninTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninTitleLabel.swift; sourceTree = "<group>"; };
@@ -69,7 +98,6 @@
 		38D4066C2B0B40DE00B6F783 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		38EE8A812B04D0AC00E629CC /* UserJoinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJoinViewModel.swift; sourceTree = "<group>"; };
 		38EE8A832B04D29000E629CC /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
-		38EE8A922B0631CB00E629CC /* EmailValidationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidationModel.swift; sourceTree = "<group>"; };
 		38EE8A962B0632AD00E629CC /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		38EE8A992B06338800E629CC /* MementoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MementoAPI.swift; sourceTree = "<group>"; };
 		38EE8A9E2B06387900E629CC /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
@@ -110,11 +138,8 @@
 		3847EC0F2B022C1200E086EB /* MementoMori */ = {
 			isa = PBXGroup;
 			children = (
-				3847EC262B022C6F00E086EB /* Application */,
-				38EE8A912B0631A500E629CC /* Model */,
-				38EE8A952B06329700E629CC /* Network */,
 				3847EC282B022C8200E086EB /* Resources */,
-				3847EC272B022C7900E086EB /* Scenes */,
+				3863091E2B131141001973AA /* Sources */,
 				3847EC2A2B022F6C00E086EB /* Utilities */,
 			);
 			path = MementoMori;
@@ -129,13 +154,14 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
-		3847EC272B022C7900E086EB /* Scenes */ = {
+		3847EC272B022C7900E086EB /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				3847EC382B02345300E086EB /* ContentListScene */,
-				3847EC3D2B02518200E086EB /* UserJoinScene */,
+				386309532B14672E001973AA /* UserAuth */,
+				38EE8A772B04B65800E629CC /* Common */,
+				3847EC382B02345300E086EB /* ContentList */,
 			);
-			path = Scenes;
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		3847EC282B022C8200E086EB /* Resources */ = {
@@ -159,7 +185,6 @@
 		3847EC2A2B022F6C00E086EB /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				38EE8A772B04B65800E629CC /* Base */,
 				3847EC302B022FF000E086EB /* Constants */,
 				3847EC2B2B022F8000E086EB /* Extensions */,
 			);
@@ -187,21 +212,12 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
-		3847EC382B02345300E086EB /* ContentListScene */ = {
+		3847EC382B02345300E086EB /* ContentList */ = {
 			isa = PBXGroup;
 			children = (
 				3847EC142B022C1200E086EB /* ContentListViewController.swift */,
 			);
-			path = ContentListScene;
-			sourceTree = "<group>";
-		};
-		3847EC3D2B02518200E086EB /* UserJoinScene */ = {
-			isa = PBXGroup;
-			children = (
-				3847EC3F2B0251A500E086EB /* UserJoinViewController.swift */,
-				38EE8A812B04D0AC00E629CC /* UserJoinViewModel.swift */,
-			);
-			path = UserJoinScene;
+			path = ContentList;
 			sourceTree = "<group>";
 		};
 		3847EC422B02527700E086EB /* BaseView */ = {
@@ -220,6 +236,142 @@
 			path = CustomView;
 			sourceTree = "<group>";
 		};
+		3863091E2B131141001973AA /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				3847EC262B022C6F00E086EB /* Application */,
+				3863092B2B1350E5001973AA /* Data */,
+				38EE8A912B0631A500E629CC /* Domain */,
+				3847EC272B022C7900E086EB /* Presentation */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		3863091F2B1311DA001973AA /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				386309302B135752001973AA /* User.swift */,
+				386309652B149C51001973AA /* Authorization.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		386309202B131241001973AA /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				38EE8A832B04D29000E629CC /* ViewModelType.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		386309252B132A14001973AA /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				386309262B132A5A001973AA /* UserAuthRepositoryProtocol.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		386309282B1340D2001973AA /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				3863095F2B147029001973AA /* Protocol */,
+				386309642B1483B5001973AA /* UserAuth */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		3863092B2B1350E5001973AA /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				3863092F2B135740001973AA /* DataMapping */,
+				386309572B146B44001973AA /* DataSources */,
+				38EE8A952B06329700E629CC /* Network */,
+				3863092C2B1350FB001973AA /* Repositories */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		3863092C2B1350FB001973AA /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				386309622B147637001973AA /* UserAuthRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		3863092F2B135740001973AA /* DataMapping */ = {
+			isa = PBXGroup;
+			children = (
+				386309322B1357A8001973AA /* UserJoinRequestDTO.swift */,
+				386309352B1357D2001973AA /* UserJoinResponseDTO.swift */,
+				386309372B135C86001973AA /* EmailValidationRequestDTO.swift */,
+				386309392B135C91001973AA /* EmailValidationResponseDTO.swift */,
+			);
+			path = DataMapping;
+			sourceTree = "<group>";
+		};
+		3863093D2B141CBE001973AA /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				3863094D2B1457B9001973AA /* AppCoordinator.swift */,
+				3863093B2B141C93001973AA /* Coordinator.swift */,
+				386309512B145C77001973AA /* TabBarCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		386309532B14672E001973AA /* UserAuth */ = {
+			isa = PBXGroup;
+			children = (
+				386309552B146757001973AA /* UserAuthCoordinator.swift */,
+				3847EC3F2B0251A500E086EB /* UserJoinViewController.swift */,
+				38EE8A812B04D0AC00E629CC /* UserJoinViewModel.swift */,
+			);
+			path = UserAuth;
+			sourceTree = "<group>";
+		};
+		386309572B146B44001973AA /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				3863095A2B146C52001973AA /* Protocol */,
+				3863095C2B146C78001973AA /* Remote */,
+			);
+			path = DataSources;
+			sourceTree = "<group>";
+		};
+		3863095A2B146C52001973AA /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				386309582B146B74001973AA /* UserAuthDataSourceProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		3863095C2B146C78001973AA /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				3863095D2B146C9C001973AA /* UserAuthDataSource.swift */,
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
+		3863095F2B147029001973AA /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				386309292B1340ED001973AA /* UserJoinUseCaseProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		386309642B1483B5001973AA /* UserAuth */ = {
+			isa = PBXGroup;
+			children = (
+				386309602B14703E001973AA /* UserJoinUseCase.swift */,
+			);
+			path = UserAuth;
+			sourceTree = "<group>";
+		};
 		38CA8C202B03859400A9C4B7 /* SigninView */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,23 +384,25 @@
 			path = SigninView;
 			sourceTree = "<group>";
 		};
-		38EE8A772B04B65800E629CC /* Base */ = {
+		38EE8A772B04B65800E629CC /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				3847EC422B02527700E086EB /* BaseView */,
+				3863093D2B141CBE001973AA /* Coordinator */,
 				3847EC452B02566000E086EB /* CustomView */,
-				38EE8A832B04D29000E629CC /* ViewModelType.swift */,
+				386309202B131241001973AA /* Protocol */,
 			);
-			path = Base;
+			path = Common;
 			sourceTree = "<group>";
 		};
-		38EE8A912B0631A500E629CC /* Model */ = {
+		38EE8A912B0631A500E629CC /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				38EE8A922B0631CB00E629CC /* EmailValidationModel.swift */,
-				388CFD4A2B0F264600638EFD /* UserJoinModel.swift */,
+				3863091F2B1311DA001973AA /* Entities */,
+				386309252B132A14001973AA /* Repositories */,
+				386309282B1340D2001973AA /* UseCases */,
 			);
-			path = Model;
+			path = Domain;
 			sourceTree = "<group>";
 		};
 		38EE8A952B06329700E629CC /* Network */ = {
@@ -344,21 +498,36 @@
 			buildActionMask = 2147483647;
 			files = (
 				38CA8C252B03893300A9C4B7 /* SigninSubtitleLabel.swift in Sources */,
-				38EE8A932B0631CB00E629CC /* EmailValidationModel.swift in Sources */,
 				3847EC372B02307100E086EB /* UINavigationController+.swift in Sources */,
 				3847EC322B022FF800E086EB /* Constant.swift in Sources */,
+				386309272B132A5A001973AA /* UserAuthRepositoryProtocol.swift in Sources */,
+				3863093C2B141C93001973AA /* Coordinator.swift in Sources */,
+				386309562B146757001973AA /* UserAuthCoordinator.swift in Sources */,
+				3863095E2B146C9C001973AA /* UserAuthDataSource.swift in Sources */,
 				38EE8A822B04D0AC00E629CC /* UserJoinViewModel.swift in Sources */,
+				3863092A2B1340ED001973AA /* UserJoinUseCaseProtocol.swift in Sources */,
 				38D4066B2B0B29E000B6F783 /* SecureTextButton.swift in Sources */,
+				3863093A2B135C91001973AA /* EmailValidationResponseDTO.swift in Sources */,
+				386309312B135752001973AA /* User.swift in Sources */,
 				3847EC482B02578900E086EB /* SigninTextField.swift in Sources */,
+				386309362B1357D2001973AA /* UserJoinResponseDTO.swift in Sources */,
 				38CA8C222B0385AC00A9C4B7 /* SigninTitleLabel.swift in Sources */,
 				38CA8C272B038AC000A9C4B7 /* SigninButton.swift in Sources */,
+				386309612B14703E001973AA /* UserJoinUseCase.swift in Sources */,
 				3847EC152B022C1200E086EB /* ContentListViewController.swift in Sources */,
 				38EE8A9A2B06338800E629CC /* MementoAPI.swift in Sources */,
 				3847EC2F2B022FCE00E086EB /* UITabBarController+.swift in Sources */,
 				3847EC352B02303200E086EB /* Constant+UI.swift in Sources */,
 				38CA8C2A2B038CB000A9C4B7 /* UITextField+.swift in Sources */,
+				386309382B135C86001973AA /* EmailValidationRequestDTO.swift in Sources */,
+				3863094E2B1457B9001973AA /* AppCoordinator.swift in Sources */,
+				386309522B145C77001973AA /* TabBarCoordinator.swift in Sources */,
+				386309332B1357A8001973AA /* UserJoinRequestDTO.swift in Sources */,
 				38EE8A972B0632AD00E629CC /* APIManager.swift in Sources */,
+				386309662B149C51001973AA /* Authorization.swift in Sources */,
 				38EE8A9F2B06387900E629CC /* APIKey.swift in Sources */,
+				386309632B147637001973AA /* UserAuthRepository.swift in Sources */,
+				386309592B146B74001973AA /* UserAuthDataSourceProtocol.swift in Sources */,
 				3847EC442B0252B200E086EB /* BaseViewController.swift in Sources */,
 				38EE8A842B04D29000E629CC /* ViewModelType.swift in Sources */,
 				3847EC112B022C1200E086EB /* AppDelegate.swift in Sources */,
@@ -366,7 +535,6 @@
 				3847EC132B022C1200E086EB /* SceneDelegate.swift in Sources */,
 				38D4066D2B0B40DE00B6F783 /* String+.swift in Sources */,
 				38B9203F2B08AAED006CBD1C /* Constant+Network.swift in Sources */,
-				388CFD4B2B0F264600638EFD /* UserJoinModel.swift in Sources */,
 				3847EC402B0251A500E086EB /* UserJoinViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

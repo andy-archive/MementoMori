@@ -10,9 +10,9 @@ import Foundation
 import Moya
 import RxSwift
 
-enum Result<T> {
+enum NetworkResult<T> {
     case success(T)
-    case failure(NetworkError)
+    case failure(ReusableError)
 }
 
 final class APIManager {
@@ -23,16 +23,16 @@ final class APIManager {
     
     private let provider = MoyaProvider<MementoAPI>()
     
-    func validateEmail(email: String) -> Observable<EmailValidationResponse> {
+    func validateEmail(email: String) -> Observable<EmailValidationResponseDTO> {
         
-        return Observable<EmailValidationResponse>.create { [weak self] observer in
-            let data = EmailValidationRequest(email: email)
+        return Observable<EmailValidationResponseDTO>.create { [weak self] observer in
+            let data = EmailValidationRequestDTO(email: email)
             
             self?.provider.request(.emailValidation(model: data)) { result in
                 switch result {
                 case .success(let value):
                     do {
-                        let data = try JSONDecoder().decode(EmailValidationResponse.self, from: value.data)
+                        let data = try JSONDecoder().decode(EmailValidationResponseDTO.self, from: value.data)
                         observer.onNext(data)
                     } catch {
                         observer.onError(error)
@@ -46,7 +46,7 @@ final class APIManager {
         }
     }
     
-    func request<T: Decodable>(api: MementoAPI) -> Single<Result<T>> {
+    func request<T: Decodable>(api: MementoAPI, responseType: T.Type) -> Single<NetworkResult<T>> {
         
         return Single.create { single -> Disposable in
             

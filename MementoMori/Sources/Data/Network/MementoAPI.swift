@@ -10,8 +10,8 @@ import Foundation
 import Moya
 
 enum MementoAPI {
-    case emailValidation(model: EmailValidationRequest)
-    case userJoin(model: UserJoinRequest)
+    case emailValidation(model: EmailValidationRequestDTO)
+    case userJoin(model: UserJoinRequestDTO)
 }
 
 extension MementoAPI: TargetType {
