@@ -7,9 +7,6 @@
 
 import UIKit
 
-import RxCocoa
-import RxSwift
-
 final class UserJoinViewController: BaseViewController {
     
     private lazy var titleLabel = SigninTitleLabel()
@@ -120,27 +117,33 @@ final class UserJoinViewController: BaseViewController {
         nicknameTextField.delegate = self
         
         titleLabel.text = "회원 가입"
-        
         requiredSubtitleLabel.text = "필수 입력 사항"
+        
         emailTextField.placeholder = "📧 이메일"
         emailTextField.keyboardType = .emailAddress
         emailTextField.returnKeyType = .continue
         emailTextField.becomeFirstResponder()
         emailTextField.rightViewMode = .always
         emailTextField.rightView = emailValidationButton
+        
         emailValidationButton.setTitle("확인", for: .normal)
+        
         passwordTextField.placeholder = "🔒 비밀번호 (8자리 이상)"
         passwordTextField.returnKeyType = .continue
         passwordTextField.rightViewMode = .always
         passwordTextField.rightView = passwordSecureTextButton
+        
         nicknameTextField.placeholder = "🔖 닉네임 (2~20 자)"
         nicknameTextField.returnKeyType = .continue
         
         selectiveSubtitleLabel.text = "선택 입력 사항"
+        
         phoneNumberTextField.placeholder = "📱 휴대전화번호"
         phoneNumberTextField.keyboardType = .numberPad
+        
         birthdayTextField.placeholder = "📅 생년월일 8자리"
         birthdayTextField.keyboardType = .numberPad
+        
         nextButton.setTitle("다음 ", for: .normal)
         nextButton.titleLabel?.font = .boldSystemFont(ofSize: Constant.FontSize.title)
         nextButton.layer.cornerRadius = 15

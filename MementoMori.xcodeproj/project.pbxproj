@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		383ECFD12B15B437004675E1 /* UserSigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383ECFD02B15B437004675E1 /* UserSigninViewController.swift */; };
 		3847EC112B022C1200E086EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC102B022C1200E086EB /* AppDelegate.swift */; };
 		3847EC132B022C1200E086EB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC122B022C1200E086EB /* SceneDelegate.swift */; };
 		3847EC152B022C1200E086EB /* ContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC142B022C1200E086EB /* ContentListViewController.swift */; };
@@ -56,6 +57,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		383ECFD02B15B437004675E1 /* UserSigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninViewController.swift; sourceTree = "<group>"; };
 		3847EC0D2B022C1200E086EB /* MementoMori.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MementoMori.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3847EC102B022C1200E086EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3847EC122B022C1200E086EB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 				386309552B146757001973AA /* UserAuthCoordinator.swift */,
 				3847EC3F2B0251A500E086EB /* UserJoinViewController.swift */,
 				38EE8A812B04D0AC00E629CC /* UserJoinViewModel.swift */,
+				383ECFD02B15B437004675E1 /* UserSigninViewController.swift */,
 			);
 			path = UserAuth;
 			sourceTree = "<group>";
@@ -528,6 +531,7 @@
 				38EE8A9F2B06387900E629CC /* APIKey.swift in Sources */,
 				386309632B147637001973AA /* UserAuthRepository.swift in Sources */,
 				386309592B146B74001973AA /* UserAuthDataSourceProtocol.swift in Sources */,
+				383ECFD12B15B437004675E1 /* UserSigninViewController.swift in Sources */,
 				3847EC442B0252B200E086EB /* BaseViewController.swift in Sources */,
 				38EE8A842B04D29000E629CC /* ViewModelType.swift in Sources */,
 				3847EC112B022C1200E086EB /* AppDelegate.swift in Sources */,
