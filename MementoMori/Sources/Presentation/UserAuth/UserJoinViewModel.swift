@@ -66,7 +66,13 @@ final class UserJoinViewModel: ViewModel {
         
         let joinInput = Observable
             .combineLatest(input.emailText, input.passwordText, input.nicknameText) { email, password, nickname in
-                User(email: email, password: password, nick: nickname, phoneNum: nil, birthday: nil)
+                User(
+                    email: email,
+                    password: password,
+                    nick: nickname,
+                    phoneNum: nil,
+                    birthday: nil
+                )
             }
             .share()
         
@@ -157,12 +163,16 @@ final class UserJoinViewModel: ViewModel {
             .flatMap { input in
                 self.userJoinUseCase.join(userInfo: input)
             }
-            .bind(with: self) { owner, result in
+            .bind(with: self) { [weak self] owner, result in
                 switch result {
                 case .success(let response):
-                    self.userJoinUseCase.joinResponse.accept(.success(response.nick))
-                case .failure(_):
-                    self.userJoinUseCase.joinResponse.accept(.failure(UserJoinError.badRequest))
+                    self?.userJoinUseCase.joinResponse.accept(.success(response.nick ?? ""))
+                    self?.coordinator?.popViewController()
+                case .failure(let error):
+                    let message = UserJoinError(rawValue: error.rawValue)?.message ?? NetworkError.internalServerError.message
+                    self?.userJoinUseCase.emailValidationMessage.accept(message)
+                    self?.userJoinUseCase.isEmailTextValid.accept(false)
+                    self?.userJoinUseCase.isPasswordTextValid.accept(false)
                 }
             }
             .disposed(by: disposeBag)

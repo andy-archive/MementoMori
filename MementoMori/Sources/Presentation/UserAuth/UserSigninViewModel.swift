@@ -48,6 +48,17 @@ final class UserSigninViewModel: ViewModel {
             }
             .disposed(by: self.disposeBag)
         
+        let userInfo = Observable
+            .combineLatest(input.emailText, input.passwordText) { email, password in
+                User(
+                    email: email,
+                    password: password,
+                    nick: nil,
+                    phoneNum: nil,
+                    birthday: nil
+                )
+            }
+        
         input
             .emailText
             .subscribe(with: self) { [weak self] owner, value in
@@ -62,6 +73,24 @@ final class UserSigninViewModel: ViewModel {
             .subscribe(with: self) { [weak self] owner, value in
                 if !value.isEmpty {
                     self?.userSigninUseCase.isPasswordTextValid.accept(true)
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        input
+            .signinButtonClicked
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+            .withLatestFrom(userInfo)
+            .flatMap { input in
+                self.userSigninUseCase.signin(userInfo: input)
+            }
+            .bind(with: self) { [weak self] owner, result in
+                switch result {
+                case .success(_):
+                    self?.userSigninUseCase.signinResponse.accept(.success(()))
+                case .failure(let error):
+                    let message = UserSigninError(rawValue: error.rawValue)?.message ?? NetworkError.badRequest.message
+                    self?.userSigninUseCase.signinResponse.accept(.failure(UserSigninError(rawValue: error.rawValue) ?? UserSigninError.badRequest))
                 }
             }
             .disposed(by: disposeBag)

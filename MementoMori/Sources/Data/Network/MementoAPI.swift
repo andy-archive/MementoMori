@@ -12,6 +12,7 @@ import Moya
 enum MementoAPI {
     case emailValidation(model: EmailValidationRequestDTO)
     case userJoin(model: UserJoinRequestDTO)
+    case userSignin(model: UserSigninRequestDTO)
 }
 
 extension MementoAPI: TargetType {
@@ -24,6 +25,7 @@ extension MementoAPI: TargetType {
         switch self {
         case .emailValidation: return "validation/email"
         case .userJoin: return "join"
+        case .userSignin: return "login"
         }
     }
     
@@ -31,6 +33,7 @@ extension MementoAPI: TargetType {
         switch self {
         case .emailValidation: return .post
         case .userJoin: return .post
+        case .userSignin: return .post
         }
     }
     
@@ -39,6 +42,8 @@ extension MementoAPI: TargetType {
         case .emailValidation(let data):
             return .requestJSONEncodable(data)
         case .userJoin(let data):
+            return .requestJSONEncodable(data)  
+        case .userSignin(let data):
             return .requestJSONEncodable(data)
         }
     }

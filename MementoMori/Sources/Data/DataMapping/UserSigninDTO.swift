@@ -13,7 +13,6 @@ struct UserSigninRequestDTO: Encodable {
 }
 
 struct UserSigninResponseDTO: Decodable {
-    let id: String
     let token: String
     let refreshToken: String
 
