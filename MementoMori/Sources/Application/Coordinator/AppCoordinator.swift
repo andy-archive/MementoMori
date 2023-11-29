@@ -31,7 +31,8 @@ extension AppCoordinator {
             viewModel: UserSigninViewModel(
                 coordinator: self,
                 userSigninUseCase: UserSigninUseCase(
-                    userAuthRepository: makeAuthRepository()
+                    userAuthRepository: makeAuthRepository(),
+                    keychainManager: TokenManager()
                 )
             )
         )

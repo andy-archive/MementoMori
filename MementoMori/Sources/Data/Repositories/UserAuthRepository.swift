@@ -51,7 +51,6 @@ final class UserAuthRepository: UserAuthRepositoryProtocol {
         let result = responseDTO.flatMap { result in
             switch result {
             case .success(let responseDTO):
-                print(responseDTO.token, responseDTO.refreshToken)
                 return Single<NetworkResult>.just(.success(responseDTO.toDomain()))
             case .failure(let error):
                 return Single<NetworkResult>.just(.failure(error))

@@ -81,19 +81,16 @@ final class UserSigninViewModel: ViewModel {
             .signinButtonClicked
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(userInfo)
-            .flatMap { input in
-                self.userSigninUseCase.signin(userInfo: input)
+            .map { userInfo in
+                self.userSigninUseCase.signin(userInfo: userInfo)
             }
-            .bind(with: self) { [weak self] owner, result in
-                switch result {
-                case .success(_):
-                    self?.userSigninUseCase.signinResponse.accept(.success(()))
-                    self?.coordinator?.showTabBarFlow()
-                case .failure(let error):
-                    let message = UserSigninError(rawValue: error.rawValue)?.message ?? NetworkError.badRequest.message
-                    self?.userSigninUseCase.signinResponse.accept(.failure(UserSigninError(rawValue: error.rawValue) ?? UserSigninError.badRequest))
-                }
-            }
+            .subscribe(with: self, onNext: { owner, value in
+                self.userSigninUseCase.isSigninCompleted.accept(true)
+                self.coordinator?.showTabBarFlow()
+            }, onError: { owner, error in
+                self.userSigninUseCase.isSigninCompleted.accept(false)
+                self.userSigninUseCase.errorMessage.accept(error.localizedDescription)
+            })
             .disposed(by: disposeBag)
         
         input

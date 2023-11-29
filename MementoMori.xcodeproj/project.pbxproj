@@ -41,6 +41,12 @@
 		387463CF2B160815009FAB2C /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387463CE2B160815009FAB2C /* TabBar.swift */; };
 		387463DE2B163C54009FAB2C /* StoryContentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387463DD2B163C54009FAB2C /* StoryContentCoordinator.swift */; };
 		387463E02B163C74009FAB2C /* StoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387463DF2B163C74009FAB2C /* StoryListViewController.swift */; };
+		387464002B170B18009FAB2C /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387463FF2B170B18009FAB2C /* KeychainManager.swift */; };
+		387464022B170C3B009FAB2C /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387464012B170C3B009FAB2C /* TokenManager.swift */; };
+		387464092B171D70009FAB2C /* ReusableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387464082B171D70009FAB2C /* ReusableError.swift */; };
+		3874640B2B172013009FAB2C /* TokenError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874640A2B172013009FAB2C /* TokenError.swift */; };
+		3874640D2B172208009FAB2C /* UserSigninError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874640C2B172208009FAB2C /* UserSigninError.swift */; };
+		387464132B173E2C009FAB2C /* UserJoinError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387464122B173E2C009FAB2C /* UserJoinError.swift */; };
 		388CFD4D2B0F2ED900638EFD /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CFD4C2B0F2ED800638EFD /* NetworkError.swift */; };
 		38B9203F2B08AAED006CBD1C /* Constant+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B9203E2B08AAED006CBD1C /* Constant+Network.swift */; };
 		38CA8C222B0385AC00A9C4B7 /* SigninTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA8C212B0385AC00A9C4B7 /* SigninTitleLabel.swift */; };
@@ -96,6 +102,12 @@
 		387463CE2B160815009FAB2C /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		387463DD2B163C54009FAB2C /* StoryContentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryContentCoordinator.swift; sourceTree = "<group>"; };
 		387463DF2B163C74009FAB2C /* StoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryListViewController.swift; sourceTree = "<group>"; };
+		387463FF2B170B18009FAB2C /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		387464012B170C3B009FAB2C /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
+		387464082B171D70009FAB2C /* ReusableError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableError.swift; sourceTree = "<group>"; };
+		3874640A2B172013009FAB2C /* TokenError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenError.swift; sourceTree = "<group>"; };
+		3874640C2B172208009FAB2C /* UserSigninError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninError.swift; sourceTree = "<group>"; };
+		387464122B173E2C009FAB2C /* UserJoinError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJoinError.swift; sourceTree = "<group>"; };
 		388CFD4C2B0F2ED800638EFD /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		38B9203E2B08AAED006CBD1C /* Constant+Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constant+Network.swift"; sourceTree = "<group>"; };
 		38CA8C212B0385AC00A9C4B7 /* SigninTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninTitleLabel.swift; sourceTree = "<group>"; };
@@ -284,8 +296,8 @@
 		3863092B2B1350E5001973AA /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				386309572B146B44001973AA /* Common */,
 				3863092F2B135740001973AA /* DataMapping */,
+				387464042B1714EE009FAB2C /* DataSources */,
 				3863092C2B1350FB001973AA /* Repositories */,
 			);
 			path = Data;
@@ -294,7 +306,7 @@
 		3863092C2B1350FB001973AA /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				387463FD2B1709AE009FAB2C /* Remote */,
+				386309622B147637001973AA /* UserAuthRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -317,14 +329,6 @@
 				387463DC2B163C26009FAB2C /* UserSignin */,
 			);
 			path = UserAuth;
-			sourceTree = "<group>";
-		};
-		386309572B146B44001973AA /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				38EE8A952B06329700E629CC /* MementoAPI */,
-			);
-			path = Common;
 			sourceTree = "<group>";
 		};
 		3863095F2B147029001973AA /* Protocol */ = {
@@ -398,12 +402,53 @@
 			path = Delegate;
 			sourceTree = "<group>";
 		};
-		387463FD2B1709AE009FAB2C /* Remote */ = {
+		387464042B1714EE009FAB2C /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
-				386309622B147637001973AA /* UserAuthRepository.swift */,
+				387464112B172CF0009FAB2C /* Error */,
+				387464052B1714F6009FAB2C /* Local */,
+				387464142B173EAD009FAB2C /* Protocol */,
+				387464072B171D28009FAB2C /* Remote */,
+			);
+			path = DataSources;
+			sourceTree = "<group>";
+		};
+		387464052B1714F6009FAB2C /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				387464012B170C3B009FAB2C /* TokenManager.swift */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		387464072B171D28009FAB2C /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				38EE8A9E2B06387900E629CC /* APIKey.swift */,
+				38EE8A962B0632AD00E629CC /* APIManager.swift */,
+				38EE8A992B06338800E629CC /* MementoAPI.swift */,
 			);
 			path = Remote;
+			sourceTree = "<group>";
+		};
+		387464112B172CF0009FAB2C /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				388CFD4C2B0F2ED800638EFD /* NetworkError.swift */,
+				3874640A2B172013009FAB2C /* TokenError.swift */,
+				387464122B173E2C009FAB2C /* UserJoinError.swift */,
+				3874640C2B172208009FAB2C /* UserSigninError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		387464142B173EAD009FAB2C /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				387464082B171D70009FAB2C /* ReusableError.swift */,
+				387463FF2B170B18009FAB2C /* KeychainManager.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		38EE8A772B04B65800E629CC /* Common */ = {
@@ -423,17 +468,6 @@
 				386309282B1340D2001973AA /* UseCases */,
 			);
 			path = Domain;
-			sourceTree = "<group>";
-		};
-		38EE8A952B06329700E629CC /* MementoAPI */ = {
-			isa = PBXGroup;
-			children = (
-				38EE8A9E2B06387900E629CC /* APIKey.swift */,
-				38EE8A962B0632AD00E629CC /* APIManager.swift */,
-				38EE8A992B06338800E629CC /* MementoAPI.swift */,
-				388CFD4C2B0F2ED800638EFD /* NetworkError.swift */,
-			);
-			path = MementoAPI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -521,6 +555,7 @@
 				3847EC372B02307100E086EB /* UINavigationController+.swift in Sources */,
 				3847EC322B022FF800E086EB /* Constant.swift in Sources */,
 				386309272B132A5A001973AA /* UserAuthRepositoryProtocol.swift in Sources */,
+				387464022B170C3B009FAB2C /* TokenManager.swift in Sources */,
 				3863093C2B141C93001973AA /* Coordinator.swift in Sources */,
 				387463DE2B163C54009FAB2C /* StoryContentCoordinator.swift in Sources */,
 				386309562B146757001973AA /* UserAuthCoordinator.swift in Sources */,
@@ -533,11 +568,14 @@
 				383ECFDC2B15CB29004675E1 /* UserSigninDTO.swift in Sources */,
 				38CA8C222B0385AC00A9C4B7 /* SigninTitleLabel.swift in Sources */,
 				38CA8C272B038AC000A9C4B7 /* SigninButton.swift in Sources */,
+				3874640D2B172208009FAB2C /* UserSigninError.swift in Sources */,
 				386309612B14703E001973AA /* UserJoinUseCase.swift in Sources */,
 				38EE8A9A2B06338800E629CC /* MementoAPI.swift in Sources */,
 				3847EC2F2B022FCE00E086EB /* UITabBarController+.swift in Sources */,
+				3874640B2B172013009FAB2C /* TokenError.swift in Sources */,
 				3847EC352B02303200E086EB /* Constant+UI.swift in Sources */,
 				383ECFD52B15BF01004675E1 /* UserSigninUseCase.swift in Sources */,
+				387464132B173E2C009FAB2C /* UserJoinError.swift in Sources */,
 				383ECFD72B15BF2B004675E1 /* UserSigninUseCaseProtocol.swift in Sources */,
 				38CA8C2A2B038CB000A9C4B7 /* UITextField+.swift in Sources */,
 				386309382B135C86001973AA /* EmailValidationDTO.swift in Sources */,
@@ -556,6 +594,8 @@
 				388CFD4D2B0F2ED900638EFD /* NetworkError.swift in Sources */,
 				3847EC132B022C1200E086EB /* SceneDelegate.swift in Sources */,
 				38D4066D2B0B40DE00B6F783 /* String+.swift in Sources */,
+				387464002B170B18009FAB2C /* KeychainManager.swift in Sources */,
+				387464092B171D70009FAB2C /* ReusableError.swift in Sources */,
 				38B9203F2B08AAED006CBD1C /* Constant+Network.swift in Sources */,
 				387463CF2B160815009FAB2C /* TabBar.swift in Sources */,
 				3847EC402B0251A500E086EB /* UserJoinViewController.swift in Sources */,
