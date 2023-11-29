@@ -35,8 +35,6 @@
 		3863094E2B1457B9001973AA /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3863094D2B1457B9001973AA /* AppCoordinator.swift */; };
 		386309522B145C77001973AA /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309512B145C77001973AA /* TabBarCoordinator.swift */; };
 		386309562B146757001973AA /* UserAuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309552B146757001973AA /* UserAuthCoordinator.swift */; };
-		386309592B146B74001973AA /* UserAuthDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309582B146B74001973AA /* UserAuthDataSourceProtocol.swift */; };
-		3863095E2B146C9C001973AA /* UserAuthDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3863095D2B146C9C001973AA /* UserAuthDataSource.swift */; };
 		386309612B14703E001973AA /* UserJoinUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309602B14703E001973AA /* UserJoinUseCase.swift */; };
 		386309632B147637001973AA /* UserAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309622B147637001973AA /* UserAuthRepository.swift */; };
 		386309662B149C51001973AA /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309652B149C51001973AA /* Authorization.swift */; };
@@ -92,8 +90,6 @@
 		3863094D2B1457B9001973AA /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		386309512B145C77001973AA /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		386309552B146757001973AA /* UserAuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthCoordinator.swift; sourceTree = "<group>"; };
-		386309582B146B74001973AA /* UserAuthDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthDataSourceProtocol.swift; sourceTree = "<group>"; };
-		3863095D2B146C9C001973AA /* UserAuthDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthDataSource.swift; sourceTree = "<group>"; };
 		386309602B14703E001973AA /* UserJoinUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJoinUseCase.swift; sourceTree = "<group>"; };
 		386309622B147637001973AA /* UserAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthRepository.swift; sourceTree = "<group>"; };
 		386309652B149C51001973AA /* Authorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authorization.swift; sourceTree = "<group>"; };
@@ -288,9 +284,8 @@
 		3863092B2B1350E5001973AA /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				386309572B146B44001973AA /* Common */,
 				3863092F2B135740001973AA /* DataMapping */,
-				386309572B146B44001973AA /* DataSources */,
-				38EE8A952B06329700E629CC /* Network */,
 				3863092C2B1350FB001973AA /* Repositories */,
 			);
 			path = Data;
@@ -299,7 +294,7 @@
 		3863092C2B1350FB001973AA /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				386309622B147637001973AA /* UserAuthRepository.swift */,
+				387463FD2B1709AE009FAB2C /* Remote */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -324,29 +319,12 @@
 			path = UserAuth;
 			sourceTree = "<group>";
 		};
-		386309572B146B44001973AA /* DataSources */ = {
+		386309572B146B44001973AA /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				3863095A2B146C52001973AA /* Protocol */,
-				3863095C2B146C78001973AA /* Remote */,
+				38EE8A952B06329700E629CC /* MementoAPI */,
 			);
-			path = DataSources;
-			sourceTree = "<group>";
-		};
-		3863095A2B146C52001973AA /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				386309582B146B74001973AA /* UserAuthDataSourceProtocol.swift */,
-			);
-			path = Protocol;
-			sourceTree = "<group>";
-		};
-		3863095C2B146C78001973AA /* Remote */ = {
-			isa = PBXGroup;
-			children = (
-				3863095D2B146C9C001973AA /* UserAuthDataSource.swift */,
-			);
-			path = Remote;
+			path = Common;
 			sourceTree = "<group>";
 		};
 		3863095F2B147029001973AA /* Protocol */ = {
@@ -420,6 +398,14 @@
 			path = Delegate;
 			sourceTree = "<group>";
 		};
+		387463FD2B1709AE009FAB2C /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				386309622B147637001973AA /* UserAuthRepository.swift */,
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
 		38EE8A772B04B65800E629CC /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -439,7 +425,7 @@
 			path = Domain;
 			sourceTree = "<group>";
 		};
-		38EE8A952B06329700E629CC /* Network */ = {
+		38EE8A952B06329700E629CC /* MementoAPI */ = {
 			isa = PBXGroup;
 			children = (
 				38EE8A9E2B06387900E629CC /* APIKey.swift */,
@@ -447,7 +433,7 @@
 				38EE8A992B06338800E629CC /* MementoAPI.swift */,
 				388CFD4C2B0F2ED800638EFD /* NetworkError.swift */,
 			);
-			path = Network;
+			path = MementoAPI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -538,7 +524,6 @@
 				3863093C2B141C93001973AA /* Coordinator.swift in Sources */,
 				387463DE2B163C54009FAB2C /* StoryContentCoordinator.swift in Sources */,
 				386309562B146757001973AA /* UserAuthCoordinator.swift in Sources */,
-				3863095E2B146C9C001973AA /* UserAuthDataSource.swift in Sources */,
 				38EE8A822B04D0AC00E629CC /* UserJoinViewModel.swift in Sources */,
 				3863092A2B1340ED001973AA /* UserJoinUseCaseProtocol.swift in Sources */,
 				38D4066B2B0B29E000B6F783 /* SecureTextButton.swift in Sources */,
@@ -563,7 +548,6 @@
 				386309662B149C51001973AA /* Authorization.swift in Sources */,
 				38EE8A9F2B06387900E629CC /* APIKey.swift in Sources */,
 				386309632B147637001973AA /* UserAuthRepository.swift in Sources */,
-				386309592B146B74001973AA /* UserAuthDataSourceProtocol.swift in Sources */,
 				383ECFD12B15B437004675E1 /* UserSigninViewController.swift in Sources */,
 				3847EC442B0252B200E086EB /* BaseViewController.swift in Sources */,
 				387463E02B163C74009FAB2C /* StoryListViewController.swift in Sources */,
