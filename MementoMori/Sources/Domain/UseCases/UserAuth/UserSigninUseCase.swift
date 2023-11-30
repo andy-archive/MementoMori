@@ -5,20 +5,12 @@
 //  Created by Taekwon Lee on 11/28/23.
 //
 
-import RxRelay
 import RxSwift
 
 final class UserSigninUseCase: UserSigninUseCaseProtocol {
     
     private let userAuthRepository: UserAuthRepositoryProtocol
     private let keychainManager: KeychainManager
-    
-    let isEmailTextValid = PublishRelay<Bool>()
-    let isPasswordTextValid = PublishRelay<Bool>()
-    let isSigninButtonEnabled = BehaviorRelay(value: false)
-    let isSigninCompleted = PublishRelay<Bool>()
-    let errorMessage = PublishRelay<String>()
-    let disposeBag = DisposeBag()
     
     init(
         userAuthRepository: UserAuthRepositoryProtocol,
@@ -63,7 +55,6 @@ final class UserSigninUseCase: UserSigninUseCaseProtocol {
     }
     
     private func verifyErrorMessage(statusCode: Int) -> String {
-        print(statusCode)
         return UserSigninError(rawValue: statusCode)?.message ??
         NetworkError(rawValue: statusCode)?.message ??
         NetworkError.internalServerError.message
