@@ -27,6 +27,7 @@
 		3847EC402B0251A500E086EB /* UserJoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC3F2B0251A500E086EB /* UserJoinViewController.swift */; };
 		3847EC442B0252B200E086EB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC432B0252B200E086EB /* BaseViewController.swift */; };
 		3847EC482B02578900E086EB /* SigninTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC472B02578900E086EB /* SigninTextField.swift */; };
+		3859E5562B18C31000987F75 /* RefreshError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859E5552B18C31000987F75 /* RefreshError.swift */; };
 		386309272B132A5A001973AA /* UserAuthRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309262B132A5A001973AA /* UserAuthRepositoryProtocol.swift */; };
 		3863092A2B1340ED001973AA /* UserJoinUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309292B1340ED001973AA /* UserJoinUseCaseProtocol.swift */; };
 		386309312B135752001973AA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309302B135752001973AA /* User.swift */; };
@@ -89,6 +90,7 @@
 		3847EC3F2B0251A500E086EB /* UserJoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJoinViewController.swift; sourceTree = "<group>"; };
 		3847EC432B0252B200E086EB /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		3847EC472B02578900E086EB /* SigninTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninTextField.swift; sourceTree = "<group>"; };
+		3859E5552B18C31000987F75 /* RefreshError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshError.swift; sourceTree = "<group>"; };
 		386309262B132A5A001973AA /* UserAuthRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthRepositoryProtocol.swift; sourceTree = "<group>"; };
 		386309292B1340ED001973AA /* UserJoinUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJoinUseCaseProtocol.swift; sourceTree = "<group>"; };
 		386309302B135752001973AA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -446,6 +448,7 @@
 			isa = PBXGroup;
 			children = (
 				388CFD4C2B0F2ED800638EFD /* NetworkError.swift */,
+				3859E5552B18C31000987F75 /* RefreshError.swift */,
 				3874640A2B172013009FAB2C /* TokenError.swift */,
 				387464122B173E2C009FAB2C /* UserJoinError.swift */,
 				3874640C2B172208009FAB2C /* UserSigninError.swift */,
@@ -562,6 +565,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3859E5562B18C31000987F75 /* RefreshError.swift in Sources */,
 				38CA8C252B03893300A9C4B7 /* SigninSubtitleLabel.swift in Sources */,
 				3847EC372B02307100E086EB /* UINavigationController+.swift in Sources */,
 				3847EC322B022FF800E086EB /* Constant.swift in Sources */,
