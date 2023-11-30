@@ -22,5 +22,4 @@ enum TokenError: Int, ReusableError {
             return "계정을 확인해주세요."
         }
     }
-    
 }

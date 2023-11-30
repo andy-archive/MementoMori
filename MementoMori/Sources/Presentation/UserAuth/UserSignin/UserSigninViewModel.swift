@@ -23,6 +23,8 @@ final class UserSigninViewModel: ViewModel {
         let isEmailTextValid: PublishRelay<Bool>
         let isPasswordTextValid: PublishRelay<Bool>
         let isSigninButtonEnabled: BehaviorRelay<Bool>
+        let isSigninProcessValid: PublishRelay<Bool>
+        let signinValidationText: PublishRelay<String>
     }
     
     weak var coordinator: AppCoordinator?
@@ -81,16 +83,18 @@ final class UserSigninViewModel: ViewModel {
             .signinButtonClicked
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(userInfo)
-            .map { userInfo in
-                self.userSigninUseCase.signin(userInfo: userInfo)
+            .flatMap { user in
+                self.userSigninUseCase.signin(user: user)
             }
-            .subscribe(with: self, onNext: { owner, value in
-                self.userSigninUseCase.isSigninCompleted.accept(true)
-                self.coordinator?.showTabBarFlow()
-            }, onError: { owner, error in
-                self.userSigninUseCase.isSigninCompleted.accept(false)
-                self.userSigninUseCase.errorMessage.accept(error.localizedDescription)
-            })
+            .bind(with: self) { owner, result in
+                let signinProcess = self.userSigninUseCase.verifySigninProcess(response: result)
+                if signinProcess.isCompleted {
+                    self.coordinator?.showTabBarFlow()
+                } else {
+                    self.userSigninUseCase.isSigninCompleted.accept(signinProcess.isCompleted)
+                    self.userSigninUseCase.errorMessage.accept(signinProcess.message)
+                }
+            }
             .disposed(by: disposeBag)
         
         input
@@ -103,7 +107,9 @@ final class UserSigninViewModel: ViewModel {
         return Output(
             isEmailTextValid: userSigninUseCase.isEmailTextValid,
             isPasswordTextValid: userSigninUseCase.isPasswordTextValid,
-            isSigninButtonEnabled: userSigninUseCase.isSigninButtonEnabled
+            isSigninButtonEnabled: userSigninUseCase.isSigninButtonEnabled,
+            isSigninProcessValid: self.userSigninUseCase.isSigninCompleted,
+            signinValidationText: self.userSigninUseCase.errorMessage
         )
     }
 }

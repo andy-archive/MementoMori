@@ -29,7 +29,7 @@ final class UserJoinViewModel: ViewModel {
         let isPasswordSecure: BehaviorRelay<Bool>
         let isEmailValidationButtonEnabled: BehaviorRelay<Bool>
         let isNextButtonEnabled: BehaviorRelay<Bool>
-        let joinResponse: PublishRelay<NetworkResult<String>>
+        let joinResponse: PublishRelay<APIResponse<String>>
     }
     
     weak var coordinator: AppCoordinator?
@@ -161,15 +161,17 @@ final class UserJoinViewModel: ViewModel {
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(joinInput)
             .flatMap { input in
-                self.userJoinUseCase.join(userInfo: input)
+                self.userJoinUseCase.join(user: input)
             }
             .bind(with: self) { [weak self] owner, result in
                 switch result {
-                case .success(let response):
-                    self?.userJoinUseCase.joinResponse.accept(.success(response.nick ?? ""))
+                case .suceessData(let response):
+                    self?.userJoinUseCase.joinResponse.accept(.suceessData(response.nick ?? ""))
                     self?.coordinator?.popViewController()
-                case .failure(let error):
-                    let message = UserJoinError(rawValue: error.rawValue)?.message ?? NetworkError.internalServerError.message
+                case .errorStatusCode(let error):
+                    let message = UserJoinError(rawValue: error)?.message ??
+                    NetworkError(rawValue: error)?.message ??
+                    NetworkError.internalServerError.message
                     self?.userJoinUseCase.emailValidationMessage.accept(message)
                     self?.userJoinUseCase.isEmailTextValid.accept(false)
                     self?.userJoinUseCase.isPasswordTextValid.accept(false)

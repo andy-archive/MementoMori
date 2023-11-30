@@ -18,6 +18,7 @@ final class UserSigninUseCase: UserSigninUseCaseProtocol {
     let isSigninButtonEnabled = BehaviorRelay(value: false)
     let isSigninCompleted = PublishRelay<Bool>()
     let errorMessage = PublishRelay<String>()
+    let disposeBag = DisposeBag()
     
     init(
         userAuthRepository: UserAuthRepositoryProtocol,
@@ -27,21 +28,21 @@ final class UserSigninUseCase: UserSigninUseCaseProtocol {
         self.keychainManager = keychainManager
     }
     
-    func signin(userInfo: User) -> Single<NetworkResult<Void>> {
-        self.userAuthRepository
-            .signin(userInfo: userInfo)
-            .flatMap { result in
-                switch result {
-                case .success(let data):
-                    return self.isTokenSaved(authData: data) ?
-                    Single<NetworkResult>.just(.success(())) :
-                    Single<NetworkResult>.just(.failure(TokenError.invalidToken))
-                case .failure(_):
-                    return Single<NetworkResult>.just(.failure(UserSigninError.badRequest))}
-            }
+    func signin(user: User) -> Single<APIResponse<Authorization>> {
+        self.userAuthRepository.signin(user: user)
     }
     
-    func isTokenSaved(authData: Authorization) -> Bool {
+    func verifySigninProcess(response: APIResponse<Authorization>) -> (isCompleted: Bool, message: String) {
+        switch response {
+        case .suceessData(let authData):
+            return isAllTokenSaved(authData: authData) ?
+            (true, "환영합니다 😆") : (false, TokenError.invalidToken.message)
+        case .errorStatusCode(let stausCode):
+            return (false, verifyErrorMessage(statusCode: stausCode))
+        }
+    }
+    
+    private func isAllTokenSaved(authData: Authorization) -> Bool {
         let isTokenSaved = keychainManager
             .save(
                 key: .token,
@@ -61,4 +62,10 @@ final class UserSigninUseCase: UserSigninUseCaseProtocol {
         return false
     }
     
+    private func verifyErrorMessage(statusCode: Int) -> String {
+        print(statusCode)
+        return UserSigninError(rawValue: statusCode)?.message ??
+        NetworkError(rawValue: statusCode)?.message ??
+        NetworkError.internalServerError.message
+    }
 }

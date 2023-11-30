@@ -10,7 +10,7 @@ import Foundation
 enum UserSigninError: Int, ReusableError {
     case badRequest = 400
     case unauthorized = 401
-
+    
     var message: String {
         switch self {
         case .badRequest:

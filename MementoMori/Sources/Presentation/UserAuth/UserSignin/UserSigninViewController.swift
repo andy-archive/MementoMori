@@ -47,6 +47,25 @@ final class UserSigninViewController: BaseViewController {
                 owner.signinButton.isEnabled = value
             }
             .disposed(by: disposeBag)
+        
+        output
+            .isSigninProcessValid
+            .asSignal()
+            .emit(with: self) { owner, isProcessValid in
+                let color = isProcessValid ? Constant.Color.Label.valid : Constant.Color.Label.notValid
+                owner.emailTextField.layer.borderColor = color.cgColor
+                owner.passwordTextField.layer.borderColor = color.cgColor
+                owner.signinButton.layer.borderColor = color.cgColor
+            }
+            .disposed(by: disposeBag)
+        
+        output
+            .signinValidationText
+            .asSignal()
+            .emit(with: self) { owner, validationText in
+                owner.signinValidationLabel.text = validationText
+            }
+            .disposed(by: disposeBag)
     }
     
     override func configureUI() {
@@ -70,7 +89,10 @@ final class UserSigninViewController: BaseViewController {
         
         signinButton.setTitle("다음 ", for: .normal)
         signinButton.titleLabel?.font = .boldSystemFont(ofSize: Constant.FontSize.title)
+        signinButton.layer.borderWidth = 1
         signinButton.layer.cornerRadius = 15
+        
+        signinValidationLabel.textColor = .systemRed
         
         view.addSubview(titleLabel)
         view.addSubview(subtitleLabel)
@@ -112,24 +134,24 @@ final class UserSigninViewController: BaseViewController {
             passwordTextField.heightAnchor.constraint(equalToConstant: Constant.Layout.UserAuth.Size.height)
         ])
         
+        signinValidationLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            signinValidationLabel.topAnchor.constraint(equalTo: passwordTextField.safeAreaLayoutGuide.bottomAnchor, constant: Constant.Layout.UserAuth.Inset.vertical / 2),
+            signinValidationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.UserAuth.Inset.horizontal),
+            signinValidationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constant.Layout.UserAuth.Inset.horizontal)
+        ])
+        
         signinButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            signinButton.topAnchor.constraint(equalTo: passwordTextField.safeAreaLayoutGuide.bottomAnchor, constant: Constant.Layout.UserAuth.Inset.vertical),
+            signinButton.topAnchor.constraint(equalTo: signinValidationLabel.safeAreaLayoutGuide.bottomAnchor, constant: Constant.Layout.UserAuth.Inset.vertical / 2),
             signinButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.UserAuth.Inset.horizontal),
             signinButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constant.Layout.UserAuth.Inset.horizontal),
             signinButton.heightAnchor.constraint(equalToConstant: Constant.Layout.UserAuth.Size.height)
         ])
         
-        signinValidationLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            signinValidationLabel.topAnchor.constraint(equalTo: signinButton.safeAreaLayoutGuide.bottomAnchor, constant: Constant.Layout.UserAuth.Inset.vertical / 2),
-            signinValidationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.UserAuth.Inset.horizontal),
-            signinValidationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constant.Layout.UserAuth.Inset.horizontal)
-        ])
-        
         joinButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            joinButton.topAnchor.constraint(equalTo: signinValidationLabel.safeAreaLayoutGuide.bottomAnchor, constant: Constant.Layout.UserAuth.Inset.vertical / 2),
+            joinButton.topAnchor.constraint(equalTo: signinButton.safeAreaLayoutGuide.bottomAnchor, constant: Constant.Layout.UserAuth.Inset.vertical),
             joinButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.UserAuth.Inset.horizontal),
             joinButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constant.Layout.UserAuth.Inset.horizontal),
             joinButton.heightAnchor.constraint(equalToConstant: Constant.Layout.UserAuth.Size.height)

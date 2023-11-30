@@ -17,6 +17,8 @@ enum NetworkError: Int, ReusableError {
     
     var message: String {
         switch self {
+        case .badRequest:
+            return "잘못된 요청입니다."
         case .notValidKey:
             return "키가 적절하지 않습니다."
         case .tooManyRequests:

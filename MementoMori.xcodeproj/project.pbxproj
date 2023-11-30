@@ -13,6 +13,7 @@
 		383ECFD72B15BF2B004675E1 /* UserSigninUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383ECFD62B15BF2B004675E1 /* UserSigninUseCaseProtocol.swift */; };
 		383ECFD92B15C48D004675E1 /* JoinButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383ECFD82B15C48D004675E1 /* JoinButton.swift */; };
 		383ECFDC2B15CB29004675E1 /* UserSigninDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383ECFDB2B15CB29004675E1 /* UserSigninDTO.swift */; };
+		3840F68E2B185FA800C488B6 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3840F68D2B185FA800C488B6 /* APIResponse.swift */; };
 		3847EC112B022C1200E086EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC102B022C1200E086EB /* AppDelegate.swift */; };
 		3847EC132B022C1200E086EB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC122B022C1200E086EB /* SceneDelegate.swift */; };
 		3847EC1A2B022C1400E086EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3847EC192B022C1400E086EB /* Assets.xcassets */; };
@@ -72,6 +73,7 @@
 		383ECFD62B15BF2B004675E1 /* UserSigninUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninUseCaseProtocol.swift; sourceTree = "<group>"; };
 		383ECFD82B15C48D004675E1 /* JoinButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinButton.swift; sourceTree = "<group>"; };
 		383ECFDB2B15CB29004675E1 /* UserSigninDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninDTO.swift; sourceTree = "<group>"; };
+		3840F68D2B185FA800C488B6 /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 		3847EC0D2B022C1200E086EB /* MementoMori.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MementoMori.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3847EC102B022C1200E086EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3847EC122B022C1200E086EB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -137,6 +139,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3840F6912B1865E800C488B6 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				386309622B147637001973AA /* UserAuthRepository.swift */,
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
 		3847EC042B022C1200E086EB = {
 			isa = PBXGroup;
 			children = (
@@ -306,7 +316,8 @@
 		3863092C2B1350FB001973AA /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				386309622B147637001973AA /* UserAuthRepository.swift */,
+				387464052B1714F6009FAB2C /* Local */,
+				3840F6912B1865E800C488B6 /* Remote */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -406,8 +417,7 @@
 			isa = PBXGroup;
 			children = (
 				387464112B172CF0009FAB2C /* Error */,
-				387464052B1714F6009FAB2C /* Local */,
-				387464142B173EAD009FAB2C /* Protocol */,
+				387464142B173EAD009FAB2C /* Local */,
 				387464072B171D28009FAB2C /* Remote */,
 			);
 			path = DataSources;
@@ -427,6 +437,7 @@
 				38EE8A9E2B06387900E629CC /* APIKey.swift */,
 				38EE8A962B0632AD00E629CC /* APIManager.swift */,
 				38EE8A992B06338800E629CC /* MementoAPI.swift */,
+				3840F68D2B185FA800C488B6 /* APIResponse.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -442,13 +453,13 @@
 			path = Error;
 			sourceTree = "<group>";
 		};
-		387464142B173EAD009FAB2C /* Protocol */ = {
+		387464142B173EAD009FAB2C /* Local */ = {
 			isa = PBXGroup;
 			children = (
 				387464082B171D70009FAB2C /* ReusableError.swift */,
 				387463FF2B170B18009FAB2C /* KeychainManager.swift */,
 			);
-			path = Protocol;
+			path = Local;
 			sourceTree = "<group>";
 		};
 		38EE8A772B04B65800E629CC /* Common */ = {
@@ -575,6 +586,7 @@
 				3874640B2B172013009FAB2C /* TokenError.swift in Sources */,
 				3847EC352B02303200E086EB /* Constant+UI.swift in Sources */,
 				383ECFD52B15BF01004675E1 /* UserSigninUseCase.swift in Sources */,
+				3840F68E2B185FA800C488B6 /* APIResponse.swift in Sources */,
 				387464132B173E2C009FAB2C /* UserJoinError.swift in Sources */,
 				383ECFD72B15BF2B004675E1 /* UserSigninUseCaseProtocol.swift in Sources */,
 				38CA8C2A2B038CB000A9C4B7 /* UITextField+.swift in Sources */,
