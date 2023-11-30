@@ -38,7 +38,7 @@ final class UserSigninUseCase: UserSigninUseCaseProtocol {
         let isTokenSaved = keychainManager
             .save(
                 key: .token,
-                value: authData.token
+                value: authData.accesstoken
             )
         
         let isRefreshTokenSaved = keychainManager

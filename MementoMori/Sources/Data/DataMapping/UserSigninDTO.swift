@@ -18,7 +18,7 @@ struct UserSigninResponseDTO: Decodable {
 
     func toDomain() -> Authorization {
         return Authorization(
-            token: token,
+            accesstoken: token,
             refreshToken: refreshToken
         )
     }

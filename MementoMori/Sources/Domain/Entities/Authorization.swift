@@ -8,6 +8,6 @@
 import Foundation
 
 struct Authorization {
-    let token: String
+    let accesstoken: String
     let refreshToken: String
 }
