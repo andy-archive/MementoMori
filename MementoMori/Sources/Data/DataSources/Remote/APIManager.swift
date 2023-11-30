@@ -10,11 +10,6 @@ import Foundation
 import Moya
 import RxSwift
 
-enum NetworkResult<T> {
-    case success(T)
-    case failure(ReusableError)
-}
-
 final class APIManager {
     
     static let shared = APIManager()
@@ -46,7 +41,7 @@ final class APIManager {
         }
     }
     
-    func request<T: Decodable>(api: MementoAPI, responseType: T.Type) -> Single<NetworkResult<T>> {
+    func request<T: Decodable>(api: MementoAPI, responseType: T.Type) -> Single<APIResponse<T>> {
         
         return Single.create { single -> Disposable in
             
@@ -56,24 +51,21 @@ final class APIManager {
                 
                 switch result {
                 case .success(let response):
-                    do {
-                        let data = try decoder.decode(T.self, from: response.data)
-                        single(.success(.success(data)))
-                    } catch {
-                        single(.success(.failure(NetworkError.badRequest)))
+                    do { //1. 요청 성공 및 디코딩 성공 시 -> 디코딩 된 데이터
+                        let decodedData = try decoder.decode(T.self, from: response.data)
+                        single(.success(.suceessData(decodedData)))
+                    } catch { //2. 요청 성공은 했으나 디코딩 실패 -> 응답 코드
+                        single(.success(.errorStatusCode(response.statusCode)))
                     }
-                    
                 case .failure(let error):
-                    guard let statusCode = error.response?.statusCode,
-                          let networkError = NetworkError(rawValue: statusCode)
-                    else {
-                        single(.success(.failure(NetworkError.internalServerError)))
+                    guard let statusCode = error.response?.statusCode
+                    else { //3. 요청 실패, 응답 코드가 없을 때 -> 서버 오류 응답 코드
+                        single(.success(.errorStatusCode(NetworkError.internalServerError.rawValue)))
                         return
-                    }
-                    single(.success(.failure(networkError)))
+                    }  //4. 요청 실패, 공통 에러(Network)에 해당할 때 -> 응답 코드
+                    single(.success(.errorStatusCode(statusCode)))
                 }
             }
-            
             return Disposables.create()
         }
     }

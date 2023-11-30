@@ -23,6 +23,8 @@ final class UserSigninViewModel: ViewModel {
         let isEmailTextValid: PublishRelay<Bool>
         let isPasswordTextValid: PublishRelay<Bool>
         let isSigninButtonEnabled: BehaviorRelay<Bool>
+        let isSigninProcessValid: PublishRelay<Bool>
+        let signinValidationText: PublishRelay<String>
     }
     
     weak var coordinator: AppCoordinator?
@@ -39,15 +41,11 @@ final class UserSigninViewModel: ViewModel {
     
     func transform(input: Input) -> Output {
         
-        Observable
-            .combineLatest(input.emailText, input.passwordText) { email, password in
-                email.validateEmail() && password.validatePassword()
-            }
-            .subscribe(with: self) { [weak self] _, value in
-                self?.userSigninUseCase.isSigninButtonEnabled.accept(value)
-            }
-            .disposed(by: self.disposeBag)
-        
+        let isEmailTextValid = PublishRelay<Bool>()
+        let isPasswordTextValid = PublishRelay<Bool>()
+        let isSigninButtonEnabled = BehaviorRelay(value: false)
+        let isSigninCompleted = PublishRelay<Bool>()
+        let errorMessage = PublishRelay<String>()
         let userInfo = Observable
             .combineLatest(input.emailText, input.passwordText) { email, password in
                 User(
@@ -59,20 +57,29 @@ final class UserSigninViewModel: ViewModel {
                 )
             }
         
+        Observable
+            .combineLatest(input.emailText, input.passwordText) { email, password in
+                email.validateEmail() && password.validatePassword()
+            }
+            .subscribe(with: self) { _, value in
+                isSigninButtonEnabled.accept(value)
+            }
+            .disposed(by: self.disposeBag)
+        
         input
             .emailText
-            .subscribe(with: self) { [weak self] owner, value in
+            .subscribe(with: self) { owner, value in
                 if !value.isEmpty {
-                    self?.userSigninUseCase.isEmailTextValid.accept(true)
+                    isEmailTextValid.accept(true)
                 }
             }
             .disposed(by: disposeBag)
         
         input
             .passwordText
-            .subscribe(with: self) { [weak self] owner, value in
+            .subscribe(with: self) { owner, value in
                 if !value.isEmpty {
-                    self?.userSigninUseCase.isPasswordTextValid.accept(true)
+                    isPasswordTextValid.accept(true)
                 }
             }
             .disposed(by: disposeBag)
@@ -81,17 +88,16 @@ final class UserSigninViewModel: ViewModel {
             .signinButtonClicked
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(userInfo)
-            .flatMap { input in
-                self.userSigninUseCase.signin(userInfo: input)
+            .flatMap { user in
+                self.userSigninUseCase.signin(user: user)
             }
-            .bind(with: self) { [weak self] owner, result in
-                switch result {
-                case .success(_):
-                    self?.userSigninUseCase.signinResponse.accept(.success(()))
-                    self?.coordinator?.showTabBarFlow()
-                case .failure(let error):
-                    let message = UserSigninError(rawValue: error.rawValue)?.message ?? NetworkError.badRequest.message
-                    self?.userSigninUseCase.signinResponse.accept(.failure(UserSigninError(rawValue: error.rawValue) ?? UserSigninError.badRequest))
+            .bind(with: self) { owner, result in
+                let signinProcess = self.userSigninUseCase.verifySigninProcess(response: result)
+                if signinProcess.isCompleted {
+                    self.coordinator?.showTabBarFlow()
+                } else {
+                    isSigninCompleted.accept(signinProcess.isCompleted)
+                    errorMessage.accept(signinProcess.message)
                 }
             }
             .disposed(by: disposeBag)
@@ -104,9 +110,11 @@ final class UserSigninViewModel: ViewModel {
             .disposed(by: disposeBag)
         
         return Output(
-            isEmailTextValid: userSigninUseCase.isEmailTextValid,
-            isPasswordTextValid: userSigninUseCase.isPasswordTextValid,
-            isSigninButtonEnabled: userSigninUseCase.isSigninButtonEnabled
+            isEmailTextValid: isEmailTextValid,
+            isPasswordTextValid: isPasswordTextValid,
+            isSigninButtonEnabled: isSigninButtonEnabled,
+            isSigninProcessValid: isSigninCompleted,
+            signinValidationText: errorMessage
         )
     }
 }

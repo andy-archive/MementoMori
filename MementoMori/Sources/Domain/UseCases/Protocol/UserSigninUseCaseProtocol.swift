@@ -5,13 +5,9 @@
 //  Created by Taekwon Lee on 11/28/23.
 //
 
-import RxRelay
 import RxSwift
 
 protocol UserSigninUseCaseProtocol {
-    var isEmailTextValid: PublishRelay<Bool> { get }
-    var isPasswordTextValid: PublishRelay<Bool> { get }
-    var isSigninButtonEnabled: BehaviorRelay<Bool> { get }
-    var signinResponse: PublishRelay<NetworkResult<Void>> { get }
-    func signin(userInfo: User) -> Single<NetworkResult<Authorization>>
+    func signin(user: User) -> Single<APIResponse<Authorization>>
+    func verifySigninProcess(response: APIResponse<Authorization>) -> (isCompleted: Bool, message: String)
 }

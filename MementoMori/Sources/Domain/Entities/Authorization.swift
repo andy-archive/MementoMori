@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Authorization: Codable {
+struct Authorization {
     let token: String
     let refreshToken: String
 }

@@ -9,14 +9,14 @@ import RxSwift
 
 final class UserAuthRepository: UserAuthRepositoryProtocol {
     
-    func join(userInfo: User) -> Single<NetworkResult<User>> {
+    func join(user: User) -> Single<APIResponse<User>> {
         
         let requestDTO = UserJoinRequestDTO(
-            email: userInfo.email,
-            password: userInfo.password ?? "",
-            nick: userInfo.nick ?? "",
-            phoneNum: userInfo.phoneNum,
-            birthday: userInfo.birthday
+            email: user.email,
+            password: user.password ?? "",
+            nick: user.nick ?? "",
+            phoneNum: user.phoneNum,
+            birthday: user.birthday
         )
         
         let responseDTO = APIManager.shared.request(
@@ -26,21 +26,21 @@ final class UserAuthRepository: UserAuthRepositoryProtocol {
         
         let result = responseDTO.flatMap { result in
             switch result {
-            case .success(let responseDTO):
-                return Single<NetworkResult>.just(.success(responseDTO.toDomain()))
-            case .failure(let error):
-                return Single<NetworkResult>.just(.failure(error))
+            case .suceessData(let responseDTO):
+                return Single<APIResponse>.just(.suceessData(responseDTO.toDomain()))
+            case .errorStatusCode(let statusCode):
+                return Single<APIResponse>.just(.errorStatusCode(statusCode))
             }
         }
         
         return result
     }
     
-    func signin(userInfo: User) -> Single<NetworkResult<Authorization>> {
+    func signin(user: User) -> Single<APIResponse<Authorization>> {
         
         let requestDTO = UserSigninRequestDTO(
-            email: userInfo.email,
-            password: userInfo.password ?? ""
+            email: user.email,
+            password: user.password ?? ""
         )
         
         let responseDTO = APIManager.shared.request(
@@ -50,11 +50,10 @@ final class UserAuthRepository: UserAuthRepositoryProtocol {
         
         let result = responseDTO.flatMap { result in
             switch result {
-            case .success(let responseDTO):
-                print(responseDTO.token, responseDTO.refreshToken)
-                return Single<NetworkResult>.just(.success(responseDTO.toDomain()))
-            case .failure(let error):
-                return Single<NetworkResult>.just(.failure(error))
+            case .suceessData(let responseDTO):
+                return Single<APIResponse>.just(.suceessData(responseDTO.toDomain()))
+            case .errorStatusCode(let statusCode):
+                return Single<APIResponse>.just(.errorStatusCode(statusCode))
             }
         }
         
