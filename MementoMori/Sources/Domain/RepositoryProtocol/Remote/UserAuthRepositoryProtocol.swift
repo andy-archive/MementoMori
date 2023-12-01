@@ -10,4 +10,5 @@ import RxSwift
 protocol UserAuthRepositoryProtocol {
     func join(user: User) -> Single<APIResult<User>>
     func signin(user: User) -> Single<APIResult<User>>
+    func refresh(user: User) -> Single<APIResult<Void>>
 }
