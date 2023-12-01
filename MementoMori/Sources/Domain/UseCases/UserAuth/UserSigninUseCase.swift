@@ -20,21 +20,21 @@ final class UserSigninUseCase: UserSigninUseCaseProtocol {
         self.keychainRepository = keychainRepository
     }
     
-    func signin(user: User) -> Single<APIResult<Authorization>> {
+    func signin(user: User) -> Single<APIResult<User>> {
         self.userAuthRepository.signin(user: user)
     }
     
-    func verifySigninProcess(response: APIResult<Authorization>) -> (isCompleted: Bool, message: String) {
+    func verifySigninProcess(response: APIResult<User>) -> (isCompleted: Bool, message: String) {
         switch response {
-        case .suceessData(let authData):
-            return isAllTokenSaved(authData: authData) ?
+        case .suceessData(let user):
+            return isAllTokenSaved(user: user) ?
             (true, "환영합니다 😆") : (false, TokenError.invalidToken.message)
-        case .errorStatusCode(let stausCode):
-            return (false, verifyErrorMessage(statusCode: stausCode))
+        case .errorStatusCode(let statusCode):
+            return (false, verifyErrorMessage(statusCode: statusCode))
         }
     }
     
-    private func isAllTokenSaved(authData: Authorization) -> Bool {
+    private func isAllTokenSaved(user: User) -> Bool {
         let isTokenSaved = keychainRepository
             .save(
                 key: .token,

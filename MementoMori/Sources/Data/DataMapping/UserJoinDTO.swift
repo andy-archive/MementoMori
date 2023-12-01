@@ -18,21 +18,24 @@ struct UserJoinRequestDTO: Encodable {
 struct UserJoinResponseDTO: Decodable {
     let id: String
     let email: String
-    let nick: String
+    let nickname: String
     
     enum CodingKeys: String, CodingKey {
         case id = "_id"
         case email
-        case nick
+        case nickname = "nick"
     }
     
     func toDomain() -> User {
         return User(
+            id: id,
             email: email,
             password: nil,
-            nick: nick,
-            phoneNum: nil,
-            birthday: nil
+            nickname: nickname,
+            phoneNum: nil, 
+            birthday: nil,
+            accessToken: nil,
+            refreshToken: nil
         )
     }
 }

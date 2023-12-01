@@ -9,5 +9,5 @@ import RxSwift
 
 protocol UserAuthRepositoryProtocol {
     func join(user: User) -> Single<APIResult<User>>
-    func signin(user: User) -> Single<APIResult<Authorization>>
+    func signin(user: User) -> Single<APIResult<User>>
 }

@@ -14,9 +14,9 @@ final class UserAuthRepository: UserAuthRepositoryProtocol {
     func join(user: User) -> Single<APIResult<User>> {
         
         let requestDTO = UserJoinRequestDTO(
-            email: user.email,
+            email: user.email ?? "",
             password: user.password ?? "",
-            nick: user.nick ?? "",
+            nick: user.nickname ?? "",
             phoneNum: user.phoneNum,
             birthday: user.birthday
         )
@@ -38,10 +38,10 @@ final class UserAuthRepository: UserAuthRepositoryProtocol {
         return result
     }
     
-    func signin(user: User) -> Single<APIResult<Authorization>> {
+    func signin(user: User) -> Single<APIResult<User>> {
         
         let requestDTO = UserSigninRequestDTO(
-            email: user.email,
+            email: user.email ?? "",
             password: user.password ?? ""
         )
         

@@ -49,11 +49,14 @@ final class UserSigninViewModel: ViewModel {
         let userInfo = Observable
             .combineLatest(input.emailText, input.passwordText) { email, password in
                 User(
+                    id: nil,
                     email: email,
                     password: password,
-                    nick: nil,
+                    nickname: nil,
                     phoneNum: nil,
-                    birthday: nil
+                    birthday: nil,
+                    accessToken: nil,
+                    refreshToken: nil
                 )
             }
         

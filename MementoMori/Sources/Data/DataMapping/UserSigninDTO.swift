@@ -13,12 +13,25 @@ struct UserSigninRequestDTO: Encodable {
 }
 
 struct UserSigninResponseDTO: Decodable {
-    let token: String
+    let id: String
+    let accessToken: String
     let refreshToken: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "_id"
+        case accessToken = "token"
+        case refreshToken
+    }
 
-    func toDomain() -> Authorization {
-        return Authorization(
-            accesstoken: token,
+    func toDomain() -> User {
+        return User(
+            id: id,
+            email: nil,
+            password: nil,
+            nickname: nil,
+            phoneNum: nil,
+            birthday: nil,
+            accessToken: accessToken,
             refreshToken: refreshToken
         )
     }

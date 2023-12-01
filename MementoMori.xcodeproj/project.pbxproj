@@ -39,7 +39,6 @@
 		386309562B146757001973AA /* UserAuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309552B146757001973AA /* UserAuthCoordinator.swift */; };
 		386309612B14703E001973AA /* UserJoinUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309602B14703E001973AA /* UserJoinUseCase.swift */; };
 		386309632B147637001973AA /* UserAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309622B147637001973AA /* UserAuthRepository.swift */; };
-		386309662B149C51001973AA /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309652B149C51001973AA /* Authorization.swift */; };
 		387463CF2B160815009FAB2C /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387463CE2B160815009FAB2C /* TabBar.swift */; };
 		387463DE2B163C54009FAB2C /* StoryContentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387463DD2B163C54009FAB2C /* StoryContentCoordinator.swift */; };
 		387463E02B163C74009FAB2C /* StoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387463DF2B163C74009FAB2C /* StoryListViewController.swift */; };
@@ -102,7 +101,6 @@
 		386309552B146757001973AA /* UserAuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthCoordinator.swift; sourceTree = "<group>"; };
 		386309602B14703E001973AA /* UserJoinUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJoinUseCase.swift; sourceTree = "<group>"; };
 		386309622B147637001973AA /* UserAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthRepository.swift; sourceTree = "<group>"; };
-		386309652B149C51001973AA /* Authorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authorization.swift; sourceTree = "<group>"; };
 		387463CE2B160815009FAB2C /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		387463DD2B163C54009FAB2C /* StoryContentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryContentCoordinator.swift; sourceTree = "<group>"; };
 		387463DF2B163C74009FAB2C /* StoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryListViewController.swift; sourceTree = "<group>"; };
@@ -298,7 +296,6 @@
 		3863091F2B1311DA001973AA /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				386309652B149C51001973AA /* Authorization.swift */,
 				386309302B135752001973AA /* User.swift */,
 			);
 			path = Entities;
@@ -607,7 +604,6 @@
 				386309522B145C77001973AA /* TabBarCoordinator.swift in Sources */,
 				386309332B1357A8001973AA /* UserJoinDTO.swift in Sources */,
 				38EE8A972B0632AD00E629CC /* APIManager.swift in Sources */,
-				386309662B149C51001973AA /* Authorization.swift in Sources */,
 				38EE8A9F2B06387900E629CC /* APIKey.swift in Sources */,
 				386309632B147637001973AA /* UserAuthRepository.swift in Sources */,
 				383ECFD12B15B437004675E1 /* UserSigninViewController.swift in Sources */,

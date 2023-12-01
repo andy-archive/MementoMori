@@ -7,10 +7,13 @@
 
 import UIKit
 
-struct User {
-    let email: String
+struct User: Hashable {
+    let id: String?
+    let email: String?
     let password: String?
-    let nick: String?
+    let nickname: String?
     let phoneNum: String?
     let birthday: String?
+    let accessToken: String?
+    let refreshToken: String?
 }

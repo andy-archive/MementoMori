@@ -13,7 +13,7 @@ enum MementoAPI {
     case emailValidation(model: EmailValidationRequestDTO)
     case userJoin(model: UserJoinRequestDTO)
     case userSignin(model: UserSigninRequestDTO)
-    case refresh(model: Authorization)
+    case refresh(model: User)
 }
 
 extension MementoAPI: TargetType {
@@ -62,9 +62,9 @@ extension MementoAPI: TargetType {
             ]
         case .refresh(let data):
             [
-                "Authorization": "\(data.accesstoken)",
+                "Authorization": "\(data.accessToken ?? "")",
                 "SesacKey": "\(MementoAPI.secretKey)",
-                "Refresh": "\(data.refreshToken)"
+                "Refresh": "\(data.refreshToken ?? "")"
             ]
         }
         
