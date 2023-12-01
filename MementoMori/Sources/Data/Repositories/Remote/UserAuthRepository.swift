@@ -9,7 +9,9 @@ import RxSwift
 
 final class UserAuthRepository: UserAuthRepositoryProtocol {
     
-    func join(user: User) -> Single<APIResponse<User>> {
+    //MARK: UserAuthRepositoryProtocol
+    
+    func join(user: User) -> Single<APIResult<User>> {
         
         let requestDTO = UserJoinRequestDTO(
             email: user.email,
@@ -27,16 +29,16 @@ final class UserAuthRepository: UserAuthRepositoryProtocol {
         let result = responseDTO.flatMap { result in
             switch result {
             case .suceessData(let responseDTO):
-                return Single<APIResponse>.just(.suceessData(responseDTO.toDomain()))
+                return Single<APIResult>.just(.suceessData(responseDTO.toDomain()))
             case .errorStatusCode(let statusCode):
-                return Single<APIResponse>.just(.errorStatusCode(statusCode))
+                return Single<APIResult>.just(.errorStatusCode(statusCode))
             }
         }
         
         return result
     }
     
-    func signin(user: User) -> Single<APIResponse<Authorization>> {
+    func signin(user: User) -> Single<APIResult<Authorization>> {
         
         let requestDTO = UserSigninRequestDTO(
             email: user.email,
@@ -51,9 +53,9 @@ final class UserAuthRepository: UserAuthRepositoryProtocol {
         let result = responseDTO.flatMap { result in
             switch result {
             case .suceessData(let responseDTO):
-                return Single<APIResponse>.just(.suceessData(responseDTO.toDomain()))
+                return Single<APIResult>.just(.suceessData(responseDTO.toDomain()))
             case .errorStatusCode(let statusCode):
-                return Single<APIResponse>.just(.errorStatusCode(statusCode))
+                return Single<APIResult>.just(.errorStatusCode(statusCode))
             }
         }
         

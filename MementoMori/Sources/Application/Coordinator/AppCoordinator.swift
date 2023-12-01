@@ -32,7 +32,7 @@ extension AppCoordinator {
                 coordinator: self,
                 userSigninUseCase: UserSigninUseCase(
                     userAuthRepository: makeAuthRepository(),
-                    keychainManager: TokenManager()
+                    keychainRepository: makeKeychainRepository()
                 )
             )
         )
@@ -63,6 +63,10 @@ extension AppCoordinator {
     
     private func makeAuthRepository() -> UserAuthRepositoryProtocol {
         return UserAuthRepository()
+    }
+    
+    private func makeKeychainRepository() -> KeychainRepositoryProtocol {
+        return KeychainRepository()
     }
 }
 

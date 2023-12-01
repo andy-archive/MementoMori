@@ -1,5 +1,5 @@
 //
-//  KeychainManager.swift
+//  KeychainRepositoryProtocol.swift
 //  MementoMori
 //
 //  Created by Taekwon Lee on 11/29/23.
@@ -12,7 +12,7 @@ enum KeyType: String {
     case refreshToken
 }
 
-protocol KeychainManager {
+protocol KeychainRepositoryProtocol {
     func save(key: KeyType, value: String) -> Bool
     func verify(key: KeyType) -> String?
     func delete(key: KeyType) -> Bool

@@ -13,7 +13,7 @@
 		383ECFD72B15BF2B004675E1 /* UserSigninUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383ECFD62B15BF2B004675E1 /* UserSigninUseCaseProtocol.swift */; };
 		383ECFD92B15C48D004675E1 /* JoinButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383ECFD82B15C48D004675E1 /* JoinButton.swift */; };
 		383ECFDC2B15CB29004675E1 /* UserSigninDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383ECFDB2B15CB29004675E1 /* UserSigninDTO.swift */; };
-		3840F68E2B185FA800C488B6 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3840F68D2B185FA800C488B6 /* APIResponse.swift */; };
+		3840F68E2B185FA800C488B6 /* APIResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3840F68D2B185FA800C488B6 /* APIResult.swift */; };
 		3847EC112B022C1200E086EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC102B022C1200E086EB /* AppDelegate.swift */; };
 		3847EC132B022C1200E086EB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC122B022C1200E086EB /* SceneDelegate.swift */; };
 		3847EC1A2B022C1400E086EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3847EC192B022C1400E086EB /* Assets.xcassets */; };
@@ -43,8 +43,8 @@
 		387463CF2B160815009FAB2C /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387463CE2B160815009FAB2C /* TabBar.swift */; };
 		387463DE2B163C54009FAB2C /* StoryContentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387463DD2B163C54009FAB2C /* StoryContentCoordinator.swift */; };
 		387463E02B163C74009FAB2C /* StoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387463DF2B163C74009FAB2C /* StoryListViewController.swift */; };
-		387464002B170B18009FAB2C /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387463FF2B170B18009FAB2C /* KeychainManager.swift */; };
-		387464022B170C3B009FAB2C /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387464012B170C3B009FAB2C /* TokenManager.swift */; };
+		387464002B170B18009FAB2C /* KeychainRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387463FF2B170B18009FAB2C /* KeychainRepositoryProtocol.swift */; };
+		387464022B170C3B009FAB2C /* KeychainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387464012B170C3B009FAB2C /* KeychainRepository.swift */; };
 		387464092B171D70009FAB2C /* ReusableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387464082B171D70009FAB2C /* ReusableError.swift */; };
 		3874640B2B172013009FAB2C /* TokenError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874640A2B172013009FAB2C /* TokenError.swift */; };
 		3874640D2B172208009FAB2C /* UserSigninError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874640C2B172208009FAB2C /* UserSigninError.swift */; };
@@ -74,7 +74,7 @@
 		383ECFD62B15BF2B004675E1 /* UserSigninUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninUseCaseProtocol.swift; sourceTree = "<group>"; };
 		383ECFD82B15C48D004675E1 /* JoinButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinButton.swift; sourceTree = "<group>"; };
 		383ECFDB2B15CB29004675E1 /* UserSigninDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninDTO.swift; sourceTree = "<group>"; };
-		3840F68D2B185FA800C488B6 /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
+		3840F68D2B185FA800C488B6 /* APIResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResult.swift; sourceTree = "<group>"; };
 		3847EC0D2B022C1200E086EB /* MementoMori.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MementoMori.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3847EC102B022C1200E086EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3847EC122B022C1200E086EB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,8 +106,8 @@
 		387463CE2B160815009FAB2C /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		387463DD2B163C54009FAB2C /* StoryContentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryContentCoordinator.swift; sourceTree = "<group>"; };
 		387463DF2B163C74009FAB2C /* StoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryListViewController.swift; sourceTree = "<group>"; };
-		387463FF2B170B18009FAB2C /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
-		387464012B170C3B009FAB2C /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
+		387463FF2B170B18009FAB2C /* KeychainRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainRepositoryProtocol.swift; sourceTree = "<group>"; };
+		387464012B170C3B009FAB2C /* KeychainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainRepository.swift; sourceTree = "<group>"; };
 		387464082B171D70009FAB2C /* ReusableError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableError.swift; sourceTree = "<group>"; };
 		3874640A2B172013009FAB2C /* TokenError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenError.swift; sourceTree = "<group>"; };
 		3874640C2B172208009FAB2C /* UserSigninError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninError.swift; sourceTree = "<group>"; };
@@ -268,6 +268,22 @@
 			path = Custom;
 			sourceTree = "<group>";
 		};
+		385F93F82B1968000021D548 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				387463FF2B170B18009FAB2C /* KeychainRepositoryProtocol.swift */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		385F93F92B1968030021D548 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				386309262B132A5A001973AA /* UserAuthRepositoryProtocol.swift */,
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
 		3863091E2B131141001973AA /* Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,7 +307,8 @@
 		386309252B132A14001973AA /* RepositoryProtocol */ = {
 			isa = PBXGroup;
 			children = (
-				386309262B132A5A001973AA /* UserAuthRepositoryProtocol.swift */,
+				385F93F82B1968000021D548 /* Local */,
+				385F93F92B1968030021D548 /* Remote */,
 			);
 			path = RepositoryProtocol;
 			sourceTree = "<group>";
@@ -419,7 +436,6 @@
 			isa = PBXGroup;
 			children = (
 				387464112B172CF0009FAB2C /* Error */,
-				387464142B173EAD009FAB2C /* Local */,
 				387464072B171D28009FAB2C /* Remote */,
 			);
 			path = DataSources;
@@ -428,7 +444,7 @@
 		387464052B1714F6009FAB2C /* Local */ = {
 			isa = PBXGroup;
 			children = (
-				387464012B170C3B009FAB2C /* TokenManager.swift */,
+				387464012B170C3B009FAB2C /* KeychainRepository.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -439,7 +455,7 @@
 				38EE8A9E2B06387900E629CC /* APIKey.swift */,
 				38EE8A962B0632AD00E629CC /* APIManager.swift */,
 				38EE8A992B06338800E629CC /* MementoAPI.swift */,
-				3840F68D2B185FA800C488B6 /* APIResponse.swift */,
+				3840F68D2B185FA800C488B6 /* APIResult.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -449,20 +465,12 @@
 			children = (
 				388CFD4C2B0F2ED800638EFD /* NetworkError.swift */,
 				3859E5552B18C31000987F75 /* RefreshError.swift */,
+				387464082B171D70009FAB2C /* ReusableError.swift */,
 				3874640A2B172013009FAB2C /* TokenError.swift */,
 				387464122B173E2C009FAB2C /* UserJoinError.swift */,
 				3874640C2B172208009FAB2C /* UserSigninError.swift */,
 			);
 			path = Error;
-			sourceTree = "<group>";
-		};
-		387464142B173EAD009FAB2C /* Local */ = {
-			isa = PBXGroup;
-			children = (
-				387464082B171D70009FAB2C /* ReusableError.swift */,
-				387463FF2B170B18009FAB2C /* KeychainManager.swift */,
-			);
-			path = Local;
 			sourceTree = "<group>";
 		};
 		38EE8A772B04B65800E629CC /* Common */ = {
@@ -570,7 +578,7 @@
 				3847EC372B02307100E086EB /* UINavigationController+.swift in Sources */,
 				3847EC322B022FF800E086EB /* Constant.swift in Sources */,
 				386309272B132A5A001973AA /* UserAuthRepositoryProtocol.swift in Sources */,
-				387464022B170C3B009FAB2C /* TokenManager.swift in Sources */,
+				387464022B170C3B009FAB2C /* KeychainRepository.swift in Sources */,
 				3863093C2B141C93001973AA /* Coordinator.swift in Sources */,
 				387463DE2B163C54009FAB2C /* StoryContentCoordinator.swift in Sources */,
 				386309562B146757001973AA /* UserAuthCoordinator.swift in Sources */,
@@ -590,7 +598,7 @@
 				3874640B2B172013009FAB2C /* TokenError.swift in Sources */,
 				3847EC352B02303200E086EB /* Constant+UI.swift in Sources */,
 				383ECFD52B15BF01004675E1 /* UserSigninUseCase.swift in Sources */,
-				3840F68E2B185FA800C488B6 /* APIResponse.swift in Sources */,
+				3840F68E2B185FA800C488B6 /* APIResult.swift in Sources */,
 				387464132B173E2C009FAB2C /* UserJoinError.swift in Sources */,
 				383ECFD72B15BF2B004675E1 /* UserSigninUseCaseProtocol.swift in Sources */,
 				38CA8C2A2B038CB000A9C4B7 /* UITextField+.swift in Sources */,
@@ -610,7 +618,7 @@
 				388CFD4D2B0F2ED900638EFD /* NetworkError.swift in Sources */,
 				3847EC132B022C1200E086EB /* SceneDelegate.swift in Sources */,
 				38D4066D2B0B40DE00B6F783 /* String+.swift in Sources */,
-				387464002B170B18009FAB2C /* KeychainManager.swift in Sources */,
+				387464002B170B18009FAB2C /* KeychainRepositoryProtocol.swift in Sources */,
 				387464092B171D70009FAB2C /* ReusableError.swift in Sources */,
 				38B9203F2B08AAED006CBD1C /* Constant+Network.swift in Sources */,
 				387463CF2B160815009FAB2C /* TabBar.swift in Sources */,

@@ -41,7 +41,7 @@ final class APIManager {
         }
     }
     
-    func request<T: Decodable>(api: MementoAPI, responseType: T.Type) -> Single<APIResponse<T>> {
+    func request<T: Decodable>(api: MementoAPI, responseType: T.Type) -> Single<APIResult<T>> {
         
         return Single.create { single -> Disposable in
             

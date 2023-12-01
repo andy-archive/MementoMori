@@ -10,21 +10,21 @@ import RxSwift
 final class UserSigninUseCase: UserSigninUseCaseProtocol {
     
     private let userAuthRepository: UserAuthRepositoryProtocol
-    private let keychainManager: KeychainManager
+    private let keychainRepository: KeychainRepositoryProtocol
     
     init(
         userAuthRepository: UserAuthRepositoryProtocol,
-        keychainManager: KeychainManager
+        keychainRepository: KeychainRepositoryProtocol
     ) {
         self.userAuthRepository = userAuthRepository
-        self.keychainManager = keychainManager
+        self.keychainRepository = keychainRepository
     }
     
-    func signin(user: User) -> Single<APIResponse<Authorization>> {
+    func signin(user: User) -> Single<APIResult<Authorization>> {
         self.userAuthRepository.signin(user: user)
     }
     
-    func verifySigninProcess(response: APIResponse<Authorization>) -> (isCompleted: Bool, message: String) {
+    func verifySigninProcess(response: APIResult<Authorization>) -> (isCompleted: Bool, message: String) {
         switch response {
         case .suceessData(let authData):
             return isAllTokenSaved(authData: authData) ?
@@ -35,13 +35,13 @@ final class UserSigninUseCase: UserSigninUseCaseProtocol {
     }
     
     private func isAllTokenSaved(authData: Authorization) -> Bool {
-        let isTokenSaved = keychainManager
+        let isTokenSaved = keychainRepository
             .save(
                 key: .token,
                 value: authData.accesstoken
             )
         
-        let isRefreshTokenSaved = keychainManager
+        let isRefreshTokenSaved = keychainRepository
             .save(
                 key: .refreshToken,
                 value: authData.refreshToken

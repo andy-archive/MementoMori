@@ -29,7 +29,7 @@ final class UserJoinViewModel: ViewModel {
         let isPasswordSecure: BehaviorRelay<Bool>
         let isEmailValidationButtonEnabled: BehaviorRelay<Bool>
         let isNextButtonEnabled: BehaviorRelay<Bool>
-        let joinResponse: PublishRelay<APIResponse<String>>
+        let joinResponse: PublishRelay<APIResult<String>>
     }
     
     weak var coordinator: AppCoordinator?

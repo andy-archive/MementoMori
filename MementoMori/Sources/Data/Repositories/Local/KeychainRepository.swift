@@ -1,5 +1,5 @@
 //
-//  TokenManager.swift
+//  KeychainRepository.swift
 //  MementoMori
 //
 //  Created by Taekwon Lee on 11/29/23.
@@ -7,9 +7,11 @@
 
 import Foundation
 
-final class TokenManager: KeychainManager {
+final class KeychainRepository: KeychainRepositoryProtocol {
     
     private let keySecurityClass = kSecClassGenericPassword
+    
+    //MARK: private functions
     
     private func logError(_ status: OSStatus) {
         let description = SecCopyErrorMessageString(status, nil)
@@ -32,6 +34,8 @@ final class TokenManager: KeychainManager {
             return false
         }
     }
+    
+    //MARK: KeychainRepositoryProtocol
     
     func save(key: KeyType, value: String) -> Bool {
         guard let valueData = value.data(using: .utf8) else { return false }
