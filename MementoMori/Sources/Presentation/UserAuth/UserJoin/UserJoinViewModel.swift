@@ -29,7 +29,7 @@ final class UserJoinViewModel: ViewModel {
         let isPasswordSecure: BehaviorRelay<Bool>
         let isEmailValidationButtonEnabled: BehaviorRelay<Bool>
         let isNextButtonEnabled: BehaviorRelay<Bool>
-        let joinResponse: PublishRelay<APIResponse<String>>
+        let joinResponse: PublishRelay<APIResult<String>>
     }
     
     weak var coordinator: AppCoordinator?
@@ -67,11 +67,14 @@ final class UserJoinViewModel: ViewModel {
         let joinInput = Observable
             .combineLatest(input.emailText, input.passwordText, input.nicknameText) { email, password, nickname in
                 User(
+                    id: nil,
                     email: email,
                     password: password,
-                    nick: nickname,
-                    phoneNum: nil,
-                    birthday: nil
+                    nickname: nickname,
+                    phoneNum: nil, 
+                    birthday: nil,
+                    accessToken: nil,
+                    refreshToken: nil
                 )
             }
             .share()
@@ -165,12 +168,12 @@ final class UserJoinViewModel: ViewModel {
             }
             .bind(with: self) { [weak self] owner, result in
                 switch result {
-                case .suceessData(let response):
-                    self?.userJoinUseCase.joinResponse.accept(.suceessData(response.nick ?? ""))
+                case .suceessData(let user):
+                    self?.userJoinUseCase.joinResponse.accept(.suceessData(user.nickname ?? ""))
                     self?.coordinator?.popViewController()
-                case .errorStatusCode(let error):
-                    let message = UserJoinError(rawValue: error)?.message ??
-                    NetworkError(rawValue: error)?.message ??
+                case .errorStatusCode(let statusCode):
+                    let message = UserJoinError(rawValue: statusCode)?.message ??
+                    NetworkError(rawValue: statusCode)?.message ??
                     NetworkError.internalServerError.message
                     self?.userJoinUseCase.emailValidationMessage.accept(message)
                     self?.userJoinUseCase.isEmailTextValid.accept(false)

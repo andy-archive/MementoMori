@@ -10,41 +10,48 @@ import RxSwift
 final class UserSigninUseCase: UserSigninUseCaseProtocol {
     
     private let userAuthRepository: UserAuthRepositoryProtocol
-    private let keychainManager: KeychainManager
+    private let keychainRepository: KeychainRepositoryProtocol
     
     init(
         userAuthRepository: UserAuthRepositoryProtocol,
-        keychainManager: KeychainManager
+        keychainRepository: KeychainRepositoryProtocol
     ) {
         self.userAuthRepository = userAuthRepository
-        self.keychainManager = keychainManager
+        self.keychainRepository = keychainRepository
     }
     
-    func signin(user: User) -> Single<APIResponse<Authorization>> {
+    func signin(user: User) -> Single<APIResult<User>> {
         self.userAuthRepository.signin(user: user)
     }
     
-    func verifySigninProcess(response: APIResponse<Authorization>) -> (isCompleted: Bool, message: String) {
+    func verifySigninProcess(response: APIResult<User>) -> (isCompleted: Bool, message: String) {
         switch response {
-        case .suceessData(let authData):
-            return isAllTokenSaved(authData: authData) ?
+        case .suceessData(let user):
+            return isAllTokenSaved(user: user) ?
             (true, "환영합니다 😆") : (false, TokenError.invalidToken.message)
-        case .errorStatusCode(let stausCode):
-            return (false, verifyErrorMessage(statusCode: stausCode))
+        case .errorStatusCode(let statusCode):
+            return (false, verifyErrorMessage(statusCode: statusCode))
         }
     }
     
-    private func isAllTokenSaved(authData: Authorization) -> Bool {
-        let isTokenSaved = keychainManager
+    private func isAllTokenSaved(user: User) -> Bool {
+        guard let id = user.id,
+              let accessToken = user.accessToken,
+              let refreshToken = user.refreshToken
+        else { return false }
+        
+        let isTokenSaved = keychainRepository
             .save(
-                key: .token,
-                value: authData.token
+                key: id,
+                value: accessToken,
+                type: .accessToken
             )
         
-        let isRefreshTokenSaved = keychainManager
+        let isRefreshTokenSaved = keychainRepository
             .save(
-                key: .refreshToken,
-                value: authData.refreshToken
+                key: id,
+                value: refreshToken,
+                type: .refreshToken
             )
         
         if isTokenSaved && isRefreshTokenSaved {

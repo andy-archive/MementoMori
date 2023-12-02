@@ -19,7 +19,7 @@ final class UserJoinUseCase: UserJoinUseCaseProtocol {
     var isPasswordSecure = BehaviorRelay<Bool>(value: true)
     var isEmailValidationButtonEnabled = BehaviorRelay<Bool>(value: false)
     var isNextButtonEnabled = BehaviorRelay<Bool>(value: false)
-    var joinResponse = PublishRelay<APIResponse<String>>()
+    var joinResponse = PublishRelay<APIResult<String>>()
     
     init(
         userAuthRepository: UserAuthRepositoryProtocol
@@ -27,7 +27,7 @@ final class UserJoinUseCase: UserJoinUseCaseProtocol {
         self.userAuthRepository = userAuthRepository
     }
     
-    func join(user: User) -> Single<APIResponse<User>> {
+    func join(user: User) -> Single<APIResult<User>> {
         return self.userAuthRepository.join(user: user)
     }
 }

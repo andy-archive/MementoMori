@@ -1,5 +1,5 @@
 //
-//  TokenManager.swift
+//  KeychainRepository.swift
 //  MementoMori
 //
 //  Created by Taekwon Lee on 11/29/23.
@@ -7,22 +7,23 @@
 
 import Foundation
 
-final class TokenManager: KeychainManager {
+final class KeychainRepository: KeychainRepositoryProtocol {
     
     private let keySecurityClass = kSecClassGenericPassword
+    
+    //MARK: private functions
     
     private func logError(_ status: OSStatus) {
         let description = SecCopyErrorMessageString(status, nil)
         print(description ?? "Keychain ERROR.")
     }
     
-    private func update(key: KeyType, value: Data) -> Bool {
+    private func update(account: String, value: Data) -> Bool {
         let updateQuery: [CFString: Any] = [kSecValueData: value]
         let searchQuery: [CFString: Any] = [
             kSecClass: keySecurityClass,
-            kSecAttrAccount: key.rawValue
+            kSecAttrAccount: account
         ]
-        
         let status = SecItemUpdate(searchQuery as CFDictionary, updateQuery as CFDictionary)
         
         if status == errSecSuccess {
@@ -33,38 +34,39 @@ final class TokenManager: KeychainManager {
         }
     }
     
-    func save(key: KeyType, value: String) -> Bool {
+    //MARK: KeychainRepositoryProtocol
+    
+    func save(key: String, value: String, type: KeyType) -> Bool {
         guard let valueData = value.data(using: .utf8) else { return false }
         
+        let account = key + type.rawValue
         let query: [CFString: Any] = [
             kSecClass: keySecurityClass,
-            kSecAttrAccount: key.rawValue,
+            kSecAttrAccount: account,
             kSecValueData: valueData
         ]
-        
         let status = SecItemAdd(query as CFDictionary, nil)
         
         if status == errSecSuccess {
             return true
         } else if status == errSecDuplicateItem {
-            return update(key: key, value: valueData)
+            return update(account: account, value: valueData)
         } else {
             logError(status)
             return false
         }
     }
     
-    func verify(key: KeyType) -> String? {
+    func verify(key: String, type: KeyType) -> String? {
+        let account = key + type.rawValue
         let query: [CFString: Any] = [
             kSecClass: keySecurityClass,
-            kSecAttrAccount: key.rawValue,
+            kSecAttrAccount: account,
             kSecMatchLimit: kSecMatchLimitOne,
             kSecReturnAttributes: true,
             kSecReturnData: true
         ]
-        
         var item: CFTypeRef?
-        
         let status = SecItemCopyMatching(query as CFDictionary, &item)
         
         guard status == errSecSuccess else {
@@ -83,12 +85,12 @@ final class TokenManager: KeychainManager {
         return token
     }
 
-    func delete(key: KeyType) -> Bool {
+    func delete(key: String, type: KeyType) -> Bool {
+        let account = key + type.rawValue
         let searchQuery: [CFString: Any] = [
             kSecClass: keySecurityClass,
-            kSecAttrAccount: key.rawValue
+            kSecAttrAccount: account
         ]
-        
         let status = SecItemDelete(searchQuery as CFDictionary)
         
         if status == errSecSuccess {

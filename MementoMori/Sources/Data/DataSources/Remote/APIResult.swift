@@ -1,5 +1,5 @@
 //
-//  Response.swift
+//  ResultDecodedFromJSON.swift
 //  MementoMori
 //
 //  Created by Taekwon Lee on 11/30/23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum APIResponse<T> {
+enum APIResult<T> {
     case suceessData(T)
     case errorStatusCode(Int)
 }

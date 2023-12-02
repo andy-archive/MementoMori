@@ -16,6 +16,6 @@ protocol UserJoinUseCaseProtocol {
     var isPasswordSecure: BehaviorRelay<Bool> { get }
     var isEmailValidationButtonEnabled: BehaviorRelay<Bool> { get }
     var isNextButtonEnabled: BehaviorRelay<Bool> { get }
-    var joinResponse: PublishRelay<APIResponse<String>> { get }
-    func join(user: User) -> Single<APIResponse<User>>
+    var joinResponse: PublishRelay<APIResult<String>> { get }
+    func join(user: User) -> Single<APIResult<User>>
 }
