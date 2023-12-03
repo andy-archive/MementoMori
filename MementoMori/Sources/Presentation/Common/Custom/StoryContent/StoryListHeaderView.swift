@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class StoryListHeaderView: UIView {
+final class StoryListHeaderView: BaseView {
     
     private let titleLabel = {
         let label = UILabel()
@@ -52,15 +52,13 @@ final class StoryListHeaderView: UIView {
         configureLayout()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override func configureUI() {
+        super.configureUI()
+        
+        addSubview(stackView)
     }
     
-    private func configureUI() {
-        self.addSubview(stackView)
-    }
-    
-    private func configureLayout() {
+    override func configureLayout() {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
