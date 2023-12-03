@@ -37,6 +37,8 @@ extension Constant {
             static let houseFill = UIImage(systemName: "house.fill")
             static let eye = UIImage(systemName: "eye")?.withTintColor(.label.withAlphaComponent(0.6), renderingMode: .alwaysOriginal)
             static let eyeSlash = UIImage(systemName: "eye.slash")?.withTintColor(.label.withAlphaComponent(0.6), renderingMode: .alwaysOriginal)
+            static let personTwo = UIImage(systemName: "person.2")?.withTintColor(.label, renderingMode: .alwaysOriginal)
+            static let star = UIImage(systemName: "star")?.withTintColor(.label, renderingMode: .alwaysOriginal)
         }
     }
 }

@@ -1,0 +1,71 @@
+//
+//  StoryListHeaderView.swift
+//  MementoMori
+//
+//  Created by Taekwon Lee on 12/3/23.
+//
+
+import UIKit
+
+final class StoryListHeaderView: UIView {
+    
+    private let titleLabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Noteworthy", size: 25)
+        label.textColor = Constant.Color.label
+        label.numberOfLines = 1
+        label.text = "Memento Mori"
+        return label
+    }()
+    
+    private let followingButton = {
+        let button = UIButton()
+        button.setImage(
+            Constant.Image.System.personTwo,
+            for: .normal
+        )
+        return button
+    }()
+    
+    private let favoriteButton = {
+        let button = UIButton()
+        button.setImage(
+            Constant.Image.System.star,
+            for: .normal
+        )
+        return button
+    }()
+    
+    private lazy var stackView = {
+        let view = UIStackView(
+            arrangedSubviews: [titleLabel, followingButton, favoriteButton]
+        )
+        view.distribution = .fill
+        view.spacing = 12
+        return view
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        configureUI()
+        configureLayout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func configureUI() {
+        self.addSubview(stackView)
+    }
+    
+    private func configureLayout() {
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
+            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal)
+        ])
+    }
+}
