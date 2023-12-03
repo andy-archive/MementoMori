@@ -13,7 +13,7 @@ class BaseViewController: UIViewController {
     
     var disposeBag = DisposeBag()
     
-    init() {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -31,10 +31,8 @@ class BaseViewController: UIViewController {
     }
     
     func configureUI() {
-        self.view.backgroundColor = .systemBackground
+        view.backgroundColor = Constant.Color.background
     }
-    
     func configureLayout() { }
     func bind() { }
-
 }
