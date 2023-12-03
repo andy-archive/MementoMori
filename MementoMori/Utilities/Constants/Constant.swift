@@ -16,24 +16,18 @@ enum Constant {
     }
     
     enum Layout {
-        
-        enum UserAuth {
-            
-            enum Inset {
-                static let horizontal: CGFloat = 20
-                static let vertical: CGFloat = 20
-            }
-            
-            enum Size {
-                static let height: CGFloat = 50
-            }
-        }
-        
         enum Common {
             
             enum Inset {
                 static let horizontal: CGFloat = 20
                 static let vertical: CGFloat = 20
+            }
+        }
+        
+        enum UserAuth {
+            
+            enum Size {
+                static let height: CGFloat = 50
             }
         }
     }
