@@ -13,7 +13,7 @@ class SigninTextField: UITextField {
         super.init(frame: frame)
         
         configureUI()
-        paddingOnLeft(inset: Constant.Layout.UserAuth.Inset.horizontal)
+        paddingOnLeft(inset: Constant.Layout.Common.Inset.horizontal)
     }
     
     required init?(coder: NSCoder) {

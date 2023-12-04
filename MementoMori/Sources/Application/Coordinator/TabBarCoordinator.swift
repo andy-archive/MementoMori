@@ -36,7 +36,7 @@ private extension TabBarCoordinator {
     func configureTabBar(of tabBar: TabBar) -> UINavigationController {
         let navigationController = UINavigationController()
         navigationController.tabBarItem = tabBar.tabBarItem
-        navigationController.setNavigationBarHidden(false, animated: false)
+        navigationController.setNavigationBarHidden(true, animated: false)
         connectTabCoordinator(of: tabBar, to: navigationController)
         return navigationController
     }

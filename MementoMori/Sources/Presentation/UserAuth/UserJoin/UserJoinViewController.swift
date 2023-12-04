@@ -166,84 +166,84 @@ final class UserJoinViewController: BaseViewController {
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Constant.Layout.UserAuth.Inset.vertical),
-            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.UserAuth.Inset.horizontal),
-            titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -Constant.Layout.UserAuth.Inset.horizontal)
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Constant.Layout.Common.Inset.vertical),
+            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
+            titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal)
         ])
         
         requiredSubtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            requiredSubtitleLabel.topAnchor.constraint(equalTo: titleLabel.safeAreaLayoutGuide.bottomAnchor, constant: Constant.Layout.UserAuth.Inset.vertical),
-            requiredSubtitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.UserAuth.Inset.horizontal),
-            requiredSubtitleLabel.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -Constant.Layout.UserAuth.Inset.horizontal)
+            requiredSubtitleLabel.topAnchor.constraint(equalTo: titleLabel.safeAreaLayoutGuide.bottomAnchor, constant: Constant.Layout.Common.Inset.vertical),
+            requiredSubtitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
+            requiredSubtitleLabel.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal)
         ])
         
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            emailTextField.topAnchor.constraint(equalTo: requiredSubtitleLabel.safeAreaLayoutGuide.bottomAnchor, constant: Constant.Layout.UserAuth.Inset.vertical / 2),
-            emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.UserAuth.Inset.horizontal),
-            emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constant.Layout.UserAuth.Inset.horizontal),
+            emailTextField.topAnchor.constraint(equalTo: requiredSubtitleLabel.safeAreaLayoutGuide.bottomAnchor, constant: Constant.Layout.Common.Inset.vertical / 2),
+            emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
+            emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal),
             emailTextField.heightAnchor.constraint(equalToConstant: Constant.Layout.UserAuth.Size.height)
         ])
         
         emailValidationLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            emailValidationLabel.topAnchor.constraint(equalTo: emailTextField.safeAreaLayoutGuide.bottomAnchor, constant: Constant.Layout.UserAuth.Inset.vertical / 2),
-            emailValidationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.UserAuth.Inset.horizontal),
-            emailValidationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constant.Layout.UserAuth.Inset.horizontal)
+            emailValidationLabel.topAnchor.constraint(equalTo: emailTextField.safeAreaLayoutGuide.bottomAnchor, constant: Constant.Layout.Common.Inset.vertical / 2),
+            emailValidationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
+            emailValidationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal)
         ])
         
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            passwordTextField.topAnchor.constraint(equalTo: emailValidationLabel.safeAreaLayoutGuide.bottomAnchor, constant: Constant.Layout.UserAuth.Inset.vertical / 2),
-            passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.UserAuth.Inset.horizontal),
-            passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constant.Layout.UserAuth.Inset.horizontal),
+            passwordTextField.topAnchor.constraint(equalTo: emailValidationLabel.safeAreaLayoutGuide.bottomAnchor, constant: Constant.Layout.Common.Inset.vertical / 2),
+            passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
+            passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal),
             passwordTextField.heightAnchor.constraint(equalToConstant: Constant.Layout.UserAuth.Size.height)
         ])
         
         passwordValidationLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            passwordValidationLabel.topAnchor.constraint(equalTo: passwordTextField.safeAreaLayoutGuide.bottomAnchor, constant: Constant.Layout.UserAuth.Inset.vertical / 2),
-            passwordValidationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.UserAuth.Inset.horizontal),
-            passwordValidationLabel.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -Constant.Layout.UserAuth.Inset.horizontal),
+            passwordValidationLabel.topAnchor.constraint(equalTo: passwordTextField.safeAreaLayoutGuide.bottomAnchor, constant: Constant.Layout.Common.Inset.vertical / 2),
+            passwordValidationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
+            passwordValidationLabel.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal),
         ])
         
         nicknameTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            nicknameTextField.topAnchor.constraint(equalTo: passwordValidationLabel.safeAreaLayoutGuide.bottomAnchor, constant: Constant.Layout.UserAuth.Inset.vertical / 2),
-            nicknameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.UserAuth.Inset.horizontal),
-            nicknameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constant.Layout.UserAuth.Inset.horizontal),
+            nicknameTextField.topAnchor.constraint(equalTo: passwordValidationLabel.safeAreaLayoutGuide.bottomAnchor, constant: Constant.Layout.Common.Inset.vertical / 2),
+            nicknameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
+            nicknameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal),
             nicknameTextField.heightAnchor.constraint(equalToConstant: Constant.Layout.UserAuth.Size.height)
         ])
         
         selectiveSubtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            selectiveSubtitleLabel.topAnchor.constraint(equalTo: nicknameTextField.safeAreaLayoutGuide.bottomAnchor, constant: Constant.Layout.UserAuth.Inset.vertical),
-            selectiveSubtitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.UserAuth.Inset.horizontal),
-            selectiveSubtitleLabel.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -Constant.Layout.UserAuth.Inset.horizontal)
+            selectiveSubtitleLabel.topAnchor.constraint(equalTo: nicknameTextField.safeAreaLayoutGuide.bottomAnchor, constant: Constant.Layout.Common.Inset.vertical),
+            selectiveSubtitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
+            selectiveSubtitleLabel.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal)
         ])
         
         phoneNumberTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            phoneNumberTextField.topAnchor.constraint(equalTo: selectiveSubtitleLabel.safeAreaLayoutGuide.bottomAnchor, constant: Constant.Layout.UserAuth.Inset.vertical / 2),
-            phoneNumberTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.UserAuth.Inset.horizontal),
-            phoneNumberTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constant.Layout.UserAuth.Inset.horizontal),
+            phoneNumberTextField.topAnchor.constraint(equalTo: selectiveSubtitleLabel.safeAreaLayoutGuide.bottomAnchor, constant: Constant.Layout.Common.Inset.vertical / 2),
+            phoneNumberTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
+            phoneNumberTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal),
             phoneNumberTextField.heightAnchor.constraint(equalToConstant: Constant.Layout.UserAuth.Size.height)
         ])
         
         birthdayTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            birthdayTextField.topAnchor.constraint(equalTo: phoneNumberTextField.safeAreaLayoutGuide.bottomAnchor, constant: Constant.Layout.UserAuth.Inset.vertical),
-            birthdayTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.UserAuth.Inset.horizontal),
-            birthdayTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constant.Layout.UserAuth.Inset.horizontal),
+            birthdayTextField.topAnchor.constraint(equalTo: phoneNumberTextField.safeAreaLayoutGuide.bottomAnchor, constant: Constant.Layout.Common.Inset.vertical),
+            birthdayTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
+            birthdayTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal),
             birthdayTextField.heightAnchor.constraint(equalToConstant: Constant.Layout.UserAuth.Size.height)
         ])
         
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            nextButton.topAnchor.constraint(equalTo: birthdayTextField.safeAreaLayoutGuide.bottomAnchor, constant: Constant.Layout.UserAuth.Inset.vertical),
-            nextButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.UserAuth.Inset.horizontal),
-            nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constant.Layout.UserAuth.Inset.horizontal),
+            nextButton.topAnchor.constraint(equalTo: birthdayTextField.safeAreaLayoutGuide.bottomAnchor, constant: Constant.Layout.Common.Inset.vertical),
+            nextButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
+            nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal),
             nextButton.heightAnchor.constraint(equalToConstant: Constant.Layout.UserAuth.Size.height)
         ])
     }

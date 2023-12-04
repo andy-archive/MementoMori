@@ -31,10 +31,8 @@ class BaseViewController: UIViewController {
     }
     
     func configureUI() {
-        self.view.backgroundColor = .systemBackground
+        view.backgroundColor = Constant.Color.background
     }
-    
     func configureLayout() { }
     func bind() { }
-
 }
