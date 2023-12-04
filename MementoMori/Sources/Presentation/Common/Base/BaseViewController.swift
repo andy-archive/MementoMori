@@ -13,7 +13,7 @@ class BaseViewController: UIViewController {
     
     var disposeBag = DisposeBag()
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
     

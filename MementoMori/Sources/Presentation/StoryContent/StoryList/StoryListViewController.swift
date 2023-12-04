@@ -10,6 +10,7 @@ import UIKit
 final class StoryListViewController: BaseViewController {
     
     private lazy var headerView = StoryListHeaderView()
+    private lazy var collectionView = StoryListCollectionView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +22,7 @@ final class StoryListViewController: BaseViewController {
         super.configureUI()
         
         view.addSubview(headerView)
+        view.addSubview(collectionView)
     }
     
     override func configureLayout() {
@@ -31,6 +33,40 @@ final class StoryListViewController: BaseViewController {
             headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            headerView.heightAnchor.constraint(equalToConstant: 60)
         ])
+        
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: headerView.safeAreaLayoutGuide.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+        
+        collectionView.backgroundColor = .systemGreen.withAlphaComponent(0.7)
     }
 }
+
+#if DEBUG
+import SwiftUI
+struct Preview: UIViewControllerRepresentable {
+    
+    func makeUIViewController(context: Context) -> UIViewController {
+        StoryListViewController() // 📌 뷰컨마다 변경
+    }
+    
+    func updateUIViewController(_ uiView: UIViewController,context: Context) {
+    }
+    
+}
+
+struct ViewController_PreviewProvider: PreviewProvider {
+    static var previews: some View {
+        Group {
+            Preview()
+                .previewDisplayName("Preview")
+        }
+    }
+}
+#endif
