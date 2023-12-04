@@ -70,10 +70,10 @@ final class StoryListCollectionViewCell: BaseCollectionViewCell {
     override func configureLayout() {
         itemHeaderView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            itemHeaderView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
+            itemHeaderView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: Constant.Layout.Common.Inset.vertical / 2),
             itemHeaderView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal / 2),
             itemHeaderView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal / 2),
-            itemHeaderView.heightAnchor.constraint(equalToConstant: Constant.Layout.StoryList.Header.height)
+            itemHeaderView.heightAnchor.constraint(equalToConstant: Constant.Layout.StoryItem.Header.height)
         ])
         
         itemImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -93,7 +93,7 @@ final class StoryListCollectionViewCell: BaseCollectionViewCell {
         
         listSeparatorView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            listSeparatorView.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -8),
+            listSeparatorView.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor),
             listSeparatorView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             listSeparatorView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
         ])

@@ -54,19 +54,27 @@ final class StoryListHeaderView: BaseView {
         return view
     }()
     
+    private lazy var separatorView = SeparatorView()
+    
     override func configureUI() {
         super.configureUI()
         
         addSubview(stackView)
+        addSubview(separatorView)
     }
     
     override func configureLayout() {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: self.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
             stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal),
-            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            stackView.bottomAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: -Constant.Layout.Common.Inset.vertical / 2)
+        ])
+        
+        separatorView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            separatorView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            separatorView.widthAnchor.constraint(equalTo: self.widthAnchor)
         ])
     }
 }

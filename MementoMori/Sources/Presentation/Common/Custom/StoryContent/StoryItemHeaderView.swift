@@ -49,7 +49,8 @@ final class StoryItemHeaderView: BaseView {
             arrangedSubviews: [userProfileImageView, labelVerticalStackView]
         )
         view.distribution = .fill
-        view.spacing = 8
+        view.spacing = 12
+        view.setContentHuggingPriority(.defaultLow, for: .horizontal)
         return view
     }()
     
@@ -58,9 +59,7 @@ final class StoryItemHeaderView: BaseView {
             arrangedSubviews: [nicknameLabel, postTypeLabel]
         )
         view.axis = .vertical
-        view.distribution = .equalSpacing
-        view.spacing = 2
-        view.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        
         return view
     }()
     
@@ -82,8 +81,8 @@ final class StoryItemHeaderView: BaseView {
     
     override func configureLayout() {
         NSLayoutConstraint.activate([
-            userProfileImageView.widthAnchor.constraint(equalToConstant: 30),
-            userProfileImageView.heightAnchor.constraint(equalToConstant: 30),
+            userProfileImageView.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1),
+            userProfileImageView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1),
         ])
         
         stackView.translatesAutoresizingMaskIntoConstraints = false

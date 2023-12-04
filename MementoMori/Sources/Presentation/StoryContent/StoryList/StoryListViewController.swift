@@ -9,7 +9,7 @@ import UIKit
 
 final class StoryListViewController: BaseViewController {
     
-    private lazy var headerView = StoryListHeaderView()
+    private lazy var listHeaderView = StoryListHeaderView()
     private lazy var collectionView = StoryListCollectionView()
     
     override func viewDidLoad() {
@@ -21,22 +21,22 @@ final class StoryListViewController: BaseViewController {
     override func configureUI() {
         super.configureUI()
         
-        view.addSubview(headerView)
+        view.addSubview(listHeaderView)
         view.addSubview(collectionView)
     }
     
     override func configureLayout() {
-        headerView.translatesAutoresizingMaskIntoConstraints = false
+        listHeaderView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            headerView.heightAnchor.constraint(equalToConstant: Constant.Layout.StoryList.Header.height)
+            listHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            listHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            listHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            listHeaderView.heightAnchor.constraint(equalToConstant: Constant.Layout.StoryList.Header.height)
         ])
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: listHeaderView.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)

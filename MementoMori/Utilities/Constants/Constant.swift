@@ -29,14 +29,14 @@ enum Constant {
         enum StoryList {
             
             enum Header {
-                static let height: CGFloat = 40
+                static let height: CGFloat = 50
             }
         }
         
         enum StoryItem {
             
             enum Header {
-                static let height: CGFloat = 80
+                static let height: CGFloat = 40
             }
         }
         
