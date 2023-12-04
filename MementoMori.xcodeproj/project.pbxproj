@@ -17,6 +17,7 @@
 		38318DC32B1CE9EF000EED65 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DC22B1CE9EF000EED65 /* BaseCollectionViewCell.swift */; };
 		38318DC62B1CFE47000EED65 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DC52B1CFE47000EED65 /* SeparatorView.swift */; };
 		38318DC92B1DB666000EED65 /* StoryItemHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DC82B1DB666000EED65 /* StoryItemHeaderView.swift */; };
+		38318DCC2B1E35DB000EED65 /* StoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DCB2B1E35DB000EED65 /* StoryListViewModel.swift */; };
 		383ECFD12B15B437004675E1 /* UserSigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383ECFD02B15B437004675E1 /* UserSigninViewController.swift */; };
 		383ECFD32B15B76A004675E1 /* UserSigninViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383ECFD22B15B76A004675E1 /* UserSigninViewModel.swift */; };
 		383ECFD52B15BF01004675E1 /* UserSigninUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383ECFD42B15BF01004675E1 /* UserSigninUseCase.swift */; };
@@ -87,6 +88,7 @@
 		38318DC22B1CE9EF000EED65 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		38318DC52B1CFE47000EED65 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		38318DC82B1DB666000EED65 /* StoryItemHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryItemHeaderView.swift; sourceTree = "<group>"; };
+		38318DCB2B1E35DB000EED65 /* StoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryListViewModel.swift; sourceTree = "<group>"; };
 		383ECFD02B15B437004675E1 /* UserSigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninViewController.swift; sourceTree = "<group>"; };
 		383ECFD22B15B76A004675E1 /* UserSigninViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninViewModel.swift; sourceTree = "<group>"; };
 		383ECFD42B15BF01004675E1 /* UserSigninUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninUseCase.swift; sourceTree = "<group>"; };
@@ -435,6 +437,7 @@
 			isa = PBXGroup;
 			children = (
 				387463DF2B163C74009FAB2C /* StoryListViewController.swift */,
+				38318DCB2B1E35DB000EED65 /* StoryListViewModel.swift */,
 			);
 			path = StoryList;
 			sourceTree = "<group>";
@@ -630,6 +633,7 @@
 				38318DA82B1A11EB000EED65 /* RefreshTokenDTO.swift in Sources */,
 				38EE8A822B04D0AC00E629CC /* UserJoinViewModel.swift in Sources */,
 				3863092A2B1340ED001973AA /* UserJoinUseCaseProtocol.swift in Sources */,
+				38318DCC2B1E35DB000EED65 /* StoryListViewModel.swift in Sources */,
 				38D4066B2B0B29E000B6F783 /* SecureTextButton.swift in Sources */,
 				386309312B135752001973AA /* User.swift in Sources */,
 				3847EC482B02578900E086EB /* SigninTextField.swift in Sources */,
