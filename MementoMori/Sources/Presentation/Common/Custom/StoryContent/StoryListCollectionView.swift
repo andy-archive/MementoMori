@@ -15,7 +15,7 @@ final class StoryListCollectionView: BaseView {
     
     private lazy var collectionView = UICollectionView(
         frame: .zero,
-        collectionViewLayout:  .setCollectionViewLayout(
+        collectionViewLayout: .setCollectionViewLayout(
             numberOfItem: 1,
             sectionSpacing: 0,
             itemSpacing: 0
@@ -24,24 +24,33 @@ final class StoryListCollectionView: BaseView {
     
     private var postList: [StoryPost] = [
         StoryPost(id: "abcd",
+                  userId: "abcd1234",
+                  storyType: .advertisement,
                   imageIdList: ["98769876"],
                   commentIdList: ["5678"],
+                  location: "서울 영등포구 문래동",
                   isLiked: true,
                   isSavedToMyCollection: false,
                   content: "안녕하세요",
                   createdAt: Date()
                  ),
         StoryPost(id: "efgh",
+                  userId: "5678",
+                  storyType: .location,
                   imageIdList: ["12341234"],
                   commentIdList: ["76547654"],
+                  location: "서울 영등포구 문래동",
                   isLiked: true,
                   isSavedToMyCollection: false,
                   content: "Ciao",
                   createdAt: Date()
                  ),
-        StoryPost(id: "quer",
+        StoryPost(id: "ijkl",
+                  userId: "9638",
+                  storyType: .advertisement,
                   imageIdList: ["12341234"],
                   commentIdList: ["76547654"],
+                  location: "서울 영등포구 문래동",
                   isLiked: true,
                   isSavedToMyCollection: false,
                   content: "Hola",
@@ -72,6 +81,8 @@ final class StoryListCollectionView: BaseView {
     }
 }
 
+//MARK: UICollectionViewDelegateFlowLayout
+
 extension StoryListCollectionView: UICollectionViewDelegateFlowLayout {
     
     enum Section: CaseIterable {
@@ -98,7 +109,7 @@ extension StoryListCollectionView: UICollectionViewDelegateFlowLayout {
                 return StoryListCollectionViewCell()
             }
             
-            cell.configureCell(nickname: itemIdentifier.id ?? "1987")
+            cell.configureCell(storyPost: itemIdentifier)
             
             return cell
         }

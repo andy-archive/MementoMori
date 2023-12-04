@@ -15,6 +15,7 @@ final class StoryListHeaderView: BaseView {
         label.textColor = Constant.Color.label
         label.numberOfLines = 1
         label.text = "Memento Mori"
+        label.setContentHuggingPriority(.defaultLow, for: .horizontal)
         return label
     }()
     
@@ -36,21 +37,22 @@ final class StoryListHeaderView: BaseView {
         return button
     }()
     
-    private lazy var stackView = {
+    private lazy var buttonStackView = {
         let view = UIStackView(
-            arrangedSubviews: [titleLabel, followingButton, favoriteButton]
+            arrangedSubviews: [followingButton, favoriteButton]
         )
-        view.distribution = .fill
-        view.spacing = 12
+        view.spacing = 8
+        view.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         return view
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        configureUI()
-        configureLayout()
-    }
+    private lazy var stackView = {
+        let view = UIStackView(
+            arrangedSubviews: [titleLabel, buttonStackView]
+        )
+        view.distribution = .fill
+        return view
+    }()
     
     override func configureUI() {
         super.configureUI()
@@ -61,9 +63,10 @@ final class StoryListHeaderView: BaseView {
     override func configureLayout() {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            stackView.topAnchor.constraint(equalTo: self.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
-            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal)
+            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal),
+            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
     }
 }

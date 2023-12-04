@@ -9,19 +9,14 @@ import UIKit
 
 final class StoryListCollectionViewCell: BaseCollectionViewCell {
     
-    private lazy var nicknameLabel = {
-        let view = UILabel()
-        view.font = .systemFont(ofSize: Constant.FontSize.title)
-        view.textColor = Constant.Color.label
-        view.numberOfLines = 1
-        return view
-    }()
+    var storyPost: StoryPost?
     
-    private lazy var imageView = {
+    private lazy var itemHeaderView = StoryItemHeaderView()
+    
+    private lazy var itemImageView = {
         let view = UIImageView(frame: .zero)
         view.image = UIImage(systemName: "photo.stack.fill")
         view.contentMode = .scaleAspectFill
-        view.backgroundColor = .systemYellow
         return view
     }()
     
@@ -34,52 +29,82 @@ final class StoryListCollectionViewCell: BaseCollectionViewCell {
         return button
     }()
     
-    private lazy var separatorView = SeparatorView()
+    private lazy var commentButton = {
+        let button = UIButton()
+        button.setImage(
+            Constant.Image.System.bubbleTwo,
+            for: .normal
+        )
+        return button
+    }()
+    
+    private lazy var shareButton = {
+        let button = UIButton()
+        button.setImage(
+            Constant.Image.System.paperplane,
+            for: .normal
+        )
+        return button
+    }()
+    
+    private lazy var itemFooterStackView = {
+        let view = UIStackView(
+            arrangedSubviews: [likeButton, commentButton, shareButton]
+        )
+        view.distribution = .fill
+        view.spacing = 12
+        return view
+    }()
+    
+    private lazy var listSeparatorView = SeparatorView()
     
     override func configureUI() {
         super.configureUI()
         
-        self.backgroundColor = .systemGreen.withAlphaComponent(0.8)
-        
-        addSubview(nicknameLabel)
-        addSubview(imageView)
-        addSubview(likeButton)
+        addSubview(itemHeaderView)
+        addSubview(itemImageView)
+        addSubview(itemFooterStackView)
+        addSubview(listSeparatorView)
     }
     
     override func configureLayout() {
-        
-        nicknameLabel.translatesAutoresizingMaskIntoConstraints = false
+        itemHeaderView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            nicknameLabel.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
-            nicknameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
-            nicknameLabel.heightAnchor.constraint(equalToConstant: 30)
+            itemHeaderView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
+            itemHeaderView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal / 2),
+            itemHeaderView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal / 2),
+            itemHeaderView.heightAnchor.constraint(equalToConstant: Constant.Layout.StoryList.Header.height)
         ])
         
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+        itemImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: nicknameLabel.bottomAnchor, constant: 8),
-            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            imageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5),
-            imageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.5),
+            itemImageView.topAnchor.constraint(equalTo: itemHeaderView.bottomAnchor, constant: 8),
+            itemImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+//            itemImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            itemImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.5),
+            itemImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5),
         ])
         
-        likeButton.translatesAutoresizingMaskIntoConstraints = false
+        itemFooterStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            likeButton.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 8),
-            likeButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal)
+            itemFooterStackView.topAnchor.constraint(equalTo: itemImageView.bottomAnchor, constant: 8),
+            itemFooterStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal / 2),
         ])
         
-        contentView.addSubview(separatorView)
-        separatorView.translatesAutoresizingMaskIntoConstraints = false
+        listSeparatorView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            separatorView.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -8),
-            separatorView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            separatorView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
+            listSeparatorView.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -8),
+            listSeparatorView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+            listSeparatorView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
         ])
     }
-    
-    func configureCell(nickname: String) {
-        nicknameLabel.text = nickname
+}
+
+//MARK: configureCell
+
+extension StoryListCollectionViewCell {
+    func configureCell(storyPost: StoryPost?) {
+        self.storyPost = storyPost
+        itemHeaderView.configureUser(storyPost: storyPost)
     }
 }

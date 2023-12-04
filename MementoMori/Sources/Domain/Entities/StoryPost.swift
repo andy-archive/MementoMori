@@ -9,6 +9,11 @@ import Foundation
 
 struct StoryPost: Hashable {
     
+    enum StoryType {
+        case advertisement
+        case location
+    }
+    
     static func == (lhs: StoryPost, rhs: StoryPost) -> Bool {
         lhs.id == rhs.id
     }
@@ -17,11 +22,12 @@ struct StoryPost: Hashable {
         hasher.combine(id)
     }
     
-    let id: String?
-    var userId: String?
+    let id: String
+    let userId: String
+    let storyType: StoryType
     let imageIdList: [String]?
     let commentIdList: [String]?
-    
+    let location: String?
     let isLiked: Bool?
     let isSavedToMyCollection: Bool?
     let content: String?

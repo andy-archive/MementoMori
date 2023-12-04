@@ -40,6 +40,9 @@ extension Constant {
             static let personTwo = UIImage(systemName: "person.2")?.withTintColor(.label, renderingMode: .alwaysOriginal)
             static let star = UIImage(systemName: "star")?.withTintColor(.label, renderingMode: .alwaysOriginal)
             static let heart = UIImage(systemName: "heart")?.withTintColor(.label, renderingMode: .alwaysOriginal)
+            static let bubbleTwo = UIImage(systemName: "bubble.left")?.withTintColor(.label, renderingMode: .alwaysOriginal)
+            static let paperplane = UIImage(systemName: "paperplane")?.withTintColor(.label, renderingMode: .alwaysOriginal)
+            static let ellipsis = UIImage(systemName: "ellipsis")?.withTintColor(.label, renderingMode: .alwaysOriginal)
         }
     }
 }
