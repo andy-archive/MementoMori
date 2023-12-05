@@ -11,7 +11,7 @@ final class StoryItemCollectionViewCell: BaseCollectionViewCell {
     
     private var imageURL: String?
     
-    private let colorList: [UIColor] = [.systemBlue.withAlphaComponent(0.8), .systemRed.withAlphaComponent(0.8), .systemGreen.withAlphaComponent(0.8), .systemPink.withAlphaComponent(0.8)]
+    private let colorList: [UIColor] = [.systemBlue, .systemRed, .systemGreen, .systemCyan, .systemYellow, .systemPink, .systemOrange]
     
     private lazy var imageView = {
         let view = UIView()

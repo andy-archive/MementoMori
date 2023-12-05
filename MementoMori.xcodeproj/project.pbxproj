@@ -21,6 +21,7 @@
 		38318DCE2B1E3A15000EED65 /* StoryItemCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DCD2B1E3A15000EED65 /* StoryItemCollectionView.swift */; };
 		38318DD42B1ED72B000EED65 /* StoryItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DD32B1ED72B000EED65 /* StoryItemCollectionViewCell.swift */; };
 		38318DD72B1EDEC8000EED65 /* StoryImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DD62B1EDEC8000EED65 /* StoryImage.swift */; };
+		38318DD92B1F3AF8000EED65 /* StoryItemFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DD82B1F3AF8000EED65 /* StoryItemFooterView.swift */; };
 		383ECFD12B15B437004675E1 /* UserSigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383ECFD02B15B437004675E1 /* UserSigninViewController.swift */; };
 		383ECFD32B15B76A004675E1 /* UserSigninViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383ECFD22B15B76A004675E1 /* UserSigninViewModel.swift */; };
 		383ECFD52B15BF01004675E1 /* UserSigninUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383ECFD42B15BF01004675E1 /* UserSigninUseCase.swift */; };
@@ -95,6 +96,7 @@
 		38318DCD2B1E3A15000EED65 /* StoryItemCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryItemCollectionView.swift; sourceTree = "<group>"; };
 		38318DD32B1ED72B000EED65 /* StoryItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		38318DD62B1EDEC8000EED65 /* StoryImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryImage.swift; sourceTree = "<group>"; };
+		38318DD82B1F3AF8000EED65 /* StoryItemFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryItemFooterView.swift; sourceTree = "<group>"; };
 		383ECFD02B15B437004675E1 /* UserSigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninViewController.swift; sourceTree = "<group>"; };
 		383ECFD22B15B76A004675E1 /* UserSigninViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninViewModel.swift; sourceTree = "<group>"; };
 		383ECFD42B15BF01004675E1 /* UserSigninUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninUseCase.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				38318DC52B1CFE47000EED65 /* SeparatorView.swift */,
 				38318DCD2B1E3A15000EED65 /* StoryItemCollectionView.swift */,
 				38318DD32B1ED72B000EED65 /* StoryItemCollectionViewCell.swift */,
+				38318DD82B1F3AF8000EED65 /* StoryItemFooterView.swift */,
 				38318DC82B1DB666000EED65 /* StoryItemHeaderView.swift */,
 				38318DBA2B1C8F58000EED65 /* StoryListCollectionView.swift */,
 				38318DC02B1CE3EB000EED65 /* StoryListCollectionViewCell.swift */,
@@ -667,6 +670,7 @@
 				3863094E2B1457B9001973AA /* AppCoordinator.swift in Sources */,
 				386309522B145C77001973AA /* TabBarCoordinator.swift in Sources */,
 				386309332B1357A8001973AA /* UserJoinDTO.swift in Sources */,
+				38318DD92B1F3AF8000EED65 /* StoryItemFooterView.swift in Sources */,
 				38EE8A972B0632AD00E629CC /* APIManager.swift in Sources */,
 				38EE8A9F2B06387900E629CC /* APIKey.swift in Sources */,
 				38318DCE2B1E3A15000EED65 /* StoryItemCollectionView.swift in Sources */,

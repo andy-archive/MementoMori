@@ -13,49 +13,7 @@ final class StoryListCollectionViewCell: BaseCollectionViewCell {
     
     private lazy var itemHeaderView = StoryItemHeaderView()
     private lazy var itemCollectionView = StoryItemCollectionView()
-    
-    private lazy var itemImageView = {
-        let view = UIImageView(frame: .zero)
-        view.image = UIImage(systemName: "photo.stack.fill")
-        view.contentMode = .scaleAspectFill
-        return view
-    }()
-    
-    private lazy var likeButton = {
-        let button = UIButton()
-        button.setImage(
-            Constant.Image.System.heart,
-            for: .normal
-        )
-        return button
-    }()
-    
-    private lazy var commentButton = {
-        let button = UIButton()
-        button.setImage(
-            Constant.Image.System.bubbleTwo,
-            for: .normal
-        )
-        return button
-    }()
-    
-    private lazy var shareButton = {
-        let button = UIButton()
-        button.setImage(
-            Constant.Image.System.paperplane,
-            for: .normal
-        )
-        return button
-    }()
-    
-    private lazy var itemFooterStackView = {
-        let view = UIStackView(
-            arrangedSubviews: [likeButton, commentButton, shareButton]
-        )
-        view.distribution = .fill
-        view.spacing = 12
-        return view
-    }()    
+    private lazy var itemFooterView = StoryItemFooterView()
     
     private lazy var commentTableView = {
         let view = UIView()
@@ -70,7 +28,7 @@ final class StoryListCollectionViewCell: BaseCollectionViewCell {
         
         contentView.addSubview(itemHeaderView)
         contentView.addSubview(itemCollectionView)
-        contentView.addSubview(itemFooterStackView)
+        contentView.addSubview(itemFooterView)
         contentView.addSubview(commentTableView)
         contentView.addSubview(listSeparatorView)
     }
@@ -79,8 +37,8 @@ final class StoryListCollectionViewCell: BaseCollectionViewCell {
         itemHeaderView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             itemHeaderView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
-            itemHeaderView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal / 2),
-            itemHeaderView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal / 2),
+            itemHeaderView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            itemHeaderView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             itemHeaderView.heightAnchor.constraint(equalToConstant: Constant.Layout.StoryItem.Header.height)
         ])
         
@@ -92,16 +50,17 @@ final class StoryListCollectionViewCell: BaseCollectionViewCell {
             itemCollectionView.heightAnchor.constraint(equalTo: itemCollectionView.widthAnchor, multiplier: 0.5),
         ])
         
-        itemFooterStackView.translatesAutoresizingMaskIntoConstraints = false
+        itemFooterView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            itemFooterStackView.topAnchor.constraint(equalTo: itemCollectionView.bottomAnchor),
-            itemFooterStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal / 2),
-            itemFooterStackView.heightAnchor.constraint(equalToConstant: Constant.Layout.StoryItem.Footer.height)
+            itemFooterView.topAnchor.constraint(equalTo: itemCollectionView.bottomAnchor),
+            itemFooterView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            itemFooterView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            itemFooterView.heightAnchor.constraint(equalToConstant: Constant.Layout.StoryItem.Footer.height)
         ])
         
         commentTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            commentTableView.topAnchor.constraint(equalTo: itemFooterStackView.bottomAnchor),
+            commentTableView.topAnchor.constraint(equalTo: itemFooterView.bottomAnchor),
             commentTableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             commentTableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             commentTableView.bottomAnchor.constraint(equalTo: listSeparatorView.topAnchor)

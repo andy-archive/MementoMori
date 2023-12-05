@@ -65,7 +65,7 @@ final class StoryItemHeaderView: BaseView {
     override func configureLayout() {
         userProfileImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            userProfileImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal / 5),
+            userProfileImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constant.Layout.StoryItem.Header.inset),
             userProfileImageView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.8),
             userProfileImageView.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.8),
             userProfileImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor)
@@ -81,7 +81,7 @@ final class StoryItemHeaderView: BaseView {
 
         ellipsisButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            ellipsisButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal / 2),
+            ellipsisButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constant.Layout.StoryItem.Header.inset),
             ellipsisButton.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.8),
             ellipsisButton.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.8),
             ellipsisButton.centerYAnchor.constraint(equalTo: self.centerYAnchor)
