@@ -43,6 +43,7 @@ extension Constant {
             static let bubbleTwo = UIImage(systemName: "bubble.left")?.withTintColor(.label, renderingMode: .alwaysOriginal)
             static let paperplane = UIImage(systemName: "paperplane")?.withTintColor(.label, renderingMode: .alwaysOriginal)
             static let ellipsis = UIImage(systemName: "ellipsis")?.withTintColor(.label, renderingMode: .alwaysOriginal)
+            static let bookmark = UIImage(systemName: "bookmark")?.withTintColor(.label, renderingMode: .alwaysOriginal)
         }
     }
 }

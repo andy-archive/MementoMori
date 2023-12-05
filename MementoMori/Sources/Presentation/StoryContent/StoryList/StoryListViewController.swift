@@ -10,7 +10,7 @@ import UIKit
 final class StoryListViewController: BaseViewController {
     
     private lazy var listHeaderView = StoryListHeaderView()
-    private lazy var collectionView = StoryListCollectionView()
+    private lazy var listCollectionView = StoryListCollectionView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,7 @@ final class StoryListViewController: BaseViewController {
         super.configureUI()
         
         view.addSubview(listHeaderView)
-        view.addSubview(collectionView)
+        view.addSubview(listCollectionView)
     }
     
     override func configureLayout() {
@@ -34,12 +34,12 @@ final class StoryListViewController: BaseViewController {
             listHeaderView.heightAnchor.constraint(equalToConstant: Constant.Layout.StoryList.Header.height)
         ])
         
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        listCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: listHeaderView.bottomAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            listCollectionView.topAnchor.constraint(equalTo: listHeaderView.bottomAnchor),
+            listCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            listCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            listCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 }

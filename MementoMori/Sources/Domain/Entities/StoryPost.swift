@@ -14,14 +14,6 @@ struct StoryPost: Hashable {
         case location
     }
     
-    static func == (lhs: StoryPost, rhs: StoryPost) -> Bool {
-        lhs.id == rhs.id
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-    
     let id: String
     let userId: String
     let storyType: StoryType
@@ -32,4 +24,12 @@ struct StoryPost: Hashable {
     let isSavedToMyCollection: Bool?
     let content: String?
     let createdAt: Date?
+    
+    static func == (lhs: StoryPost, rhs: StoryPost) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }

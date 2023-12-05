@@ -9,50 +9,15 @@ import UIKit
 
 final class StoryListCollectionViewCell: BaseCollectionViewCell {
     
-    var storyPost: StoryPost?
+    private var storyPost: StoryPost?
     
     private lazy var itemHeaderView = StoryItemHeaderView()
+    private lazy var itemCollectionView = StoryItemCollectionView()
+    private lazy var itemFooterView = StoryItemFooterView()
     
-    private lazy var itemImageView = {
-        let view = UIImageView(frame: .zero)
-        view.image = UIImage(systemName: "photo.stack.fill")
-        view.contentMode = .scaleAspectFill
-        return view
-    }()
-    
-    private lazy var likeButton = {
-        let button = UIButton()
-        button.setImage(
-            Constant.Image.System.heart,
-            for: .normal
-        )
-        return button
-    }()
-    
-    private lazy var commentButton = {
-        let button = UIButton()
-        button.setImage(
-            Constant.Image.System.bubbleTwo,
-            for: .normal
-        )
-        return button
-    }()
-    
-    private lazy var shareButton = {
-        let button = UIButton()
-        button.setImage(
-            Constant.Image.System.paperplane,
-            for: .normal
-        )
-        return button
-    }()
-    
-    private lazy var itemFooterStackView = {
-        let view = UIStackView(
-            arrangedSubviews: [likeButton, commentButton, shareButton]
-        )
-        view.distribution = .fill
-        view.spacing = 12
+    private lazy var commentTableView = {
+        let view = UIView()
+        view.backgroundColor = .systemBrown.withAlphaComponent(0.2)
         return view
     }()
     
@@ -61,34 +26,44 @@ final class StoryListCollectionViewCell: BaseCollectionViewCell {
     override func configureUI() {
         super.configureUI()
         
-        addSubview(itemHeaderView)
-        addSubview(itemImageView)
-        addSubview(itemFooterStackView)
-        addSubview(listSeparatorView)
+        contentView.addSubview(itemHeaderView)
+        contentView.addSubview(itemCollectionView)
+        contentView.addSubview(itemFooterView)
+        contentView.addSubview(commentTableView)
+        contentView.addSubview(listSeparatorView)
     }
     
     override func configureLayout() {
         itemHeaderView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            itemHeaderView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: Constant.Layout.Common.Inset.vertical / 2),
-            itemHeaderView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal / 2),
-            itemHeaderView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal / 2),
+            itemHeaderView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
+            itemHeaderView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            itemHeaderView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             itemHeaderView.heightAnchor.constraint(equalToConstant: Constant.Layout.StoryItem.Header.height)
         ])
         
-        itemImageView.translatesAutoresizingMaskIntoConstraints = false
+        itemCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            itemImageView.topAnchor.constraint(equalTo: itemHeaderView.bottomAnchor, constant: 8),
-            itemImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-//            itemImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            itemImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.5),
-            itemImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5),
+            itemCollectionView.topAnchor.constraint(equalTo: itemHeaderView.bottomAnchor),
+            itemCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            itemCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            itemCollectionView.heightAnchor.constraint(equalTo: itemCollectionView.widthAnchor, multiplier: 0.5),
         ])
         
-        itemFooterStackView.translatesAutoresizingMaskIntoConstraints = false
+        itemFooterView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            itemFooterStackView.topAnchor.constraint(equalTo: itemImageView.bottomAnchor, constant: 8),
-            itemFooterStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal / 2),
+            itemFooterView.topAnchor.constraint(equalTo: itemCollectionView.bottomAnchor),
+            itemFooterView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            itemFooterView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            itemFooterView.heightAnchor.constraint(equalToConstant: Constant.Layout.StoryItem.Footer.height)
+        ])
+        
+        commentTableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            commentTableView.topAnchor.constraint(equalTo: itemFooterView.bottomAnchor),
+            commentTableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            commentTableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            commentTableView.bottomAnchor.constraint(equalTo: listSeparatorView.topAnchor)
         ])
         
         listSeparatorView.translatesAutoresizingMaskIntoConstraints = false
@@ -105,6 +80,7 @@ final class StoryListCollectionViewCell: BaseCollectionViewCell {
 extension StoryListCollectionViewCell {
     func configureCell(storyPost: StoryPost?) {
         self.storyPost = storyPost
-        itemHeaderView.configureUser(storyPost: storyPost)
+        itemHeaderView.configure(storyPost: storyPost)
+        itemCollectionView.configure(storyPost: storyPost)
     }
 }
