@@ -18,6 +18,9 @@
 		38318DC62B1CFE47000EED65 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DC52B1CFE47000EED65 /* SeparatorView.swift */; };
 		38318DC92B1DB666000EED65 /* StoryItemHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DC82B1DB666000EED65 /* StoryItemHeaderView.swift */; };
 		38318DCC2B1E35DB000EED65 /* StoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DCB2B1E35DB000EED65 /* StoryListViewModel.swift */; };
+		38318DCE2B1E3A15000EED65 /* StoryItemCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DCD2B1E3A15000EED65 /* StoryItemCollectionView.swift */; };
+		38318DD42B1ED72B000EED65 /* StoryItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DD32B1ED72B000EED65 /* StoryItemCollectionViewCell.swift */; };
+		38318DD72B1EDEC8000EED65 /* StoryImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DD62B1EDEC8000EED65 /* StoryImage.swift */; };
 		383ECFD12B15B437004675E1 /* UserSigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383ECFD02B15B437004675E1 /* UserSigninViewController.swift */; };
 		383ECFD32B15B76A004675E1 /* UserSigninViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383ECFD22B15B76A004675E1 /* UserSigninViewModel.swift */; };
 		383ECFD52B15BF01004675E1 /* UserSigninUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383ECFD42B15BF01004675E1 /* UserSigninUseCase.swift */; };
@@ -89,6 +92,9 @@
 		38318DC52B1CFE47000EED65 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		38318DC82B1DB666000EED65 /* StoryItemHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryItemHeaderView.swift; sourceTree = "<group>"; };
 		38318DCB2B1E35DB000EED65 /* StoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryListViewModel.swift; sourceTree = "<group>"; };
+		38318DCD2B1E3A15000EED65 /* StoryItemCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryItemCollectionView.swift; sourceTree = "<group>"; };
+		38318DD32B1ED72B000EED65 /* StoryItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		38318DD62B1EDEC8000EED65 /* StoryImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryImage.swift; sourceTree = "<group>"; };
 		383ECFD02B15B437004675E1 /* UserSigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninViewController.swift; sourceTree = "<group>"; };
 		383ECFD22B15B76A004675E1 /* UserSigninViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninViewModel.swift; sourceTree = "<group>"; };
 		383ECFD42B15BF01004675E1 /* UserSigninUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninUseCase.swift; sourceTree = "<group>"; };
@@ -178,10 +184,12 @@
 			isa = PBXGroup;
 			children = (
 				38318DC52B1CFE47000EED65 /* SeparatorView.swift */,
+				38318DCD2B1E3A15000EED65 /* StoryItemCollectionView.swift */,
+				38318DD32B1ED72B000EED65 /* StoryItemCollectionViewCell.swift */,
+				38318DC82B1DB666000EED65 /* StoryItemHeaderView.swift */,
 				38318DBA2B1C8F58000EED65 /* StoryListCollectionView.swift */,
 				38318DC02B1CE3EB000EED65 /* StoryListCollectionViewCell.swift */,
 				38318DAF2B1C5C73000EED65 /* StoryListHeaderView.swift */,
-				38318DC82B1DB666000EED65 /* StoryItemHeaderView.swift */,
 			);
 			path = StoryContent;
 			sourceTree = "<group>";
@@ -342,6 +350,7 @@
 		3863091F2B1311DA001973AA /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				38318DD62B1EDEC8000EED65 /* StoryImage.swift */,
 				38318DBC2B1C97CE000EED65 /* StoryPost.swift */,
 				386309302B135752001973AA /* User.swift */,
 			);
@@ -660,11 +669,13 @@
 				386309332B1357A8001973AA /* UserJoinDTO.swift in Sources */,
 				38EE8A972B0632AD00E629CC /* APIManager.swift in Sources */,
 				38EE8A9F2B06387900E629CC /* APIKey.swift in Sources */,
+				38318DCE2B1E3A15000EED65 /* StoryItemCollectionView.swift in Sources */,
 				386309632B147637001973AA /* UserAuthRepository.swift in Sources */,
 				38318DC92B1DB666000EED65 /* StoryItemHeaderView.swift in Sources */,
 				38318DBF2B1CD2D8000EED65 /* BaseView.swift in Sources */,
 				383ECFD12B15B437004675E1 /* UserSigninViewController.swift in Sources */,
 				3847EC442B0252B200E086EB /* BaseViewController.swift in Sources */,
+				38318DD72B1EDEC8000EED65 /* StoryImage.swift in Sources */,
 				387463E02B163C74009FAB2C /* StoryListViewController.swift in Sources */,
 				38EE8A842B04D29000E629CC /* ViewModel.swift in Sources */,
 				3847EC112B022C1200E086EB /* AppDelegate.swift in Sources */,
@@ -677,6 +688,7 @@
 				38B9203F2B08AAED006CBD1C /* Constant+Network.swift in Sources */,
 				38318DBD2B1C97CE000EED65 /* StoryPost.swift in Sources */,
 				387463CF2B160815009FAB2C /* TabBar.swift in Sources */,
+				38318DD42B1ED72B000EED65 /* StoryItemCollectionViewCell.swift in Sources */,
 				3847EC402B0251A500E086EB /* UserJoinViewController.swift in Sources */,
 				38318DBB2B1C8F58000EED65 /* StoryListCollectionView.swift in Sources */,
 				383ECFD92B15C48D004675E1 /* JoinButton.swift in Sources */,

@@ -36,6 +36,10 @@ enum Constant {
         enum StoryItem {
             
             enum Header {
+                static let height: CGFloat = 50
+            }
+            
+            enum Footer {
                 static let height: CGFloat = 40
             }
         }

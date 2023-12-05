@@ -15,10 +15,11 @@ final class StoryListCollectionView: BaseView {
     
     private lazy var collectionView = UICollectionView(
         frame: .zero,
-        collectionViewLayout: .setCollectionViewLayout(
-            numberOfItem: 1,
+        collectionViewLayout: .configureFlowLayout(
+            numberOfItemInRow: 1,
             sectionSpacing: 0,
-            itemSpacing: 0
+            itemSpacing: 0,
+            scrollDirection: .vertical
         )
     )
     
@@ -26,7 +27,7 @@ final class StoryListCollectionView: BaseView {
         StoryPost(id: "abcd",
                   userId: "abcd1234",
                   storyType: .advertisement,
-                  imageIdList: ["98769876"],
+                  imageIdList: ["98769876", "1230382", "123093012"],
                   commentIdList: ["5678"],
                   location: "서울 영등포구 문래동",
                   isLiked: true,
@@ -37,9 +38,9 @@ final class StoryListCollectionView: BaseView {
         StoryPost(id: "efgh",
                   userId: "5678",
                   storyType: .location,
-                  imageIdList: ["12341234"],
+                  imageIdList: ["12341234", "21383123", "21301239"],
                   commentIdList: ["76547654"],
-                  location: "서울 영등포구 문래동",
+                  location: "서울 마포구 공덕동",
                   isLiked: true,
                   isSavedToMyCollection: false,
                   content: "Ciao",
@@ -48,9 +49,9 @@ final class StoryListCollectionView: BaseView {
         StoryPost(id: "ijkl",
                   userId: "9638",
                   storyType: .advertisement,
-                  imageIdList: ["12341234"],
+                  imageIdList: ["12341234", "23123092", "120391230923", "123213231"],
                   commentIdList: ["76547654"],
-                  location: "서울 영등포구 문래동",
+                  location: "부산 해운대구 우동",
                   isLiked: true,
                   isSavedToMyCollection: false,
                   content: "Hola",

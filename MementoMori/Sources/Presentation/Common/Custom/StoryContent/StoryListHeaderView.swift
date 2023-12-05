@@ -15,7 +15,6 @@ final class StoryListHeaderView: BaseView {
         label.textColor = Constant.Color.label
         label.numberOfLines = 1
         label.text = "Memento Mori"
-        label.setContentHuggingPriority(.defaultLow, for: .horizontal)
         return label
     }()
     
@@ -42,15 +41,6 @@ final class StoryListHeaderView: BaseView {
             arrangedSubviews: [followingButton, favoriteButton]
         )
         view.spacing = 8
-        view.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        return view
-    }()
-    
-    private lazy var stackView = {
-        let view = UIStackView(
-            arrangedSubviews: [titleLabel, buttonStackView]
-        )
-        view.distribution = .fill
         return view
     }()
     
@@ -59,22 +49,33 @@ final class StoryListHeaderView: BaseView {
     override func configureUI() {
         super.configureUI()
         
-        addSubview(stackView)
+        addSubview(titleLabel)
+        addSubview(buttonStackView)
         addSubview(separatorView)
     }
     
     override func configureLayout() {
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
-            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal),
-            stackView.bottomAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: -Constant.Layout.Common.Inset.vertical / 2)
+            titleLabel.topAnchor.constraint(equalTo: self.topAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
+            titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: buttonStackView.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
+            titleLabel.bottomAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: -Constant.Layout.Common.Inset.vertical / 2)
+        ])
+        
+        buttonStackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            buttonStackView.topAnchor.constraint(equalTo: self.topAnchor),
+            buttonStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal),
+            buttonStackView.bottomAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: -Constant.Layout.Common.Inset.vertical / 2)
         ])
         
         separatorView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
+            separatorView.topAnchor.constraint(greaterThanOrEqualTo: titleLabel.bottomAnchor),
             separatorView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            separatorView.widthAnchor.constraint(equalTo: self.widthAnchor)
+            separatorView.widthAnchor.constraint(equalTo: self.widthAnchor),
+            separatorView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
         ])
     }
 }

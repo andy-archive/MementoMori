@@ -8,17 +8,15 @@
 import UIKit
 
 extension UICollectionViewLayout {
-    static func setCollectionViewLayout(
-        numberOfItem: CGFloat,
+    static func configureFlowLayout(
+        numberOfItemInRow: CGFloat,
         sectionSpacing: CGFloat,
-        itemSpacing: CGFloat
+        itemSpacing: CGFloat,
+        scrollDirection: UICollectionView.ScrollDirection
     ) -> UICollectionViewFlowLayout {
         
         let layout = UICollectionViewFlowLayout()
-        let numberOfItem: CGFloat = numberOfItem
-        let sectionSpacing: CGFloat = sectionSpacing
-        let itemSpacing: CGFloat = itemSpacing
-        
+        layout.scrollDirection = scrollDirection
         layout.minimumLineSpacing = itemSpacing
         layout.minimumInteritemSpacing = itemSpacing
         layout.sectionInset = UIEdgeInsets(
@@ -28,11 +26,11 @@ extension UICollectionViewLayout {
             right: sectionSpacing
         )
         
-        let size = UIScreen.main.bounds.width - sectionSpacing * 2 - itemSpacing * (numberOfItem - 1)
+        let size = UIScreen.main.bounds.width - sectionSpacing * 2 - itemSpacing * (numberOfItemInRow - 1)
         
         layout.itemSize = CGSize(
-            width: size / numberOfItem,
-            height: size / numberOfItem
+            width: size / numberOfItemInRow,
+            height: size / numberOfItemInRow
         )
         
         return layout
