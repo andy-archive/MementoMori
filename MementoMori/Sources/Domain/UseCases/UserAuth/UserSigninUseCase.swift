@@ -24,8 +24,8 @@ final class UserSigninUseCase: UserSigninUseCaseProtocol {
         self.userAuthRepository.signin(user: user)
     }
     
-    func verifySigninProcess(response: APIResult<User>) -> (isCompleted: Bool, message: String) {
-        switch response {
+    func verifySigninProcess(result: APIResult<User>) -> (isCompleted: Bool, message: String) {
+        switch result {
         case .suceessData(let user):
             return isAllTokenSaved(user: user) ?
             (true, "환영합니다 😆") : (false, TokenError.invalidToken.message)
@@ -42,8 +42,8 @@ final class UserSigninUseCase: UserSigninUseCaseProtocol {
         
         let isUserSaved = keychainRepository
             .save(
-                key: userID,
-                value: "",
+                key: "",
+                value: userID,
                 type: .userID
             )
         
