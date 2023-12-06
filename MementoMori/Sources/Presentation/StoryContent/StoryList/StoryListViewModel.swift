@@ -30,7 +30,17 @@ final class StoryListViewModel: ViewModel {
         let isSavedStory: BehaviorRelay<Bool>
     }
     
+    weak var coordinator: StoryContentCoordinator?
     let disposeBag = DisposeBag()
+    private let storyListUseCase: StoryListUseCaseProtocol
+    
+    init(
+        coordinator: StoryContentCoordinator,
+        storyListUseCase: StoryListUseCaseProtocol
+    ) {
+        self.coordinator = coordinator
+        self.storyListUseCase = storyListUseCase
+    }
     
     func transform(input: Input) -> Output {
         let postList = BehaviorSubject<[StoryPost]>(value: MockData().postList)

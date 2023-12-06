@@ -29,7 +29,13 @@ extension StoryContentCoordinator {
     func showStoryListViewController() {
         self.navigationController.pushViewController(
             StoryListViewController(
-                viewModel: StoryListViewModel()
+                viewModel: StoryListViewModel(
+                    coordinator: self,
+                    storyListUseCase: StoryListUseCase(
+                        storyPostRepository: StoryPostRepository(),
+                        keychainRepository: KeychainRepository()
+                    )
+                )
             ),
             animated: true
         )
