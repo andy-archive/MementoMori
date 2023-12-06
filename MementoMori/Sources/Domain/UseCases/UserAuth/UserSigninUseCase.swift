@@ -35,21 +35,28 @@ final class UserSigninUseCase: UserSigninUseCaseProtocol {
     }
     
     private func isAllTokenSaved(user: User) -> Bool {
-        guard let userId = user.id,
+        guard let userID = user.id,
               let accessToken = user.accessToken,
               let refreshToken = user.refreshToken
         else { return false }
         
+        let isUserSaved = keychainRepository
+            .save(
+                key: userID,
+                value: "",
+                type: .userID
+            )
+        
         let isTokenSaved = keychainRepository
             .save(
-                key: userId,
+                key: userID,
                 value: accessToken,
                 type: .accessToken
             )
         
         let isRefreshTokenSaved = keychainRepository
             .save(
-                key: userId,
+                key: userID,
                 value: refreshToken,
                 type: .refreshToken
             )
