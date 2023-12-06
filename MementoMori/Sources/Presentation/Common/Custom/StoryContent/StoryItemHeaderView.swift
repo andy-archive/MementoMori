@@ -96,7 +96,7 @@ extension StoryItemHeaderView {
         
         guard let storyPost = self.storyPost else { return }
         
-        nicknameLabel.text = storyPost.userId
+        nicknameLabel.text = storyPost.userID
         
         switch storyPost.storyType {
         case .advertisement:

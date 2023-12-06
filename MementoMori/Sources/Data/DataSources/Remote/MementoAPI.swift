@@ -57,8 +57,17 @@ extension MementoAPI: TargetType {
             return .requestPlain
         case .storyCreate(let data, _):
             return .requestJSONEncodable(data)
-        case .storyRead:
-            return .requestPlain
+        case .storyRead(let data, _):
+            guard let next = data.next else {
+                return .requestParameters(
+                    parameters: ["limit": data.limit],
+                    encoding: URLEncoding.queryString
+                )
+            }
+            return .requestParameters(
+                parameters: ["next": next, "limit": data.limit],
+                encoding: URLEncoding.queryString
+            )
         }
     }
     

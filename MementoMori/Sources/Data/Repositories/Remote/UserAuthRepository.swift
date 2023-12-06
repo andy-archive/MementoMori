@@ -9,8 +9,6 @@ import RxSwift
 
 final class UserAuthRepository: UserAuthRepositoryProtocol {
     
-    //MARK: UserAuthRepositoryProtocol
-    
     func join(user: User) -> Single<APIResult<User>> {
         
         let requestDTO = UserJoinRequestDTO(

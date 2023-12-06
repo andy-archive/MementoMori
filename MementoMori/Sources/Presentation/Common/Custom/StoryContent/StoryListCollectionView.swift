@@ -24,39 +24,45 @@ final class StoryListCollectionView: BaseView {
     )
     
     private var postList: [StoryPost] = [
-        StoryPost(id: "abcd",
-                  userId: "abcd1234",
-                  storyType: .advertisement,
-                  imageIdList: ["98769876", "1230382", "123093012"],
-                  commentIdList: ["5678"],
-                  location: "서울 영등포구 문래동",
-                  isLiked: true,
-                  isSavedToMyCollection: false,
-                  content: "안녕하세요",
-                  createdAt: Date()
-                 ),
-        StoryPost(id: "efgh",
-                  userId: "5678",
-                  storyType: .location,
-                  imageIdList: ["12341234", "21383123", "21301239"],
-                  commentIdList: ["76547654"],
-                  location: "서울 마포구 공덕동",
-                  isLiked: true,
-                  isSavedToMyCollection: false,
-                  content: "Ciao",
-                  createdAt: Date()
-                 ),
-        StoryPost(id: "ijkl",
-                  userId: "9638",
-                  storyType: .advertisement,
-                  imageIdList: ["12341234", "23123092", "120391230923", "123213231"],
-                  commentIdList: ["76547654"],
-                  location: "부산 해운대구 우동",
-                  isLiked: true,
-                  isSavedToMyCollection: false,
-                  content: "Hola",
-                  createdAt: Date()
-                 ),
+        StoryPost(
+            id: "abcd",
+            userID: "abcd1234",
+            title: "오늘은...",
+            content: "안녕하세요",
+            imageList: ["98769876", "1230382", "123093012"],
+            commentList: ["5678"],
+            location: "서울 영등포구 문래동",
+            isLiked: true,
+            isSavedToMyCollection: false,
+            createdAt: "2023-02-02",
+            storyType: .advertisement
+        ),
+        StoryPost(
+            id: "efgh",
+            userID: "5678",
+            title: "이탈리아",
+            content: "Ciao",
+            imageList: ["12341234", "21383123", "21301239"],
+            commentList: ["76547654"],
+            location: "서울 마포구 공덕동",
+            isLiked: true,
+            isSavedToMyCollection: false,
+            createdAt: "2023-02-02",
+            storyType: .location
+        ),
+        StoryPost(
+            id: "ijkl",
+            userID: "9638",
+            title: "스페인",
+            content: "Hola",
+            imageList: ["12341234", "23123092", "120391230923", "123213231"],
+            commentList: ["76547654"],
+            location: "부산 해운대구 우동",
+            isLiked: true,
+            isSavedToMyCollection: false,
+            createdAt: "2023-02-02",
+            storyType: .advertisement
+        ),
     ]
     
     override func configureUI() {

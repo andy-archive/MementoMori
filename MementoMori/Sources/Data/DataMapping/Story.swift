@@ -9,17 +9,24 @@ import Foundation
 
 struct Story: Codable {
     let id: String
+    let title: String
+    let content: String
     let likes: [String]
     let image: [String]
-    let hashTags, comments: [String]
+    let comments: [String]
+    let hashTags: [String]
+    let createdAt: String
+    let location: String
     let creator: Creator
-    let time: String
-    let title, content, productID: String?
+    let productID: String?
     
     enum CodingKeys: String, CodingKey {
         case id = "_id"
-        case likes, image, hashTags, comments
-        case creator, time, title, content
+        case title, content
+        case likes, image, comments, hashTags
+        case creator
+        case createdAt = "time"
+        case location = "content1"
         case productID = "product_id"
     }
 }

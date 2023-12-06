@@ -15,15 +15,16 @@ struct StoryPost: Hashable {
     }
     
     let id: String
-    let userId: String
-    let storyType: StoryType
-    let imageIdList: [String]?
-    let commentIdList: [String]?
+    let userID: String
+    let title: String
+    let content: String
+    let imageList: [String]
+    let commentList: [String]
     let location: String?
-    let isLiked: Bool?
-    let isSavedToMyCollection: Bool?
-    let content: String?
-    let createdAt: Date?
+    let isLiked: Bool
+    let isSavedToMyCollection: Bool
+    let createdAt: String
+    let storyType: StoryType
     
     static func == (lhs: StoryPost, rhs: StoryPost) -> Bool {
         lhs.id == rhs.id
