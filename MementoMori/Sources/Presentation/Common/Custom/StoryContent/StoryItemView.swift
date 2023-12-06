@@ -1,5 +1,5 @@
 //
-//  StoryItemCollectionView.swift
+//  StoryItemView.swift
 //  MementoMori
 //
 //  Created by Taekwon Lee on 12/5/23.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class StoryItemCollectionView: BaseView {
+final class StoryItemView: BaseView {
     
     typealias DataSource = UICollectionViewDiffableDataSource<Section, String>
     
@@ -47,7 +47,7 @@ final class StoryItemCollectionView: BaseView {
 //MARK: UICollectionViewDelegateFlowLayout
 
 
-extension StoryItemCollectionView: UICollectionViewDelegateFlowLayout {
+extension StoryItemView: UICollectionViewDelegateFlowLayout {
     
     enum Section: CaseIterable {
         case main
@@ -89,7 +89,7 @@ extension StoryItemCollectionView: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension StoryItemCollectionView {
+extension StoryItemView {
     func configure(storyPost: StoryPost?) {
         
         guard let storyPost else { return }

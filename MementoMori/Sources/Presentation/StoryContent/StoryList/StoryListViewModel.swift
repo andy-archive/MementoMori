@@ -13,27 +13,38 @@ import RxSwift
 final class StoryListViewModel: ViewModel {
     
     struct Input {
-        let followingPeopleButtonClicked: ControlEvent<Void>
-        let userFavoriteButtonCliked: ControlEvent<Void>
-        let userProfileImageClicked: ControlEvent<Void>
-        let storyEllipsisButtonClicked: ControlEvent<Void>
-        let storyLikeButtonClicked: ControlEvent<Void>
-        let commentButtonClicked: ControlEvent<Void>
-        let shareButtonClicked: ControlEvent<Void>
+//        let followingPeopleButtonClicked: ControlEvent<Void>
+//        let userFavoriteButtonCliked: ControlEvent<Void>
+//        let userProfileImageClicked: ControlEvent<Void>
+//        let storyEllipsisButtonClicked: ControlEvent<Void>
+//        let storyLikeButtonClicked: ControlEvent<Void>
+//        let commentButtonClicked: ControlEvent<Void>
+//        let shareButtonClicked: ControlEvent<Void>
     }
     
     struct Output {
-        let isLikedStory: PublishRelay<Bool>
+        let postList: BehaviorSubject<[StoryPost]>
+        let userNickname: PublishRelay<String>
+        let storyContent: PublishRelay<String>
+        let isLikedStory: BehaviorRelay<Bool>
+        let isSavedStory: BehaviorRelay<Bool>
     }
     
     let disposeBag = DisposeBag()
     
     func transform(input: Input) -> Output {
-        
-        let isLikedStory = PublishRelay<Bool>()
+        let postList = BehaviorSubject<[StoryPost]>(value: MockData().postList)
+        let userNickname = PublishRelay<String>()
+        let storyContent = PublishRelay<String>()
+        let isLikedStory = BehaviorRelay<Bool>(value: false)
+        let isSavedStory = BehaviorRelay<Bool>(value: false)
         
         return Output(
-            isLikedStory: isLikedStory
+            postList: postList,
+            userNickname: userNickname,
+            storyContent: storyContent,
+            isLikedStory: isLikedStory,
+            isSavedStory: isSavedStory
         )
     }
     

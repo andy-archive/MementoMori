@@ -12,7 +12,7 @@ final class StoryListCollectionViewCell: BaseCollectionViewCell {
     private var storyPost: StoryPost?
     
     private lazy var itemHeaderView = StoryItemHeaderView()
-    private lazy var itemCollectionView = StoryItemCollectionView()
+    private lazy var itemCollectionView = StoryItemView()
     private lazy var itemFooterView = StoryItemFooterView()
     
     private lazy var commentTableView = {
