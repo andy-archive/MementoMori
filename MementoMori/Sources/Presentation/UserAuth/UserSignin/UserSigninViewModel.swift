@@ -95,7 +95,7 @@ final class UserSigninViewModel: ViewModel {
                 self.userSigninUseCase.signin(user: user)
             }
             .bind(with: self) { owner, result in
-                let signinProcess = self.userSigninUseCase.verifySigninProcess(response: result)
+                let signinProcess = self.userSigninUseCase.verifySigninProcess(result: result)
                 if signinProcess.isCompleted {
                     self.coordinator?.showTabBarFlow()
                 } else {

@@ -11,18 +11,18 @@ final class StoryListCollectionViewCell: BaseCollectionViewCell {
     
     private var storyPost: StoryPost?
     
+    //MARK: - View Properties
     private lazy var itemHeaderView = StoryItemHeaderView()
     private lazy var itemCollectionView = StoryItemView()
     private lazy var itemFooterView = StoryItemFooterView()
-    
     private lazy var commentTableView = {
         let view = UIView()
         view.backgroundColor = .systemBrown.withAlphaComponent(0.2)
         return view
     }()
-    
     private lazy var listSeparatorView = SeparatorView()
     
+    //MARK: - BaseCollectionViewCell
     override func configureUI() {
         super.configureUI()
         
@@ -75,7 +75,7 @@ final class StoryListCollectionViewCell: BaseCollectionViewCell {
     }
 }
 
-//MARK: configureCell
+//MARK: - configureCell
 
 extension StoryListCollectionViewCell {
     func configureCell(storyPost: StoryPost?) {
