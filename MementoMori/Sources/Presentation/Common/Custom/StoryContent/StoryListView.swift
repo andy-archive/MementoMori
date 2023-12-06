@@ -25,14 +25,16 @@ final class StoryListView: BaseView {
     
     lazy var postList: [StoryPost] = []
     
-    override func configureUI() {
-        super.configureUI()
-        
+    func configure() {
         configureCollectionView()
         dataSource = configureDataSource()
         
         let snapshot = configureSnapshot(self.postList)
         dataSource?.apply(snapshot)
+    }
+    
+    override func configureUI() {
+        super.configureUI()
         
         addSubview(collectionView)
     }

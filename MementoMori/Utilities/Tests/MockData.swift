@@ -8,10 +8,11 @@
 import Foundation
 
 struct MockData {
-    let postList: [StoryPost] = [
+    let storyList: [StoryPost] = [
         StoryPost(
             id: "abcd",
             userID: "abcd1234",
+            nickname: "고래밥",
             title: "오늘은...",
             content: "안녕하세요",
             imageList: ["98769876", "1230382", "123093012"],
@@ -25,6 +26,7 @@ struct MockData {
         StoryPost(
             id: "efgh",
             userID: "5678",
+            nickname: "바밤바",
             title: "이탈리아",
             content: "Ciao",
             imageList: ["12341234", "21383123", "21301239"],
@@ -38,6 +40,7 @@ struct MockData {
         StoryPost(
             id: "ijkl",
             userID: "9638",
+            nickname: "쿠앤크",
             title: "스페인",
             content: "Hola",
             imageList: ["12341234", "23123092", "120391230923", "123213231"],

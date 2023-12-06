@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		380646F52B207619001B375D /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380646F42B207619001B375D /* MockData.swift */; };
+		380646F92B2084F1001B375D /* StoryListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380646F82B2084F1001B375D /* StoryListUseCase.swift */; };
+		380646FB2B20872E001B375D /* StoryListUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380646FA2B20872E001B375D /* StoryListUseCaseProtocol.swift */; };
+		380646FD2B20D1FA001B375D /* UIViewController+Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380646FC2B20D1FA001B375D /* UIViewController+Reactive.swift */; };
 		38318DA82B1A11EB000EED65 /* RefreshTokenDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DA72B1A11EB000EED65 /* RefreshTokenDTO.swift */; };
 		38318DB02B1C5C73000EED65 /* StoryListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DAF2B1C5C73000EED65 /* StoryListHeaderView.swift */; };
 		38318DB82B1C73AE000EED65 /* UICollectionViewLayout+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DB72B1C73AE000EED65 /* UICollectionViewLayout+.swift */; };
@@ -92,6 +95,9 @@
 
 /* Begin PBXFileReference section */
 		380646F42B207619001B375D /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		380646F82B2084F1001B375D /* StoryListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryListUseCase.swift; sourceTree = "<group>"; };
+		380646FA2B20872E001B375D /* StoryListUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryListUseCaseProtocol.swift; sourceTree = "<group>"; };
+		380646FC2B20D1FA001B375D /* UIViewController+Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Reactive.swift"; sourceTree = "<group>"; };
 		38318DA72B1A11EB000EED65 /* RefreshTokenDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenDTO.swift; sourceTree = "<group>"; };
 		38318DAF2B1C5C73000EED65 /* StoryListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryListHeaderView.swift; sourceTree = "<group>"; };
 		38318DB72B1C73AE000EED65 /* UICollectionViewLayout+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewLayout+.swift"; sourceTree = "<group>"; };
@@ -193,6 +199,14 @@
 				380646F42B207619001B375D /* MockData.swift */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		380646F62B2084DD001B375D /* StoryContent */ = {
+			isa = PBXGroup;
+			children = (
+				380646F82B2084F1001B375D /* StoryListUseCase.swift */,
+			);
+			path = StoryContent;
 			sourceTree = "<group>";
 		};
 		38318DB52B1C6F56000EED65 /* UserAuth */ = {
@@ -315,6 +329,7 @@
 				3847EC362B02307100E086EB /* UINavigationController+.swift */,
 				3847EC2E2B022FCE00E086EB /* UITabBarController+.swift */,
 				38CA8C292B038CB000A9C4B7 /* UITextField+.swift */,
+				380646FC2B20D1FA001B375D /* UIViewController+Reactive.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -402,6 +417,7 @@
 			isa = PBXGroup;
 			children = (
 				3863095F2B147029001973AA /* Protocol */,
+				380646F62B2084DD001B375D /* StoryContent */,
 				386309642B1483B5001973AA /* UserAuth */,
 			);
 			path = UseCases;
@@ -454,6 +470,7 @@
 		3863095F2B147029001973AA /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				380646FA2B20872E001B375D /* StoryListUseCaseProtocol.swift */,
 				386309292B1340ED001973AA /* UserJoinUseCaseProtocol.swift */,
 				383ECFD62B15BF2B004675E1 /* UserSigninUseCaseProtocol.swift */,
 			);
@@ -687,6 +704,7 @@
 				38318DCC2B1E35DB000EED65 /* StoryListViewModel.swift in Sources */,
 				38D4066B2B0B29E000B6F783 /* SecureTextButton.swift in Sources */,
 				386309312B135752001973AA /* User.swift in Sources */,
+				380646FD2B20D1FA001B375D /* UIViewController+Reactive.swift in Sources */,
 				38318DDF2B203645000EED65 /* StoryReadDTO.swift in Sources */,
 				3847EC482B02578900E086EB /* SigninTextField.swift in Sources */,
 				38318DC62B1CFE47000EED65 /* SeparatorView.swift in Sources */,
@@ -694,6 +712,7 @@
 				383ECFDC2B15CB29004675E1 /* UserSigninDTO.swift in Sources */,
 				38CA8C222B0385AC00A9C4B7 /* SigninTitleLabel.swift in Sources */,
 				38CA8C272B038AC000A9C4B7 /* SigninButton.swift in Sources */,
+				380646F92B2084F1001B375D /* StoryListUseCase.swift in Sources */,
 				38318DC32B1CE9EF000EED65 /* BaseCollectionViewCell.swift in Sources */,
 				3874640D2B172208009FAB2C /* UserSigninError.swift in Sources */,
 				386309612B14703E001973AA /* UserJoinUseCase.swift in Sources */,
@@ -706,6 +725,7 @@
 				387464132B173E2C009FAB2C /* UserJoinError.swift in Sources */,
 				383ECFD72B15BF2B004675E1 /* UserSigninUseCaseProtocol.swift in Sources */,
 				38CA8C2A2B038CB000A9C4B7 /* UITextField+.swift in Sources */,
+				380646FB2B20872E001B375D /* StoryListUseCaseProtocol.swift in Sources */,
 				386309382B135C86001973AA /* EmailValidationDTO.swift in Sources */,
 				3863094E2B1457B9001973AA /* AppCoordinator.swift in Sources */,
 				38318DDB2B1F54C2000EED65 /* StoryPostRepositoryProtocol.swift in Sources */,

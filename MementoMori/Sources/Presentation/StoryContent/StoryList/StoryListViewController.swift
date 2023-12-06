@@ -7,6 +7,8 @@
 
 import UIKit
 
+import RxSwift
+
 final class StoryListViewController: BaseViewController {
     
     private lazy var headerView = StoryListHeaderView()
@@ -26,17 +28,20 @@ final class StoryListViewController: BaseViewController {
     }
     
     override func bind() {
-        let input = StoryListViewModel.Input()
+        
+        let input = StoryListViewModel.Input(
+            viewWillAppear: self.rx.viewWillAppear.map { _ in }
+                .throttle(.seconds(1), scheduler: MainScheduler.asyncInstance)
+        )
         let output = viewModel.transform(input: input)
         
         output
-            .postList
-            .subscribe(with: self) { owner, storyList in
-                owner.storyView.postList = storyList
+            .storyList
+            .drive(with: self) { owner, value in
+                owner.storyView.postList = value
+                self.storyView.configure()
             }
             .disposed(by: disposeBag)
-        
-        self.storyView.configureUI()
     }
     
     override func configureUI() {

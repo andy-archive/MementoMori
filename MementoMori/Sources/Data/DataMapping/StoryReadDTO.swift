@@ -11,11 +11,11 @@ import Foundation
 struct StoryReadRequestDTO: Encodable {
     let next: String?
     let limit: String
-    let productId: String?
+    let productID: String?
     
     enum CodingKeys: String, CodingKey {
         case next, limit
-        case productId = "product_id"
+        case productID = "product_id"
     }
 }
 
@@ -29,16 +29,17 @@ struct StoryReadResponseDTO: Decodable {
         case nextCursor = "next_cursor"
     }
     
-    func toDomain() -> [StoryPost] {
+    func toDomain() -> (storyList: [StoryPost], nextCursor: String) {
         
         let domain = data.map { story in
             StoryPost(
                 id: story.id,
                 userID: story.creator.id,
-                title: story.title,
-                content: story.content,
-                imageList: story.image,
-                commentList: story.comments,
+                nickname: story.creator.nickname,
+                title: story.title ?? "",
+                content: story.content ?? "",
+                imageList: story.image ?? [],
+                commentList: [],
                 location: story.location,
                 isLiked: false,
                 isSavedToMyCollection: false,
@@ -47,6 +48,6 @@ struct StoryReadResponseDTO: Decodable {
             )
         }
         
-        return domain
+        return (domain, nextCursor)
     }
 }

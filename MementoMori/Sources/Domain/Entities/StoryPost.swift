@@ -16,6 +16,7 @@ struct StoryPost: Hashable {
     
     let id: String
     let userID: String
+    let nickname: String
     let title: String
     let content: String
     let imageList: [String]
