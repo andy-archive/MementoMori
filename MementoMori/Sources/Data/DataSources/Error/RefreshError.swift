@@ -13,13 +13,13 @@ enum RefreshError: Int, ReusableError {
     case forbidden = 403
     case conflict = 409
     case refreshTokenExpired = 418
-
+    
     var message: String {
         switch self {
         case .invalidToken:
             return "접속할 수 없습니다."
         case .unauthorized:
-            return "인증할 수 없습니다."
+            return "인증되지 않았습니다."
         case .forbidden:
             return "접근 권한이 없습니다."
         case .conflict:
