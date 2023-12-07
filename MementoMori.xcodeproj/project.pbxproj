@@ -11,6 +11,8 @@
 		380646F92B2084F1001B375D /* StoryListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380646F82B2084F1001B375D /* StoryListUseCase.swift */; };
 		380646FB2B20872E001B375D /* StoryListUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380646FA2B20872E001B375D /* StoryListUseCaseProtocol.swift */; };
 		380646FD2B20D1FA001B375D /* UIViewController+Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380646FC2B20D1FA001B375D /* UIViewController+Reactive.swift */; };
+		380647002B21CD1D001B375D /* StoryUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380646FF2B21CD1D001B375D /* StoryUploadViewController.swift */; };
+		380647032B21CD7F001B375D /* StoryUploadCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380647022B21CD7F001B375D /* StoryUploadCoordinator.swift */; };
 		38318DA82B1A11EB000EED65 /* RefreshTokenDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DA72B1A11EB000EED65 /* RefreshTokenDTO.swift */; };
 		38318DB02B1C5C73000EED65 /* StoryListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DAF2B1C5C73000EED65 /* StoryListHeaderView.swift */; };
 		38318DB82B1C73AE000EED65 /* UICollectionViewLayout+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DB72B1C73AE000EED65 /* UICollectionViewLayout+.swift */; };
@@ -98,6 +100,8 @@
 		380646F82B2084F1001B375D /* StoryListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryListUseCase.swift; sourceTree = "<group>"; };
 		380646FA2B20872E001B375D /* StoryListUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryListUseCaseProtocol.swift; sourceTree = "<group>"; };
 		380646FC2B20D1FA001B375D /* UIViewController+Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Reactive.swift"; sourceTree = "<group>"; };
+		380646FF2B21CD1D001B375D /* StoryUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryUploadViewController.swift; sourceTree = "<group>"; };
+		380647022B21CD7F001B375D /* StoryUploadCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryUploadCoordinator.swift; sourceTree = "<group>"; };
 		38318DA72B1A11EB000EED65 /* RefreshTokenDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenDTO.swift; sourceTree = "<group>"; };
 		38318DAF2B1C5C73000EED65 /* StoryListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryListHeaderView.swift; sourceTree = "<group>"; };
 		38318DB72B1C73AE000EED65 /* UICollectionViewLayout+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewLayout+.swift"; sourceTree = "<group>"; };
@@ -209,6 +213,15 @@
 			path = StoryContent;
 			sourceTree = "<group>";
 		};
+		380646FE2B21CCF8001B375D /* StoryUpload */ = {
+			isa = PBXGroup;
+			children = (
+				380647022B21CD7F001B375D /* StoryUploadCoordinator.swift */,
+				380646FF2B21CD1D001B375D /* StoryUploadViewController.swift */,
+			);
+			path = StoryUpload;
+			sourceTree = "<group>";
+		};
 		38318DB52B1C6F56000EED65 /* UserAuth */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +301,7 @@
 			children = (
 				38EE8A772B04B65800E629CC /* Common */,
 				387463D92B163BE8009FAB2C /* StoryContent */,
+				380646FE2B21CCF8001B375D /* StoryUpload */,
 				386309532B14672E001973AA /* UserAuth */,
 			);
 			path = Presentation;
@@ -698,7 +712,9 @@
 				386309562B146757001973AA /* UserAuthCoordinator.swift in Sources */,
 				38318DA82B1A11EB000EED65 /* RefreshTokenDTO.swift in Sources */,
 				38318DE32B20380A000EED65 /* Creator.swift in Sources */,
+				380647002B21CD1D001B375D /* StoryUploadViewController.swift in Sources */,
 				38EE8A822B04D0AC00E629CC /* UserJoinViewModel.swift in Sources */,
+				380647032B21CD7F001B375D /* StoryUploadCoordinator.swift in Sources */,
 				3863092A2B1340ED001973AA /* UserJoinUseCaseProtocol.swift in Sources */,
 				38318DE92B20473D000EED65 /* StoryPostRepository.swift in Sources */,
 				38318DCC2B1E35DB000EED65 /* StoryListViewModel.swift in Sources */,

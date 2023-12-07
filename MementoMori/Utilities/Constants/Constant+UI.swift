@@ -44,6 +44,8 @@ extension Constant {
             static let paperplane = UIImage(systemName: "paperplane")?.withTintColor(.label, renderingMode: .alwaysOriginal)
             static let ellipsis = UIImage(systemName: "ellipsis")?.withTintColor(.label, renderingMode: .alwaysOriginal)
             static let bookmark = UIImage(systemName: "bookmark")?.withTintColor(.label, renderingMode: .alwaysOriginal)
+            static let plusSquare = UIImage(systemName: "plus.square")?.withTintColor(.label, renderingMode: .alwaysOriginal)
+            static let plusSquareFill = UIImage(systemName: "plus.square.fill")?.withTintColor(.label, renderingMode: .alwaysOriginal)
         }
     }
 }

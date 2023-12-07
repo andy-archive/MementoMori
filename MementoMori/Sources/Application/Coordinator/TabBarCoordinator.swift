@@ -29,8 +29,7 @@ final class TabBarCoordinator: Coordinator {
     }
 }
 
-//MARK: TabBar, TabBarController 설정 및 연결
-
+//MARK: - configure TabBar & TabBarController
 private extension TabBarCoordinator {
     
     func configureTabBar(of tabBar: TabBar) -> UINavigationController {
@@ -54,6 +53,8 @@ private extension TabBarCoordinator {
         switch tabBar {
         case .storyList:
             self.showStoryListFlow(to: navigationController)
+        case .storyUpload:
+            self.showStoryUploadFlow(to: navigationController)
         }
     }
     
@@ -61,10 +62,14 @@ private extension TabBarCoordinator {
         let storyListCoordinator = StoryContentCoordinator(navigationController)
         storyListCoordinator.start()
     }
+    
+    func showStoryUploadFlow(to navigationController: UINavigationController) {
+        let storyUploadCoordinator = StoryUploadCoordinator(navigationController)
+        storyUploadCoordinator.start()
+    }
 }
 
-//MARK: CoordinatorDelegate
-
+//MARK: - CoordinatorDelegate
 extension TabBarCoordinator: CoordinatorDelegate {
     func didFinish(childCoordinator: Coordinator) {
         self.navigationController.popToRootViewController(animated: false)

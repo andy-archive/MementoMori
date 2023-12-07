@@ -10,14 +10,21 @@ import UIKit
 enum TabBar: Int, CaseIterable {
     
     case storyList = 0
+    case storyUpload
     
     var tabBarItem: UITabBarItem {
         switch self {
         case .storyList:
             return UITabBarItem(
-                title: Constant.Text.TabBar.house,
+                title: "",
                 image: Constant.Image.System.house,
                 selectedImage: Constant.Image.System.houseFill
+            )
+        case .storyUpload:
+            return UITabBarItem(
+                title: "",
+                image: Constant.Image.System.plusSquare,
+                selectedImage: Constant.Image.System.plusSquareFill
             )
         }
     }

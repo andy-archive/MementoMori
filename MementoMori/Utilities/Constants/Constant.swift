@@ -52,12 +52,4 @@ enum Constant {
             }
         }
     }
-    
-    enum Text {
-        
-        enum TabBar {
-            
-            static let house = "HOME"
-        }
-    }
 }
