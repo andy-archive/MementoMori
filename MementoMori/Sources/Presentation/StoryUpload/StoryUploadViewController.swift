@@ -11,8 +11,10 @@ final class StoryUploadViewController: BaseViewController {
     
     //MARK: - UI
     private lazy var headerView = StoryUploadHeaderView()
+    private lazy var photoItemView = UIView()
+    private lazy var photoListView = UIView()
     
-    //MARK: - Properties
+    //MARK: - ImagePickerController
     private let imagePicker = ImagePickerController()
     
     override func viewDidLoad() {
@@ -31,7 +33,14 @@ final class StoryUploadViewController: BaseViewController {
     override func configureUI() {
         super.configureUI()
         
+        //MARK: - UI Tests
+        photoItemView.backgroundColor = .systemYellow.withAlphaComponent(0.4)
+        photoListView.backgroundColor = .systemGray2
+        
+        //MARK: - View Hierarchies
         view.addSubview(headerView)
+        view.addSubview(photoItemView)
+        view.addSubview(photoListView)
     }
     
     override func configureLayout() {
@@ -42,6 +51,22 @@ final class StoryUploadViewController: BaseViewController {
             headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             headerView.heightAnchor.constraint(equalToConstant: Constant.Layout.StoryList.Header.height)
         ])
+        
+        photoItemView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            photoItemView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
+            photoItemView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            photoItemView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            photoItemView.heightAnchor.constraint(equalTo: view.widthAnchor)
+        ])
+        
+        photoListView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            photoListView.topAnchor.constraint(equalTo: photoItemView.bottomAnchor),
+            photoListView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            photoListView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            photoListView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
 }
 
@@ -50,14 +75,10 @@ import SwiftUI
 struct Preview: UIViewControllerRepresentable {
     
     func makeUIViewController(context: Context) -> UIViewController {
-        StoryUploadViewController() // 📌 뷰컨마다 변경
+        StoryUploadViewController()
     }
     
     func updateUIViewController(_ uiView: UIViewController,context: Context) {
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.becomeFirstResponder()
     }
 }
 
