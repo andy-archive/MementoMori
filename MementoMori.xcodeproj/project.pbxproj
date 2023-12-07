@@ -69,6 +69,7 @@
 		386309562B146757001973AA /* UserAuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309552B146757001973AA /* UserAuthCoordinator.swift */; };
 		386309612B14703E001973AA /* UserJoinUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309602B14703E001973AA /* UserJoinUseCase.swift */; };
 		386309632B147637001973AA /* UserAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309622B147637001973AA /* UserAuthRepository.swift */; };
+		386FCD8B2B21DA8200822DFD /* UIImagePicker+Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386FCD8A2B21DA8200822DFD /* UIImagePicker+Reactive.swift */; };
 		387463CF2B160815009FAB2C /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387463CE2B160815009FAB2C /* TabBar.swift */; };
 		387463DE2B163C54009FAB2C /* StoryContentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387463DD2B163C54009FAB2C /* StoryContentCoordinator.swift */; };
 		387463E02B163C74009FAB2C /* StoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387463DF2B163C74009FAB2C /* StoryListViewController.swift */; };
@@ -161,6 +162,7 @@
 		386309552B146757001973AA /* UserAuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthCoordinator.swift; sourceTree = "<group>"; };
 		386309602B14703E001973AA /* UserJoinUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJoinUseCase.swift; sourceTree = "<group>"; };
 		386309622B147637001973AA /* UserAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthRepository.swift; sourceTree = "<group>"; };
+		386FCD8A2B21DA8200822DFD /* UIImagePicker+Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImagePicker+Reactive.swift"; sourceTree = "<group>"; };
 		387463CE2B160815009FAB2C /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		387463DD2B163C54009FAB2C /* StoryContentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryContentCoordinator.swift; sourceTree = "<group>"; };
 		387463DF2B163C74009FAB2C /* StoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryListViewController.swift; sourceTree = "<group>"; };
@@ -354,6 +356,7 @@
 				3847EC2E2B022FCE00E086EB /* UITabBarController+.swift */,
 				38CA8C292B038CB000A9C4B7 /* UITextField+.swift */,
 				380646FC2B20D1FA001B375D /* UIViewController+Reactive.swift */,
+				386FCD8A2B21DA8200822DFD /* UIImagePicker+Reactive.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -724,6 +727,7 @@
 				38318DA82B1A11EB000EED65 /* RefreshTokenDTO.swift in Sources */,
 				38318DE32B20380A000EED65 /* Creator.swift in Sources */,
 				380647002B21CD1D001B375D /* StoryUploadViewController.swift in Sources */,
+				386FCD8B2B21DA8200822DFD /* UIImagePicker+Reactive.swift in Sources */,
 				380647062B21D0E9001B375D /* StoryUploadHeaderView.swift in Sources */,
 				38EE8A822B04D0AC00E629CC /* UserJoinViewModel.swift in Sources */,
 				380647032B21CD7F001B375D /* StoryUploadCoordinator.swift in Sources */,

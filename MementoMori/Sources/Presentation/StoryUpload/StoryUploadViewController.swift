@@ -9,13 +9,23 @@ import UIKit
 
 final class StoryUploadViewController: BaseViewController {
     
+    //MARK: - UI
     private lazy var headerView = StoryUploadHeaderView()
+    
+    //MARK: - Properties
+    private let imagePicker = ImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     override func bind() {
+    }
+    
+    override init() {
+        super.init()
+        
+        self.imagePicker.delegate = self
     }
     
     override func configureUI() {
