@@ -13,6 +13,7 @@
 		380646FD2B20D1FA001B375D /* UIViewController+Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380646FC2B20D1FA001B375D /* UIViewController+Reactive.swift */; };
 		380647002B21CD1D001B375D /* StoryUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380646FF2B21CD1D001B375D /* StoryUploadViewController.swift */; };
 		380647032B21CD7F001B375D /* StoryUploadCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380647022B21CD7F001B375D /* StoryUploadCoordinator.swift */; };
+		380647062B21D0E9001B375D /* StoryUploadHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380647052B21D0E9001B375D /* StoryUploadHeaderView.swift */; };
 		38318DA82B1A11EB000EED65 /* RefreshTokenDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DA72B1A11EB000EED65 /* RefreshTokenDTO.swift */; };
 		38318DB02B1C5C73000EED65 /* StoryListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DAF2B1C5C73000EED65 /* StoryListHeaderView.swift */; };
 		38318DB82B1C73AE000EED65 /* UICollectionViewLayout+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DB72B1C73AE000EED65 /* UICollectionViewLayout+.swift */; };
@@ -102,6 +103,7 @@
 		380646FC2B20D1FA001B375D /* UIViewController+Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Reactive.swift"; sourceTree = "<group>"; };
 		380646FF2B21CD1D001B375D /* StoryUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryUploadViewController.swift; sourceTree = "<group>"; };
 		380647022B21CD7F001B375D /* StoryUploadCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryUploadCoordinator.swift; sourceTree = "<group>"; };
+		380647052B21D0E9001B375D /* StoryUploadHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryUploadHeaderView.swift; sourceTree = "<group>"; };
 		38318DA72B1A11EB000EED65 /* RefreshTokenDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenDTO.swift; sourceTree = "<group>"; };
 		38318DAF2B1C5C73000EED65 /* StoryListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryListHeaderView.swift; sourceTree = "<group>"; };
 		38318DB72B1C73AE000EED65 /* UICollectionViewLayout+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewLayout+.swift"; sourceTree = "<group>"; };
@@ -218,6 +220,14 @@
 			children = (
 				380647022B21CD7F001B375D /* StoryUploadCoordinator.swift */,
 				380646FF2B21CD1D001B375D /* StoryUploadViewController.swift */,
+			);
+			path = StoryUpload;
+			sourceTree = "<group>";
+		};
+		380647042B21D0D3001B375D /* StoryUpload */ = {
+			isa = PBXGroup;
+			children = (
+				380647052B21D0E9001B375D /* StoryUploadHeaderView.swift */,
 			);
 			path = StoryUpload;
 			sourceTree = "<group>";
@@ -375,6 +385,7 @@
 			isa = PBXGroup;
 			children = (
 				38318DB62B1C6F62000EED65 /* StoryContent */,
+				380647042B21D0D3001B375D /* StoryUpload */,
 				38318DB52B1C6F56000EED65 /* UserAuth */,
 			);
 			path = Custom;
@@ -713,6 +724,7 @@
 				38318DA82B1A11EB000EED65 /* RefreshTokenDTO.swift in Sources */,
 				38318DE32B20380A000EED65 /* Creator.swift in Sources */,
 				380647002B21CD1D001B375D /* StoryUploadViewController.swift in Sources */,
+				380647062B21D0E9001B375D /* StoryUploadHeaderView.swift in Sources */,
 				38EE8A822B04D0AC00E629CC /* UserJoinViewModel.swift in Sources */,
 				380647032B21CD7F001B375D /* StoryUploadCoordinator.swift in Sources */,
 				3863092A2B1340ED001973AA /* UserJoinUseCaseProtocol.swift in Sources */,

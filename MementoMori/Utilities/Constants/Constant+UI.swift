@@ -46,6 +46,7 @@ extension Constant {
             static let bookmark = UIImage(systemName: "bookmark")?.withTintColor(.label, renderingMode: .alwaysOriginal)
             static let plusSquare = UIImage(systemName: "plus.square")?.withTintColor(.label, renderingMode: .alwaysOriginal)
             static let plusSquareFill = UIImage(systemName: "plus.square.fill")?.withTintColor(.label, renderingMode: .alwaysOriginal)
+            static let xMark = UIImage(systemName: "xmark")?.withTintColor(.label, renderingMode: .alwaysOriginal)
         }
     }
 }
