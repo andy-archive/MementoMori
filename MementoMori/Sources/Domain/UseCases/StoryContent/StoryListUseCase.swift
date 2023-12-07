@@ -27,17 +27,17 @@ final class StoryListUseCase: StoryListUseCaseProtocol {
         self.keychainRepository = keychainRepository
     }
     
-    //MARK: - (1) fetchAccessToken
+    //MARK: - (1) fetchAccessToken - keychainRepository (find)
     private func fetchAccessToken() -> (isCompleted: Bool, accessToken: String?) {
-        guard let userID = keychainRepository.verify(key: "", type: .userID)
+        guard let userID = keychainRepository.find(key: "", type: .userID)
         else { return (false, nil) }
         
-        let accessToken = keychainRepository.verify(key: userID, type: .accessToken)
+        let accessToken = keychainRepository.find(key: userID, type: .accessToken)
         
         return (true, accessToken)
     }
     
-    //MARK: - (2) fetchPostRead
+    //MARK: - (2) fetchPostRead - storyPostRepository (GET)
     private func fetchPostRead(nextCursor: String?, limit: String, accessToken: String) -> Single<APIResult<(storyList: [StoryPost], nextCursor: String)>> {
 
         return self.storyPostRepository.read(
@@ -64,8 +64,8 @@ final class StoryListUseCase: StoryListUseCaseProtocol {
         NetworkError.internalServerError.message
     }
     
-    //MARK: - (MementoAPI) Story GET Request
-    func fetchStoryPostList() -> Observable<[StoryPost]> {
+    //MARK: - (MementoAPI) /post GET Request
+    func fetchStoryListStream() -> Observable<[StoryPost]> {
         
         let keychainProcess = self.fetchAccessToken()
         

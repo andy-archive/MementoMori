@@ -10,5 +10,5 @@ import Foundation
 import RxSwift
 
 protocol StoryListUseCaseProtocol {
-    func fetchStoryPostList() -> Observable<[StoryPost]>
+    func fetchStoryListStream() -> Observable<[StoryPost]>
 }

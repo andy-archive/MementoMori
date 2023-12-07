@@ -38,7 +38,7 @@ final class StoryListViewModel: ViewModel {
             .viewWillAppear
             .withUnretained(self)
             .flatMap { owner, _ in
-                return owner.storyListUseCase.fetchStoryPostList()
+                return owner.storyListUseCase.fetchStoryListStream()
             }
             .asDriver(onErrorJustReturn: [])
             
