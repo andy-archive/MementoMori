@@ -17,6 +17,7 @@ final class APIManager {
     private init() { }
     
     private let provider = MoyaProvider<MementoAPI>()
+    //MoyaProvider<MementoAPI>(plugins: [NetworkLoggerPlugin(configuration: .init(logOptions: .verbose))])
     
     func validateEmail(email: String) -> Observable<EmailValidationResponseDTO> {
         
@@ -51,18 +52,18 @@ final class APIManager {
                 
                 switch result {
                 case .success(let response):
-                    do { //1. 요청 성공 및 디코딩 성공 시 -> 디코딩 된 데이터
+                    do { //MARK: - 1. 요청 성공 및 디코딩 성공 시 -> 디코딩 한 데이터
                         let decodedData = try decoder.decode(T.self, from: response.data)
                         single(.success(.suceessData(decodedData)))
-                    } catch { //2. 요청 성공은 했으나 디코딩 실패 -> 응답 코드
+                    } catch { //MARK: - 2. 요청 성공은 했으나 디코딩 실패 -> 응답 코드
                         single(.success(.errorStatusCode(response.statusCode)))
                     }
                 case .failure(let error):
                     guard let statusCode = error.response?.statusCode
-                    else { //3. 요청 실패, 응답 코드가 없을 때 -> 서버 오류 응답 코드
+                    else { //MARK: - 3. 요청 실패, 응답 코드가 없을 때 -> 서버 오류 응답 코드
                         single(.success(.errorStatusCode(NetworkError.internalServerError.rawValue)))
                         return
-                    }  //4. 요청 실패, 공통 에러(Network)에 해당할 때 -> 응답 코드
+                    }  //MARK: - 4. 요청 실패, 공통 에러(Network)에 해당할 때 -> 응답 코드
                     single(.success(.errorStatusCode(statusCode)))
                 }
             }

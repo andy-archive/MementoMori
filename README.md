@@ -35,14 +35,13 @@
 ### (1) 로그인/회원 가입
 
 | 종류 | [#10 로그인 화면](https://github.com/andy-archive/mementoMori/pull/10) | [#6 회원 가입 필수/선택 사항](https://github.com/andy-archive/MementoMori/pull/6) | [#5 회원 가입 이메일 검증](https://github.com/andy-archive/MementoMori/pull/5) |
-|-|-|-|-|
+|:-:|:-:|:-:|:-:|
 | GIF | <img src="https://github.com/andy-archive/MementoMori/assets/102043891/fbd862fc-2602-4685-acc4-f35a96247c71" alt="#10 로그인 화면" width=200> | <img src="https://github.com/andy-archive/MementoMori/assets/102043891/a955068c-ce19-4f45-9e6f-47e859328b7e" alt="LSLP #6 회원가입 화면의 필수 및 선택 입력 사항 UI 및 로직 추가" width=200> | <img src="https://github.com/andy-archive/MementoMori/assets/102043891/a5053eb2-6243-43a9-aecc-476bf83e9d36" alt="#5 이메일 검증 응답 메시지에 따른 반응형" width=200> |
 
-### (2) 컨텐츠 목록 화면
-
-| 종류 | [#15 컨텐츠 목록 화면 UI](https://github.com/andy-archive/mementoMori/pull/15) |
-|-|-|
-| GIF | <img src="https://github.com/andy-archive/MementoMori/assets/102043891/cd406ef8-1276-4f22-b1f6-57c7091139f4" alt="#15 목록 화면" width=200> |
+### (2) 스토리(컨텐츠) 목록 화면
+| 종류 | [#17 목록 조회 API (GET)](https://github.com/andy-archive/MementoMori/pull/17) | [#16 컨텐츠 목록 화면 UI](https://github.com/andy-archive/mementoMori/pull/16) |
+|:-:|:-:|:-:|
+| GIF | <img src="https://github.com/andy-archive/MementoMori/assets/102043891/22207e4a-ebb9-4521-83fd-bc370e394d4d" alt="LSLP #17 post GET 구현" width=200> |<img src="https://github.com/andy-archive/MementoMori/assets/102043891/393bce40-39d0-496f-a541-db0f058cc0b7" alt="이미지" width=200> |
 
 ## 트러블 슈팅
 ### (1) 토큰 매니저 (키 값이 동일한 문제)
@@ -52,7 +51,7 @@
 > - 새로운 유저의 토큰 생성이 아닌 기존 유저의 토큰이 갱신되는 문제 발생 및 해결
 #### (1-2) PR / Issue 링크
 | 종류 | PR / Issue | 링크 |
-|:-:|-|-|
+|:-:|:-:|:-:|
 | 기존 코드 | Pull Requests | [#12 키체인/토큰 매니저 생성 및 로그인 성공 시 토큰을 키체인 저장 (+ 에러 핸들링))](https://github.com/andy-archive/MementoMori/pull/12) |
 | 문제 발생 | Issues | [#13 토큰 매니저로 저장 시 같은 값으로 저장되는 문제 발생 (→ id 값 추가)](https://github.com/andy-archive/MementoMori/issues/13) |
 | 문제 해결 | Pull Requests | [#14 키체인 매니저에서 id를 포함한 토큰 값 저장 (+ refresh API 구조 생성)](https://github.com/andy-archive/MementoMori/pull/14) |

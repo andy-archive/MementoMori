@@ -7,6 +7,7 @@
 
 import Foundation
 
+@frozen
 enum APIResult<T> {
     case suceessData(T)
     case errorStatusCode(Int)

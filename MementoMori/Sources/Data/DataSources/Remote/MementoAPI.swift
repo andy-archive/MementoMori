@@ -14,6 +14,8 @@ enum MementoAPI {
     case userJoin(model: UserJoinRequestDTO)
     case userSignin(model: UserSigninRequestDTO)
     case refresh(model: RefreshTokenResquestDTO)
+    case storyCreate(model: StoryReadRequestDTO, accessToken: String)
+    case storyRead(model: StoryReadRequestDTO, accessToken: String)
 }
 
 extension MementoAPI: TargetType {
@@ -28,6 +30,7 @@ extension MementoAPI: TargetType {
         case .userJoin: return "join"
         case .userSignin: return "login"
         case .refresh: return "refresh"
+        case .storyCreate, .storyRead: return "post"
         }
     }
     
@@ -37,6 +40,8 @@ extension MementoAPI: TargetType {
         case .userJoin: return .post
         case .userSignin: return .post
         case .refresh: return .get
+        case .storyCreate: return .post
+        case .storyRead: return .get
         }
     }
     
@@ -45,11 +50,24 @@ extension MementoAPI: TargetType {
         case .emailValidation(let data):
             return .requestJSONEncodable(data)
         case .userJoin(let data):
-            return .requestJSONEncodable(data)  
+            return .requestJSONEncodable(data)
         case .userSignin(let data):
             return .requestJSONEncodable(data)
-        case .refresh(_):
+        case .refresh:
             return .requestPlain
+        case .storyCreate(let data, _):
+            return .requestJSONEncodable(data)
+        case .storyRead(let data, _):
+            guard let next = data.next else {
+                return .requestParameters(
+                    parameters: ["limit": data.limit],
+                    encoding: URLEncoding.queryString
+                )
+            }
+            return .requestParameters(
+                parameters: ["next": next, "limit": data.limit],
+                encoding: URLEncoding.queryString
+            )
         }
     }
     
@@ -66,6 +84,18 @@ extension MementoAPI: TargetType {
                 "SesacKey": "\(MementoAPI.secretKey)",
                 "Refresh": "\(data.refreshToken)"
             ]
+        case .storyCreate(_, let accessToken):
+            [
+                "Authorization": "\(accessToken)",
+                "Content-Type": "multipart/form-data",
+                "SesacKey": "\(MementoAPI.secretKey)",
+            ]
+        case .storyRead(_, let accessToken):
+            [
+                "Authorization": "\(accessToken)",
+                "SesacKey": "\(MementoAPI.secretKey)",
+            ]
         }
+        
     }
 }

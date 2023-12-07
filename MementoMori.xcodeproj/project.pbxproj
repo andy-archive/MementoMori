@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		380646F52B207619001B375D /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380646F42B207619001B375D /* MockData.swift */; };
+		380646F92B2084F1001B375D /* StoryListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380646F82B2084F1001B375D /* StoryListUseCase.swift */; };
+		380646FB2B20872E001B375D /* StoryListUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380646FA2B20872E001B375D /* StoryListUseCaseProtocol.swift */; };
+		380646FD2B20D1FA001B375D /* UIViewController+Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380646FC2B20D1FA001B375D /* UIViewController+Reactive.swift */; };
 		38318DA82B1A11EB000EED65 /* RefreshTokenDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DA72B1A11EB000EED65 /* RefreshTokenDTO.swift */; };
 		38318DB02B1C5C73000EED65 /* StoryListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DAF2B1C5C73000EED65 /* StoryListHeaderView.swift */; };
 		38318DB82B1C73AE000EED65 /* UICollectionViewLayout+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DB72B1C73AE000EED65 /* UICollectionViewLayout+.swift */; };
-		38318DBB2B1C8F58000EED65 /* StoryListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DBA2B1C8F58000EED65 /* StoryListCollectionView.swift */; };
+		38318DBB2B1C8F58000EED65 /* StoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DBA2B1C8F58000EED65 /* StoryListView.swift */; };
 		38318DBD2B1C97CE000EED65 /* StoryPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DBC2B1C97CE000EED65 /* StoryPost.swift */; };
 		38318DBF2B1CD2D8000EED65 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DBE2B1CD2D7000EED65 /* BaseView.swift */; };
 		38318DC12B1CE3EC000EED65 /* StoryListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DC02B1CE3EB000EED65 /* StoryListCollectionViewCell.swift */; };
@@ -18,10 +22,18 @@
 		38318DC62B1CFE47000EED65 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DC52B1CFE47000EED65 /* SeparatorView.swift */; };
 		38318DC92B1DB666000EED65 /* StoryItemHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DC82B1DB666000EED65 /* StoryItemHeaderView.swift */; };
 		38318DCC2B1E35DB000EED65 /* StoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DCB2B1E35DB000EED65 /* StoryListViewModel.swift */; };
-		38318DCE2B1E3A15000EED65 /* StoryItemCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DCD2B1E3A15000EED65 /* StoryItemCollectionView.swift */; };
+		38318DCE2B1E3A15000EED65 /* StoryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DCD2B1E3A15000EED65 /* StoryItemView.swift */; };
 		38318DD42B1ED72B000EED65 /* StoryItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DD32B1ED72B000EED65 /* StoryItemCollectionViewCell.swift */; };
 		38318DD72B1EDEC8000EED65 /* StoryImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DD62B1EDEC8000EED65 /* StoryImage.swift */; };
 		38318DD92B1F3AF8000EED65 /* StoryItemFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DD82B1F3AF8000EED65 /* StoryItemFooterView.swift */; };
+		38318DDB2B1F54C2000EED65 /* StoryPostRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DDA2B1F54C2000EED65 /* StoryPostRepositoryProtocol.swift */; };
+		38318DDD2B1F55BB000EED65 /* StoryCreateDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DDC2B1F55BB000EED65 /* StoryCreateDTO.swift */; };
+		38318DDF2B203645000EED65 /* StoryReadDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DDE2B203645000EED65 /* StoryReadDTO.swift */; };
+		38318DE12B2037EB000EED65 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DE02B2037EB000EED65 /* Story.swift */; };
+		38318DE32B20380A000EED65 /* Creator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DE22B20380A000EED65 /* Creator.swift */; };
+		38318DE52B20411A000EED65 /* StoryCreateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DE42B20411A000EED65 /* StoryCreateError.swift */; };
+		38318DE72B204286000EED65 /* StoryReadError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DE62B204286000EED65 /* StoryReadError.swift */; };
+		38318DE92B20473D000EED65 /* StoryPostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DE82B20473D000EED65 /* StoryPostRepository.swift */; };
 		383ECFD12B15B437004675E1 /* UserSigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383ECFD02B15B437004675E1 /* UserSigninViewController.swift */; };
 		383ECFD32B15B76A004675E1 /* UserSigninViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383ECFD22B15B76A004675E1 /* UserSigninViewModel.swift */; };
 		383ECFD52B15BF01004675E1 /* UserSigninUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383ECFD42B15BF01004675E1 /* UserSigninUseCase.swift */; };
@@ -82,10 +94,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		380646F42B207619001B375D /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		380646F82B2084F1001B375D /* StoryListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryListUseCase.swift; sourceTree = "<group>"; };
+		380646FA2B20872E001B375D /* StoryListUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryListUseCaseProtocol.swift; sourceTree = "<group>"; };
+		380646FC2B20D1FA001B375D /* UIViewController+Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Reactive.swift"; sourceTree = "<group>"; };
 		38318DA72B1A11EB000EED65 /* RefreshTokenDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenDTO.swift; sourceTree = "<group>"; };
 		38318DAF2B1C5C73000EED65 /* StoryListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryListHeaderView.swift; sourceTree = "<group>"; };
 		38318DB72B1C73AE000EED65 /* UICollectionViewLayout+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewLayout+.swift"; sourceTree = "<group>"; };
-		38318DBA2B1C8F58000EED65 /* StoryListCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryListCollectionView.swift; sourceTree = "<group>"; };
+		38318DBA2B1C8F58000EED65 /* StoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryListView.swift; sourceTree = "<group>"; };
 		38318DBC2B1C97CE000EED65 /* StoryPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryPost.swift; sourceTree = "<group>"; };
 		38318DBE2B1CD2D7000EED65 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		38318DC02B1CE3EB000EED65 /* StoryListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryListCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -93,10 +109,18 @@
 		38318DC52B1CFE47000EED65 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		38318DC82B1DB666000EED65 /* StoryItemHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryItemHeaderView.swift; sourceTree = "<group>"; };
 		38318DCB2B1E35DB000EED65 /* StoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryListViewModel.swift; sourceTree = "<group>"; };
-		38318DCD2B1E3A15000EED65 /* StoryItemCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryItemCollectionView.swift; sourceTree = "<group>"; };
+		38318DCD2B1E3A15000EED65 /* StoryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryItemView.swift; sourceTree = "<group>"; };
 		38318DD32B1ED72B000EED65 /* StoryItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		38318DD62B1EDEC8000EED65 /* StoryImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryImage.swift; sourceTree = "<group>"; };
 		38318DD82B1F3AF8000EED65 /* StoryItemFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryItemFooterView.swift; sourceTree = "<group>"; };
+		38318DDA2B1F54C2000EED65 /* StoryPostRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryPostRepositoryProtocol.swift; sourceTree = "<group>"; };
+		38318DDC2B1F55BB000EED65 /* StoryCreateDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCreateDTO.swift; sourceTree = "<group>"; };
+		38318DDE2B203645000EED65 /* StoryReadDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryReadDTO.swift; sourceTree = "<group>"; };
+		38318DE02B2037EB000EED65 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
+		38318DE22B20380A000EED65 /* Creator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creator.swift; sourceTree = "<group>"; };
+		38318DE42B20411A000EED65 /* StoryCreateError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCreateError.swift; sourceTree = "<group>"; };
+		38318DE62B204286000EED65 /* StoryReadError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryReadError.swift; sourceTree = "<group>"; };
+		38318DE82B20473D000EED65 /* StoryPostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryPostRepository.swift; sourceTree = "<group>"; };
 		383ECFD02B15B437004675E1 /* UserSigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninViewController.swift; sourceTree = "<group>"; };
 		383ECFD22B15B76A004675E1 /* UserSigninViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninViewModel.swift; sourceTree = "<group>"; };
 		383ECFD42B15BF01004675E1 /* UserSigninUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninUseCase.swift; sourceTree = "<group>"; };
@@ -169,6 +193,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		380646F32B2075E6001B375D /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				380646F42B207619001B375D /* MockData.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		380646F62B2084DD001B375D /* StoryContent */ = {
+			isa = PBXGroup;
+			children = (
+				380646F82B2084F1001B375D /* StoryListUseCase.swift */,
+			);
+			path = StoryContent;
+			sourceTree = "<group>";
+		};
 		38318DB52B1C6F56000EED65 /* UserAuth */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,13 +226,13 @@
 			isa = PBXGroup;
 			children = (
 				38318DC52B1CFE47000EED65 /* SeparatorView.swift */,
-				38318DCD2B1E3A15000EED65 /* StoryItemCollectionView.swift */,
 				38318DD32B1ED72B000EED65 /* StoryItemCollectionViewCell.swift */,
 				38318DD82B1F3AF8000EED65 /* StoryItemFooterView.swift */,
 				38318DC82B1DB666000EED65 /* StoryItemHeaderView.swift */,
-				38318DBA2B1C8F58000EED65 /* StoryListCollectionView.swift */,
+				38318DCD2B1E3A15000EED65 /* StoryItemView.swift */,
 				38318DC02B1CE3EB000EED65 /* StoryListCollectionViewCell.swift */,
 				38318DAF2B1C5C73000EED65 /* StoryListHeaderView.swift */,
+				38318DBA2B1C8F58000EED65 /* StoryListView.swift */,
 			);
 			path = StoryContent;
 			sourceTree = "<group>";
@@ -201,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				386309622B147637001973AA /* UserAuthRepository.swift */,
+				38318DE82B20473D000EED65 /* StoryPostRepository.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -273,6 +314,7 @@
 		3847EC2A2B022F6C00E086EB /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				380646F32B2075E6001B375D /* Tests */,
 				3847EC302B022FF000E086EB /* Constants */,
 				3847EC2B2B022F8000E086EB /* Extensions */,
 			);
@@ -287,6 +329,7 @@
 				3847EC362B02307100E086EB /* UINavigationController+.swift */,
 				3847EC2E2B022FCE00E086EB /* UITabBarController+.swift */,
 				38CA8C292B038CB000A9C4B7 /* UITextField+.swift */,
+				380646FC2B20D1FA001B375D /* UIViewController+Reactive.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -335,6 +378,7 @@
 			isa = PBXGroup;
 			children = (
 				386309262B132A5A001973AA /* UserAuthRepositoryProtocol.swift */,
+				38318DDA2B1F54C2000EED65 /* StoryPostRepositoryProtocol.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -373,6 +417,7 @@
 			isa = PBXGroup;
 			children = (
 				3863095F2B147029001973AA /* Protocol */,
+				380646F62B2084DD001B375D /* StoryContent */,
 				386309642B1483B5001973AA /* UserAuth */,
 			);
 			path = UseCases;
@@ -404,6 +449,10 @@
 				386309322B1357A8001973AA /* UserJoinDTO.swift */,
 				383ECFDB2B15CB29004675E1 /* UserSigninDTO.swift */,
 				38318DA72B1A11EB000EED65 /* RefreshTokenDTO.swift */,
+				38318DDC2B1F55BB000EED65 /* StoryCreateDTO.swift */,
+				38318DDE2B203645000EED65 /* StoryReadDTO.swift */,
+				38318DE02B2037EB000EED65 /* Story.swift */,
+				38318DE22B20380A000EED65 /* Creator.swift */,
 			);
 			path = DataMapping;
 			sourceTree = "<group>";
@@ -421,6 +470,7 @@
 		3863095F2B147029001973AA /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				380646FA2B20872E001B375D /* StoryListUseCaseProtocol.swift */,
 				386309292B1340ED001973AA /* UserJoinUseCaseProtocol.swift */,
 				383ECFD62B15BF2B004675E1 /* UserSigninUseCaseProtocol.swift */,
 			);
@@ -527,6 +577,8 @@
 				3874640A2B172013009FAB2C /* TokenError.swift */,
 				387464122B173E2C009FAB2C /* UserJoinError.swift */,
 				3874640C2B172208009FAB2C /* UserSigninError.swift */,
+				38318DE42B20411A000EED65 /* StoryCreateError.swift */,
+				38318DE62B204286000EED65 /* StoryReadError.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -633,7 +685,9 @@
 			files = (
 				38318DB82B1C73AE000EED65 /* UICollectionViewLayout+.swift in Sources */,
 				3859E5562B18C31000987F75 /* RefreshError.swift in Sources */,
+				38318DE52B20411A000EED65 /* StoryCreateError.swift in Sources */,
 				38318DB02B1C5C73000EED65 /* StoryListHeaderView.swift in Sources */,
+				380646F52B207619001B375D /* MockData.swift in Sources */,
 				38CA8C252B03893300A9C4B7 /* SigninSubtitleLabel.swift in Sources */,
 				3847EC372B02307100E086EB /* UINavigationController+.swift in Sources */,
 				3847EC322B022FF800E086EB /* Constant.swift in Sources */,
@@ -643,17 +697,22 @@
 				387463DE2B163C54009FAB2C /* StoryContentCoordinator.swift in Sources */,
 				386309562B146757001973AA /* UserAuthCoordinator.swift in Sources */,
 				38318DA82B1A11EB000EED65 /* RefreshTokenDTO.swift in Sources */,
+				38318DE32B20380A000EED65 /* Creator.swift in Sources */,
 				38EE8A822B04D0AC00E629CC /* UserJoinViewModel.swift in Sources */,
 				3863092A2B1340ED001973AA /* UserJoinUseCaseProtocol.swift in Sources */,
+				38318DE92B20473D000EED65 /* StoryPostRepository.swift in Sources */,
 				38318DCC2B1E35DB000EED65 /* StoryListViewModel.swift in Sources */,
 				38D4066B2B0B29E000B6F783 /* SecureTextButton.swift in Sources */,
 				386309312B135752001973AA /* User.swift in Sources */,
+				380646FD2B20D1FA001B375D /* UIViewController+Reactive.swift in Sources */,
+				38318DDF2B203645000EED65 /* StoryReadDTO.swift in Sources */,
 				3847EC482B02578900E086EB /* SigninTextField.swift in Sources */,
 				38318DC62B1CFE47000EED65 /* SeparatorView.swift in Sources */,
 				383ECFD32B15B76A004675E1 /* UserSigninViewModel.swift in Sources */,
 				383ECFDC2B15CB29004675E1 /* UserSigninDTO.swift in Sources */,
 				38CA8C222B0385AC00A9C4B7 /* SigninTitleLabel.swift in Sources */,
 				38CA8C272B038AC000A9C4B7 /* SigninButton.swift in Sources */,
+				380646F92B2084F1001B375D /* StoryListUseCase.swift in Sources */,
 				38318DC32B1CE9EF000EED65 /* BaseCollectionViewCell.swift in Sources */,
 				3874640D2B172208009FAB2C /* UserSigninError.swift in Sources */,
 				386309612B14703E001973AA /* UserJoinUseCase.swift in Sources */,
@@ -666,14 +725,18 @@
 				387464132B173E2C009FAB2C /* UserJoinError.swift in Sources */,
 				383ECFD72B15BF2B004675E1 /* UserSigninUseCaseProtocol.swift in Sources */,
 				38CA8C2A2B038CB000A9C4B7 /* UITextField+.swift in Sources */,
+				380646FB2B20872E001B375D /* StoryListUseCaseProtocol.swift in Sources */,
 				386309382B135C86001973AA /* EmailValidationDTO.swift in Sources */,
 				3863094E2B1457B9001973AA /* AppCoordinator.swift in Sources */,
+				38318DDB2B1F54C2000EED65 /* StoryPostRepositoryProtocol.swift in Sources */,
 				386309522B145C77001973AA /* TabBarCoordinator.swift in Sources */,
 				386309332B1357A8001973AA /* UserJoinDTO.swift in Sources */,
 				38318DD92B1F3AF8000EED65 /* StoryItemFooterView.swift in Sources */,
 				38EE8A972B0632AD00E629CC /* APIManager.swift in Sources */,
 				38EE8A9F2B06387900E629CC /* APIKey.swift in Sources */,
-				38318DCE2B1E3A15000EED65 /* StoryItemCollectionView.swift in Sources */,
+				38318DE72B204286000EED65 /* StoryReadError.swift in Sources */,
+				38318DDD2B1F55BB000EED65 /* StoryCreateDTO.swift in Sources */,
+				38318DCE2B1E3A15000EED65 /* StoryItemView.swift in Sources */,
 				386309632B147637001973AA /* UserAuthRepository.swift in Sources */,
 				38318DC92B1DB666000EED65 /* StoryItemHeaderView.swift in Sources */,
 				38318DBF2B1CD2D8000EED65 /* BaseView.swift in Sources */,
@@ -684,6 +747,7 @@
 				38EE8A842B04D29000E629CC /* ViewModel.swift in Sources */,
 				3847EC112B022C1200E086EB /* AppDelegate.swift in Sources */,
 				388CFD4D2B0F2ED900638EFD /* NetworkError.swift in Sources */,
+				38318DE12B2037EB000EED65 /* Story.swift in Sources */,
 				3847EC132B022C1200E086EB /* SceneDelegate.swift in Sources */,
 				38318DC12B1CE3EC000EED65 /* StoryListCollectionViewCell.swift in Sources */,
 				38D4066D2B0B40DE00B6F783 /* String+.swift in Sources */,
@@ -694,7 +758,7 @@
 				387463CF2B160815009FAB2C /* TabBar.swift in Sources */,
 				38318DD42B1ED72B000EED65 /* StoryItemCollectionViewCell.swift in Sources */,
 				3847EC402B0251A500E086EB /* UserJoinViewController.swift in Sources */,
-				38318DBB2B1C8F58000EED65 /* StoryListCollectionView.swift in Sources */,
+				38318DBB2B1C8F58000EED65 /* StoryListView.swift in Sources */,
 				383ECFD92B15C48D004675E1 /* JoinButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,27 +13,37 @@ import RxSwift
 final class StoryListViewModel: ViewModel {
     
     struct Input {
-        let followingPeopleButtonClicked: ControlEvent<Void>
-        let userFavoriteButtonCliked: ControlEvent<Void>
-        let userProfileImageClicked: ControlEvent<Void>
-        let storyEllipsisButtonClicked: ControlEvent<Void>
-        let storyLikeButtonClicked: ControlEvent<Void>
-        let commentButtonClicked: ControlEvent<Void>
-        let shareButtonClicked: ControlEvent<Void>
+        let viewWillAppear: Observable<Void>
     }
     
     struct Output {
-        let isLikedStory: PublishRelay<Bool>
+        let storyList: Driver<[StoryPost]>
     }
     
+    weak var coordinator: StoryContentCoordinator?
     let disposeBag = DisposeBag()
+    private let storyListUseCase: StoryListUseCaseProtocol
+    
+    init(
+        coordinator: StoryContentCoordinator,
+        storyListUseCase: StoryListUseCaseProtocol
+    ) {
+        self.coordinator = coordinator
+        self.storyListUseCase = storyListUseCase
+    }
     
     func transform(input: Input) -> Output {
         
-        let isLikedStory = PublishRelay<Bool>()
-        
+        let storyList = input
+            .viewWillAppear
+            .withUnretained(self)
+            .flatMap { owner, _ in
+                return owner.storyListUseCase.fetchStoryListStream()
+            }
+            .asDriver(onErrorJustReturn: [])
+            
         return Output(
-            isLikedStory: isLikedStory
+            storyList: storyList
         )
     }
     

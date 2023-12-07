@@ -1,5 +1,5 @@
 //
-//  StoryListCollectionView.swift
+//  StoryListView.swift
 //  MementoMori
 //
 //  Created by Taekwon Lee on 12/3/23.
@@ -7,13 +7,13 @@
 
 import UIKit
 
-final class StoryListCollectionView: BaseView {
+final class StoryListView: BaseView {
     
     typealias DataSource = UICollectionViewDiffableDataSource<Section, StoryPost>
     
     private var dataSource: DataSource?
     
-    private lazy var collectionView = UICollectionView(
+    lazy var collectionView = UICollectionView(
         frame: .zero,
         collectionViewLayout: .configureFlowLayout(
             numberOfItemInRow: 1,
@@ -23,50 +23,18 @@ final class StoryListCollectionView: BaseView {
         )
     )
     
-    private var postList: [StoryPost] = [
-        StoryPost(id: "abcd",
-                  userId: "abcd1234",
-                  storyType: .advertisement,
-                  imageIdList: ["98769876", "1230382", "123093012"],
-                  commentIdList: ["5678"],
-                  location: "서울 영등포구 문래동",
-                  isLiked: true,
-                  isSavedToMyCollection: false,
-                  content: "안녕하세요",
-                  createdAt: Date()
-                 ),
-        StoryPost(id: "efgh",
-                  userId: "5678",
-                  storyType: .location,
-                  imageIdList: ["12341234", "21383123", "21301239"],
-                  commentIdList: ["76547654"],
-                  location: "서울 마포구 공덕동",
-                  isLiked: true,
-                  isSavedToMyCollection: false,
-                  content: "Ciao",
-                  createdAt: Date()
-                 ),
-        StoryPost(id: "ijkl",
-                  userId: "9638",
-                  storyType: .advertisement,
-                  imageIdList: ["12341234", "23123092", "120391230923", "123213231"],
-                  commentIdList: ["76547654"],
-                  location: "부산 해운대구 우동",
-                  isLiked: true,
-                  isSavedToMyCollection: false,
-                  content: "Hola",
-                  createdAt: Date()
-                 ),
-    ]
+    lazy var postList: [StoryPost] = []
     
-    override func configureUI() {
-        super.configureUI()
-        
+    func configure() {
         configureCollectionView()
         dataSource = configureDataSource()
         
         let snapshot = configureSnapshot(self.postList)
         dataSource?.apply(snapshot)
+    }
+    
+    override func configureUI() {
+        super.configureUI()
         
         addSubview(collectionView)
     }
@@ -84,7 +52,7 @@ final class StoryListCollectionView: BaseView {
 
 //MARK: UICollectionViewDelegateFlowLayout
 
-extension StoryListCollectionView: UICollectionViewDelegateFlowLayout {
+extension StoryListView: UICollectionViewDelegateFlowLayout {
     
     enum Section: CaseIterable {
         case main

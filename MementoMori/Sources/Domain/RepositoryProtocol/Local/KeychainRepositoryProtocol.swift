@@ -8,12 +8,13 @@
 import Foundation
 
 enum KeyType: String {
+    case userID
     case accessToken
     case refreshToken
 }
 
 protocol KeychainRepositoryProtocol {
     func save(key: String, value: String, type: KeyType) -> Bool
-    func verify(key: String, type: KeyType) -> String?
+    func find(key: String, type: KeyType) -> String?
     func delete(key: String, type: KeyType) -> Bool
 }
