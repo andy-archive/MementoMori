@@ -38,11 +38,10 @@
 |:-:|:-:|:-:|:-:|
 | GIF | <img src="https://github.com/andy-archive/MementoMori/assets/102043891/fbd862fc-2602-4685-acc4-f35a96247c71" alt="#10 로그인 화면" width=200> | <img src="https://github.com/andy-archive/MementoMori/assets/102043891/a955068c-ce19-4f45-9e6f-47e859328b7e" alt="LSLP #6 회원가입 화면의 필수 및 선택 입력 사항 UI 및 로직 추가" width=200> | <img src="https://github.com/andy-archive/MementoMori/assets/102043891/a5053eb2-6243-43a9-aecc-476bf83e9d36" alt="#5 이메일 검증 응답 메시지에 따른 반응형" width=200> |
 
-### (2) 컨텐츠 목록 화면
-
-| 종류 | [#16 컨텐츠 목록 화면 UI](https://github.com/andy-archive/mementoMori/pull/16) | [#15 컨텐츠 목록 화면 UI](https://github.com/andy-archive/mementoMori/pull/15) |
+### (2) 스토리(컨텐츠) 목록 화면
+| 종류 | [#17 목록 조회 API (GET)](https://github.com/andy-archive/MementoMori/pull/17) | [#16 컨텐츠 목록 화면 UI](https://github.com/andy-archive/mementoMori/pull/16) |
 |:-:|:-:|:-:|
-| GIF | <img src="https://github.com/andy-archive/MementoMori/assets/102043891/393bce40-39d0-496f-a541-db0f058cc0b7" alt="이미지" width=200> | <img src="https://github.com/andy-archive/MementoMori/assets/102043891/cd406ef8-1276-4f22-b1f6-57c7091139f4" alt="LSLP #15 이미지" width=200> |
+| GIF | <img src="https://github.com/andy-archive/MementoMori/assets/102043891/22207e4a-ebb9-4521-83fd-bc370e394d4d" alt="LSLP #17 post GET 구현" width=200> |<img src="https://github.com/andy-archive/MementoMori/assets/102043891/393bce40-39d0-496f-a541-db0f058cc0b7" alt="이미지" width=200> |
 
 ## 트러블 슈팅
 ### (1) 토큰 매니저 (키 값이 동일한 문제)
