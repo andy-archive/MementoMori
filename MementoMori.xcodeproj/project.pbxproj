@@ -70,6 +70,7 @@
 		386309612B14703E001973AA /* UserJoinUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309602B14703E001973AA /* UserJoinUseCase.swift */; };
 		386309632B147637001973AA /* UserAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309622B147637001973AA /* UserAuthRepository.swift */; };
 		386FCD8B2B21DA8200822DFD /* UIImagePicker+Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386FCD8A2B21DA8200822DFD /* UIImagePicker+Reactive.swift */; };
+		386FCD8D2B21EFBA00822DFD /* StoryUploadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386FCD8C2B21EFBA00822DFD /* StoryUploadViewModel.swift */; };
 		387463CF2B160815009FAB2C /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387463CE2B160815009FAB2C /* TabBar.swift */; };
 		387463DE2B163C54009FAB2C /* StoryContentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387463DD2B163C54009FAB2C /* StoryContentCoordinator.swift */; };
 		387463E02B163C74009FAB2C /* StoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387463DF2B163C74009FAB2C /* StoryListViewController.swift */; };
@@ -163,6 +164,7 @@
 		386309602B14703E001973AA /* UserJoinUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJoinUseCase.swift; sourceTree = "<group>"; };
 		386309622B147637001973AA /* UserAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthRepository.swift; sourceTree = "<group>"; };
 		386FCD8A2B21DA8200822DFD /* UIImagePicker+Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImagePicker+Reactive.swift"; sourceTree = "<group>"; };
+		386FCD8C2B21EFBA00822DFD /* StoryUploadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryUploadViewModel.swift; sourceTree = "<group>"; };
 		387463CE2B160815009FAB2C /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		387463DD2B163C54009FAB2C /* StoryContentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryContentCoordinator.swift; sourceTree = "<group>"; };
 		387463DF2B163C74009FAB2C /* StoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryListViewController.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 			children = (
 				380647022B21CD7F001B375D /* StoryUploadCoordinator.swift */,
 				380646FF2B21CD1D001B375D /* StoryUploadViewController.swift */,
+				386FCD8C2B21EFBA00822DFD /* StoryUploadViewModel.swift */,
 			);
 			path = StoryUpload;
 			sourceTree = "<group>";
@@ -748,6 +751,7 @@
 				38318DC32B1CE9EF000EED65 /* BaseCollectionViewCell.swift in Sources */,
 				3874640D2B172208009FAB2C /* UserSigninError.swift in Sources */,
 				386309612B14703E001973AA /* UserJoinUseCase.swift in Sources */,
+				386FCD8D2B21EFBA00822DFD /* StoryUploadViewModel.swift in Sources */,
 				38EE8A9A2B06338800E629CC /* MementoAPI.swift in Sources */,
 				3847EC2F2B022FCE00E086EB /* UITabBarController+.swift in Sources */,
 				3874640B2B172013009FAB2C /* TokenError.swift in Sources */,

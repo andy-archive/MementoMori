@@ -7,6 +7,8 @@
 
 import UIKit
 
+import RxSwift
+
 final class StoryUploadViewController: BaseViewController {
     
     //MARK: - UI
@@ -14,20 +16,28 @@ final class StoryUploadViewController: BaseViewController {
     private lazy var photoItemView = UIView()
     private lazy var photoListView = UIView()
     
-    //MARK: - ImagePickerController
-    private let imagePicker = ImagePickerController()
+    //MARK: - Properties
+    private let viewModel: StoryUploadViewModel
+    private let imagePicker: ImagePickerController
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    override func bind() {
-    }
-    
-    override init() {
+    //MARK: - Initializer
+    init(
+        viewModel: StoryUploadViewModel,
+        imagePicker: ImagePickerController
+    ) {
+        self.viewModel = viewModel
+        self.imagePicker = imagePicker
+        
         super.init()
         
         self.imagePicker.delegate = self
+    }
+    
+    //MARK: - override functions
+    override func bind() {
+        let input = StoryUploadViewModel.Input(
+            photoClickedInList: photoListView.rx.
+        )
     }
     
     override func configureUI() {
@@ -69,25 +79,3 @@ final class StoryUploadViewController: BaseViewController {
         ])
     }
 }
-
-#if DEBUG
-import SwiftUI
-struct Preview: UIViewControllerRepresentable {
-    
-    func makeUIViewController(context: Context) -> UIViewController {
-        StoryUploadViewController()
-    }
-    
-    func updateUIViewController(_ uiView: UIViewController,context: Context) {
-    }
-}
-
-struct ViewController_PreviewProvider: PreviewProvider {
-    static var previews: some View {
-        Group {
-            Preview()
-                .previewDisplayName("Preview")
-        }
-    }
-}
-#endif

@@ -28,7 +28,12 @@ extension StoryUploadCoordinator {
     
     func showStoryUploadViewController() {
         self.navigationController.pushViewController(
-            StoryUploadViewController(), animated: true
+            StoryUploadViewController(
+                viewModel: StoryUploadViewModel(
+                    coordinator: self
+                ),
+                imagePicker: ImagePickerController()
+            ), animated: true
         )
     }
 }
