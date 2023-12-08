@@ -11,6 +11,9 @@
 		380646F92B2084F1001B375D /* StoryListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380646F82B2084F1001B375D /* StoryListUseCase.swift */; };
 		380646FB2B20872E001B375D /* StoryListUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380646FA2B20872E001B375D /* StoryListUseCaseProtocol.swift */; };
 		380646FD2B20D1FA001B375D /* UIViewController+Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380646FC2B20D1FA001B375D /* UIViewController+Reactive.swift */; };
+		380647002B21CD1D001B375D /* StoryUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380646FF2B21CD1D001B375D /* StoryUploadViewController.swift */; };
+		380647032B21CD7F001B375D /* StoryUploadCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380647022B21CD7F001B375D /* StoryUploadCoordinator.swift */; };
+		380647062B21D0E9001B375D /* StoryUploadHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380647052B21D0E9001B375D /* StoryUploadHeaderView.swift */; };
 		38318DA82B1A11EB000EED65 /* RefreshTokenDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DA72B1A11EB000EED65 /* RefreshTokenDTO.swift */; };
 		38318DB02B1C5C73000EED65 /* StoryListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DAF2B1C5C73000EED65 /* StoryListHeaderView.swift */; };
 		38318DB82B1C73AE000EED65 /* UICollectionViewLayout+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DB72B1C73AE000EED65 /* UICollectionViewLayout+.swift */; };
@@ -66,6 +69,9 @@
 		386309562B146757001973AA /* UserAuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309552B146757001973AA /* UserAuthCoordinator.swift */; };
 		386309612B14703E001973AA /* UserJoinUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309602B14703E001973AA /* UserJoinUseCase.swift */; };
 		386309632B147637001973AA /* UserAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309622B147637001973AA /* UserAuthRepository.swift */; };
+		386FCD8B2B21DA8200822DFD /* UIImagePicker+Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386FCD8A2B21DA8200822DFD /* UIImagePicker+Reactive.swift */; };
+		386FCD8D2B21EFBA00822DFD /* StoryUploadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386FCD8C2B21EFBA00822DFD /* StoryUploadViewModel.swift */; };
+		386FCDC92B22E2FB00822DFD /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 386FCDC82B22E2FB00822DFD /* RxGesture */; };
 		387463CF2B160815009FAB2C /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387463CE2B160815009FAB2C /* TabBar.swift */; };
 		387463DE2B163C54009FAB2C /* StoryContentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387463DD2B163C54009FAB2C /* StoryContentCoordinator.swift */; };
 		387463E02B163C74009FAB2C /* StoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387463DF2B163C74009FAB2C /* StoryListViewController.swift */; };
@@ -98,6 +104,9 @@
 		380646F82B2084F1001B375D /* StoryListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryListUseCase.swift; sourceTree = "<group>"; };
 		380646FA2B20872E001B375D /* StoryListUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryListUseCaseProtocol.swift; sourceTree = "<group>"; };
 		380646FC2B20D1FA001B375D /* UIViewController+Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Reactive.swift"; sourceTree = "<group>"; };
+		380646FF2B21CD1D001B375D /* StoryUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryUploadViewController.swift; sourceTree = "<group>"; };
+		380647022B21CD7F001B375D /* StoryUploadCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryUploadCoordinator.swift; sourceTree = "<group>"; };
+		380647052B21D0E9001B375D /* StoryUploadHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryUploadHeaderView.swift; sourceTree = "<group>"; };
 		38318DA72B1A11EB000EED65 /* RefreshTokenDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenDTO.swift; sourceTree = "<group>"; };
 		38318DAF2B1C5C73000EED65 /* StoryListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryListHeaderView.swift; sourceTree = "<group>"; };
 		38318DB72B1C73AE000EED65 /* UICollectionViewLayout+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewLayout+.swift"; sourceTree = "<group>"; };
@@ -155,6 +164,8 @@
 		386309552B146757001973AA /* UserAuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthCoordinator.swift; sourceTree = "<group>"; };
 		386309602B14703E001973AA /* UserJoinUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJoinUseCase.swift; sourceTree = "<group>"; };
 		386309622B147637001973AA /* UserAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthRepository.swift; sourceTree = "<group>"; };
+		386FCD8A2B21DA8200822DFD /* UIImagePicker+Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImagePicker+Reactive.swift"; sourceTree = "<group>"; };
+		386FCD8C2B21EFBA00822DFD /* StoryUploadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryUploadViewModel.swift; sourceTree = "<group>"; };
 		387463CE2B160815009FAB2C /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		387463DD2B163C54009FAB2C /* StoryContentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryContentCoordinator.swift; sourceTree = "<group>"; };
 		387463DF2B163C74009FAB2C /* StoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryListViewController.swift; sourceTree = "<group>"; };
@@ -186,6 +197,7 @@
 			files = (
 				38EE8A7D2B04CD4E00E629CC /* RxSwift in Frameworks */,
 				38EE8A7B2B04CD4E00E629CC /* RxCocoa in Frameworks */,
+				386FCDC92B22E2FB00822DFD /* RxGesture in Frameworks */,
 				38EE8A802B04CE2900E629CC /* Moya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -207,6 +219,24 @@
 				380646F82B2084F1001B375D /* StoryListUseCase.swift */,
 			);
 			path = StoryContent;
+			sourceTree = "<group>";
+		};
+		380646FE2B21CCF8001B375D /* StoryUpload */ = {
+			isa = PBXGroup;
+			children = (
+				380647022B21CD7F001B375D /* StoryUploadCoordinator.swift */,
+				380646FF2B21CD1D001B375D /* StoryUploadViewController.swift */,
+				386FCD8C2B21EFBA00822DFD /* StoryUploadViewModel.swift */,
+			);
+			path = StoryUpload;
+			sourceTree = "<group>";
+		};
+		380647042B21D0D3001B375D /* StoryUpload */ = {
+			isa = PBXGroup;
+			children = (
+				380647052B21D0E9001B375D /* StoryUploadHeaderView.swift */,
+			);
+			path = StoryUpload;
 			sourceTree = "<group>";
 		};
 		38318DB52B1C6F56000EED65 /* UserAuth */ = {
@@ -288,6 +318,7 @@
 			children = (
 				38EE8A772B04B65800E629CC /* Common */,
 				387463D92B163BE8009FAB2C /* StoryContent */,
+				380646FE2B21CCF8001B375D /* StoryUpload */,
 				386309532B14672E001973AA /* UserAuth */,
 			);
 			path = Presentation;
@@ -330,6 +361,7 @@
 				3847EC2E2B022FCE00E086EB /* UITabBarController+.swift */,
 				38CA8C292B038CB000A9C4B7 /* UITextField+.swift */,
 				380646FC2B20D1FA001B375D /* UIViewController+Reactive.swift */,
+				386FCD8A2B21DA8200822DFD /* UIImagePicker+Reactive.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -361,6 +393,7 @@
 			isa = PBXGroup;
 			children = (
 				38318DB62B1C6F62000EED65 /* StoryContent */,
+				380647042B21D0D3001B375D /* StoryUpload */,
 				38318DB52B1C6F56000EED65 /* UserAuth */,
 			);
 			path = Custom;
@@ -622,6 +655,7 @@
 				38EE8A7A2B04CD4E00E629CC /* RxCocoa */,
 				38EE8A7C2B04CD4E00E629CC /* RxSwift */,
 				38EE8A7F2B04CE2900E629CC /* Moya */,
+				386FCDC82B22E2FB00822DFD /* RxGesture */,
 			);
 			productName = MementoMori;
 			productReference = 3847EC0D2B022C1200E086EB /* MementoMori.app */;
@@ -654,6 +688,7 @@
 			packageReferences = (
 				38EE8A792B04CD4E00E629CC /* XCRemoteSwiftPackageReference "RxSwift" */,
 				38EE8A7E2B04CE2900E629CC /* XCRemoteSwiftPackageReference "Moya" */,
+				386FCDC72B22E2FB00822DFD /* XCRemoteSwiftPackageReference "RxGesture" */,
 			);
 			productRefGroup = 3847EC0E2B022C1200E086EB /* Products */;
 			projectDirPath = "";
@@ -698,7 +733,11 @@
 				386309562B146757001973AA /* UserAuthCoordinator.swift in Sources */,
 				38318DA82B1A11EB000EED65 /* RefreshTokenDTO.swift in Sources */,
 				38318DE32B20380A000EED65 /* Creator.swift in Sources */,
+				380647002B21CD1D001B375D /* StoryUploadViewController.swift in Sources */,
+				386FCD8B2B21DA8200822DFD /* UIImagePicker+Reactive.swift in Sources */,
+				380647062B21D0E9001B375D /* StoryUploadHeaderView.swift in Sources */,
 				38EE8A822B04D0AC00E629CC /* UserJoinViewModel.swift in Sources */,
+				380647032B21CD7F001B375D /* StoryUploadCoordinator.swift in Sources */,
 				3863092A2B1340ED001973AA /* UserJoinUseCaseProtocol.swift in Sources */,
 				38318DE92B20473D000EED65 /* StoryPostRepository.swift in Sources */,
 				38318DCC2B1E35DB000EED65 /* StoryListViewModel.swift in Sources */,
@@ -716,6 +755,7 @@
 				38318DC32B1CE9EF000EED65 /* BaseCollectionViewCell.swift in Sources */,
 				3874640D2B172208009FAB2C /* UserSigninError.swift in Sources */,
 				386309612B14703E001973AA /* UserJoinUseCase.swift in Sources */,
+				386FCD8D2B21EFBA00822DFD /* StoryUploadViewModel.swift in Sources */,
 				38EE8A9A2B06338800E629CC /* MementoAPI.swift in Sources */,
 				3847EC2F2B022FCE00E086EB /* UITabBarController+.swift in Sources */,
 				3874640B2B172013009FAB2C /* TokenError.swift in Sources */,
@@ -979,6 +1019,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		386FCDC72B22E2FB00822DFD /* XCRemoteSwiftPackageReference "RxGesture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.4;
+			};
+		};
 		38EE8A792B04CD4E00E629CC /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
@@ -998,6 +1046,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		386FCDC82B22E2FB00822DFD /* RxGesture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 386FCDC72B22E2FB00822DFD /* XCRemoteSwiftPackageReference "RxGesture" */;
+			productName = RxGesture;
+		};
 		38EE8A7A2B04CD4E00E629CC /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 38EE8A792B04CD4E00E629CC /* XCRemoteSwiftPackageReference "RxSwift" */;
