@@ -7,14 +7,21 @@
 
 import UIKit
 
+import RxGesture
 import RxSwift
 
 final class StoryUploadViewController: BaseViewController {
     
     //MARK: - UI
     private lazy var headerView = StoryUploadHeaderView()
-    private lazy var photoItemView = UIView()
+    private lazy var photoItemView = UIImageView()
     private lazy var photoListView = UIView()
+    private lazy var selectGuideLabel = {
+        let label = UILabel()
+        label.text = "🙌 이미지를 선택하세요"
+        label.font = .systemFont(ofSize: Constant.FontSize.title)
+        return label
+    }()
     
     //MARK: - Properties
     private let viewModel: StoryUploadViewModel
@@ -35,9 +42,29 @@ final class StoryUploadViewController: BaseViewController {
     
     //MARK: - override functions
     override func bind() {
+        
+        let image = photoListView
+            .rx
+            .tapGesture()
+            .when(.recognized)
+            .withUnretained(self)
+            .flatMap { owner, _ in
+                owner.imagePicker.pickImage()
+            }
+            .share()
+        
         let input = StoryUploadViewModel.Input(
-            photoClickedInList: photoListView.rx.
+            imageSelectionViewClicked: image
         )
+        let output = viewModel.transform(input: input)
+        
+        output
+            .resultImage
+            .asSignal()
+            .emit(with: self) { owner, image in
+                owner.photoItemView.image = image
+            }
+            .disposed(by: disposeBag)
     }
     
     override func configureUI() {
@@ -45,14 +72,16 @@ final class StoryUploadViewController: BaseViewController {
         
         //MARK: - UI Tests
         photoItemView.backgroundColor = .systemYellow.withAlphaComponent(0.4)
-        photoListView.backgroundColor = .systemGray2
+        photoListView.backgroundColor = .systemGray4
         
         //MARK: - View Hierarchies
         view.addSubview(headerView)
         view.addSubview(photoItemView)
         view.addSubview(photoListView)
+        photoListView.addSubview(selectGuideLabel)
     }
     
+    //MARK: - View Layouts
     override func configureLayout() {
         headerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -67,7 +96,7 @@ final class StoryUploadViewController: BaseViewController {
             photoItemView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
             photoItemView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             photoItemView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            photoItemView.heightAnchor.constraint(equalTo: view.widthAnchor)
+            photoItemView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8)
         ])
         
         photoListView.translatesAutoresizingMaskIntoConstraints = false
@@ -76,6 +105,14 @@ final class StoryUploadViewController: BaseViewController {
             photoListView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             photoListView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             photoListView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        selectGuideLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            selectGuideLabel.leadingAnchor.constraint(greaterThanOrEqualTo: photoListView.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
+            selectGuideLabel.trailingAnchor.constraint(lessThanOrEqualTo: photoListView.trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal),
+            selectGuideLabel.centerXAnchor.constraint(equalTo: photoListView.centerXAnchor),
+            selectGuideLabel.centerYAnchor.constraint(equalTo: photoListView.centerYAnchor)
         ])
     }
 }
