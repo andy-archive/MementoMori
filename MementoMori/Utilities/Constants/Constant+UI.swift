@@ -10,6 +10,7 @@ import UIKit
 extension Constant {
     enum Color {
         static let label = UIColor.label
+        static let secondaryLabel = UIColor.secondaryLabel
         static let background = UIColor.systemBackground
         static let groupedBackground = UIColor.systemGroupedBackground
         static let secondaryGroupedBackground = UIColor.secondarySystemGroupedBackground
@@ -47,6 +48,7 @@ extension Constant {
             static let plusSquare = UIImage(systemName: "plus.square")?.withTintColor(.label, renderingMode: .alwaysOriginal)
             static let plusSquareFill = UIImage(systemName: "plus.square.fill")?.withTintColor(.label, renderingMode: .alwaysOriginal)
             static let xMark = UIImage(systemName: "xmark")?.withTintColor(.label, renderingMode: .alwaysOriginal)
+            static let chevronLeft = UIImage(systemName: "chevron.left")?.withTintColor(.label, renderingMode: .alwaysOriginal)
         }
     }
 }

@@ -9,12 +9,12 @@ import UIKit
 
 final class StoryUploadHeaderView: BaseView {
     
-    private lazy var cancelButton = {
+    //MARK: - UI
+    lazy var cancelButton = {
         let button = UIButton()
         button.setImage(Constant.Image.System.xMark, for: .normal)
         return button
     }()
-    
     private lazy var newPostLabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: Constant.FontSize.title)
@@ -23,16 +23,15 @@ final class StoryUploadHeaderView: BaseView {
         label.text = "새 게시물"
         return label
     }()
-    
-    private lazy var nextButton = {
+    lazy var nextButton = {
         let button = UIButton()
         button.setTitle("다음", for: .normal)
         button.setTitleColor(Constant.Color.Button.valid, for: .normal)
         return button
     }()
-    
     private lazy var separatorView = SeparatorView()
     
+    //MARK: - View Hierarchies
     override func configureUI() {
         super.configureUI()
         
@@ -42,6 +41,7 @@ final class StoryUploadHeaderView: BaseView {
         addSubview(separatorView)
     }
     
+    //MARK: - View Layouts
     override func configureLayout() {
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

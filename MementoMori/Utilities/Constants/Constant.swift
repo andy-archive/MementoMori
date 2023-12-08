@@ -10,7 +10,7 @@ import Foundation
 enum Constant {
     
     enum FontSize {
-        static let LargeTitle: CGFloat = 30
+        static let largeTitle: CGFloat = 30
         static let title: CGFloat = 18
         static let subtitle: CGFloat = 15
         static let body: CGFloat = 12

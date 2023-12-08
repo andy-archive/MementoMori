@@ -20,7 +20,7 @@ class SigninTitleLabel: UILabel {
     }
     
     private func configureUI() {
-        font = .boldSystemFont(ofSize: Constant.FontSize.LargeTitle)
+        font = .boldSystemFont(ofSize: Constant.FontSize.largeTitle)
         textColor = Constant.Color.label
         numberOfLines = 1
     }

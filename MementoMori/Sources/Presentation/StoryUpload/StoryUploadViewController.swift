@@ -12,15 +12,46 @@ import RxSwift
 
 final class StoryUploadViewController: BaseViewController {
     
-    //MARK: - UI
+    //MARK: - UI (1) uploadImageView
     private lazy var headerView = StoryUploadHeaderView()
-    private lazy var photoItemView = UIImageView()
-    private lazy var photoListView = UIView()
-    private lazy var selectGuideLabel = {
+    private lazy var imageItemView = {
+        let view = UIImageView()
+        view.backgroundColor = .systemYellow.withAlphaComponent(0.2)
+        return view
+    }()
+    private lazy var imageListView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray6
+        return view
+    }()
+    private lazy var selectionGuideLabel = {
         let label = UILabel()
-        label.text = "🙌 이미지를 선택하세요"
-        label.font = .systemFont(ofSize: Constant.FontSize.title)
+        label.text = "이미지 선택 📸"
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.font = .boldSystemFont(ofSize: Constant.FontSize.largeTitle)
         return label
+    }()
+    
+    //MARK: - UI (2) uploadStoryView
+    private lazy var storyImageView = {
+        let view = UIImageView()
+        view.isHidden = true
+        view.backgroundColor = .systemYellow.withAlphaComponent(0.2)
+        return view
+    }()
+    private lazy var storyTextView = {
+        let view = UITextView()
+        view.text = "문구를 입력하세요..."
+        view.textColor = Constant.Color.secondaryLabel
+        view.font = .systemFont(ofSize: Constant.FontSize.title)
+        view.isHidden = true
+        return view
+    }()
+    private lazy var separatorView = {
+        let view = SeparatorView()
+        view.isHidden = true
+        return view
     }()
     
     //MARK: - Properties
@@ -38,12 +69,13 @@ final class StoryUploadViewController: BaseViewController {
         super.init()
         
         self.imagePicker.delegate = self
+        self.storyTextView.delegate = self
     }
     
-    //MARK: - override functions
+    //MARK: - bind with ViewModel
     override func bind() {
         
-        let image = photoListView
+        let image = imageListView
             .rx
             .tapGesture()
             .when(.recognized)
@@ -52,9 +84,10 @@ final class StoryUploadViewController: BaseViewController {
                 owner.imagePicker.pickImage()
             }
             .share()
-        
         let input = StoryUploadViewModel.Input(
-            imageSelectionViewClicked: image
+            imageSelectionViewClicked: image,
+            nextButtonClicked: self.headerView.nextButton.rx.tap,
+            cancelButtonClicked: self.headerView.cancelButton.rx.tap
         )
         let output = viewModel.transform(input: input)
         
@@ -62,26 +95,42 @@ final class StoryUploadViewController: BaseViewController {
             .resultImage
             .asSignal()
             .emit(with: self) { owner, image in
-                owner.photoItemView.image = image
+                owner.imageItemView.image = image
+                owner.storyImageView.image = image
+            }
+            .disposed(by: disposeBag)
+        
+        output
+            .presentStoryUploadView
+            .asSignal()
+            .emit(with: self) { owner, _ in
+                owner.presentStoryUploadView()
+            }
+            .disposed(by: disposeBag)
+        
+        output
+            .presentImageUploadView
+            .asSignal()
+            .emit(with: self) { owner, _ in
+                owner.presentImageUploadView()
             }
             .disposed(by: disposeBag)
     }
     
+    //MARK: - View Hierarchies
     override func configureUI() {
         super.configureUI()
         
-        //MARK: - UI Tests
-        photoItemView.backgroundColor = .systemYellow.withAlphaComponent(0.4)
-        photoListView.backgroundColor = .systemGray4
-        
-        //MARK: - View Hierarchies
         view.addSubview(headerView)
-        view.addSubview(photoItemView)
-        view.addSubview(photoListView)
-        photoListView.addSubview(selectGuideLabel)
+        view.addSubview(imageItemView)
+        view.addSubview(imageListView)
+        view.addSubview(storyImageView)
+        view.addSubview(storyTextView)
+        view.addSubview(separatorView)
+        imageListView.addSubview(selectionGuideLabel)
     }
     
-    //MARK: - View Layouts
+    //MARK: - View Layouts (1) uploadImageView
     override func configureLayout() {
         headerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -91,28 +140,92 @@ final class StoryUploadViewController: BaseViewController {
             headerView.heightAnchor.constraint(equalToConstant: Constant.Layout.StoryList.Header.height)
         ])
         
-        photoItemView.translatesAutoresizingMaskIntoConstraints = false
+        imageItemView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            photoItemView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
-            photoItemView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            photoItemView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            photoItemView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8)
+            imageItemView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
+            imageItemView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            imageItemView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            imageItemView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7),
+            imageItemView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         
-        photoListView.translatesAutoresizingMaskIntoConstraints = false
+        imageListView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            photoListView.topAnchor.constraint(equalTo: photoItemView.bottomAnchor),
-            photoListView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            photoListView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            photoListView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            imageListView.topAnchor.constraint(equalTo: imageItemView.bottomAnchor),
+            imageListView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            imageListView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            imageListView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
-        selectGuideLabel.translatesAutoresizingMaskIntoConstraints = false
+        selectionGuideLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            selectGuideLabel.leadingAnchor.constraint(greaterThanOrEqualTo: photoListView.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
-            selectGuideLabel.trailingAnchor.constraint(lessThanOrEqualTo: photoListView.trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal),
-            selectGuideLabel.centerXAnchor.constraint(equalTo: photoListView.centerXAnchor),
-            selectGuideLabel.centerYAnchor.constraint(equalTo: photoListView.centerYAnchor)
+            selectionGuideLabel.topAnchor.constraint(equalTo: imageListView.topAnchor, constant: Constant.Layout.Common.Inset.vertical * 3),
+            selectionGuideLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4),
+            selectionGuideLabel.centerXAnchor.constraint(equalTo: imageListView.centerXAnchor)
         ])
+        
+        //MARK: - View Layouts (2) uploadTextView
+        storyImageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            storyImageView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: Constant.Layout.Common.Inset.vertical),
+            storyImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
+            storyImageView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2),
+            storyImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2),
+        ])
+        
+        storyTextView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            storyTextView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: Constant.Layout.Common.Inset.vertical),
+            storyTextView.leadingAnchor.constraint(equalTo: storyImageView.trailingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
+            storyTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal),
+            storyTextView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2),
+        ])
+        
+        separatorView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            storyTextView.topAnchor.constraint(greaterThanOrEqualTo: storyTextView.topAnchor),
+            separatorView.bottomAnchor.constraint(equalTo: storyTextView.bottomAnchor, constant: Constant.Layout.Common.Inset.vertical),
+            separatorView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            separatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+    }
+    
+    //MARK: - dismiss keyboard in touch
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+}
+
+//MARK: - transition view
+extension StoryUploadViewController {
+    
+    private func presentImageUploadView() {
+        headerView.cancelButton.setImage(Constant.Image.System.xMark, for: .normal)
+        headerView.nextButton.setTitle("다음", for: .normal)
+        imageListView.isHidden.toggle()
+        imageItemView.isHidden.toggle()
+        storyImageView.isHidden.toggle()
+        storyTextView.isHidden.toggle()
+        separatorView.isHidden.toggle()
+    }
+    
+    private func presentStoryUploadView() {
+        headerView.cancelButton.setImage(Constant.Image.System.chevronLeft, for: .normal)
+        headerView.nextButton.setTitle("공유", for: .normal)
+        imageListView.isHidden.toggle()
+        imageItemView.isHidden.toggle()
+        storyImageView.isHidden.toggle()
+        storyTextView.isHidden.toggle()
+        separatorView.isHidden.toggle()
+    }
+}
+
+//MARK: - UITextViewDelegate
+extension StoryUploadViewController: UITextViewDelegate {
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        guard textView.textColor == Constant.Color.secondaryLabel else { return }
+        textView.text = nil
+        textView.textColor = Constant.Color.label
     }
 }
