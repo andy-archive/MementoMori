@@ -15,7 +15,7 @@ final class StoryUploadHeaderView: BaseView {
         button.setImage(Constant.Image.System.xMark, for: .normal)
         return button
     }()
-    private lazy var newPostLabel = {
+    lazy var newPostLabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: Constant.FontSize.title)
         label.textColor = Constant.Color.label

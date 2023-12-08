@@ -16,7 +16,7 @@ final class StoryUploadViewController: BaseViewController {
     private lazy var headerView = StoryUploadHeaderView()
     private lazy var imageItemView = {
         let view = UIImageView()
-        view.backgroundColor = .systemYellow.withAlphaComponent(0.2)
+        view.contentMode = .scaleAspectFit
         return view
     }()
     private lazy var imageListView = {
@@ -224,8 +224,16 @@ extension StoryUploadViewController {
 extension StoryUploadViewController: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
+        headerView.cancelButton.isHidden = true
+        headerView.newPostLabel.text = "문구"
+        
         guard textView.textColor == Constant.Color.secondaryLabel else { return }
         textView.text = nil
         textView.textColor = Constant.Color.label
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        headerView.cancelButton.isHidden = false
+        headerView.newPostLabel.text = "새 게시물"
     }
 }
