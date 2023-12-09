@@ -13,7 +13,7 @@ enum MementoAPI {
     case emailValidation(model: EmailValidationRequestDTO)
     case userJoin(model: UserJoinRequestDTO)
     case userSignin(model: UserSigninRequestDTO)
-    case refresh(model: RefreshTokenRequestDTO)
+    case refreshToken(model: RefreshTokenRequestDTO)
     case storyCreate(model: StoryCreateRequestDTO, accessToken: String)
     case storyRead(model: StoryReadRequestDTO, accessToken: String)
 }
@@ -29,7 +29,7 @@ extension MementoAPI: TargetType {
         case .emailValidation: return "validation/email"
         case .userJoin: return "join"
         case .userSignin: return "login"
-        case .refresh: return "refresh"
+        case .refreshToken: return "refresh"
         case .storyCreate, .storyRead: return "post"
         }
     }
@@ -39,7 +39,7 @@ extension MementoAPI: TargetType {
         case .emailValidation: return .post
         case .userJoin: return .post
         case .userSignin: return .post
-        case .refresh: return .get
+        case .refreshToken: return .get
         case .storyCreate: return .post
         case .storyRead: return .get
         }
@@ -53,7 +53,7 @@ extension MementoAPI: TargetType {
             return .requestJSONEncodable(data)
         case .userSignin(let data):
             return .requestJSONEncodable(data)
-        case .refresh:
+        case .refreshToken:
             return .requestPlain
         case .storyCreate(let data, _):
             return .requestJSONEncodable(data)
@@ -78,7 +78,7 @@ extension MementoAPI: TargetType {
                 "Content-Type": "application/json",
                 "SesacKey": "\(MementoAPI.secretKey)"
             ]
-        case .refresh(let data):
+        case .refreshToken(let data):
             [
                 "Authorization": "\(data.accessToken)",
                 "SesacKey": "\(MementoAPI.secretKey)",

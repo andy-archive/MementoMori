@@ -76,7 +76,7 @@ final class UserAuthRepository: UserAuthRepositoryProtocol {
         )
         
         let responseDTO = APIManager.shared.request(
-            api: .refresh(model: requestDTO),
+            api: .refreshToken(model: requestDTO),
             responseType: UserSigninResponseDTO.self
         )
         
