@@ -13,8 +13,8 @@ enum MementoAPI {
     case emailValidation(model: EmailValidationRequestDTO)
     case userJoin(model: UserJoinRequestDTO)
     case userSignin(model: UserSigninRequestDTO)
-    case refresh(model: RefreshTokenResquestDTO)
     case storyCreate(model: StoryReadRequestDTO, accessToken: String)
+    case refresh(model: RefreshTokenRequestDTO)
     case storyRead(model: StoryReadRequestDTO, accessToken: String)
 }
 

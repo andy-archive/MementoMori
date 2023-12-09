@@ -69,7 +69,7 @@ final class UserAuthRepository: UserAuthRepositoryProtocol {
                 .just(.errorStatusCode(RefreshError.invalidToken.rawValue))
         }
         
-        let requestDTO = RefreshTokenResquestDTO(
+        let requestDTO = RefreshTokenRequestDTO(
             id: id,
             accessToken: accessToken,
             refreshToken: refreshToken

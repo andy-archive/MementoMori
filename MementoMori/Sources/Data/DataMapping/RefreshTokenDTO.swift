@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RefreshTokenResquestDTO: Encodable {
+struct RefreshTokenRequestDTO: Encodable {
     let id: String
     let accessToken: String
     let refreshToken: String
