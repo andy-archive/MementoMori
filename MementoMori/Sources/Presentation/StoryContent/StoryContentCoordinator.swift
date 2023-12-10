@@ -24,6 +24,7 @@ final class StoryContentCoordinator: Coordinator {
     }
 }
 
+//MARK: - ViewControllers
 extension StoryContentCoordinator {
     
     func showStoryListViewController() {
@@ -39,5 +40,12 @@ extension StoryContentCoordinator {
             ),
             animated: true
         )
+    }
+}
+
+//MARK: - CoordinatorDelegate
+extension StoryContentCoordinator: CoordinatorDelegate {
+    func didFinish(childCoordinator: Coordinator) {
+        self.finish()
     }
 }

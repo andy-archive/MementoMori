@@ -26,38 +26,27 @@ final class StoryListUseCase: StoryListUseCaseProtocol {
         self.storyPostRepository = storyPostRepository
         self.keychainRepository = keychainRepository
     }
-    
-    //MARK: - (1) fetchAccessToken - keychainRepository (find)
-    private func fetchAccessToken() -> (isCompleted: Bool, accessToken: String?) {
-        guard let userID = keychainRepository.find(key: "", type: .userID)
-        else { return (false, nil) }
-        
-        let accessToken = keychainRepository.find(key: userID, type: .accessToken)
-        
-        return (true, accessToken)
-    }
-    
-    //MARK: - (2) fetchPostRead - storyPostRepository (GET)
-    private func fetchPostRead(nextCursor: String?, limit: String, accessToken: String) -> Single<APIResult<(storyList: [StoryPost], nextCursor: String)>> {
 
+    //MARK: - (1) fetchPostRead - storyPostRepository (GET)
+    private func fetchPostRead(nextCursor: String?, limit: String) -> Single<APIResult<(storyList: [StoryPost], nextCursor: String)>> {
         return self.storyPostRepository.read(
             next: nextCursor ?? nil,
-            limit: limit,
-            accessToken: accessToken
+            limit: limit
         )
     }
     
-    //MARK: - (3) fetchStoryList
-    private func fetchStoryList(result: APIResult<(storyList: [StoryPost], nextCursor: String)>) -> [StoryPost] {
+    //MARK: - (2) fetchStoryList
+    private func fetchStoryList(result: APIResult<(storyList: [StoryPost], nextCursor: String)>) -> [StoryPost]? {
         switch result {
         case .suceessData(let list):
             return list.storyList
-        case .errorStatusCode(_):
+        case .errorStatusCode(let statusCode):
+            if statusCode == 419 { return nil }
             return MockData().storyList
         }
     }
     
-    //MARK: - (4) logErrorMessage
+    //MARK: - (3) logErrorMessage
     private func logErrorMessage(statusCode: Int) -> String {
         return StoryReadError(rawValue: statusCode)?.message ??
         NetworkError(rawValue: statusCode)?.message ??
@@ -65,12 +54,7 @@ final class StoryListUseCase: StoryListUseCaseProtocol {
     }
     
     //MARK: - (MementoAPI) /post GET Request
-    func fetchStoryListStream() -> Observable<[StoryPost]> {
-        
-        let keychainProcess = self.fetchAccessToken()
-        
-        guard keychainProcess.isCompleted,
-              let accessToken = keychainProcess.accessToken else { return Observable.just(MockData().storyList) }
+    func fetchStoryListStream() -> Observable<[StoryPost]?> {
         
         var limit = String(pagination)
         
@@ -80,13 +64,12 @@ final class StoryListUseCase: StoryListUseCaseProtocol {
             .flatMap { owner, _ in
                 owner.fetchPostRead(
                     nextCursor: owner.nextCursor,
-                    limit: limit,
-                    accessToken: accessToken
+                    limit: limit
                 )
             }
             .withUnretained(self)
             .map { owner, value in
-                return owner.fetchStoryList(result: value)
+                owner.fetchStoryList(result: value)
             }
             .asObservable()
     }

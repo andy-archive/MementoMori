@@ -19,12 +19,12 @@ final class UserAuthRepository: UserAuthRepositoryProtocol {
             birthday: user.birthday
         )
         
-        let responseDTO = APIManager.shared.request(
+        let singleResponse = APIManager.shared.request(
             api: .userJoin(model: requestDTO),
             responseType: UserJoinResponseDTO.self
         )
         
-        let result = responseDTO.flatMap { result in
+        let singleResult = singleResponse.flatMap { result in
             switch result {
             case .suceessData(let responseDTO):
                 return Single<APIResult>.just(.suceessData(responseDTO.toDomain()))
@@ -33,7 +33,7 @@ final class UserAuthRepository: UserAuthRepositoryProtocol {
             }
         }
         
-        return result
+        return singleResult
     }
     
     func signin(user: User) -> Single<APIResult<User>> {
@@ -43,12 +43,12 @@ final class UserAuthRepository: UserAuthRepositoryProtocol {
             password: user.password ?? ""
         )
         
-        let responseDTO = APIManager.shared.request(
+        let singleResponse = APIManager.shared.signin(
             api: .userSignin(model: requestDTO),
             responseType: UserSigninResponseDTO.self
         )
         
-        let result = responseDTO.flatMap { result in
+        let singleResult = singleResponse.flatMap { result in
             switch result {
             case .suceessData(let responseDTO):
                 return Single<APIResult>.just(.suceessData(responseDTO.toDomain()))
@@ -57,38 +57,6 @@ final class UserAuthRepository: UserAuthRepositoryProtocol {
             }
         }
         
-        return result
-    }
-    
-    func refresh(user: User) -> Single<APIResult<Void>> {
-        
-        guard let id = user.id,
-              let accessToken = user.accessToken,
-              let refreshToken = user.refreshToken else {
-            return Single<APIResult<Void>>
-                .just(.errorStatusCode(RefreshError.invalidToken.rawValue))
-        }
-        
-        let requestDTO = RefreshTokenResquestDTO(
-            id: id,
-            accessToken: accessToken,
-            refreshToken: refreshToken
-        )
-        
-        let responseDTO = APIManager.shared.request(
-            api: .refresh(model: requestDTO),
-            responseType: UserSigninResponseDTO.self
-        )
-        
-        let result = responseDTO.flatMap { result in
-            switch result {
-            case .suceessData(_):
-                return Single<APIResult>.just(.suceessData(()))
-            case .errorStatusCode(let statusCode):
-                return Single<APIResult>.just(.errorStatusCode(statusCode))
-            }
-        }
-        
-        return result
+        return singleResult
     }
 }

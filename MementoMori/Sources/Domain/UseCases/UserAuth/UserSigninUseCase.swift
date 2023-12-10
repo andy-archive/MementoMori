@@ -61,7 +61,7 @@ final class UserSigninUseCase: UserSigninUseCaseProtocol {
                 type: .refreshToken
             )
         
-        if isTokenSaved && isRefreshTokenSaved {
+        if isUserSaved && isTokenSaved && isRefreshTokenSaved {
             return true
         }
         

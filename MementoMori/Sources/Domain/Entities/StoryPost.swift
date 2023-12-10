@@ -19,7 +19,7 @@ struct StoryPost: Hashable {
     let nickname: String
     let title: String
     let content: String
-    let imageList: [String]
+    let imageNameList: [String]
     let commentList: [String]
     let location: String?
     let isLiked: Bool

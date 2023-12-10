@@ -37,7 +37,7 @@ final class StoryListViewController: BaseViewController {
         
         output
             .storyList
-            .drive(with: self) { owner, value in
+            .emit(with: self) { owner, value in
                 owner.storyView.postList = value
                 self.storyView.configure()
             }

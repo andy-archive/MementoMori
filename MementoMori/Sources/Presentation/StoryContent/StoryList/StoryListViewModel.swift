@@ -17,7 +17,7 @@ final class StoryListViewModel: ViewModel {
     }
     
     struct Output {
-        let storyList: Driver<[StoryPost]>
+        let storyList: Signal<[StoryPost]>
     }
     
     weak var coordinator: StoryContentCoordinator?
@@ -38,9 +38,17 @@ final class StoryListViewModel: ViewModel {
             .viewWillAppear
             .withUnretained(self)
             .flatMap { owner, _ in
-                return owner.storyListUseCase.fetchStoryListStream()
+                owner.storyListUseCase.fetchStoryListStream()
             }
-            .asDriver(onErrorJustReturn: [])
+            .withUnretained(self)
+            .map { owner, storyList in
+                guard let storyList = storyList else {
+                    let app = owner.coordinator?.finish()
+                    return [StoryPost]()
+                }
+                return storyList
+            }
+            .asSignal(onErrorJustReturn: [StoryPost]())
             
         return Output(
             storyList: storyList
