@@ -29,7 +29,6 @@ final class StoryListUseCase: StoryListUseCaseProtocol {
 
     //MARK: - (1) fetchPostRead - storyPostRepository (GET)
     private func fetchPostRead(nextCursor: String?, limit: String) -> Single<APIResult<(storyList: [StoryPost], nextCursor: String)>> {
-
         return self.storyPostRepository.read(
             next: nextCursor ?? nil,
             limit: limit
@@ -37,11 +36,12 @@ final class StoryListUseCase: StoryListUseCaseProtocol {
     }
     
     //MARK: - (2) fetchStoryList
-    private func fetchStoryList(result: APIResult<(storyList: [StoryPost], nextCursor: String)>) -> [StoryPost] {
+    private func fetchStoryList(result: APIResult<(storyList: [StoryPost], nextCursor: String)>) -> [StoryPost]? {
         switch result {
         case .suceessData(let list):
             return list.storyList
-        case .errorStatusCode(_):
+        case .errorStatusCode(let statusCode):
+            if statusCode == 419 { return nil }
             return MockData().storyList
         }
     }
@@ -54,7 +54,7 @@ final class StoryListUseCase: StoryListUseCaseProtocol {
     }
     
     //MARK: - (MementoAPI) /post GET Request
-    func fetchStoryListStream() -> Observable<[StoryPost]> {
+    func fetchStoryListStream() -> Observable<[StoryPost]?> {
         
         var limit = String(pagination)
         
@@ -69,7 +69,7 @@ final class StoryListUseCase: StoryListUseCaseProtocol {
             }
             .withUnretained(self)
             .map { owner, value in
-                return owner.fetchStoryList(result: value)
+                owner.fetchStoryList(result: value)
             }
             .asObservable()
     }

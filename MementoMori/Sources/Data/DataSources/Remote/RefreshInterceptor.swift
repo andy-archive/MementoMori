@@ -9,7 +9,6 @@ import Foundation
 
 import Alamofire
 import Moya
-import RxSwift
 
 final class RefreshInterceptor: RequestInterceptor {
     
