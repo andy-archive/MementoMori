@@ -11,17 +11,17 @@ import RxSwift
 
 final class StoryPostRepository: StoryPostRepositoryProtocol {
     
-    func create(story: StoryPost, accessToken: String) -> Single<APIResult<Void>> {
+    func create(story: StoryPost, imageDataList: [Data]) -> Single<APIResult<Void>> {
         
         let requestDTO = StoryCreateRequestDTO(
             title: story.title,
             content: story.content,
-            imageFileList: story.imageFileList,
+            imageFileList: imageDataList,
             address: story.location
         )
         
         let resonseSingle = APIManager.shared.request(
-            api: .storyCreate(model: requestDTO, accessToken: accessToken),
+            api: .storyCreate(model: requestDTO),
             responseType: StoryReadResponseDTO.self
         )
         
@@ -37,7 +37,7 @@ final class StoryPostRepository: StoryPostRepositoryProtocol {
         return resultSingle
     }
     
-    func read(next: String?, limit: String, accessToken: String) -> Single<APIResult<(storyList: [StoryPost], nextCursor: String)>> {
+    func read(next: String?, limit: String) -> Single<APIResult<(storyList: [StoryPost], nextCursor: String)>> {
         
         let requestDTO = StoryReadRequestDTO(
             next: next ?? nil,
@@ -46,7 +46,7 @@ final class StoryPostRepository: StoryPostRepositoryProtocol {
         )
         
         let resonseSingle = APIManager.shared.request(
-            api: .storyRead(model: requestDTO, accessToken: accessToken),
+            api: .storyRead(model: requestDTO),
             responseType: StoryReadResponseDTO.self
         )
         

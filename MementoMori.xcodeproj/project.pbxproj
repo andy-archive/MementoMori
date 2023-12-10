@@ -82,6 +82,7 @@
 		3874640D2B172208009FAB2C /* UserSigninError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874640C2B172208009FAB2C /* UserSigninError.swift */; };
 		387464132B173E2C009FAB2C /* UserJoinError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387464122B173E2C009FAB2C /* UserJoinError.swift */; };
 		388CFD4D2B0F2ED900638EFD /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CFD4C2B0F2ED800638EFD /* NetworkError.swift */; };
+		38B5FB152B24D2AE00F91DDA /* RefreshInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5FB142B24D2AE00F91DDA /* RefreshInterceptor.swift */; };
 		38B9203F2B08AAED006CBD1C /* Constant+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B9203E2B08AAED006CBD1C /* Constant+Network.swift */; };
 		38CA8C222B0385AC00A9C4B7 /* SigninTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA8C212B0385AC00A9C4B7 /* SigninTitleLabel.swift */; };
 		38CA8C252B03893300A9C4B7 /* SigninSubtitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA8C242B03893300A9C4B7 /* SigninSubtitleLabel.swift */; };
@@ -176,6 +177,7 @@
 		3874640C2B172208009FAB2C /* UserSigninError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninError.swift; sourceTree = "<group>"; };
 		387464122B173E2C009FAB2C /* UserJoinError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJoinError.swift; sourceTree = "<group>"; };
 		388CFD4C2B0F2ED800638EFD /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		38B5FB142B24D2AE00F91DDA /* RefreshInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshInterceptor.swift; sourceTree = "<group>"; };
 		38B9203E2B08AAED006CBD1C /* Constant+Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constant+Network.swift"; sourceTree = "<group>"; };
 		38CA8C212B0385AC00A9C4B7 /* SigninTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninTitleLabel.swift; sourceTree = "<group>"; };
 		38CA8C242B03893300A9C4B7 /* SigninSubtitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninSubtitleLabel.swift; sourceTree = "<group>"; };
@@ -595,8 +597,9 @@
 			children = (
 				38EE8A9E2B06387900E629CC /* APIKey.swift */,
 				38EE8A962B0632AD00E629CC /* APIManager.swift */,
-				38EE8A992B06338800E629CC /* MementoAPI.swift */,
 				3840F68D2B185FA800C488B6 /* APIResult.swift */,
+				38EE8A992B06338800E629CC /* MementoAPI.swift */,
+				38B5FB142B24D2AE00F91DDA /* RefreshInterceptor.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -798,6 +801,7 @@
 				387463CF2B160815009FAB2C /* TabBar.swift in Sources */,
 				38318DD42B1ED72B000EED65 /* StoryItemCollectionViewCell.swift in Sources */,
 				3847EC402B0251A500E086EB /* UserJoinViewController.swift in Sources */,
+				38B5FB152B24D2AE00F91DDA /* RefreshInterceptor.swift in Sources */,
 				38318DBB2B1C8F58000EED65 /* StoryListView.swift in Sources */,
 				383ECFD92B15C48D004675E1 /* JoinButton.swift in Sources */,
 			);

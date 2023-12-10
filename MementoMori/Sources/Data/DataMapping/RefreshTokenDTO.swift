@@ -8,11 +8,14 @@
 import Foundation
 
 struct RefreshTokenRequestDTO: Encodable {
-    let id: String
     let accessToken: String
     let refreshToken: String
 }
 
 struct RefreshTokenResponseDTO: Decodable {
-    let token: String
+    let accessToken: String
+    
+    enum CodingKeys: String, CodingKey {
+        case accessToken = "token"
+    }
 }
