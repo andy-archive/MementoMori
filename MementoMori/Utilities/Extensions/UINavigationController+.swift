@@ -11,7 +11,7 @@ extension UINavigationController {
     func configureAppearance() {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithDefaultBackground()
-        appearance.backgroundColor = Constant.Color.groupedBackground
+        appearance.backgroundColor = Constant.Color.secondaryGroupedBackground
         appearance.largeTitleTextAttributes = [
             .font: UIFont.boldSystemFont(ofSize: 30),
             .foregroundColor: Constant.Color.label

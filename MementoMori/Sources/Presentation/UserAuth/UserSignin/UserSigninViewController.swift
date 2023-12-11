@@ -88,9 +88,6 @@ final class UserSigninViewController: BaseViewController {
         passwordTextField.isSecureTextEntry = true
         
         signinButton.setTitle("다음 ", for: .normal)
-        signinButton.titleLabel?.font = .boldSystemFont(ofSize: Constant.FontSize.title)
-        signinButton.layer.borderWidth = 1
-        signinButton.layer.cornerRadius = 15
         
         signinValidationLabel.textColor = .systemRed
         
@@ -146,7 +143,7 @@ final class UserSigninViewController: BaseViewController {
             signinButton.topAnchor.constraint(equalTo: signinValidationLabel.safeAreaLayoutGuide.bottomAnchor, constant: Constant.Layout.Common.Inset.vertical / 2),
             signinButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
             signinButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal),
-            signinButton.heightAnchor.constraint(equalToConstant: Constant.Layout.UserAuth.Size.height)
+            signinButton.heightAnchor.constraint(equalToConstant: Constant.Layout.Common.Size.buttonHeight)
         ])
         
         joinButton.translatesAutoresizingMaskIntoConstraints = false
@@ -154,7 +151,7 @@ final class UserSigninViewController: BaseViewController {
             joinButton.topAnchor.constraint(equalTo: signinButton.safeAreaLayoutGuide.bottomAnchor, constant: Constant.Layout.Common.Inset.vertical),
             joinButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
             joinButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal),
-            joinButton.heightAnchor.constraint(equalToConstant: Constant.Layout.UserAuth.Size.height)
+            joinButton.heightAnchor.constraint(equalToConstant: Constant.Layout.Common.Size.buttonHeight)
         ])
     }
     

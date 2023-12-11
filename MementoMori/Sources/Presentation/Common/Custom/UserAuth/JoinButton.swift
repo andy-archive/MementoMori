@@ -22,10 +22,11 @@ final class JoinButton: UIButton {
     func configureUI() {
         setTitle("회원 가입", for: .normal)
         setTitleColor(Constant.Color.label, for: .normal)
+        titleLabel?.font = .systemFont(ofSize: Constant.FontSize.title)
         backgroundColor = Constant.Color.background
-        layer.borderWidth = 1
-        layer.borderColor = Constant.Color.label.cgColor
-        titleLabel?.font = .boldSystemFont(ofSize: Constant.FontSize.title)
-        layer.cornerRadius = 15
+        layer.borderWidth = 0.5
+        layer.borderColor = Constant.Color.systemGray.cgColor
+        layer.cornerRadius = 20
+        layer.masksToBounds = false
     }
 }

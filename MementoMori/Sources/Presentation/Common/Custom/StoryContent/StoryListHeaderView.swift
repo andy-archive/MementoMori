@@ -18,7 +18,7 @@ final class StoryListHeaderView: BaseView {
         return label
     }()
     
-    private let followingButton = {
+    lazy var followingButton = {
         let button = UIButton()
         button.setImage(
             Constant.Image.System.personTwo,
