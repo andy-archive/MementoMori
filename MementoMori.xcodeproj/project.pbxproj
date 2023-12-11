@@ -58,6 +58,7 @@
 		3847EC402B0251A500E086EB /* UserJoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC3F2B0251A500E086EB /* UserJoinViewController.swift */; };
 		3847EC442B0252B200E086EB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC432B0252B200E086EB /* BaseViewController.swift */; };
 		3847EC482B02578900E086EB /* SigninTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC472B02578900E086EB /* SigninTextField.swift */; };
+		384C6D7F2B26D9FF00EE6051 /* AutoSigninViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384C6D7E2B26D9FF00EE6051 /* AutoSigninViewModel.swift */; };
 		3859E5562B18C31000987F75 /* RefreshError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859E5552B18C31000987F75 /* RefreshError.swift */; };
 		386309272B132A5A001973AA /* UserAuthRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309262B132A5A001973AA /* UserAuthRepositoryProtocol.swift */; };
 		3863092A2B1340ED001973AA /* UserJoinUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309292B1340ED001973AA /* UserJoinUseCaseProtocol.swift */; };
@@ -155,6 +156,7 @@
 		3847EC3F2B0251A500E086EB /* UserJoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJoinViewController.swift; sourceTree = "<group>"; };
 		3847EC432B0252B200E086EB /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		3847EC472B02578900E086EB /* SigninTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninTextField.swift; sourceTree = "<group>"; };
+		384C6D7E2B26D9FF00EE6051 /* AutoSigninViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSigninViewModel.swift; sourceTree = "<group>"; };
 		3859E5552B18C31000987F75 /* RefreshError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshError.swift; sourceTree = "<group>"; };
 		386309262B132A5A001973AA /* UserAuthRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthRepositoryProtocol.swift; sourceTree = "<group>"; };
 		386309292B1340ED001973AA /* UserJoinUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJoinUseCaseProtocol.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				382A6BF92B25B4A800036B77 /* AutoSigninViewController.swift */,
+				384C6D7E2B26D9FF00EE6051 /* AutoSigninViewModel.swift */,
 			);
 			path = AutoSignin;
 			sourceTree = "<group>";
@@ -801,6 +804,7 @@
 				387463E02B163C74009FAB2C /* StoryListViewController.swift in Sources */,
 				38EE8A842B04D29000E629CC /* ViewModel.swift in Sources */,
 				3847EC112B022C1200E086EB /* AppDelegate.swift in Sources */,
+				384C6D7F2B26D9FF00EE6051 /* AutoSigninViewModel.swift in Sources */,
 				388CFD4D2B0F2ED900638EFD /* NetworkError.swift in Sources */,
 				38318DE12B2037EB000EED65 /* Story.swift in Sources */,
 				3847EC132B022C1200E086EB /* SceneDelegate.swift in Sources */,

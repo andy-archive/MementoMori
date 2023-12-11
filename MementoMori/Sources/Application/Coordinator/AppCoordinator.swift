@@ -28,7 +28,11 @@ extension AppCoordinator {
     
     //MARK: - AutoSignin (Modal)
     private func presentModalAutoSigninViewController() {
-        let autoSigninViewController = AutoSigninViewController()
+        let autoSigninViewController = AutoSigninViewController(
+            viewModel: AutoSigninViewModel(
+                coordinator: self
+            )
+        )
         autoSigninViewController.modalPresentationStyle = .fullScreen
         navigationController.present(autoSigninViewController, animated: true)
     }

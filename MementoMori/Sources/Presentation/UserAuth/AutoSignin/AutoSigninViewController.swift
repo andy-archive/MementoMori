@@ -37,24 +37,22 @@ final class AutoSigninViewController: BaseViewController {
         return button
     }()
     
-//    private let viewModel: AutoSigninViewModel
-//
-//    init(viewModel: AutoSigninViewModel) {
-//        self.viewModel = viewModel
-//        
-//        super.init()
-//    }
+    private let viewModel: AutoSigninViewModel
+
+    init(viewModel: AutoSigninViewModel) {
+        self.viewModel = viewModel
+        
+        super.init()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-//    override func bind() {
-//        let input =
-//        )
-//        
-//        let output = viewModel.transform(input: input)
-//    }
+    override func bind() {
+        let input = AutoSigninViewModel.Input()
+        let output = viewModel.transform(input: input)
+    }
     
     override func configureUI() {
         super.configureUI()
