@@ -15,6 +15,7 @@ final class AppCoordinator: Coordinator {
     
     required init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
+        self.navigationController.configureAppearance()
         self.childCoordinators = []
     }
     
@@ -25,7 +26,7 @@ final class AppCoordinator: Coordinator {
 
 extension AppCoordinator {
     
-    //MARK: - AutoSignin (Modal)
+    //MARK: - ViewController
     private func showAutoSigninViewController() {
         let autoSigninViewController = AutoSigninViewController(
             viewModel: AutoSigninViewModel(
