@@ -43,7 +43,7 @@ final class StoryListViewModel: ViewModel {
             .withUnretained(self)
             .map { owner, storyList in
                 guard let storyList = storyList else {
-                    let app = owner.coordinator?.finish()
+                    owner.coordinator?.finish()
                     return [StoryPost]()
                 }
                 return storyList

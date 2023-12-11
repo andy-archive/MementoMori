@@ -32,7 +32,7 @@ final class UserJoinViewModel: ViewModel {
         let joinResponse: PublishRelay<APIResult<String>>
     }
     
-    weak var coordinator: AppCoordinator?
+    weak var coordinator: UserAuthCoordinator?
     let disposeBag = DisposeBag()
     private let userJoinUseCase: UserJoinUseCaseProtocol
     
@@ -40,7 +40,7 @@ final class UserJoinViewModel: ViewModel {
     private var isEmailValidationMessageValid = false
     
     init(
-        coordinator: AppCoordinator,
+        coordinator: UserAuthCoordinator,
         userJoinUseCase: UserJoinUseCaseProtocol
     ) {
         self.coordinator = coordinator

@@ -46,6 +46,7 @@ extension StoryContentCoordinator {
 //MARK: - CoordinatorDelegate
 extension StoryContentCoordinator: CoordinatorDelegate {
     func didFinish(childCoordinator: Coordinator) {
+        navigationController.popToRootViewController(animated: true)
         self.finish()
     }
 }
