@@ -19,25 +19,45 @@ final class UserAuthCoordinator: Coordinator {
     }
     
     func start() {
-//        showUserJoin()
+        showUserSigninViewController()
     }
 }
 
+//MARK: - showViewController
 extension UserAuthCoordinator {
+
+    func showUserSigninViewController() {
+        let viewController = UserSigninViewController(
+            viewModel: UserSigninViewModel(
+                coordinator: self,
+                userSigninUseCase: UserSigninUseCase(
+                    userAuthRepository: makeAuthRepository(),
+                    keychainRepository: makeKeychainRepository()
+                )
+            )
+        )
+        navigationController.setNavigationBarHidden(false, animated: true)
+        navigationController.pushViewController(viewController, animated: true)
+    }
     
-//    private func showUserJoin() {
-//        let viewController = UserJoinViewController(
-//            viewModel: UserJoinViewModel(
-//                coordinator: self,
-//                userJoinUseCase: UserJoinUseCase(
-//                    userAuthRepository: makeAuthRepository()
-//                )
-//            )
-//        )
-//        self.navigationController.pushViewController(viewController, animated: true)
-//    }
+    func showUserJoinViewController() {
+        let viewController = UserJoinViewController(
+            viewModel: UserJoinViewModel(
+                coordinator: self,
+                userJoinUseCase: UserJoinUseCase(
+                    userAuthRepository: makeAuthRepository()
+                )
+            )
+        )
+        navigationController.setNavigationBarHidden(false, animated: true)
+        navigationController.pushViewController(viewController, animated: true)
+    }
     
     private func makeAuthRepository() -> UserAuthRepositoryProtocol {
         return UserAuthRepository()
+    }
+    
+    private func makeKeychainRepository() -> KeychainRepositoryProtocol {
+        return KeychainRepository()
     }
 }

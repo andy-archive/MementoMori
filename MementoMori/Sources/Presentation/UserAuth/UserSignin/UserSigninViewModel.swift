@@ -27,12 +27,12 @@ final class UserSigninViewModel: ViewModel {
         let signinValidationText: PublishRelay<String>
     }
     
-    weak var coordinator: AppCoordinator?
+    weak var coordinator: UserAuthCoordinator?
     let disposeBag = DisposeBag()
     private let userSigninUseCase: UserSigninUseCaseProtocol
     
     init(
-        coordinator: AppCoordinator,
+        coordinator: UserAuthCoordinator,
         userSigninUseCase: UserSigninUseCaseProtocol
     ) {
         self.coordinator = coordinator
@@ -97,7 +97,7 @@ final class UserSigninViewModel: ViewModel {
             .bind(with: self) { owner, result in
                 let signinProcess = self.userSigninUseCase.verifySigninProcess(result: result)
                 if signinProcess.isCompleted {
-                    self.coordinator?.showTabBarFlow()
+                    self.coordinator?.finish()
                 } else {
                     isSigninCompleted.accept(signinProcess.isCompleted)
                     errorMessage.accept(signinProcess.message)

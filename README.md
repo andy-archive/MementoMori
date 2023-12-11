@@ -31,6 +31,18 @@
 └──📂 MementoMori.xcodeproj
 ```
 
+### 코디네이터 트리 구조 (Coordinator)
+```
+📦 AppCoordinator # by SceneDelegate
+├──📱 AutoSigninViewController # 자동 로그인
+├──📂 UserAuthCoordinator # 로그인 & 회원가입
+│   ├──📱 UserSigninViewController
+│   ├──📱 UserJoinViewController
+└──📂 TabBarCoordinator  # 탭 바
+    ├──📂 StoryContentCoordinator
+    └──📂 StoryUploadCoordinator
+```
+
 ## 구현 화면
 ### (1) 로그인/회원 가입
 

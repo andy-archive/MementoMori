@@ -14,6 +14,7 @@
 		380647002B21CD1D001B375D /* StoryUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380646FF2B21CD1D001B375D /* StoryUploadViewController.swift */; };
 		380647032B21CD7F001B375D /* StoryUploadCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380647022B21CD7F001B375D /* StoryUploadCoordinator.swift */; };
 		380647062B21D0E9001B375D /* StoryUploadHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380647052B21D0E9001B375D /* StoryUploadHeaderView.swift */; };
+		382A6BFA2B25B4A800036B77 /* AutoSigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382A6BF92B25B4A800036B77 /* AutoSigninViewController.swift */; };
 		38318DA82B1A11EB000EED65 /* RefreshTokenDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DA72B1A11EB000EED65 /* RefreshTokenDTO.swift */; };
 		38318DB02B1C5C73000EED65 /* StoryListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DAF2B1C5C73000EED65 /* StoryListHeaderView.swift */; };
 		38318DB82B1C73AE000EED65 /* UICollectionViewLayout+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DB72B1C73AE000EED65 /* UICollectionViewLayout+.swift */; };
@@ -57,6 +58,7 @@
 		3847EC402B0251A500E086EB /* UserJoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC3F2B0251A500E086EB /* UserJoinViewController.swift */; };
 		3847EC442B0252B200E086EB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC432B0252B200E086EB /* BaseViewController.swift */; };
 		3847EC482B02578900E086EB /* SigninTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847EC472B02578900E086EB /* SigninTextField.swift */; };
+		384C6D7F2B26D9FF00EE6051 /* AutoSigninViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384C6D7E2B26D9FF00EE6051 /* AutoSigninViewModel.swift */; };
 		3859E5562B18C31000987F75 /* RefreshError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859E5552B18C31000987F75 /* RefreshError.swift */; };
 		386309272B132A5A001973AA /* UserAuthRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309262B132A5A001973AA /* UserAuthRepositoryProtocol.swift */; };
 		3863092A2B1340ED001973AA /* UserJoinUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309292B1340ED001973AA /* UserJoinUseCaseProtocol.swift */; };
@@ -108,6 +110,7 @@
 		380646FF2B21CD1D001B375D /* StoryUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryUploadViewController.swift; sourceTree = "<group>"; };
 		380647022B21CD7F001B375D /* StoryUploadCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryUploadCoordinator.swift; sourceTree = "<group>"; };
 		380647052B21D0E9001B375D /* StoryUploadHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryUploadHeaderView.swift; sourceTree = "<group>"; };
+		382A6BF92B25B4A800036B77 /* AutoSigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSigninViewController.swift; sourceTree = "<group>"; };
 		38318DA72B1A11EB000EED65 /* RefreshTokenDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenDTO.swift; sourceTree = "<group>"; };
 		38318DAF2B1C5C73000EED65 /* StoryListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryListHeaderView.swift; sourceTree = "<group>"; };
 		38318DB72B1C73AE000EED65 /* UICollectionViewLayout+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewLayout+.swift"; sourceTree = "<group>"; };
@@ -153,6 +156,7 @@
 		3847EC3F2B0251A500E086EB /* UserJoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJoinViewController.swift; sourceTree = "<group>"; };
 		3847EC432B0252B200E086EB /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		3847EC472B02578900E086EB /* SigninTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninTextField.swift; sourceTree = "<group>"; };
+		384C6D7E2B26D9FF00EE6051 /* AutoSigninViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSigninViewModel.swift; sourceTree = "<group>"; };
 		3859E5552B18C31000987F75 /* RefreshError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshError.swift; sourceTree = "<group>"; };
 		386309262B132A5A001973AA /* UserAuthRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthRepositoryProtocol.swift; sourceTree = "<group>"; };
 		386309292B1340ED001973AA /* UserJoinUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJoinUseCaseProtocol.swift; sourceTree = "<group>"; };
@@ -239,6 +243,15 @@
 				380647052B21D0E9001B375D /* StoryUploadHeaderView.swift */,
 			);
 			path = StoryUpload;
+			sourceTree = "<group>";
+		};
+		382A6BF82B25B49000036B77 /* AutoSignin */ = {
+			isa = PBXGroup;
+			children = (
+				382A6BF92B25B4A800036B77 /* AutoSigninViewController.swift */,
+				384C6D7E2B26D9FF00EE6051 /* AutoSigninViewModel.swift */,
+			);
+			path = AutoSignin;
 			sourceTree = "<group>";
 		};
 		38318DB52B1C6F56000EED65 /* UserAuth */ = {
@@ -495,6 +508,7 @@
 		386309532B14672E001973AA /* UserAuth */ = {
 			isa = PBXGroup;
 			children = (
+				382A6BF82B25B49000036B77 /* AutoSignin */,
 				386309552B146757001973AA /* UserAuthCoordinator.swift */,
 				387463DB2B163C0D009FAB2C /* UserJoin */,
 				387463DC2B163C26009FAB2C /* UserSignin */,
@@ -762,6 +776,7 @@
 				38EE8A9A2B06338800E629CC /* MementoAPI.swift in Sources */,
 				3847EC2F2B022FCE00E086EB /* UITabBarController+.swift in Sources */,
 				3874640B2B172013009FAB2C /* TokenError.swift in Sources */,
+				382A6BFA2B25B4A800036B77 /* AutoSigninViewController.swift in Sources */,
 				3847EC352B02303200E086EB /* Constant+UI.swift in Sources */,
 				383ECFD52B15BF01004675E1 /* UserSigninUseCase.swift in Sources */,
 				3840F68E2B185FA800C488B6 /* APIResult.swift in Sources */,
@@ -789,6 +804,7 @@
 				387463E02B163C74009FAB2C /* StoryListViewController.swift in Sources */,
 				38EE8A842B04D29000E629CC /* ViewModel.swift in Sources */,
 				3847EC112B022C1200E086EB /* AppDelegate.swift in Sources */,
+				384C6D7F2B26D9FF00EE6051 /* AutoSigninViewModel.swift in Sources */,
 				388CFD4D2B0F2ED900638EFD /* NetworkError.swift in Sources */,
 				38318DE12B2037EB000EED65 /* Story.swift in Sources */,
 				3847EC132B022C1200E086EB /* SceneDelegate.swift in Sources */,

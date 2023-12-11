@@ -31,10 +31,6 @@ final class UserJoinViewController: BaseViewController {
         super.init()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func bind() {
         
         let input = UserJoinViewModel.Input(
@@ -117,6 +113,7 @@ final class UserJoinViewController: BaseViewController {
         nicknameTextField.delegate = self
         
         titleLabel.text = "회원 가입"
+        
         requiredSubtitleLabel.text = "필수 입력 사항"
         
         emailTextField.placeholder = "📧 이메일"
@@ -127,6 +124,7 @@ final class UserJoinViewController: BaseViewController {
         emailTextField.rightView = emailValidationButton
         
         emailValidationButton.setTitle("확인", for: .normal)
+        emailValidationButton.layer.cornerRadius = 10
         
         passwordTextField.placeholder = "🔒 비밀번호 (8자리 이상)"
         passwordTextField.returnKeyType = .continue
@@ -145,8 +143,6 @@ final class UserJoinViewController: BaseViewController {
         birthdayTextField.keyboardType = .numberPad
         
         nextButton.setTitle("다음 ", for: .normal)
-        nextButton.titleLabel?.font = .boldSystemFont(ofSize: Constant.FontSize.title)
-        nextButton.layer.cornerRadius = 15
         
         view.addSubview(titleLabel)
         view.addSubview(requiredSubtitleLabel)

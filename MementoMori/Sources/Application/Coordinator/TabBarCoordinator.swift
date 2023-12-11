@@ -23,15 +23,15 @@ final class TabBarCoordinator: Coordinator {
     func start() {
         let tabBarList: [TabBar] = TabBar.allCases
         let navigationControllers: [UINavigationController] = tabBarList.map { tabBar in
-            self.configureTabBar(of: tabBar)
+            configureTabBar(of: tabBar)
         }
-        self.configureTabBarController(of: navigationControllers)
+        configureTabBarController(of: navigationControllers)
     }
 }
 
-//MARK: - configure TabBar & TabBarController
 private extension TabBarCoordinator {
     
+    //MARK: - TabBar
     func configureTabBar(of tabBar: TabBar) -> UINavigationController {
         let navigationController = UINavigationController()
         navigationController.tabBarItem = tabBar.tabBarItem
@@ -40,39 +40,46 @@ private extension TabBarCoordinator {
         return navigationController
     }
     
+    //MARK: - TabBarController & NavigationController
     func configureTabBarController(of viewControllers: [UIViewController]) {
-        self.tabBarController.setViewControllers(viewControllers, animated: true)
-        self.tabBarController.selectedIndex = TabBar.storyList.rawValue
-        self.tabBarController.configureAppearance()
-        self.navigationController.configureAppearance()
-        self.navigationController.setNavigationBarHidden(true, animated: false)
-        self.navigationController.pushViewController(tabBarController, animated: true)
+        tabBarController.setViewControllers(viewControllers, animated: true)
+        tabBarController.selectedIndex = TabBar.storyList.rawValue
+        tabBarController.configureAppearance()
+        navigationController.configureAppearance()
+        navigationController.setNavigationBarHidden(true, animated: false)
+        navigationController.pushViewController(tabBarController, animated: true)
     }
     
+    //MARK: - TabBarCoordinator
     func connectTabCoordinator(of tabBar: TabBar, to navigationController: UINavigationController) {
         switch tabBar {
         case .storyList:
-            self.showStoryListFlow(to: navigationController)
+            makeStoryContentCoordinator(navigationController)
         case .storyUpload:
-            self.showStoryUploadFlow(to: navigationController)
+            makeStoryUploadCoordinator(navigationController)
         }
     }
     
-    func showStoryListFlow(to navigationController: UINavigationController) {
+    //MARK: - other Coordinators
+    func makeStoryContentCoordinator(_ navigationController: UINavigationController) {
         let storyListCoordinator = StoryContentCoordinator(navigationController)
+        storyListCoordinator.delegate = self
         storyListCoordinator.start()
+        childCoordinators.append(storyListCoordinator)
     }
     
-    func showStoryUploadFlow(to navigationController: UINavigationController) {
+    func makeStoryUploadCoordinator(_ navigationController: UINavigationController) {
         let storyUploadCoordinator = StoryUploadCoordinator(navigationController)
+        storyUploadCoordinator.delegate = self
         storyUploadCoordinator.start()
+        childCoordinators.append(storyUploadCoordinator)
     }
 }
 
 //MARK: - CoordinatorDelegate
 extension TabBarCoordinator: CoordinatorDelegate {
     func didFinish(childCoordinator: Coordinator) {
-        self.navigationController.popToRootViewController(animated: false)
-        self.finish()
+        navigationController.popToRootViewController(animated: true)
+        finish()
     }
 }

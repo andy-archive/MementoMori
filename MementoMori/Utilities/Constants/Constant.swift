@@ -24,6 +24,9 @@ enum Constant {
                 static let horizontal: CGFloat = 20
                 static let vertical: CGFloat = 20
             }
+            enum Size {
+                static let buttonHeight: CGFloat = 40
+            }
         }
         
         enum StoryList {

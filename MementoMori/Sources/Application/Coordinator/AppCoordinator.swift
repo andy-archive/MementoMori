@@ -15,52 +15,45 @@ final class AppCoordinator: Coordinator {
     
     required init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.childCoordinators = []
         self.navigationController.configureAppearance()
+        self.childCoordinators = []
     }
     
     func start() {
-        showUserSignViewController()
+        showAutoSigninViewController()
     }
 }
 
 extension AppCoordinator {
     
-    private func showUserSignViewController() {
-        let viewController = UserSigninViewController(
-            viewModel: UserSigninViewModel(
-                coordinator: self,
-                userSigninUseCase: UserSigninUseCase(
-                    userAuthRepository: makeAuthRepository(),
-                    keychainRepository: makeKeychainRepository()
-                )
-            )
-        )
-        navigationController.setNavigationBarHidden(true, animated: false)
-        navigationController.pushViewController(viewController, animated: false)
-    }
-    
-    func showUserJoinViewController() {
-        let viewController = UserJoinViewController(
-            viewModel: UserJoinViewModel(
-                coordinator: self,
-                userJoinUseCase: UserJoinUseCase(
-                    userAuthRepository: makeAuthRepository()
-                )
+    //MARK: - ViewController
+    private func showAutoSigninViewController() {
+        let autoSigninViewController = AutoSigninViewController(
+            viewModel: AutoSigninViewModel(
+                coordinator: self
             )
         )
         navigationController.setNavigationBarHidden(false, animated: false)
-        navigationController.pushViewController(viewController, animated: true)
+        navigationController.pushViewController(autoSigninViewController, animated: true)
     }
     
-    func showTabBarFlow() {
-        self.navigationController.popToRootViewController(animated: true)
-        let tabBarCoordinator = TabBarCoordinator(self.navigationController)
+    //MARK: - Coordinators
+    func makeUserAuthCoordinator() {
+        let userAuthCoordinator = UserAuthCoordinator(navigationController)
+        userAuthCoordinator.delegate = self
+        userAuthCoordinator.start()
+        childCoordinators.append(userAuthCoordinator)
+    }
+    
+    func makeTabBarCoordinator() {
+        navigationController.popToRootViewController(animated: true)
+        let tabBarCoordinator = TabBarCoordinator(navigationController)
         tabBarCoordinator.delegate = self
         tabBarCoordinator.start()
-        self.childCoordinators.append(tabBarCoordinator)
+        childCoordinators.append(tabBarCoordinator)
     }
     
+    //MARK: - Repositories
     private func makeAuthRepository() -> UserAuthRepositoryProtocol {
         return UserAuthRepository()
     }
@@ -70,10 +63,14 @@ extension AppCoordinator {
     }
 }
 
-//MARK: CoordinatorDelegate
-
+//MARK: - CoordinatorDelegate
 extension AppCoordinator: CoordinatorDelegate {
     func didFinish(childCoordinator: Coordinator) {
-        self.navigationController.popToRootViewController(animated: true)
+        navigationController.popToRootViewController(animated: true)
+        if childCoordinator is TabBarCoordinator {
+            makeUserAuthCoordinator()
+        } else {
+            makeTabBarCoordinator()
+        }
     }
 }
