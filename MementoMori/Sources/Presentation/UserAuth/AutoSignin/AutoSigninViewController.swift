@@ -45,13 +45,15 @@ final class AutoSigninViewController: BaseViewController {
         super.init()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func bind() {
-        let input = AutoSigninViewModel.Input()
+        
+        let input = AutoSigninViewModel.Input(
+            autoSigninButtonClicked: autoSigninButton.rx.tap,
+            otherSigninButtonClicked: otherSigninButton.rx.tap,
+            joinSigninButtonClicked: joinButton.rx.tap
+        )
         let output = viewModel.transform(input: input)
+        
     }
     
     override func configureUI() {
@@ -106,25 +108,3 @@ final class AutoSigninViewController: BaseViewController {
         ])
     }
 }
-
-#if DEBUG
-import SwiftUI
-struct Preview: UIViewControllerRepresentable {
-    
-    func makeUIViewController(context: Context) -> UIViewController {
-        AutoSigninViewController()
-    }
-    
-    func updateUIViewController(_ uiView: UIViewController,context: Context) {
-    }
-}
-
-struct ViewController_PreviewProvider: PreviewProvider {
-    static var previews: some View {
-        Group {
-            Preview()
-                .previewDisplayName("Preview")
-        }
-    }
-}
-#endif

@@ -13,7 +13,9 @@ import RxSwift
 final class AutoSigninViewModel: ViewModel {
     
     struct Input {
-        
+        let autoSigninButtonClicked: ControlEvent<Void>
+        let otherSigninButtonClicked: ControlEvent<Void>
+        let joinSigninButtonClicked: ControlEvent<Void>
     }
     
     struct Output {
@@ -31,6 +33,14 @@ final class AutoSigninViewModel: ViewModel {
     
     
     func transform(input: Input) -> Output {
+        
+        input
+            .otherSigninButtonClicked
+            .asDriver(onErrorJustReturn: Void())
+            .drive(with: self) { owner, _ in
+                owner.coordinator?.makeUserAuthCoordinator()
+            }
+            .disposed(by: disposeBag)
         
         return Output(
         )

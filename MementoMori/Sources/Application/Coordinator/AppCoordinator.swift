@@ -16,30 +16,28 @@ final class AppCoordinator: Coordinator {
     required init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
         self.childCoordinators = []
-        self.navigationController.configureAppearance()
     }
     
     func start() {
-        presentModalAutoSigninViewController()
+        showAutoSigninViewController()
     }
 }
 
 extension AppCoordinator {
     
     //MARK: - AutoSignin (Modal)
-    private func presentModalAutoSigninViewController() {
+    private func showAutoSigninViewController() {
         let autoSigninViewController = AutoSigninViewController(
             viewModel: AutoSigninViewModel(
                 coordinator: self
             )
         )
-        autoSigninViewController.modalPresentationStyle = .fullScreen
-        navigationController.present(autoSigninViewController, animated: true)
+        navigationController.setNavigationBarHidden(false, animated: false)
+        navigationController.pushViewController(autoSigninViewController, animated: true)
     }
     
     //MARK: - Coordinators
     func makeUserAuthCoordinator() {
-        navigationController.setNavigationBarHidden(true, animated: false)
         let userAuthCoordinator = UserAuthCoordinator(navigationController)
         userAuthCoordinator.delegate = self
         userAuthCoordinator.start()
@@ -47,7 +45,7 @@ extension AppCoordinator {
     }
     
     func makeTabBarCoordinator() {
-        presentModalAutoSigninViewController()
+        navigationController.popToRootViewController(animated: true)
         let tabBarCoordinator = TabBarCoordinator(navigationController)
         tabBarCoordinator.delegate = self
         tabBarCoordinator.start()
@@ -67,12 +65,11 @@ extension AppCoordinator {
 //MARK: - CoordinatorDelegate
 extension AppCoordinator: CoordinatorDelegate {
     func didFinish(childCoordinator: Coordinator) {
-        navigationController.dismiss(animated: true)
         navigationController.popToRootViewController(animated: true)
-        if childCoordinator is UserAuthCoordinator {
-            makeTabBarCoordinator()
-        } else {
+        if childCoordinator is TabBarCoordinator {
             makeUserAuthCoordinator()
+        } else {
+            makeTabBarCoordinator()
         }
     }
 }
