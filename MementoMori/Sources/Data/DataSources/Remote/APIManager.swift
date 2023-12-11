@@ -58,7 +58,7 @@ final class APIManager {
         return Observable<EmailValidationResponseDTO>.create { observer in
             
             let data = EmailValidationRequestDTO(email: email)
-            let provider = MoyaProvider<MementoAPI>()
+            let provider = MoyaProvider<MementoAPI>(plugins: [NetworkLoggerPlugin(configuration: .init(logOptions: .verbose))])
             
             provider.request(.emailValidation(model: data)) { result in
                 switch result {

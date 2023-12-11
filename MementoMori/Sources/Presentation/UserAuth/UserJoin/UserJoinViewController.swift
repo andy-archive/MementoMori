@@ -31,6 +31,10 @@ final class UserJoinViewController: BaseViewController {
         super.init()
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
     override func bind() {
         
         let input = UserJoinViewModel.Input(
