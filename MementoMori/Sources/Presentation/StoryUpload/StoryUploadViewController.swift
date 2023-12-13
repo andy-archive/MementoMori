@@ -42,7 +42,7 @@ final class StoryUploadViewController: BaseViewController {
     }()
     private lazy var storyTextView = {
         let view = UITextView()
-        view.text = "문구를 입력하세요..."
+        view.text = Constant.Text.inputMessage
         view.textColor = Constant.Color.secondaryLabel
         view.font = .systemFont(ofSize: Constant.FontSize.title)
         view.isHidden = true

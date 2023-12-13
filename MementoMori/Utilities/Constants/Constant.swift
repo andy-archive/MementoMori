@@ -11,6 +11,7 @@ enum Constant {
     
     enum Text {
         static let productID = "MementoMori"
+        static let inputMessage = "문구를 입력하세요..."
     }
     
     enum FontSize {

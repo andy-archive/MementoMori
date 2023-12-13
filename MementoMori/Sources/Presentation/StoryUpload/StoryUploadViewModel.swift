@@ -52,6 +52,7 @@ final class StoryUploadViewModel: ViewModel {
         let presentImageUploadView = PublishRelay<Void>()
         let contentToUpload = PublishRelay<String>()
         let imageToUpload = PublishRelay<UIImage>()
+        let contentTextToUpload = BehaviorRelay<String>(value: "")
         let imageUploadMessage = PublishRelay<String>()
         
         let storyPostData = Observable
@@ -74,6 +75,13 @@ final class StoryUploadViewModel: ViewModel {
             .share()
         
         input
+            .contentText
+            .bind(with: self) { owner, text in
+                contentTextToUpload.accept(text)
+            }
+            .disposed(by: disposeBag)
+        
+        input
             .imageSelectionViewClicked
             .subscribe(with: self) { owner, image in
                 imageToUpload.accept(image)
@@ -87,7 +95,8 @@ final class StoryUploadViewModel: ViewModel {
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .withUnretained(self)
             .filter { owner, _ in
-                owner.uploadProcess == .imageUpload
+                owner.uploadProcess == .imageUpload &&
+                !owner.imageList.isEmpty
             }
             .bind(with: self) { owner, _ in
                 owner.uploadProcess = .storyUpload
@@ -98,17 +107,22 @@ final class StoryUploadViewModel: ViewModel {
         input
             .nextButtonClicked
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
-            .withLatestFrom(storyPostData)
             .withUnretained(self)
             .filter { owner, _ in
-                owner.uploadProcess == .storyUpload
+                owner.uploadProcess == .storyUpload &&
+                !contentTextToUpload.value.isEmpty &&
+                contentTextToUpload.value != Constant.Text.inputMessage
             }
+            .withLatestFrom(storyPostData)
+            .withUnretained(self)
             .flatMap { owner, storyPost in
                 owner.storyUploadUseCase.fetchStoryUpload(storyPost: storyPost, imageDataList: owner.imageList)
             }
             .bind(with: self) { owner, result in
                 let process = owner.storyUploadUseCase.verifyStoryUploadProcess(result: result)
-                process.isCompleted ? owner.coordinator?.finish() : imageUploadMessage.accept(process.message)
+                process.isCompleted ?
+                owner.coordinator?.finish() :
+                imageUploadMessage.accept(process.message)
             }
             .disposed(by: disposeBag)
         
@@ -118,7 +132,6 @@ final class StoryUploadViewModel: ViewModel {
             .subscribe(with: self) { owner, _ in
                 switch owner.uploadProcess {
                 case .imageUpload:
-                    // 🔥
                     owner.coordinator?.finish()
                 case .storyUpload:
                     owner.uploadProcess = .imageUpload
