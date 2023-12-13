@@ -13,13 +13,15 @@ import Moya
 final class RefreshInterceptor: RequestInterceptor {
     
     //MARK: - Singleton
-    static let shared = UserAuthRepository()
+    static let shared = RefreshInterceptor(
+        keychainRepository: KeychainRepository()
+    )
     
     //MARK: - Repository
     private let keychainRepository: KeychainRepositoryProtocol
     
     //MARK: - Initializer
-    init(
+    private init(
         keychainRepository: KeychainRepositoryProtocol
     ) {
         self.keychainRepository = keychainRepository
@@ -61,19 +63,19 @@ final class RefreshInterceptor: RequestInterceptor {
             refreshToken: refreshToken
         ) { result in
             switch result {
-            //MARK: - 결과 (1) 액세스 토큰 갱신
+                //MARK: - 결과 (1) 액세스 토큰 갱신
             case .suceessData(let data):
                 self.saveToken(data.accessToken)
                 completion(.retry)
-            //MARK: - 결과 (2) 리프래시 토큰 만료
+                //MARK: - 결과 (2) 리프래시 토큰 만료
             case .statusCode(_):
                 completion(.doNotRetryWithError(error))
             }
         }
     }
-
+    
     //MARK: - findToken
-    private func findToken() -> (accessToken: String?, refreshToken: String?) {
+    func findToken() -> (accessToken: String?, refreshToken: String?) {
         guard let userID = keychainRepository.find(key: "", type: .userID) else { return (nil, nil) }
         let accessToken = keychainRepository.find(key: userID, type: .accessToken)
         let refreshToken = keychainRepository.find(key: userID, type: .refreshToken)

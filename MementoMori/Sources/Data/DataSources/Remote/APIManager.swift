@@ -22,7 +22,7 @@ final class APIManager {
     private init() { }
     
     //MARK: - properties
-    static let interceptor = RefreshInterceptor(keychainRepository: KeychainRepository())
+    static let interceptor = RefreshInterceptor.shared
     static let session = Session(interceptor: interceptor)
     
     //MARK: - methods

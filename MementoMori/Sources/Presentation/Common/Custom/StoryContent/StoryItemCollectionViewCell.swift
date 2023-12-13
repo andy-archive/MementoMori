@@ -39,24 +39,24 @@ final class StoryItemCollectionViewCell: BaseCollectionViewCell {
     }
 }
 
-//MARK: upload image
+//MARK: - upload image
 extension StoryItemCollectionViewCell {
     
-    func loadImage(token: String?, path: String?) {
+    func loadImage(path: String?) {
         
-        guard let token,
-              let path else { return }
+        guard let path else { return }
+        
+        let token = RefreshInterceptor.shared.findToken().accessToken
         let urlString = MementoAPI.baseURL + path
         let modifier = AnyModifier { request in
             var result = request
-            result.setValue(
-                token,
-                forHTTPHeaderField: "Authorization"
-            )
+            result.setValue(token, forHTTPHeaderField: "Authorization")
+            result.setValue(MementoAPI.secretKey, forHTTPHeaderField: "SesacKey")
             return result
         }
         
         guard let url = URL(string: urlString) else { return }
+        
         let cgSize = CGSize(width: 200, height: 300)
         let downsamplingImageProcessor = DownsamplingImageProcessor(size: cgSize)
         
@@ -66,6 +66,7 @@ extension StoryItemCollectionViewCell {
                 self.imageView.kf.setImage(
                     with: url,
                     options: [
+                        .requestModifier(modifier),
                         .transition(.fade(0.2)),
                         .processor(downsamplingImageProcessor),
                         .scaleFactor(UIScreen.main.scale),
