@@ -56,20 +56,14 @@ final class StoryUploadViewModel: ViewModel {
         let imageUploadMessage = PublishRelay<String>()
         
         let storyPostData = Observable
-            .combineLatest(imageToUpload.asObservable(), input.contentText) { [weak self] image, text in
+            .combineLatest(
+                imageToUpload.asObservable(),
+                input.contentText
+            ) { [weak self] image, text in
+                
                 StoryPost(
-                    id: nil,
-                    userID: nil,
-                    nickname: nil,
-                    title: nil,
                     content: text,
-                    imageDataList: self?.imageList ?? nil,
-                    commentList: nil,
-                    location: nil,
-                    isLiked: false,
-                    isSavedToMyCollection: false,
-                    createdAt: nil,
-                    storyType: nil
+                    imageDataList: self?.imageList
                 )
             }
             .share()
@@ -85,7 +79,8 @@ final class StoryUploadViewModel: ViewModel {
             .imageSelectionViewClicked
             .subscribe(with: self) { owner, image in
                 imageToUpload.accept(image)
-                guard let imageData = owner.storyUploadUseCase.convertImageToData(image: image) else { return }
+                guard let imageData = owner.storyUploadUseCase.convertImageToData(image: image)
+                else { return }
                 owner.imageList = [imageData]
             }
             .disposed(by: disposeBag)

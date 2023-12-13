@@ -7,6 +7,7 @@
 
 import Foundation
 
+//MARK: - Entity
 struct StoryPost: Hashable {
     
     enum StoryType {
@@ -20,6 +21,7 @@ struct StoryPost: Hashable {
     let title: String?
     let content: String
     let imageDataList: [Data]?
+    let imageFilePathList: [String]?
     let commentList: [String]?
     let location: String?
     let isLiked: Bool?
@@ -27,11 +29,53 @@ struct StoryPost: Hashable {
     let createdAt: String?
     let storyType: StoryType?
     
+    //MARK: - Hashable
     static func == (lhs: StoryPost, rhs: StoryPost) -> Bool {
         lhs.id == rhs.id
     }
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
+    }
+}
+
+//MARK: - initializers
+extension StoryPost {
+    
+    init(content: String, imageDataList: [Data]?) {
+        self.id = nil
+        self.userID = nil
+        self.nickname = nil
+        self.title = nil
+        self.content = content
+        self.imageDataList = imageDataList
+        self.imageFilePathList = nil
+        self.commentList = nil
+        self.location = nil
+        self.isLiked = false
+        self.isSavedToMyCollection = false
+        self.createdAt = nil
+        self.storyType = nil
+    }
+    
+    init(
+        nickname: String,
+        content: String,
+        imageFilePathList: [String],
+        createdAt: String
+    ) {
+        self.id = nil
+        self.userID = nil
+        self.nickname = nickname
+        self.title = nil
+        self.content = content
+        self.imageDataList = nil
+        self.imageFilePathList = imageFilePathList
+        self.commentList = []
+        self.location = nil
+        self.isLiked = false
+        self.isSavedToMyCollection = false
+        self.createdAt = createdAt
+        self.storyType = .location
     }
 }
