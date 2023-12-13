@@ -52,27 +52,20 @@ extension AppCoordinator {
     
     //MARK: - (Modal 2-1) UserSignin
     func showUserSigninViewController() {
-        let viewModel = UserSigninViewModel(
-            coordinator: self,
-            userSigninUseCase: UserSigninUseCase(
-                userAuthRepository: makeAuthRepository(),
-                keychainRepository: makeKeychainRepository()
-            )
+        let useCase = UserSigninUseCase(
+            userAuthRepository: makeAuthRepository(),
+            keychainRepository: makeKeychainRepository()
         )
+        let viewModel = UserSigninViewModel(coordinator: self, userSigninUseCase: useCase)
         let viewController = UserSigninViewController(viewModel: viewModel)
         self.signinModal.pushViewController(viewController, animated: true)
     }
     
     //MARK: - (Modal 2-2) UserJoin
     func showUserJoinViewController() {
-        let viewController = UserJoinViewController(
-            viewModel: UserJoinViewModel(
-                coordinator: self,
-                userJoinUseCase: UserJoinUseCase(
-                    userAuthRepository: makeAuthRepository()
-                )
-            )
-        )
+        let useCase = UserJoinUseCase(userAuthRepository: makeAuthRepository())
+        let viewModel = UserJoinViewModel(coordinator: self, userJoinUseCase: useCase)
+        let viewController = UserJoinViewController(viewModel: viewModel)
         self.signinModal.pushViewController(viewController, animated: true)
     }
     

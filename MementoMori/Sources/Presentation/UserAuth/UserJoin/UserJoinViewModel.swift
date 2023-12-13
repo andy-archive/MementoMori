@@ -162,8 +162,9 @@ final class UserJoinViewModel: ViewModel {
             .nextButtonClicked
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(joinInput)
-            .flatMap { input in
-                self.userJoinUseCase.join(user: input)
+            .withUnretained(self)
+            .flatMap { owner, input in
+                owner.userJoinUseCase.join(user: input)
             }
             .bind(with: self) { owner, result in
                 switch result {

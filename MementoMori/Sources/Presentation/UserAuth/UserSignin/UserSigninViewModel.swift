@@ -91,13 +91,14 @@ final class UserSigninViewModel: ViewModel {
             .signinButtonClicked
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(userInfo)
-            .flatMap { user in
-                self.userSigninUseCase.signin(user: user)
+            .withUnretained(self)
+            .flatMap { owner, user in
+                owner.userSigninUseCase.signin(user: user)
             }
             .bind(with: self) { owner, result in
-                let signinProcess = self.userSigninUseCase.verifySigninProcess(result: result)
+                let signinProcess = owner.userSigninUseCase.verifySigninProcess(result: result)
                 if signinProcess.isCompleted {
-                    self.coordinator?.dismissViewController()
+                    owner.coordinator?.dismissViewController()
                 } else {
                     isSigninCompleted.accept(signinProcess.isCompleted)
                     errorMessage.accept(signinProcess.message)
