@@ -38,7 +38,15 @@ final class AutoSigninViewModel: ViewModel {
             .otherSigninButtonClicked
             .asDriver(onErrorJustReturn: Void())
             .drive(with: self) { owner, _ in
-                owner.coordinator?.makeUserAuthCoordinator()
+                owner.coordinator?.showUserSigninViewController()
+            }
+            .disposed(by: disposeBag)
+        
+        input
+            .joinSigninButtonClicked
+            .asDriver(onErrorJustReturn: Void())
+            .drive(with: self) { owner, _ in
+                owner.coordinator?.showUserJoinViewController()
             }
             .disposed(by: disposeBag)
         

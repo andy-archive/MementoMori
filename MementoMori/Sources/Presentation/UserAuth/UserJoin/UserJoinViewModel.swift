@@ -32,7 +32,7 @@ final class UserJoinViewModel: ViewModel {
         let joinResponse: PublishRelay<APIResult<String>>
     }
     
-    weak var coordinator: UserAuthCoordinator?
+    weak var coordinator: AppCoordinator?
     let disposeBag = DisposeBag()
     private let userJoinUseCase: UserJoinUseCaseProtocol
     
@@ -40,7 +40,7 @@ final class UserJoinViewModel: ViewModel {
     private var isEmailValidationMessageValid = false
     
     init(
-        coordinator: UserAuthCoordinator,
+        coordinator: AppCoordinator,
         userJoinUseCase: UserJoinUseCaseProtocol
     ) {
         self.coordinator = coordinator
@@ -170,7 +170,7 @@ final class UserJoinViewModel: ViewModel {
                 case .suceessData(let user):
                     owner.userJoinUseCase.joinResponse.accept(.suceessData(user.nickname ?? ""))
                     owner.coordinator?.popViewController()
-                case .errorStatusCode(let statusCode):
+                case .statusCode(let statusCode):
                     let message = UserJoinError(rawValue: statusCode)?.message ??
                     NetworkError(rawValue: statusCode)?.message ??
                     NetworkError.internalServerError.message

@@ -28,8 +28,8 @@ final class UserAuthRepository: UserAuthRepositoryProtocol {
             switch result {
             case .suceessData(let responseDTO):
                 return Single<APIResult>.just(.suceessData(responseDTO.toDomain()))
-            case .errorStatusCode(let statusCode):
-                return Single<APIResult>.just(.errorStatusCode(statusCode))
+            case .statusCode(let statusCode):
+                return Single<APIResult>.just(.statusCode(statusCode))
             }
         }
         
@@ -52,8 +52,8 @@ final class UserAuthRepository: UserAuthRepositoryProtocol {
             switch result {
             case .suceessData(let responseDTO):
                 return Single<APIResult>.just(.suceessData(responseDTO.toDomain()))
-            case .errorStatusCode(let statusCode):
-                return Single<APIResult>.just(.errorStatusCode(statusCode))
+            case .statusCode(let statusCode):
+                return Single<APIResult>.just(.statusCode(statusCode))
             }
         }
         

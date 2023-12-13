@@ -66,7 +66,7 @@ final class RefreshInterceptor: RequestInterceptor {
                 self.saveToken(data.accessToken)
                 completion(.retry)
             //MARK: - 결과 (2) 리프래시 토큰 만료
-            case .errorStatusCode(_):
+            case .statusCode(_):
                 completion(.doNotRetryWithError(error))
             }
         }

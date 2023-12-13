@@ -103,6 +103,8 @@ extension StoryItemHeaderView {
             postTypeLabel.text = "광고"
         case .location:
             postTypeLabel.text = storyPost.location
+        case .none:
+            return
         }
     }
 }

@@ -86,8 +86,9 @@ final class StoryUploadViewController: BaseViewController {
             .share()
         let input = StoryUploadViewModel.Input(
             imageSelectionViewClicked: image,
-            nextButtonClicked: self.headerView.nextButton.rx.tap,
-            cancelButtonClicked: self.headerView.cancelButton.rx.tap
+            nextButtonClicked: headerView.nextButton.rx.tap,
+            cancelButtonClicked: headerView.cancelButton.rx.tap,
+            contentText: storyTextView.rx.text.orEmpty
         )
         let output = viewModel.transform(input: input)
         

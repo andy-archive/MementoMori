@@ -20,7 +20,7 @@ final class APIManager {
     static let interceptor = RefreshInterceptor(keychainRepository: KeychainRepository())
     static let session = Session(interceptor: interceptor)
     
-    //MARK: - (1) request
+    //MARK: - request (1-1) JSONDecode
     func request<T: Decodable>(api: MementoAPI, responseType: T.Type) -> Single<APIResult<T>> {
         
         return Single.create { single -> Disposable in
@@ -37,15 +37,40 @@ final class APIManager {
                         let decodedData = try decoder.decode(T.self, from: response.data)
                         single(.success(.suceessData(decodedData)))
                     } catch { //MARK: - 2. 요청 성공은 했으나 디코딩 실패 -> 응답 코드
-                        single(.success(.errorStatusCode(response.statusCode)))
+                        single(.success(.statusCode(response.statusCode)))
                     }
                 case .failure(let error):
                     guard let statusCode = error.response?.statusCode
                     else { //MARK: - 3. 요청 실패, 응답 코드가 없을 때 -> 서버 오류 응답 코드
-                        single(.success(.errorStatusCode(NetworkError.internalServerError.rawValue)))
+                        single(.success(.statusCode(NetworkError.internalServerError.rawValue)))
                         return
                     }  //MARK: - 4. 요청 실패, 공통 에러(Network)에 해당할 때 -> 응답 코드
-                    single(.success(.errorStatusCode(statusCode)))
+                    single(.success(.statusCode(statusCode)))
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    //MARK: - request (1-2) multipart
+    func requestMultipart<T>(api: MementoAPI, responseType: T.Type) -> Single<APIResult<T>> {
+        
+        return Single.create { single -> Disposable in
+            
+            let provider = MoyaProvider<MementoAPI>(session: APIManager.session, plugins: [NetworkLoggerPlugin(configuration: .init(logOptions: .verbose))])
+            
+            provider.request(api) { result in
+                
+                switch result {
+                case .success(let response):
+                    single(.success(.statusCode(response.statusCode)))
+                case .failure(let error):
+                    guard let statusCode = error.response?.statusCode
+                    else {
+                        single(.success(.statusCode(NetworkError.internalServerError.rawValue)))
+                        return
+                    }
+                    single(.success(.statusCode(statusCode)))
                 }
             }
             return Disposables.create()
@@ -95,15 +120,15 @@ final class APIManager {
                         let decodedData = try decoder.decode(T.self, from: response.data)
                         single(.success(.suceessData(decodedData)))
                     } catch { //MARK: - 2. 요청 성공은 했으나 디코딩 실패 -> 응답 코드
-                        single(.success(.errorStatusCode(response.statusCode)))
+                        single(.success(.statusCode(response.statusCode)))
                     }
                 case .failure(let error):
                     guard let statusCode = error.response?.statusCode
                     else { //MARK: - 3. 요청 실패, 응답 코드가 없을 때 -> 서버 오류 응답 코드
-                        single(.success(.errorStatusCode(NetworkError.internalServerError.rawValue)))
+                        single(.success(.statusCode(NetworkError.internalServerError.rawValue)))
                         return
                     }  //MARK: - 4. 요청 실패, 공통 에러(Network)에 해당할 때 -> 응답 코드
-                    single(.success(.errorStatusCode(statusCode)))
+                    single(.success(.statusCode(statusCode)))
                 }
             }
             return Disposables.create()
@@ -128,15 +153,17 @@ final class APIManager {
                     let decodedData = try decoder.decode(RefreshTokenResponseDTO.self, from: response.data)
                     completion(.suceessData(decodedData))
                 } catch {
-                    completion(.errorStatusCode(response.statusCode))
+                    completion(.statusCode(response.statusCode))
                 }
                 
                 if status >= 400 {
-                    completion(.errorStatusCode(response.statusCode))
+                    completion(.statusCode(response.statusCode))
                 }
             case .failure(let error):
-                completion(.errorStatusCode(error.errorCode))
+                completion(.statusCode(error.errorCode))
             }
         }
     }
+    
+    //MARK: - (3) uploadImage
 }

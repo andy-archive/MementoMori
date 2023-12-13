@@ -11,26 +11,26 @@ import RxSwift
 
 final class StoryPostRepository: StoryPostRepositoryProtocol {
     
-    func create(story: StoryPost, imageDataList: [Data]) -> Single<APIResult<Void>> {
+    func create(storyPost: StoryPost, imageDataList: [Data]) -> Single<APIResult<Void>> {
         
         let requestDTO = StoryCreateRequestDTO(
-            title: story.title,
-            content: story.content,
-            imageFileList: imageDataList,
-            address: story.location
+            content: storyPost.content,
+            imageDataList: imageDataList,
+            productID: Constant.Text.productID
         )
         
-        let resonseSingle = APIManager.shared.request(
+        let resonseSingle = APIManager.shared.requestMultipart(
             api: .storyCreate(model: requestDTO),
-            responseType: StoryReadResponseDTO.self
+            responseType: StoryCreateResponseDTO.self
         )
         
         let resultSingle = resonseSingle.flatMap { result in
             switch result {
             case .suceessData(_):
                 return Single<APIResult>.just(.suceessData(Void()))
-            case .errorStatusCode(let statusCode):
-                return Single<APIResult>.just(.errorStatusCode(statusCode))
+            case .statusCode(let statusCode):
+                if statusCode == 200 { return Single<APIResult>.just(.suceessData(Void())) }
+                return Single<APIResult>.just(.statusCode(statusCode))
             }
         }
         
@@ -54,8 +54,8 @@ final class StoryPostRepository: StoryPostRepositoryProtocol {
             switch result {
             case .suceessData(let responseDTO):
                 return Single<APIResult>.just(.suceessData(responseDTO.toDomain()))
-            case .errorStatusCode(let statusCode):
-                return Single<APIResult>.just(.errorStatusCode(statusCode))
+            case .statusCode(let statusCode):
+                return Single<APIResult>.just(.statusCode(statusCode))
             }
         }
         
