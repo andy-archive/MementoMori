@@ -11,13 +11,13 @@ final class AppCoordinator: Coordinator {
     
     weak var delegate: CoordinatorDelegate?
     var navigationController: UINavigationController
-    var tabBarController: UITabBarController
+    var tabBarController: TabController
     var childCoordinators: [Coordinator]
     var signinModal: UINavigationController
     
     required init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.tabBarController = UITabBarController()
+        self.tabBarController = TabController()
         self.childCoordinators = []
         self.signinModal = UINavigationController()
         
