@@ -71,14 +71,20 @@ extension MementoAPI: TargetType {
             multiFormData.append(MultipartFormData(provider: .data(storyPost.productID.data(using: .utf8)!), name: "product_id"))
             return .uploadMultipart(multiFormData)
         case .storyRead(let data):
-            guard let next = data.next else {
+            guard let productID = data.productID else {
                 return .requestParameters(
                     parameters: ["limit": data.limit],
                     encoding: URLEncoding.queryString
                 )
             }
+            guard let next = data.next else {
+                return .requestParameters(
+                    parameters: ["limit": data.limit, "product_id": productID],
+                    encoding: URLEncoding.queryString
+                )
+            }
             return .requestParameters(
-                parameters: ["next": next, "limit": data.limit],
+                parameters: ["next": next, "limit": data.limit, "product_id": productID],
                 encoding: URLEncoding.queryString
             )
         }

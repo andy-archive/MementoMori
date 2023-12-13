@@ -12,7 +12,6 @@ final class StoryItemView: BaseView {
     typealias DataSource = UICollectionViewDiffableDataSource<Section, String>
     
     private var dataSource: DataSource?
-    private var storyPost: StoryPost?
     
     private lazy var imageCollectionView = UICollectionView(
         frame: .zero,
@@ -23,7 +22,7 @@ final class StoryItemView: BaseView {
             scrollDirection: .horizontal
         )
     )
-
+    
     override func configureUI() {
         super.configureUI()
         
@@ -44,9 +43,7 @@ final class StoryItemView: BaseView {
     }
 }
 
-//MARK: UICollectionViewDelegateFlowLayout
-
-
+//MARK: - UICollectionViewDelegateFlowLayout
 extension StoryItemView: UICollectionViewDelegateFlowLayout {
     
     enum Section: CaseIterable {
@@ -67,13 +64,11 @@ extension StoryItemView: UICollectionViewDelegateFlowLayout {
             
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: NSStringFromClass(StoryItemCollectionViewCell.self),
-                for: indexPath)
-                    as? StoryItemCollectionViewCell
-            else {
-                return UICollectionViewCell()
-            }
+                for: indexPath
+            ) as? StoryItemCollectionViewCell
+            else { return UICollectionViewCell() }
             
-            cell.configure(imageURL: itemIdentifier)
+            cell.loadImage(path: itemIdentifier)
             
             return cell
         }
@@ -82,6 +77,7 @@ extension StoryItemView: UICollectionViewDelegateFlowLayout {
     private func configureSnapshot(_ imageList: [String]?) -> NSDiffableDataSourceSnapshot<Section, String> {
         guard let imageList = imageList else { return NSDiffableDataSourceSnapshot() }
         var snapshot = NSDiffableDataSourceSnapshot<Section, String>()
+        
         snapshot.appendSections([.main])
         snapshot.appendItems(imageList, toSection: .main)
         
@@ -90,16 +86,19 @@ extension StoryItemView: UICollectionViewDelegateFlowLayout {
 }
 
 extension StoryItemView {
-    func configure(storyPost: StoryPost?) {
+    
+    func configure(_ storyPostItem: StoryPost?) {
         
-        guard let storyPost else { return }
-        
-        self.storyPost = storyPost
+        guard 
+            let storyPostItem,
+            let imageFilePathList = storyPostItem.imageFilePathList
+        else { return }
         
         configureCollectionView()
         dataSource = configureDataSource()
         
-        let snapshot = configureSnapshot(["MOCKED", "DATA"])
+        let snapshot = configureSnapshot(imageFilePathList)
+        
         dataSource?.apply(snapshot)
     }
 }

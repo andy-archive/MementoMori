@@ -39,7 +39,7 @@ final class StoryListViewController: BaseViewController {
             .storyList
             .emit(with: self) { owner, value in
                 owner.storyView.postList = value
-                self.storyView.configure()
+                owner.storyView.configure()
             }
             .disposed(by: disposeBag)
     }

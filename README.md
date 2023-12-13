@@ -1,8 +1,11 @@
 # Memento Mori
-
-## 새싹 iOS LSLP (Light Server Level Project)
-
-### 파일 트리 구조 (MVVM-C x Clean Architecture)
+> 새싹 iOS LSLP (Light Server Level Project)
+- 프로젝트 관련 기술 블로그 작성
+  - [Swift x Protocol) 프로토콜과 의존성 주입, 의존성 분리 원칙 (feat. DI & DIP)](https://andy-archive.tistory.com/170)
+  - [LSLP) MVVM x Input-Output x RxSwift로 이메일 검증 네트워크 요청하기 (feat. withLatestFrom & flatMap)](https://andy-archive.tistory.com/158)
+  - [LSLP) MVVM과 RxSwift를 이용한 반응형 이메일 입력 화면 구현 (feat: Input-Output & BehaviorRelay)](https://andy-archive.tistory.com/156)
+## I. 구조
+### (1) 파일 트리 구조 (MVVM-C x Clean Architecture)
 ```bash
 📦 MementoMori # 프로젝트 최상위 디렉토리
 ├──📄 README.md # 프로젝트 설명
@@ -31,7 +34,7 @@
 └──📂 MementoMori.xcodeproj
 ```
 
-### 코디네이터 트리 구조 (Coordinator)
+### (2) 코디네이터 트리 구조 (Coordinator)
 ```
 📦 AppCoordinator # by SceneDelegate
 ├──📱 AutoSigninViewController # 자동 로그인
@@ -43,7 +46,7 @@
     └──📂 StoryUploadCoordinator
 ```
 
-## 구현 화면
+## II. 구현 화면
 ### (1) 로그인/회원 가입
 
 | 종류 | [#10 로그인 화면](https://github.com/andy-archive/mementoMori/pull/10) | [#6 회원 가입 필수/선택 사항](https://github.com/andy-archive/MementoMori/pull/6) | [#5 회원 가입 이메일 검증](https://github.com/andy-archive/MementoMori/pull/5) |
@@ -51,27 +54,38 @@
 | GIF | <img src="https://github.com/andy-archive/MementoMori/assets/102043891/fbd862fc-2602-4685-acc4-f35a96247c71" alt="#10 로그인 화면" width=200> | <img src="https://github.com/andy-archive/MementoMori/assets/102043891/a955068c-ce19-4f45-9e6f-47e859328b7e" alt="LSLP #6 회원가입 화면의 필수 및 선택 입력 사항 UI 및 로직 추가" width=200> | <img src="https://github.com/andy-archive/MementoMori/assets/102043891/a5053eb2-6243-43a9-aecc-476bf83e9d36" alt="#5 이메일 검증 응답 메시지에 따른 반응형" width=200> |
 
 ### (2) 스토리(컨텐츠) 목록 화면
-| 종류 | [#17 목록 조회 API (GET)](https://github.com/andy-archive/MementoMori/pull/17) | [#16 컨텐츠 목록 화면 UI](https://github.com/andy-archive/mementoMori/pull/16) |
-|:-:|:-:|:-:|
-| GIF | <img src="https://github.com/andy-archive/MementoMori/assets/102043891/22207e4a-ebb9-4521-83fd-bc370e394d4d" alt="LSLP #17 post GET 구현" width=200> |<img src="https://github.com/andy-archive/MementoMori/assets/102043891/393bce40-39d0-496f-a541-db0f058cc0b7" alt="이미지" width=200> |
 
-## 트러블 슈팅
-### (1) 토큰 매니저 (키 값이 동일한 문제)
-#### (1-1) 요약
-> - 같은 키 값(accessToken, refreshToken)으로 저장이 되어,
-> - 기존 유저가 아닌 다른 유저가 로그인 시,
-> - 새로운 유저의 토큰 생성이 아닌 기존 유저의 토큰이 갱신되는 문제 발생 및 해결
-#### (1-2) PR / Issue 링크
+| 종류 | [#25 컨텐츠 조회 API (GET)](https://github.com/andy-archive/MementoMori/pull/25) | [#16 컨텐츠 목록 화면 UI](https://github.com/andy-archive/mementoMori/pull/16) |
+|:-:|:-:|:-:|
+| GIF | <img src="https://github.com/andy-archive/MementoMori/assets/102043891/97dc7803-08bf-4364-9cea-eb7f3319efb6" alt="LSLP #25 컨텐츠 조회 API (GET)" width=200> |<img src="https://github.com/andy-archive/MementoMori/assets/102043891/393bce40-39d0-496f-a541-db0f058cc0b7" alt="이미지" width=200> |
+
+## III. 트러블 슈팅
+### (1) 이미지에 대한 캐싱 및 다운샘플링 구현
+#### 배경 및 이유 
+##### 이미지에 대한 네트워크 요청 시 비용 증가
+1. 원본 이미지 렌더링 시 시 CPU/GPU 소모 비용 
+2. 네트워크 요청 비용
+#### PR / Issue 링크
+| 종류 | PR / Issue | 링크 |
+|:-:|:-:|:-:|
+| 문제 해결 | Pull Requests | [#25 이미지 업로드 시 캐싱 및 다운샘플링 구현](https://github.com/andy-archive/MementoMori/pull/25) |
+
+### (2) 토큰 매니저 (키 값이 동일한 문제)
+#### 배경 및 이유
+##### 다른 유저 로그인 시 기존 유저의 토큰 갱신
+- 매번 토큰이 각각 같은 키 값(accessToken, refreshToken)으로 저장이 되어
+- 기존 유저가 아닌 다른 유저가 로그인 시
+- 새로운 유저의 토큰 생성이 아닌 기존 유저의 토큰이 갱신되는 문제 발생 및 해결
+##### PR / Issue 링크
 | 종류 | PR / Issue | 링크 |
 |:-:|:-:|:-:|
 | 기존 코드 | Pull Requests | [#12 키체인/토큰 매니저 생성 및 로그인 성공 시 토큰을 키체인 저장 (+ 에러 핸들링))](https://github.com/andy-archive/MementoMori/pull/12) |
 | 문제 발생 | Issues | [#13 토큰 매니저로 저장 시 같은 값으로 저장되는 문제 발생 (→ id 값 추가)](https://github.com/andy-archive/MementoMori/issues/13) |
 | 문제 해결 | Pull Requests | [#14 키체인 매니저에서 id를 포함한 토큰 값 저장 (+ refresh API 구조 생성)](https://github.com/andy-archive/MementoMori/pull/14) |
-#### (1-3) 해결 화면
-##### id를 포함한 accessToken, refreshToken을 각각 저장
+> id를 포함한 accessToken, refreshToken을 각각 저장
 <img width="532" alt="LSLP #13 id를 포함한 토큰 저 KeychainRepository" src="https://github.com/andy-archive/MementoMori/assets/102043891/4c82b01b-d65c-4c09-9b52-79a8a26052e4">
 
-## MVVM-C x 클린 아키텍처 적용
+## IV. MVVM-C x 클린 아키텍처 적용
 - [#9 MVVM에서 클린 아키텍처 구조(+ Coordinator)로 변경](https://github.com/andy-archive/MementoMori/pull/9)
 ### (1) MVVM-C 적용
 - (문제점) MVVM을 적용하는 중에 역할의 분리가 필요해 보였습니다.
