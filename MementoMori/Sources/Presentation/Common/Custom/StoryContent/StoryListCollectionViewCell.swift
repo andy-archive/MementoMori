@@ -80,7 +80,7 @@ final class StoryListCollectionViewCell: BaseCollectionViewCell {
 extension StoryListCollectionViewCell {
     func configureCell(storyPost: StoryPost?) {
         self.storyPost = storyPost
-        itemHeaderView.configure(storyPost: storyPost)
-        itemCollectionView.configure(storyPost: storyPost)
+        itemHeaderView.configure(storyPost)
+        itemCollectionView.configure(storyPost)
     }
 }

@@ -91,10 +91,10 @@ final class StoryItemHeaderView: BaseView {
 
 extension StoryItemHeaderView {
     
-    func configure(storyPost: StoryPost?) {
-        self.storyPost = storyPost
+    func configure(_ item: StoryPost?) {
+        storyPost = item
         
-        guard let storyPost = self.storyPost else { return }
+        guard let storyPost = storyPost else { return }
         
         nicknameLabel.text = storyPost.nickname
         

@@ -90,16 +90,22 @@ extension StoryItemView: UICollectionViewDelegateFlowLayout {
 }
 
 extension StoryItemView {
-    func configure(storyPost: StoryPost?) {
+    
+    func configure(_ item: StoryPost?) {
         
-        guard let storyPost else { return }
+        guard let item else { return }
         
-        self.storyPost = storyPost
+        storyPost = item
+        
+        guard
+            let storyPost,
+            let imageFilePathList = storyPost.imageFilePathList
+        else { return }
         
         configureCollectionView()
         dataSource = configureDataSource()
         
-        let snapshot = configureSnapshot(["MOCKED", "DATA"])
+        let snapshot = configureSnapshot(imageFilePathList)
         dataSource?.apply(snapshot)
     }
 }
