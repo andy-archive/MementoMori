@@ -12,7 +12,6 @@ final class StoryItemView: BaseView {
     typealias DataSource = UICollectionViewDiffableDataSource<Section, String>
     
     private var dataSource: DataSource?
-    private var storyPost: StoryPost?
     
     private lazy var imageCollectionView = UICollectionView(
         frame: .zero,
@@ -23,7 +22,7 @@ final class StoryItemView: BaseView {
             scrollDirection: .horizontal
         )
     )
-
+    
     override func configureUI() {
         super.configureUI()
         
@@ -44,9 +43,7 @@ final class StoryItemView: BaseView {
     }
 }
 
-//MARK: UICollectionViewDelegateFlowLayout
-
-
+//MARK: - UICollectionViewDelegateFlowLayout
 extension StoryItemView: UICollectionViewDelegateFlowLayout {
     
     enum Section: CaseIterable {
@@ -67,11 +64,9 @@ extension StoryItemView: UICollectionViewDelegateFlowLayout {
             
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: NSStringFromClass(StoryItemCollectionViewCell.self),
-                for: indexPath)
-                    as? StoryItemCollectionViewCell
-            else {
-                return UICollectionViewCell()
-            }
+                for: indexPath
+            ) as? StoryItemCollectionViewCell
+            else { return UICollectionViewCell() }
             
             cell.loadImage(path: itemIdentifier)
             
@@ -92,15 +87,11 @@ extension StoryItemView: UICollectionViewDelegateFlowLayout {
 
 extension StoryItemView {
     
-    func configure(_ item: StoryPost?) {
+    func configure(_ storyPostItem: StoryPost?) {
         
-        guard let item else { return }
-        
-        storyPost = item
-        
-        guard
-            let storyPost,
-            let imageFilePathList = storyPost.imageFilePathList
+        guard 
+            let storyPostItem,
+            let imageFilePathList = storyPostItem.imageFilePathList
         else { return }
         
         configureCollectionView()

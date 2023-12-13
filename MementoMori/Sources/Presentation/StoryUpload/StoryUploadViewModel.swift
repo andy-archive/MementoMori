@@ -123,7 +123,6 @@ final class StoryUploadViewModel: ViewModel {
         
         input
             .cancelButtonClicked
-            .debug()
             .subscribe(with: self) { owner, _ in
                 switch owner.uploadProcess {
                 case .imageUpload:

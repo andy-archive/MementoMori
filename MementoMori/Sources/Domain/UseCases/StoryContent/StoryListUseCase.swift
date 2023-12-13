@@ -59,7 +59,7 @@ final class StoryListUseCase: StoryListUseCaseProtocol {
         NetworkError.internalServerError.message
     }
     
-    //MARK: - (MementoAPI) /post GET Request
+    //MARK: - "baseURL/post" request (GET)
     func fetchStoryListStream() -> Observable<[StoryPost]?> {
         
         var limit = String(pagination)
