@@ -73,7 +73,7 @@ extension StoryItemView: UICollectionViewDelegateFlowLayout {
                 return UICollectionViewCell()
             }
             
-            cell.configure(imageURL: itemIdentifier)
+            cell.loadImage(path: itemIdentifier)
             
             return cell
         }
@@ -82,6 +82,7 @@ extension StoryItemView: UICollectionViewDelegateFlowLayout {
     private func configureSnapshot(_ imageList: [String]?) -> NSDiffableDataSourceSnapshot<Section, String> {
         guard let imageList = imageList else { return NSDiffableDataSourceSnapshot() }
         var snapshot = NSDiffableDataSourceSnapshot<Section, String>()
+        
         snapshot.appendSections([.main])
         snapshot.appendItems(imageList, toSection: .main)
         
@@ -106,6 +107,7 @@ extension StoryItemView {
         dataSource = configureDataSource()
         
         let snapshot = configureSnapshot(imageFilePathList)
+        
         dataSource?.apply(snapshot)
     }
 }

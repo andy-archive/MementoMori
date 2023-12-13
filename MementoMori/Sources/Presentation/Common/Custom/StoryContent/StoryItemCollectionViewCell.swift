@@ -7,17 +7,20 @@
 
 import UIKit
 
+import Kingfisher
+
 final class StoryItemCollectionViewCell: BaseCollectionViewCell {
     
-    private var imageURL: String?
-    
-    private let colorList: [UIColor] = [.systemBlue, .systemRed, .systemGreen, .systemCyan, .systemYellow, .systemPink, .systemOrange]
-    
     private lazy var imageView = {
-        let view = UIView()
-        view.backgroundColor = colorList.randomElement()!
+        let view = UIImageView()
         return view
     }()
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        imageView.image = nil
+    }
     
     override func configureUI() {
         super.configureUI()
@@ -36,10 +39,40 @@ final class StoryItemCollectionViewCell: BaseCollectionViewCell {
     }
 }
 
-//MARK: configureCell
-
+//MARK: upload image
 extension StoryItemCollectionViewCell {
-    func configure(imageURL: String?) {
-        self.imageURL = imageURL
+    
+    func loadImage(token: String?, path: String?) {
+        
+        guard let token,
+              let path else { return }
+        let urlString = MementoAPI.baseURL + path
+        let modifier = AnyModifier { request in
+            var result = request
+            result.setValue(
+                token,
+                forHTTPHeaderField: "Authorization"
+            )
+            return result
+        }
+        
+        guard let url = URL(string: urlString) else { return }
+        let cgSize = CGSize(width: 200, height: 300)
+        let downsamplingImageProcessor = DownsamplingImageProcessor(size: cgSize)
+        
+        DispatchQueue.global().async {
+            DispatchQueue.main.async {
+                self.imageView.kf.indicatorType = .activity
+                self.imageView.kf.setImage(
+                    with: url,
+                    options: [
+                        .transition(.fade(0.2)),
+                        .processor(downsamplingImageProcessor),
+                        .scaleFactor(UIScreen.main.scale),
+                        .cacheOriginalImage
+                    ]
+                )
+            }
+        }
     }
 }
