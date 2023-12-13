@@ -11,7 +11,7 @@ import RxSwift
 
 final class StoryListUseCase: StoryListUseCaseProtocol {
     
-    private var pagination = 10
+    private var pagination = 5
     private var nextCursor: String?
     private var postList = [StoryPost]()
     private let disposeBag = DisposeBag()
@@ -28,10 +28,16 @@ final class StoryListUseCase: StoryListUseCaseProtocol {
     }
 
     //MARK: - (1) fetchPostRead - storyPostRepository (GET)
-    private func fetchPostRead(nextCursor: String?, limit: String) -> Single<APIResult<(storyList: [StoryPost], nextCursor: String)>> {
-        return self.storyPostRepository.read(
-            next: nextCursor ?? nil,
-            limit: limit
+    private func fetchPostRead(
+        nextCursor: String? = nil,
+        limit: String,
+        productID: String = Constant.Text.productID
+    ) -> Single<APIResult<(storyList: [StoryPost], nextCursor: String)>> {
+        
+        return storyPostRepository.read(
+            next: nextCursor,
+            limit: limit,
+            productID: productID
         )
     }
     
@@ -88,6 +94,4 @@ final class StoryListUseCase: StoryListUseCaseProtocol {
 //                }
 //            }
 //            .disposed(by: disposeBag)
-    
- 
 }

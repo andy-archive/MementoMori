@@ -38,12 +38,12 @@ final class StoryPostRepository: StoryPostRepositoryProtocol {
         return resultSingle
     }
     
-    func read(next: String?, limit: String) -> Single<APIResult<(storyList: [StoryPost], nextCursor: String)>> {
+    func read(next: String?, limit: String, productID: String) -> Single<APIResult<(storyList: [StoryPost], nextCursor: String)>> {
         
         let requestDTO = StoryReadRequestDTO(
-            next: next ?? nil,
+            next: next,
             limit: limit,
-            productID: nil
+            productID: productID
         )
         
         let resonseSingle = APIManager.shared.request(
@@ -62,9 +62,4 @@ final class StoryPostRepository: StoryPostRepositoryProtocol {
         
         return resultSingle
     }
-        
-//    func readProduct(story: StoryPost, next: String?, limit: String, productId: String, accessToken: String) -> Single<APIResult<Void>> {
-//        <#code#>
-//    }
-    
 }
