@@ -21,7 +21,8 @@ final class UserAuthRepository: UserAuthRepositoryProtocol {
         
         let singleResponse = APIManager.shared.request(
             api: .userJoin(model: requestDTO),
-            responseType: UserJoinResponseDTO.self
+            responseType: UserJoinResponseDTO.self,
+            isWithToken: false
         )
         
         let singleResult = singleResponse.flatMap { result in
@@ -43,7 +44,7 @@ final class UserAuthRepository: UserAuthRepositoryProtocol {
             password: user.password ?? ""
         )
         
-        let singleResponse = APIManager.shared.signin(
+        let singleResponse = APIManager.shared.request(
             api: .userSignin(model: requestDTO),
             responseType: UserSigninResponseDTO.self
         )

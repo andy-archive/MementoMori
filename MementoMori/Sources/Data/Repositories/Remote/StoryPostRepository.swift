@@ -19,9 +19,10 @@ final class StoryPostRepository: StoryPostRepositoryProtocol {
             productID: Constant.Text.productID
         )
         
-        let resonseSingle = APIManager.shared.requestMultipart(
+        let resonseSingle = APIManager.shared.request(
             api: .storyCreate(model: requestDTO),
-            responseType: StoryCreateResponseDTO.self
+            responseType: StoryCreateResponseDTO.self,
+            apiType: .multipart
         )
         
         let resultSingle = resonseSingle.flatMap { result in
