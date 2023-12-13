@@ -87,6 +87,7 @@
 		388CFD4D2B0F2ED900638EFD /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CFD4C2B0F2ED800638EFD /* NetworkError.swift */; };
 		38B5FB152B24D2AE00F91DDA /* RefreshInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5FB142B24D2AE00F91DDA /* RefreshInterceptor.swift */; };
 		38B9203F2B08AAED006CBD1C /* Constant+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B9203E2B08AAED006CBD1C /* Constant+Network.swift */; };
+		38C891852B29F7F400F15F1B /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C891842B29F7F400F15F1B /* TabController.swift */; };
 		38CA8C222B0385AC00A9C4B7 /* SigninTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA8C212B0385AC00A9C4B7 /* SigninTitleLabel.swift */; };
 		38CA8C252B03893300A9C4B7 /* SigninSubtitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA8C242B03893300A9C4B7 /* SigninSubtitleLabel.swift */; };
 		38CA8C272B038AC000A9C4B7 /* SigninButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA8C262B038AC000A9C4B7 /* SigninButton.swift */; };
@@ -184,6 +185,7 @@
 		388CFD4C2B0F2ED800638EFD /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		38B5FB142B24D2AE00F91DDA /* RefreshInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshInterceptor.swift; sourceTree = "<group>"; };
 		38B9203E2B08AAED006CBD1C /* Constant+Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constant+Network.swift"; sourceTree = "<group>"; };
+		38C891842B29F7F400F15F1B /* TabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
 		38CA8C212B0385AC00A9C4B7 /* SigninTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninTitleLabel.swift; sourceTree = "<group>"; };
 		38CA8C242B03893300A9C4B7 /* SigninSubtitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninSubtitleLabel.swift; sourceTree = "<group>"; };
 		38CA8C262B038AC000A9C4B7 /* SigninButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninButton.swift; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 				3847EC432B0252B200E086EB /* BaseViewController.swift */,
 				3863093B2B141C93001973AA /* Coordinator.swift */,
 				387463CE2B160815009FAB2C /* TabBar.swift */,
+				38C891842B29F7F400F15F1B /* TabController.swift */,
 				38EE8A832B04D29000E629CC /* ViewModel.swift */,
 			);
 			path = Base;
@@ -750,6 +753,7 @@
 				3847EC322B022FF800E086EB /* Constant.swift in Sources */,
 				386309272B132A5A001973AA /* UserAuthRepositoryProtocol.swift in Sources */,
 				387464022B170C3B009FAB2C /* KeychainRepository.swift in Sources */,
+				38C891852B29F7F400F15F1B /* TabController.swift in Sources */,
 				3863093C2B141C93001973AA /* Coordinator.swift in Sources */,
 				387463DE2B163C54009FAB2C /* StoryContentCoordinator.swift in Sources */,
 				38318DA82B1A11EB000EED65 /* RefreshTokenDTO.swift in Sources */,
