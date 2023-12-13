@@ -169,7 +169,7 @@ final class UserJoinViewModel: ViewModel {
                 switch result {
                 case .suceessData(let user):
                     owner.userJoinUseCase.joinResponse.accept(.suceessData(user.nickname ?? ""))
-                    owner.coordinator?.popViewController()
+                    owner.coordinator?.signinModal.popViewController(animated: true)
                 case .statusCode(let statusCode):
                     let message = UserJoinError(rawValue: statusCode)?.message ??
                     NetworkError(rawValue: statusCode)?.message ??
