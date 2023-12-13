@@ -8,6 +8,7 @@
 import UIKit
 
 extension Constant {
+    
     enum Color {
         static let label = UIColor.label
         static let secondaryLabel = UIColor.secondaryLabel

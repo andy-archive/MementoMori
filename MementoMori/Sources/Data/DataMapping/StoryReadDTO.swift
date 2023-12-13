@@ -38,7 +38,7 @@ struct StoryReadResponseDTO: Decodable {
                 nickname: story.creator.nickname,
                 title: story.title ?? "",
                 content: story.content ?? "",
-                imageNameList: story.image ?? [],
+                imageDataList: [Data()],
                 commentList: [],
                 location: story.location,
                 isLiked: false,

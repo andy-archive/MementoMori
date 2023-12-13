@@ -15,13 +15,14 @@ protocol Coordinator: AnyObject {
     var delegate: CoordinatorDelegate? { get set }
     var navigationController: UINavigationController { get set }
     var childCoordinators: [Coordinator] { get set }
+    
+    init(_ navigationController: UINavigationController)
+    
     func start()
     func finish()
     func popViewController()
     func dismissViewController()
     func presentAlertError(title: String?, message: String?, handler: (() -> Void)?)
-    
-    init(_ navigationController: UINavigationController)
 }
 
 extension Coordinator {
@@ -32,7 +33,7 @@ extension Coordinator {
     }
     
     func popViewController() {
-        self.navigationController.popViewController(animated: true)
+        navigationController.popViewController(animated: true)
     }
     
     func dismissViewController() {

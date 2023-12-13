@@ -28,25 +28,15 @@ final class StoryContentCoordinator: Coordinator {
 extension StoryContentCoordinator {
     
     func showStoryListViewController() {
-        self.navigationController.pushViewController(
-            StoryListViewController(
-                viewModel: StoryListViewModel(
-                    coordinator: self,
-                    storyListUseCase: StoryListUseCase(
-                        storyPostRepository: StoryPostRepository(),
-                        keychainRepository: KeychainRepository()
-                    )
-                )
-            ),
-            animated: true
+        let useCase = StoryListUseCase(
+            storyPostRepository: StoryPostRepository(),
+            keychainRepository: KeychainRepository()
         )
-    }
-}
-
-//MARK: - CoordinatorDelegate
-extension StoryContentCoordinator: CoordinatorDelegate {
-    func didFinish(childCoordinator: Coordinator) {
-        navigationController.popToRootViewController(animated: true)
-        self.finish()
+        let viewModel = StoryListViewModel(
+            coordinator: self,
+            storyListUseCase: useCase
+        )
+        let viewController =  StoryListViewController(viewModel: viewModel)
+        navigationController.pushViewController(viewController, animated: false)
     }
 }

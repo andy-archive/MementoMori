@@ -99,7 +99,7 @@ extension StoryItemView {
         configureCollectionView()
         dataSource = configureDataSource()
         
-        let snapshot = configureSnapshot(storyPost.imageNameList)
+        let snapshot = configureSnapshot(["MOCKED", "DATA"])
         dataSource?.apply(snapshot)
     }
 }

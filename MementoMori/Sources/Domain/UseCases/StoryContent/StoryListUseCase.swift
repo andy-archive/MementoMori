@@ -40,7 +40,7 @@ final class StoryListUseCase: StoryListUseCaseProtocol {
         switch result {
         case .suceessData(let list):
             return list.storyList
-        case .errorStatusCode(let statusCode):
+        case .statusCode(let statusCode):
             if statusCode == 419 { return nil }
             return MockData().storyList
         }

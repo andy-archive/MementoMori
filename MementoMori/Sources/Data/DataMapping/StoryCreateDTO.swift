@@ -9,15 +9,14 @@ import Foundation
 
 //MARK: - Request
 struct StoryCreateRequestDTO: Encodable {
-    let title: String
     let content: String
-    let imageFileList: [Data]
-    let address: String?
+    let imageDataList: [Data]
+    let productID: String
     
     enum CodingKeys: String, CodingKey {
-        case title, content
-        case imageFileList = "file"
-        case address = "content1"
+        case content
+        case imageDataList = "file"
+        case productID = "product_id"
     }
 }
 
@@ -26,16 +25,17 @@ struct StoryCreateResponseDTO: Decodable {
     let id: String
     let title: String
     let content: String
-    let likes: [String]
     let image: [String]
-    let hashTags: [String]
-    let comments: [String]
+//    let likes: [String]
+//    let hashTags: [String]
+//    let comments: [String]
     let creator: Creator
     let time: String
     
     enum CodingKeys: String, CodingKey {
         case id = "_id"
-        case title, content, likes, image
-        case hashTags, comments, creator, time
+        case title, content, image
+//        case likes, hashTags, comments
+        case creator, time
     }
 }

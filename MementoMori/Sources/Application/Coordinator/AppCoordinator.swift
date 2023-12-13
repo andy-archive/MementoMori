@@ -11,46 +11,62 @@ final class AppCoordinator: Coordinator {
     
     weak var delegate: CoordinatorDelegate?
     var navigationController: UINavigationController
+    var tabBarController: UITabBarController
     var childCoordinators: [Coordinator]
+    var signinModal: UINavigationController
     
     required init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.navigationController.configureAppearance()
+        self.tabBarController = UITabBarController()
         self.childCoordinators = []
+        self.signinModal = UINavigationController()
+        
+        self.tabBarController.configureAppearance()
+        self.navigationController.configureAppearance()
     }
     
     func start() {
-        showAutoSigninViewController()
+        showStoryUploadViewController()
     }
 }
 
 extension AppCoordinator {
     
-    //MARK: - ViewController
+    //MARK: - SplashViewController
+    func showStoryUploadViewController() {
+        showAutoSigninViewController()
+        configureTabBarController()
+    }
+    
+    //MARK: - (Modal 1) AutoSignin
     private func showAutoSigninViewController() {
-        let autoSigninViewController = AutoSigninViewController(
-            viewModel: AutoSigninViewModel(
-                coordinator: self
-            )
+        let viewModel = AutoSigninViewModel(coordinator: self)
+        let autoSigninViewController = AutoSigninViewController(viewModel: viewModel)
+        let signinModal = UINavigationController(rootViewController: autoSigninViewController)
+        
+        self.signinModal.setNavigationBarHidden(false, animated: false)
+        self.signinModal = signinModal
+        self.signinModal.modalPresentationStyle = .fullScreen
+        self.navigationController.present(self.signinModal, animated: true)
+    }
+    
+    //MARK: - (Modal 2-1) UserSignin
+    func showUserSigninViewController() {
+        let useCase = UserSigninUseCase(
+            userAuthRepository: makeAuthRepository(),
+            keychainRepository: makeKeychainRepository()
         )
-        navigationController.setNavigationBarHidden(false, animated: false)
-        navigationController.pushViewController(autoSigninViewController, animated: true)
+        let viewModel = UserSigninViewModel(coordinator: self, userSigninUseCase: useCase)
+        let viewController = UserSigninViewController(viewModel: viewModel)
+        self.signinModal.pushViewController(viewController, animated: true)
     }
     
-    //MARK: - Coordinators
-    func makeUserAuthCoordinator() {
-        let userAuthCoordinator = UserAuthCoordinator(navigationController)
-        userAuthCoordinator.delegate = self
-        userAuthCoordinator.start()
-        childCoordinators.append(userAuthCoordinator)
-    }
-    
-    func makeTabBarCoordinator() {
-        navigationController.popToRootViewController(animated: true)
-        let tabBarCoordinator = TabBarCoordinator(navigationController)
-        tabBarCoordinator.delegate = self
-        tabBarCoordinator.start()
-        childCoordinators.append(tabBarCoordinator)
+    //MARK: - (Modal 2-2) UserJoin
+    func showUserJoinViewController() {
+        let useCase = UserJoinUseCase(userAuthRepository: makeAuthRepository())
+        let viewModel = UserJoinViewModel(coordinator: self, userJoinUseCase: useCase)
+        let viewController = UserJoinViewController(viewModel: viewModel)
+        self.signinModal.pushViewController(viewController, animated: true)
     }
     
     //MARK: - Repositories
@@ -63,14 +79,62 @@ extension AppCoordinator {
     }
 }
 
+//MARK: - TabBarController
+private extension AppCoordinator {
+    
+    //MARK: - TabBar
+    func configureTabBar(_ tabBar: TabBar) -> UINavigationController {
+        let navigationController = UINavigationController()
+        navigationController.tabBarItem = tabBar.tabBarItem
+        navigationController.setNavigationBarHidden(true, animated: false)
+        connectTabBarController(tabBar, navigationController)
+        return navigationController
+    }
+    
+    //MARK: - TabBarController
+    func configureTabBarController() {
+        let tabBarList: [TabBar] = TabBar.allCases
+        let navigationControllerList: [UINavigationController] = tabBarList.map { tabBar in
+            configureTabBar(tabBar)
+        }
+        
+        tabBarController.setViewControllers(navigationControllerList, animated: true)
+        tabBarController.selectedIndex = TabBar.storyList.rawValue
+        navigationController.setNavigationBarHidden(true, animated: false)
+        navigationController.pushViewController(tabBarController, animated: true)
+    }
+    
+    //MARK: - NavigationController in TabBarController
+    func connectTabBarController(_ tabBar: TabBar, _ navigationController: UINavigationController) {
+        switch tabBar {
+        case .storyList:
+            makeStoryContentCoordinator(navigationController)
+        case .storyUpload:
+            makeStoryUploadCoordinator(navigationController)
+        }
+    }
+    
+    //MARK: - childCoordinators
+    func makeStoryContentCoordinator(_ navigationController: UINavigationController) {
+        let storyContentCoordinator = StoryContentCoordinator(navigationController)
+        storyContentCoordinator.delegate = self
+        storyContentCoordinator.start()
+        childCoordinators.append(storyContentCoordinator)
+    }
+    
+    func makeStoryUploadCoordinator(_ navigationController: UINavigationController) {
+        let storyUploadCoordinator = StoryUploadCoordinator(navigationController)
+        storyUploadCoordinator.delegate = self
+        storyUploadCoordinator.start()
+        childCoordinators.append(storyUploadCoordinator)
+    }
+}
+
 //MARK: - CoordinatorDelegate
 extension AppCoordinator: CoordinatorDelegate {
     func didFinish(childCoordinator: Coordinator) {
-        navigationController.popToRootViewController(animated: true)
-        if childCoordinator is TabBarCoordinator {
-            makeUserAuthCoordinator()
-        } else {
-            makeTabBarCoordinator()
+        if childCoordinator is StoryUploadCoordinator {
+            tabBarController.selectedIndex = TabBar.storyList.rawValue
         }
     }
 }

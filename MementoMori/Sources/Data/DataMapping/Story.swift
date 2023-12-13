@@ -12,7 +12,7 @@ struct Story: Decodable {
     let title: String?
     let content: String?
     let likes: [String]?
-    let image: [String]?
+    let imageFilePathList: [String]
 //    let comments: [Comment]
 //    let hashTags: [String]
     let createdAt: String
@@ -22,9 +22,8 @@ struct Story: Decodable {
     
     enum CodingKeys: String, CodingKey {
         case id = "_id"
-        case title // = "content2"
-        case content
-        case likes, image
+        case title, content, likes
+        case imageFilePathList = "image"
 //        case comments, hashTags
         case creator
         case createdAt = "time"

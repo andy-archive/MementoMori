@@ -9,6 +9,10 @@ import Foundation
 
 enum Constant {
     
+    enum Text {
+        static let productID = "MementoMori"
+    }
+    
     enum FontSize {
         static let largeTitle: CGFloat = 30
         static let title: CGFloat = 18

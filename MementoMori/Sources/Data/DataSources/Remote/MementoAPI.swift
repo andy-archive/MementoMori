@@ -55,8 +55,21 @@ extension MementoAPI: TargetType {
             return .requestJSONEncodable(data)
         case .refreshToken:
             return .requestPlain
-        case .storyCreate(let data):
-            return .requestJSONEncodable(data)
+        case .storyCreate(let storyPost):
+            var multiFormData: [MultipartFormData] = []
+            storyPost.imageDataList.forEach { imageData in
+                multiFormData.append(
+                    MultipartFormData(
+                        provider: .data(imageData),
+                        name: "file",
+                        fileName: "storyPost.jpeg",
+                        mimeType: "image/jpeg"
+                    )
+                )
+            }
+            multiFormData.append(MultipartFormData(provider: .data(storyPost.content.data(using: .utf8)!), name: "content"))
+            multiFormData.append(MultipartFormData(provider: .data(storyPost.productID.data(using: .utf8)!), name: "product_id"))
+            return .uploadMultipart(multiFormData)
         case .storyRead(let data):
             guard let next = data.next else {
                 return .requestParameters(

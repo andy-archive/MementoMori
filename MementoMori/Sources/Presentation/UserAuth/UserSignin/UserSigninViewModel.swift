@@ -27,12 +27,12 @@ final class UserSigninViewModel: ViewModel {
         let signinValidationText: PublishRelay<String>
     }
     
-    weak var coordinator: UserAuthCoordinator?
+    weak var coordinator: AppCoordinator?
     let disposeBag = DisposeBag()
     private let userSigninUseCase: UserSigninUseCaseProtocol
     
     init(
-        coordinator: UserAuthCoordinator,
+        coordinator: AppCoordinator,
         userSigninUseCase: UserSigninUseCaseProtocol
     ) {
         self.coordinator = coordinator
@@ -91,13 +91,14 @@ final class UserSigninViewModel: ViewModel {
             .signinButtonClicked
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(userInfo)
-            .flatMap { user in
-                self.userSigninUseCase.signin(user: user)
+            .withUnretained(self)
+            .flatMap { owner, user in
+                owner.userSigninUseCase.signin(user: user)
             }
             .bind(with: self) { owner, result in
-                let signinProcess = self.userSigninUseCase.verifySigninProcess(result: result)
+                let signinProcess = owner.userSigninUseCase.verifySigninProcess(result: result)
                 if signinProcess.isCompleted {
-                    self.coordinator?.finish()
+                    owner.coordinator?.dismissViewController()
                 } else {
                     isSigninCompleted.accept(signinProcess.isCompleted)
                     errorMessage.accept(signinProcess.message)

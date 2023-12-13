@@ -27,13 +27,17 @@ final class StoryUploadCoordinator: Coordinator {
 extension StoryUploadCoordinator {
     
     func showStoryUploadViewController() {
-        self.navigationController.pushViewController(
-            StoryUploadViewController(
-                viewModel: StoryUploadViewModel(
-                    coordinator: self
-                ),
-                imagePicker: ImagePickerController()
-            ), animated: true
+        let viewModel = StoryUploadViewModel(
+            coordinator: self,
+            storyUploadUseCase: StoryUploadUseCase(
+                storyPostRepository: StoryPostRepository()
+            )
         )
+        let viewController =  StoryUploadViewController(
+            viewModel: viewModel,
+            imagePicker: ImagePickerController()
+        )
+        viewController.hidesBottomBarWhenPushed = true
+        navigationController.pushViewController(viewController, animated: true)
     }
 }

@@ -29,7 +29,7 @@ final class UserSigninUseCase: UserSigninUseCaseProtocol {
         case .suceessData(let user):
             return isAllTokenSaved(user: user) ?
             (true, "환영합니다 😆") : (false, TokenError.invalidToken.message)
-        case .errorStatusCode(let statusCode):
+        case .statusCode(let statusCode):
             return (false, verifyErrorMessage(statusCode: statusCode))
         }
     }
