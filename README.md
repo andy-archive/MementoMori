@@ -61,28 +61,28 @@
 
 ## III. 트러블 슈팅
 ### (1) 이미지에 대한 캐싱 및 다운샘플링 구현
-#### (1-1) 배경 및 이유 
-> - 이미지에 대한 네트워크 요청 시 비용 증가
-> - (a) 원본 이미지 렌더링 시 시 CPU/GPU 소모 비용 
-> - (b) 네트워크 요청 비용
-#### (1-2) PR / Issue 링크
+#### 배경 및 이유 
+##### 이미지에 대한 네트워크 요청 시 비용 증가
+1. 원본 이미지 렌더링 시 시 CPU/GPU 소모 비용 
+2. 네트워크 요청 비용
+#### PR / Issue 링크
 | 종류 | PR / Issue | 링크 |
 |:-:|:-:|:-:|
 | 문제 해결 | Pull Requests | [#25 이미지 업로드 시 캐싱 및 다운샘플링 구현](https://github.com/andy-archive/MementoMori/pull/25) |
 
 ### (2) 토큰 매니저 (키 값이 동일한 문제)
-#### (2-1) 배경 및 이유
-> - 같은 키 값(accessToken, refreshToken)으로 저장이 되어,
-> - 기존 유저가 아닌 다른 유저가 로그인 시,
-> - 새로운 유저의 토큰 생성이 아닌 기존 유저의 토큰이 갱신되는 문제 발생 및 해결
-#### (2-2) PR / Issue 링크
+#### 배경 및 이유
+##### 다른 유저 로그인 시 기존 유저의 토큰 갱신
+- 매번 토큰이 각각 같은 키 값(accessToken, refreshToken)으로 저장이 되어
+- 기존 유저가 아닌 다른 유저가 로그인 시
+- 새로운 유저의 토큰 생성이 아닌 기존 유저의 토큰이 갱신되는 문제 발생 및 해결
+##### PR / Issue 링크
 | 종류 | PR / Issue | 링크 |
 |:-:|:-:|:-:|
 | 기존 코드 | Pull Requests | [#12 키체인/토큰 매니저 생성 및 로그인 성공 시 토큰을 키체인 저장 (+ 에러 핸들링))](https://github.com/andy-archive/MementoMori/pull/12) |
 | 문제 발생 | Issues | [#13 토큰 매니저로 저장 시 같은 값으로 저장되는 문제 발생 (→ id 값 추가)](https://github.com/andy-archive/MementoMori/issues/13) |
 | 문제 해결 | Pull Requests | [#14 키체인 매니저에서 id를 포함한 토큰 값 저장 (+ refresh API 구조 생성)](https://github.com/andy-archive/MementoMori/pull/14) |
-#### (2-3) 해결 화면
-##### id를 포함한 accessToken, refreshToken을 각각 저장
+> id를 포함한 accessToken, refreshToken을 각각 저장
 <img width="532" alt="LSLP #13 id를 포함한 토큰 저 KeychainRepository" src="https://github.com/andy-archive/MementoMori/assets/102043891/4c82b01b-d65c-4c09-9b52-79a8a26052e4">
 
 ## IV. MVVM-C x 클린 아키텍처 적용
