@@ -26,11 +26,6 @@ struct UserSigninResponseDTO: Decodable {
     func toDomain() -> User {
         return User(
             id: id,
-            email: nil,
-            password: nil,
-            nickname: nil,
-            phoneNum: nil,
-            birthday: nil,
             accessToken: accessToken,
             refreshToken: refreshToken
         )
