@@ -88,6 +88,9 @@
 		38B5FB152B24D2AE00F91DDA /* RefreshInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5FB142B24D2AE00F91DDA /* RefreshInterceptor.swift */; };
 		38B9203F2B08AAED006CBD1C /* Constant+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B9203E2B08AAED006CBD1C /* Constant+Network.swift */; };
 		38C891852B29F7F400F15F1B /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C891842B29F7F400F15F1B /* TabController.swift */; };
+		38C891882B2AB15D00F15F1B /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C891872B2AB15D00F15F1B /* SplashViewController.swift */; };
+		38C8918A2B2AB16300F15F1B /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C891892B2AB16300F15F1B /* SplashViewModel.swift */; };
+		38C8918C2B2AE5FD00F15F1B /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C8918B2B2AE5FD00F15F1B /* Authorization.swift */; };
 		38CA8C222B0385AC00A9C4B7 /* SigninTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA8C212B0385AC00A9C4B7 /* SigninTitleLabel.swift */; };
 		38CA8C252B03893300A9C4B7 /* SigninSubtitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA8C242B03893300A9C4B7 /* SigninSubtitleLabel.swift */; };
 		38CA8C272B038AC000A9C4B7 /* SigninButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA8C262B038AC000A9C4B7 /* SigninButton.swift */; };
@@ -186,6 +189,9 @@
 		38B5FB142B24D2AE00F91DDA /* RefreshInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshInterceptor.swift; sourceTree = "<group>"; };
 		38B9203E2B08AAED006CBD1C /* Constant+Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constant+Network.swift"; sourceTree = "<group>"; };
 		38C891842B29F7F400F15F1B /* TabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
+		38C891872B2AB15D00F15F1B /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		38C891892B2AB16300F15F1B /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
+		38C8918B2B2AE5FD00F15F1B /* Authorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authorization.swift; sourceTree = "<group>"; };
 		38CA8C212B0385AC00A9C4B7 /* SigninTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninTitleLabel.swift; sourceTree = "<group>"; };
 		38CA8C242B03893300A9C4B7 /* SigninSubtitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninSubtitleLabel.swift; sourceTree = "<group>"; };
 		38CA8C262B038AC000A9C4B7 /* SigninButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninButton.swift; sourceTree = "<group>"; };
@@ -290,8 +296,8 @@
 		3840F6912B1865E800C488B6 /* Remote */ = {
 			isa = PBXGroup;
 			children = (
-				386309622B147637001973AA /* UserAuthRepository.swift */,
 				38318DE82B20473D000EED65 /* StoryPostRepository.swift */,
+				386309622B147637001973AA /* UserAuthRepository.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -329,6 +335,7 @@
 			children = (
 				387463E12B163E86009FAB2C /* Coordinator */,
 				387463E22B163E8C009FAB2C /* Delegate */,
+				38C891862B2AB14E00F15F1B /* Splash */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -431,8 +438,8 @@
 		385F93F92B1968030021D548 /* Remote */ = {
 			isa = PBXGroup;
 			children = (
-				386309262B132A5A001973AA /* UserAuthRepositoryProtocol.swift */,
 				38318DDA2B1F54C2000EED65 /* StoryPostRepositoryProtocol.swift */,
+				386309262B132A5A001973AA /* UserAuthRepositoryProtocol.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -451,6 +458,7 @@
 		3863091F2B1311DA001973AA /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				38C8918B2B2AE5FD00F15F1B /* Authorization.swift */,
 				38318DD62B1EDEC8000EED65 /* StoryImage.swift */,
 				38318DBC2B1C97CE000EED65 /* StoryPost.swift */,
 				386309302B135752001973AA /* User.swift */,
@@ -638,6 +646,15 @@
 			path = Error;
 			sourceTree = "<group>";
 		};
+		38C891862B2AB14E00F15F1B /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				38C891872B2AB15D00F15F1B /* SplashViewController.swift */,
+				38C891892B2AB16300F15F1B /* SplashViewModel.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
 		38EE8A772B04B65800E629CC /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -742,6 +759,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38C891882B2AB15D00F15F1B /* SplashViewController.swift in Sources */,
 				38318DB82B1C73AE000EED65 /* UICollectionViewLayout+.swift in Sources */,
 				3859E5562B18C31000987F75 /* RefreshError.swift in Sources */,
 				38318DE52B20411A000EED65 /* StoryCreateError.swift in Sources */,
@@ -756,10 +774,12 @@
 				38C891852B29F7F400F15F1B /* TabController.swift in Sources */,
 				3863093C2B141C93001973AA /* Coordinator.swift in Sources */,
 				387463DE2B163C54009FAB2C /* StoryContentCoordinator.swift in Sources */,
+				38C8918A2B2AB16300F15F1B /* SplashViewModel.swift in Sources */,
 				38318DA82B1A11EB000EED65 /* RefreshTokenDTO.swift in Sources */,
 				38318DE32B20380A000EED65 /* Creator.swift in Sources */,
 				380647002B21CD1D001B375D /* StoryUploadViewController.swift in Sources */,
 				386FCD8B2B21DA8200822DFD /* UIImagePicker+Reactive.swift in Sources */,
+				38C8918C2B2AE5FD00F15F1B /* Authorization.swift in Sources */,
 				380647062B21D0E9001B375D /* StoryUploadHeaderView.swift in Sources */,
 				38EE8A822B04D0AC00E629CC /* UserJoinViewModel.swift in Sources */,
 				380647032B21CD7F001B375D /* StoryUploadCoordinator.swift in Sources */,

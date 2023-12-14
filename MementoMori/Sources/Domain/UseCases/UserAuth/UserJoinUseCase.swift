@@ -10,8 +10,8 @@ import RxSwift
 
 final class UserJoinUseCase: UserJoinUseCaseProtocol {
     
+    //MARK: - (1) Properties
     private let userAuthRepository: UserAuthRepositoryProtocol
-    
     var isEmailTextValid = PublishRelay<Bool>()
     var isPasswordTextValid = PublishRelay<Bool>()
     var isNicknameTextValid = PublishRelay<Bool>()
@@ -21,12 +21,14 @@ final class UserJoinUseCase: UserJoinUseCaseProtocol {
     var isNextButtonEnabled = BehaviorRelay<Bool>(value: false)
     var joinResponse = PublishRelay<APIResult<String>>()
     
+    //MARK: - (2) Initializer
     init(
         userAuthRepository: UserAuthRepositoryProtocol
     ) {
         self.userAuthRepository = userAuthRepository
     }
     
+    //MARK: - (3) Protocol Method
     func join(user: User) -> Single<APIResult<User>> {
         return self.userAuthRepository.join(user: user)
     }

@@ -20,8 +20,8 @@ final class StoryListViewModel: ViewModel {
         let storyList: Signal<[StoryPost]>
     }
     
-    weak var coordinator: StoryContentCoordinator?
     let disposeBag = DisposeBag()
+    weak var coordinator: StoryContentCoordinator?
     private let storyListUseCase: StoryListUseCaseProtocol
     
     init(
@@ -33,7 +33,6 @@ final class StoryListViewModel: ViewModel {
     }
     
     func transform(input: Input) -> Output {
-        
         let storyList = input
             .viewWillAppear
             .withUnretained(self)

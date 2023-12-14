@@ -27,8 +27,8 @@ final class UserSigninViewModel: ViewModel {
         let signinValidationText: PublishRelay<String>
     }
     
-    weak var coordinator: AppCoordinator?
     let disposeBag = DisposeBag()
+    weak var coordinator: AppCoordinator?
     private let userSigninUseCase: UserSigninUseCaseProtocol
     
     init(
@@ -40,7 +40,6 @@ final class UserSigninViewModel: ViewModel {
     }
     
     func transform(input: Input) -> Output {
-        
         let isEmailTextValid = PublishRelay<Bool>()
         let isPasswordTextValid = PublishRelay<Bool>()
         let isSigninButtonEnabled = BehaviorRelay(value: false)
@@ -48,16 +47,7 @@ final class UserSigninViewModel: ViewModel {
         let errorMessage = PublishRelay<String>()
         let userInfo = Observable
             .combineLatest(input.emailText, input.passwordText) { email, password in
-                User(
-                    id: nil,
-                    email: email,
-                    password: password,
-                    nickname: nil,
-                    phoneNum: nil,
-                    birthday: nil,
-                    accessToken: nil,
-                    refreshToken: nil
-                )
+                User(email: email, password: password)
             }
         
         Observable
@@ -81,9 +71,7 @@ final class UserSigninViewModel: ViewModel {
         input
             .passwordText
             .subscribe(with: self) { owner, value in
-                if !value.isEmpty {
-                    isPasswordTextValid.accept(true)
-                }
+                if !value.isEmpty { isPasswordTextValid.accept(true) }
             }
             .disposed(by: disposeBag)
         
@@ -96,12 +84,12 @@ final class UserSigninViewModel: ViewModel {
                 owner.userSigninUseCase.signin(user: user)
             }
             .bind(with: self) { owner, result in
-                let signinProcess = owner.userSigninUseCase.verifySigninProcess(result: result)
-                if signinProcess.isCompleted {
+                let authentication = owner.userSigninUseCase.authenticate(result: result)
+                if authentication.isAuthorized {
                     owner.coordinator?.dismissViewController()
                 } else {
-                    isSigninCompleted.accept(signinProcess.isCompleted)
-                    errorMessage.accept(signinProcess.message)
+                    isSigninCompleted.accept(authentication.isAuthorized)
+                    errorMessage.accept(authentication.message)
                 }
             }
             .disposed(by: disposeBag)

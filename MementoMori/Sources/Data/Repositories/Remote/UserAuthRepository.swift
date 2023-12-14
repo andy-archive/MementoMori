@@ -60,4 +60,23 @@ final class UserAuthRepository: UserAuthRepositoryProtocol {
         
         return singleResult
     }
+    
+    func refresh() -> Single<APIResult<Authorization>> {
+        
+        let singleResponse = APIManager.shared.request(
+            api: .refreshToken,
+            responseType: RefreshTokenResponseDTO.self
+        )
+        
+        let singleResult = singleResponse.flatMap { result in
+            switch result {
+            case .suceessData(let responseDTO):
+                return Single<APIResult>.just(.suceessData(responseDTO.toDomain()))
+            case .statusCode(let statusCode):
+                return Single<APIResult>.just(.statusCode(statusCode))
+            }
+        }
+        
+        return singleResult
+    }
 }

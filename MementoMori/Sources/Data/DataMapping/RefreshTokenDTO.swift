@@ -18,4 +18,10 @@ struct RefreshTokenResponseDTO: Decodable {
     enum CodingKeys: String, CodingKey {
         case accessToken = "token"
     }
+    
+    func toDomain() -> Authorization {
+        let domain = Authorization(accessToken: accessToken)
+        
+        return domain
+    }
 }

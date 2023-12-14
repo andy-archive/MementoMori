@@ -12,11 +12,13 @@ import RxSwift
 
 final class StoryUploadViewModel: ViewModel {
     
+    //MARK: - (0) Type
     enum UploadProcessType {
         case imageUpload
         case storyUpload
     }
     
+    //MARK: - (1) Input
     struct Input {
         let imageSelectionViewClicked: Observable<UIImage>
         let nextButtonClicked: ControlEvent<Void>
@@ -24,6 +26,7 @@ final class StoryUploadViewModel: ViewModel {
         let contentText: ControlProperty<String>
     }
     
+    //MARK: - (2) Output
     struct Output {
         let resultImage: PublishRelay<UIImage>
         let presentStoryUploadView: PublishRelay<Void>
@@ -31,10 +34,14 @@ final class StoryUploadViewModel: ViewModel {
         let imageUploadMessage: PublishRelay<String>
     }
     
-    weak var coordinator: StoryUploadCoordinator?
+    //MARK: - (3) Properties
     let disposeBag = DisposeBag()
+    weak var coordinator: StoryUploadCoordinator?
     private let storyUploadUseCase: StoryUploadUseCaseProtocol
+    private lazy var uploadProcess: UploadProcessType = .imageUpload
+    private lazy var imageList: [Data] = []
     
+    //MARK: - (4) Initializer
     init(
         coordinator: StoryUploadCoordinator,
         storyUploadUseCase: StoryUploadUseCaseProtocol
@@ -43,18 +50,14 @@ final class StoryUploadViewModel: ViewModel {
         self.storyUploadUseCase = storyUploadUseCase
     }
     
-    private lazy var uploadProcess: UploadProcessType = .imageUpload
-    private lazy var imageList: [Data] = []
-    
+    //MARK: - Protocol Method
     func transform(input: Input) -> Output {
-        
         let presentStoryUploadView = PublishRelay<Void>()
         let presentImageUploadView = PublishRelay<Void>()
         let contentToUpload = PublishRelay<String>()
         let imageToUpload = PublishRelay<UIImage>()
         let contentTextToUpload = BehaviorRelay<String>(value: "")
         let imageUploadMessage = PublishRelay<String>()
-        
         let storyPostData = Observable
             .combineLatest(
                 imageToUpload.asObservable(),

@@ -11,14 +11,15 @@ import RxSwift
 
 final class StoryListUseCase: StoryListUseCaseProtocol {
     
+    //MARK: - Properties
     private var pagination = 5
     private var nextCursor: String?
     private var postList = [StoryPost]()
     private let disposeBag = DisposeBag()
-    
     private let storyPostRepository: StoryPostRepositoryProtocol
     private let keychainRepository: KeychainRepositoryProtocol
     
+    //MARK: - Initializer
     init(
         storyPostRepository: StoryPostRepositoryProtocol,
         keychainRepository: KeychainRepositoryProtocol
@@ -26,8 +27,8 @@ final class StoryListUseCase: StoryListUseCaseProtocol {
         self.storyPostRepository = storyPostRepository
         self.keychainRepository = keychainRepository
     }
-
-    //MARK: - (1) fetchPostRead - storyPostRepository (GET)
+    
+    //MARK: - Private Methods
     private func fetchPostRead(
         nextCursor: String? = nil,
         limit: String,
@@ -41,7 +42,6 @@ final class StoryListUseCase: StoryListUseCaseProtocol {
         )
     }
     
-    //MARK: - (2) fetchStoryList
     private func fetchStoryList(result: APIResult<(storyList: [StoryPost], nextCursor: String)>) -> [StoryPost]? {
         switch result {
         case .suceessData(let list):
@@ -52,16 +52,14 @@ final class StoryListUseCase: StoryListUseCaseProtocol {
         }
     }
     
-    //MARK: - (3) logErrorMessage
     private func logErrorMessage(statusCode: Int) -> String {
         return StoryReadError(rawValue: statusCode)?.message ??
         NetworkError(rawValue: statusCode)?.message ??
         NetworkError.internalServerError.message
     }
     
-    //MARK: - "baseURL/post" request (GET)
+    //MARK: - Protocol Methods
     func fetchStoryListStream() -> Observable<[StoryPost]?> {
-        
         var limit = String(pagination)
         
         return Observable
@@ -79,19 +77,19 @@ final class StoryListUseCase: StoryListUseCaseProtocol {
             }
             .asObservable()
     }
-        
+    
     //TODO: - pagination
-//        single
-//            .subscribe(with: self) { owner, result in
-//                switch result {
-//                case .suceessData(let data):
-//                    self.nextCursor = data.nextCursor
-//                    self.postList = data.storyList
-//                    self.pagination += 5
-//                case .errorStatusCode(let statusCode):
-//                    self.postList = MockData().storyList
-//                    self.verifyErrorMessage(statusCode: statusCode)
-//                }
-//            }
-//            .disposed(by: disposeBag)
+    //        single
+    //            .subscribe(with: self) { owner, result in
+    //                switch result {
+    //                case .suceessData(let data):
+    //                    self.nextCursor = data.nextCursor
+    //                    self.postList = data.storyList
+    //                    self.pagination += 5
+    //                case .errorStatusCode(let statusCode):
+    //                    self.postList = MockData().storyList
+    //                    self.verifyErrorMessage(statusCode: statusCode)
+    //                }
+    //            }
+    //            .disposed(by: disposeBag)
 }

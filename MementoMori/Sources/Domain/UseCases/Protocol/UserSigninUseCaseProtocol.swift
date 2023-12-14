@@ -9,5 +9,6 @@ import RxSwift
 
 protocol UserSigninUseCaseProtocol {
     func signin(user: User) -> Single<APIResult<User>>
-    func verifySigninProcess(result: APIResult<User>) -> (isCompleted: Bool, message: String)
+    func authenticate(result: APIResult<User>) -> (isAuthorized: Bool, message: String)
+    func checkAutoSignin() -> Observable<Bool>
 }

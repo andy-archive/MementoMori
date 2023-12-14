@@ -17,15 +17,15 @@ final class APIManager {
         case multipart
     }
     
-    //MARK: - singleton
+    //MARK: - Singleton
     static let shared = APIManager()
     private init() { }
     
-    //MARK: - properties
+    //MARK: - Properties
     static let interceptor = RefreshInterceptor.shared
     static let session = Session(interceptor: interceptor)
     
-    //MARK: - methods
+    //MARK: - Methods
     func request<T: Decodable>(
         api: MementoAPI,
         responseType: T.Type,
@@ -80,9 +80,7 @@ final class APIManager {
     
     //MARK: - (2-1) validateEmail
     func validateEmail(email: String) -> Observable<EmailValidationResponseDTO> {
-        
         return Observable<EmailValidationResponseDTO>.create { observer in
-            
             let data = EmailValidationRequestDTO(email: email)
             let provider = MoyaProvider<MementoAPI>(plugins: [NetworkLoggerPlugin(configuration: .init(logOptions: .verbose))])
             
@@ -110,7 +108,6 @@ final class APIManager {
         refreshToken: String,
         completion: @escaping ( APIResult<RefreshTokenResponseDTO> ) -> Void
     ) {
-        
         let provider = MoyaProvider<MementoAPI>(
             plugins: [NetworkLoggerPlugin(configuration: .init(logOptions: .verbose))]
         )
@@ -119,8 +116,7 @@ final class APIManager {
             refreshToken: refreshToken
         )
         
-        provider.request(.refreshToken(model: requestDTO)) { result in
-            
+        provider.request(.refreshToken) { result in
             let decoder = JSONDecoder()
             
             switch result {

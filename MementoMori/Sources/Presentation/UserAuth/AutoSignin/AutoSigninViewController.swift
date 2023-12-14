@@ -9,6 +9,7 @@ import UIKit
 
 final class AutoSigninViewController: BaseViewController {
     
+    //MARK: - (1-1) UI - Property 1
     private lazy var titleLabel = {
         let label = UILabel()
         label.font = UIFont(name: "Noteworthy", size: 35)
@@ -37,14 +38,17 @@ final class AutoSigninViewController: BaseViewController {
         return button
     }()
     
+    //MARK: - (1-2) ViewModel - Property 2
     private let viewModel: AutoSigninViewModel
-
+    
+    //MARK: - (2) Initializer
     init(viewModel: AutoSigninViewModel) {
         self.viewModel = viewModel
         
         super.init()
     }
     
+    //MARK: - (3) Protocol Methods
     override func bind() {
         
         let input = AutoSigninViewModel.Input(
@@ -52,8 +56,6 @@ final class AutoSigninViewController: BaseViewController {
             otherSigninButtonClicked: otherSigninButton.rx.tap,
             joinSigninButtonClicked: joinButton.rx.tap
         )
-        let output = viewModel.transform(input: input)
-        
     }
     
     override func configureUI() {
@@ -67,6 +69,7 @@ final class AutoSigninViewController: BaseViewController {
     }
     
     override func configureLayout() {
+        
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Constant.Layout.Common.Inset.vertical),

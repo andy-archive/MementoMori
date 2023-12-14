@@ -18,12 +18,10 @@ final class AutoSigninViewModel: ViewModel {
         let joinSigninButtonClicked: ControlEvent<Void>
     }
     
-    struct Output {
-        
-    }
+    struct Output { }
     
-    weak var coordinator: AppCoordinator?
     let disposeBag = DisposeBag()
+    weak var coordinator: AppCoordinator?
     
     init(
         coordinator: AppCoordinator
@@ -31,9 +29,7 @@ final class AutoSigninViewModel: ViewModel {
         self.coordinator = coordinator
     }
     
-    
     func transform(input: Input) -> Output {
-        
         input
             .otherSigninButtonClicked
             .asDriver(onErrorJustReturn: Void())
@@ -50,7 +46,6 @@ final class AutoSigninViewModel: ViewModel {
             }
             .disposed(by: disposeBag)
         
-        return Output(
-        )
+        return Output()
     }
 }

@@ -40,8 +40,10 @@ final class RefreshInterceptor: RequestInterceptor {
         }
         
         var urlRequest = urlRequest
-        urlRequest.setValue(accessToken, forHTTPHeaderField: "Authorization")
-        urlRequest.setValue(refreshToken, forHTTPHeaderField: "Refresh")
+        urlRequest.setValue(accessToken, forHTTPHeaderField: MementoAPI.HTTPHeaderField.accessToken)
+        urlRequest.setValue(refreshToken, forHTTPHeaderField: MementoAPI.HTTPHeaderField.refreshToken)
+        urlRequest.setValue(MementoAPI.secretKey, forHTTPHeaderField: MementoAPI.HTTPHeaderField.secretKey)
+        
         completion(.success(urlRequest))
     }
     
@@ -76,7 +78,9 @@ final class RefreshInterceptor: RequestInterceptor {
     
     //MARK: - findToken
     func findToken() -> (accessToken: String?, refreshToken: String?) {
-        guard let userID = keychainRepository.find(key: "", type: .userID) else { return (nil, nil) }
+        guard let userID = keychainRepository.find(key: "", type: .userID)
+        else { return (nil, nil) }
+        
         let accessToken = keychainRepository.find(key: userID, type: .accessToken)
         let refreshToken = keychainRepository.find(key: userID, type: .refreshToken)
         
@@ -84,8 +88,9 @@ final class RefreshInterceptor: RequestInterceptor {
     }
     
     //MARK: - saveToken
-    private func saveToken(_ accessToken: String) {
-        guard let userID = keychainRepository.find(key: "", type: .userID),
+    func saveToken(_ accessToken: String?) {
+        guard let accessToken,
+              let userID = keychainRepository.find(key: "", type: .userID),
               keychainRepository.save(key: userID, value: accessToken, type: .accessToken)
         else { return }
     }

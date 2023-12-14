@@ -39,7 +39,7 @@ struct StoryPost: Hashable {
     }
 }
 
-//MARK: - initializers
+//MARK: - Initializers
 extension StoryPost {
     
     init(content: String, imageDataList: [Data]?) {

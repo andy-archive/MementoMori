@@ -20,25 +20,20 @@ final class StoryListViewController: BaseViewController {
         viewModel: StoryListViewModel
     ) {
         self.viewModel = viewModel
+        
         super.init()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func bind() {
-        
         let input = StoryListViewModel.Input(
-            viewWillAppear: self.rx.viewWillAppear.map { _ in }
-                .throttle(.seconds(1), scheduler: MainScheduler.asyncInstance)
+            viewWillAppear: rx.viewWillAppear.map { _ in }.throttle(.seconds(1), scheduler: MainScheduler.asyncInstance)
         )
         let output = viewModel.transform(input: input)
         
         output
             .storyList
-            .emit(with: self) { owner, value in
-                owner.storyView.postList = value
+            .emit(with: self) { owner, postList in
+                owner.storyView.postList = postList
                 owner.storyView.configure()
             }
             .disposed(by: disposeBag)

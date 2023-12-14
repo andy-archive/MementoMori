@@ -10,7 +10,6 @@ import UIKit
 final class StoryUploadCoordinator: Coordinator {
 
     weak var delegate: CoordinatorDelegate?
-    
     var navigationController: UINavigationController
     var childCoordinators: [Coordinator]
     
