@@ -20,6 +20,7 @@ final class StoryListViewController: BaseViewController {
         viewModel: StoryListViewModel
     ) {
         self.viewModel = viewModel
+        
         super.init()
     }
     

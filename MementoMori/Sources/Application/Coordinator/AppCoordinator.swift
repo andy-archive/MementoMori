@@ -9,12 +9,14 @@ import UIKit
 
 final class AppCoordinator: Coordinator {
     
+    //MARK: - Properties
     weak var delegate: CoordinatorDelegate?
     var navigationController: UINavigationController
     var tabBarController: TabController
     var childCoordinators: [Coordinator]
     var signinModal: UINavigationController
     
+    //MARK: - Initializer
     required init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
         self.tabBarController = TabController()
@@ -22,6 +24,7 @@ final class AppCoordinator: Coordinator {
         self.signinModal = UINavigationController()
     }
     
+    //MARK: - Protocol Method
     func start() {
         configureCoordinator()
     }

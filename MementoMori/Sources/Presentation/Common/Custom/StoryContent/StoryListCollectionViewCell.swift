@@ -9,9 +9,6 @@ import UIKit
 
 final class StoryListCollectionViewCell: BaseCollectionViewCell {
     
-    private var storyPost: StoryPost?
-    
-    //MARK: - View Properties
     private lazy var itemHeaderView = StoryItemHeaderView()
     private lazy var itemCollectionView = StoryItemView()
     private lazy var itemFooterView = StoryItemFooterView()
@@ -22,7 +19,6 @@ final class StoryListCollectionViewCell: BaseCollectionViewCell {
     }()
     private lazy var listSeparatorView = SeparatorView()
     
-    //MARK: - BaseCollectionViewCell
     override func configureUI() {
         super.configureUI()
         
@@ -75,11 +71,10 @@ final class StoryListCollectionViewCell: BaseCollectionViewCell {
     }
 }
 
-//MARK: - configureCell
-
+//MARK: - Configure Cell
 extension StoryListCollectionViewCell {
+    
     func configureCell(storyPost: StoryPost?) {
-        self.storyPost = storyPost
         itemHeaderView.configure(storyPost)
         itemCollectionView.configure(storyPost)
     }

@@ -12,7 +12,7 @@ import RxSwift
 
 final class StoryUploadViewController: BaseViewController {
     
-    //MARK: - UI (1) uploadImageView
+    //MARK: - (1-1) UI - Property 1
     private lazy var headerView = StoryUploadHeaderView()
     private lazy var imageItemView = {
         let view = UIImageView()
@@ -32,8 +32,6 @@ final class StoryUploadViewController: BaseViewController {
         label.font = .boldSystemFont(ofSize: Constant.FontSize.largeTitle)
         return label
     }()
-    
-    //MARK: - UI (2) uploadStoryView
     private lazy var storyThumbnailImageView = {
         let view = UIImageView()
         view.isHidden = true
@@ -54,11 +52,11 @@ final class StoryUploadViewController: BaseViewController {
         return view
     }()
     
-    //MARK: - Properties
+    //MARK: - (1-2) ViewModel & ImagePicker - Property 2
     private let viewModel: StoryUploadViewModel
     private let imagePicker: ImagePickerController
     
-    //MARK: - Initializer
+    //MARK: - (2) Initializer
     init(
         viewModel: StoryUploadViewModel,
         imagePicker: ImagePickerController
@@ -72,7 +70,7 @@ final class StoryUploadViewController: BaseViewController {
         self.storyTextView.delegate = self
     }
     
-    //MARK: - bind with ViewModel
+    //MARK: - (3) Protocol Methods
     override func bind() {
         
         let image = imageListView
@@ -118,7 +116,6 @@ final class StoryUploadViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
-    //MARK: - View Hierarchies
     override func configureUI() {
         super.configureUI()
         
@@ -131,8 +128,9 @@ final class StoryUploadViewController: BaseViewController {
         imageListView.addSubview(selectionGuideLabel)
     }
     
-    //MARK: - View Layouts (1) uploadImageView
     override func configureLayout() {
+        
+        //MARK: - View Layouts (1) uploadImageView
         headerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),

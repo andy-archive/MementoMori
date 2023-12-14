@@ -27,8 +27,8 @@ final class UserSigninViewModel: ViewModel {
         let signinValidationText: PublishRelay<String>
     }
     
-    weak var coordinator: AppCoordinator?
     let disposeBag = DisposeBag()
+    weak var coordinator: AppCoordinator?
     private let userSigninUseCase: UserSigninUseCaseProtocol
     
     init(

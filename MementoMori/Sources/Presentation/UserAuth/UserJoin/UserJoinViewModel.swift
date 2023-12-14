@@ -5,13 +5,12 @@
 //  Created by Taekwon Lee on 2023/11/15.
 //
 
-import Foundation
-
 import RxCocoa
 import RxSwift
 
 final class UserJoinViewModel: ViewModel {
     
+    //MARK: - (1) Input
     struct Input {
         let emailText: ControlProperty<String>
         let passwordText: ControlProperty<String>
@@ -21,6 +20,7 @@ final class UserJoinViewModel: ViewModel {
         let nextButtonClicked: ControlEvent<Void>
     }
     
+    //MARK: - (2) Output
     struct Output {
         let isEmailTextValid: PublishRelay<Bool>
         let isPasswordTextValid: PublishRelay<Bool>
@@ -32,13 +32,14 @@ final class UserJoinViewModel: ViewModel {
         let joinResponse: PublishRelay<APIResult<String>>
     }
     
-    weak var coordinator: AppCoordinator?
+    //MARK: - (3) Properties
     let disposeBag = DisposeBag()
+    weak var coordinator: AppCoordinator?
     private let userJoinUseCase: UserJoinUseCaseProtocol
-    
     private var requestedEmail = String()
     private var isEmailValidationMessageValid = false
     
+    //MARK: - (4) Initializer
     init(
         coordinator: AppCoordinator,
         userJoinUseCase: UserJoinUseCaseProtocol
@@ -47,6 +48,7 @@ final class UserJoinViewModel: ViewModel {
         self.userJoinUseCase = userJoinUseCase
     }
     
+    //MARK: - (5) Protocol Method
     func transform(input: Input) -> Output {
         
         let checkJoinValidation: () -> Void =  {

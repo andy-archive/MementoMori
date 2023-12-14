@@ -8,10 +8,12 @@
 import RxSwift
 
 final class UserSigninUseCase: UserSigninUseCaseProtocol {
-    
+            
+    //MARK: - (1) Properties
     private let userAuthRepository: UserAuthRepositoryProtocol
     private let keychainRepository: KeychainRepositoryProtocol
     
+    //MARK: - (2) Initializer
     init(
         userAuthRepository: UserAuthRepositoryProtocol,
         keychainRepository: KeychainRepositoryProtocol
@@ -20,20 +22,7 @@ final class UserSigninUseCase: UserSigninUseCaseProtocol {
         self.keychainRepository = keychainRepository
     }
     
-    func signin(user: User) -> Single<APIResult<User>> {
-        self.userAuthRepository.signin(user: user)
-    }
-    
-    func verifySigninProcess(result: APIResult<User>) -> (isCompleted: Bool, message: String) {
-        switch result {
-        case .suceessData(let user):
-            return isAllTokenSaved(user: user) ?
-            (true, "환영합니다 😆") : (false, TokenError.invalidToken.message)
-        case .statusCode(let statusCode):
-            return (false, verifyErrorMessage(statusCode: statusCode))
-        }
-    }
-    
+    //MARK: - (3) Private Methods
     private func isAllTokenSaved(user: User) -> Bool {
         guard let userID = user.id,
               let accessToken = user.accessToken,
@@ -72,5 +61,20 @@ final class UserSigninUseCase: UserSigninUseCaseProtocol {
         return UserSigninError(rawValue: statusCode)?.message ??
         NetworkError(rawValue: statusCode)?.message ??
         NetworkError.internalServerError.message
+    }
+    
+    //MARK: - (4) Protocol Methods
+    func signin(user: User) -> Single<APIResult<User>> {
+        self.userAuthRepository.signin(user: user)
+    }
+    
+    func verifySigninProcess(result: APIResult<User>) -> (isCompleted: Bool, message: String) {
+        switch result {
+        case .suceessData(let user):
+            return isAllTokenSaved(user: user) ?
+            (true, "환영합니다 😆") : (false, TokenError.invalidToken.message)
+        case .statusCode(let statusCode):
+            return (false, verifyErrorMessage(statusCode: statusCode))
+        }
     }
 }

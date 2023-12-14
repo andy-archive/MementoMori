@@ -12,22 +12,24 @@ import Moya
 
 final class StoryUploadUseCase: StoryUploadUseCaseProtocol {
     
+    //MARK: - Properties
     private let storyPostRepository: StoryPostRepositoryProtocol
     
+    //MARK: - Initializer
     init(
         storyPostRepository: StoryPostRepositoryProtocol
     ) {
         self.storyPostRepository = storyPostRepository
     }
     
-    //MARK: - private function
+    //MARK: - Private Methods
     private func verifyErrorMessage(statusCode: Int) -> String {
         return StoryCreateError(rawValue: statusCode)?.message ??
         NetworkError(rawValue: statusCode)?.message ??
         NetworkError.internalServerError.message
     }
     
-    //MARK: - StoryUploadUseCaseProtocol
+    //MARK: - Protocol Methods
     func convertImageToData(image: UIImage) -> Data? {
         return image.jpegData(compressionQuality: 0.5)
     }

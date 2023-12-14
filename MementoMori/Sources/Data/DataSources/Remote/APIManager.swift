@@ -17,15 +17,15 @@ final class APIManager {
         case multipart
     }
     
-    //MARK: - singleton
+    //MARK: - Singleton
     static let shared = APIManager()
     private init() { }
     
-    //MARK: - properties
+    //MARK: - Properties
     static let interceptor = RefreshInterceptor.shared
     static let session = Session(interceptor: interceptor)
     
-    //MARK: - methods
+    //MARK: - Methods
     func request<T: Decodable>(
         api: MementoAPI,
         responseType: T.Type,

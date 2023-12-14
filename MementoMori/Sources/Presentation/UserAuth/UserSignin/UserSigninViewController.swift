@@ -9,6 +9,7 @@ import UIKit
 
 final class UserSigninViewController: BaseViewController {
     
+    //MARK: - (1-1) UI - Property 1
     private lazy var titleLabel = SigninTitleLabel()
     private lazy var subtitleLabel = SigninSubtitleLabel()
     private lazy var emailTextField = SigninTextField()
@@ -17,18 +18,17 @@ final class UserSigninViewController: BaseViewController {
     private lazy var signinValidationLabel = SigninSubtitleLabel()
     private lazy var joinButton = JoinButton()
     
+    //MARK: - (1-2) ViewModel - Property 2
     private let viewModel: UserSigninViewModel
     
+    //MARK: - (2) Initializer
     init(viewModel: UserSigninViewModel) {
         self.viewModel = viewModel
         
         super.init()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
+    //MARK: - (3-1) Protocol Methods
     override func bind() {
         let input = UserSigninViewModel.Input(
             emailText: emailTextField.rx.text.orEmpty,
@@ -155,13 +155,13 @@ final class UserSigninViewController: BaseViewController {
         ])
     }
     
+    //MARK: - (3-2) Class Methods
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
 }
 
-//MARK: UITextFieldDelegate
-
+//MARK: - UITextFieldDelegate
 extension UserSigninViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
