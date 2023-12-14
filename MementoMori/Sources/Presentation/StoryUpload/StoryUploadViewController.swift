@@ -34,7 +34,7 @@ final class StoryUploadViewController: BaseViewController {
     }()
     
     //MARK: - UI (2) uploadStoryView
-    private lazy var storyImageView = {
+    private lazy var storyThumbnailImageView = {
         let view = UIImageView()
         view.isHidden = true
         view.backgroundColor = .systemYellow.withAlphaComponent(0.2)
@@ -97,7 +97,7 @@ final class StoryUploadViewController: BaseViewController {
             .asSignal()
             .emit(with: self) { owner, image in
                 owner.imageItemView.image = image
-                owner.storyImageView.image = image
+                owner.storyThumbnailImageView.image = image
             }
             .disposed(by: disposeBag)
         
@@ -125,7 +125,7 @@ final class StoryUploadViewController: BaseViewController {
         view.addSubview(headerView)
         view.addSubview(imageItemView)
         view.addSubview(imageListView)
-        view.addSubview(storyImageView)
+        view.addSubview(storyThumbnailImageView)
         view.addSubview(storyTextView)
         view.addSubview(separatorView)
         imageListView.addSubview(selectionGuideLabel)
@@ -146,8 +146,7 @@ final class StoryUploadViewController: BaseViewController {
             imageItemView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
             imageItemView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             imageItemView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            imageItemView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7),
-            imageItemView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            imageItemView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7)
         ])
         
         imageListView.translatesAutoresizingMaskIntoConstraints = false
@@ -155,36 +154,35 @@ final class StoryUploadViewController: BaseViewController {
             imageListView.topAnchor.constraint(equalTo: imageItemView.bottomAnchor),
             imageListView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             imageListView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            imageListView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            imageListView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4)
         ])
         
         selectionGuideLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            selectionGuideLabel.topAnchor.constraint(equalTo: imageListView.topAnchor, constant: Constant.Layout.Common.Inset.vertical * 3),
-            selectionGuideLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4),
-            selectionGuideLabel.centerXAnchor.constraint(equalTo: imageListView.centerXAnchor)
+            selectionGuideLabel.centerXAnchor.constraint(equalTo: imageListView.centerXAnchor),
+            selectionGuideLabel.centerYAnchor.constraint(equalTo: imageListView.centerYAnchor)
         ])
         
-        //MARK: - View Layouts (2) uploadTextView
-        storyImageView.translatesAutoresizingMaskIntoConstraints = false
+        //MARK: - View Layouts (2) storyUploadView
+        storyThumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            storyImageView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: Constant.Layout.Common.Inset.vertical),
-            storyImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
-            storyImageView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2),
-            storyImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2),
+            storyThumbnailImageView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: Constant.Layout.Common.Inset.vertical),
+            storyThumbnailImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
+            storyThumbnailImageView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2),
+            storyThumbnailImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2),
         ])
         
         storyTextView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             storyTextView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: Constant.Layout.Common.Inset.vertical),
-            storyTextView.leadingAnchor.constraint(equalTo: storyImageView.trailingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
+            storyTextView.leadingAnchor.constraint(equalTo: storyThumbnailImageView.trailingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
             storyTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal),
             storyTextView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2),
         ])
         
         separatorView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            storyTextView.topAnchor.constraint(greaterThanOrEqualTo: storyTextView.topAnchor),
+            separatorView.topAnchor.constraint(greaterThanOrEqualTo: storyTextView.topAnchor),
             separatorView.bottomAnchor.constraint(equalTo: storyTextView.bottomAnchor, constant: Constant.Layout.Common.Inset.vertical),
             separatorView.widthAnchor.constraint(equalTo: view.widthAnchor),
             separatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
@@ -205,7 +203,7 @@ extension StoryUploadViewController {
         headerView.nextButton.setTitle("다음", for: .normal)
         imageListView.isHidden.toggle()
         imageItemView.isHidden.toggle()
-        storyImageView.isHidden.toggle()
+        storyThumbnailImageView.isHidden.toggle()
         storyTextView.isHidden.toggle()
         separatorView.isHidden.toggle()
     }
@@ -215,7 +213,7 @@ extension StoryUploadViewController {
         headerView.nextButton.setTitle("공유", for: .normal)
         imageListView.isHidden.toggle()
         imageItemView.isHidden.toggle()
-        storyImageView.isHidden.toggle()
+        storyThumbnailImageView.isHidden.toggle()
         storyTextView.isHidden.toggle()
         separatorView.isHidden.toggle()
     }
