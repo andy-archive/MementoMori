@@ -32,9 +32,8 @@ final class RefreshInterceptor: RequestInterceptor {
         
         let keychain = findToken()
         
-        guard 
-            let accessToken = keychain.accessToken,
-            let refreshToken = keychain.refreshToken
+        guard let accessToken = keychain.accessToken,
+              let refreshToken = keychain.refreshToken
         else {
             completion(.success(urlRequest))
             return
@@ -53,10 +52,9 @@ final class RefreshInterceptor: RequestInterceptor {
         
         let keychain = findToken()
         
-        guard
-            let statusCode = request.response?.statusCode, statusCode == 419,
-            let accessToken = keychain.accessToken,
-            let refreshToken = keychain.refreshToken
+        guard let statusCode = request.response?.statusCode, statusCode == 419,
+              let accessToken = keychain.accessToken,
+              let refreshToken = keychain.refreshToken
         else {
             completion(.doNotRetryWithError(error))
             return
@@ -90,8 +88,9 @@ final class RefreshInterceptor: RequestInterceptor {
     }
     
     //MARK: - saveToken
-    private func saveToken(_ accessToken: String) {
-        guard let userID = keychainRepository.find(key: "", type: .userID),
+    func saveToken(_ accessToken: String?) {
+        guard let accessToken,
+              let userID = keychainRepository.find(key: "", type: .userID),
               keychainRepository.save(key: userID, value: accessToken, type: .accessToken)
         else { return }
     }

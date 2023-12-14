@@ -60,7 +60,6 @@ final class StoryListUseCase: StoryListUseCaseProtocol {
     
     //MARK: - Protocol Methods
     func fetchStoryListStream() -> Observable<[StoryPost]?> {
-        
         var limit = String(pagination)
         
         return Observable

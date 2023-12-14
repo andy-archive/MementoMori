@@ -33,7 +33,6 @@ final class StoryListViewModel: ViewModel {
     }
     
     func transform(input: Input) -> Output {
-        
         let storyList = input
             .viewWillAppear
             .withUnretained(self)

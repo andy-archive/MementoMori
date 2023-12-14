@@ -80,9 +80,7 @@ final class APIManager {
     
     //MARK: - (2-1) validateEmail
     func validateEmail(email: String) -> Observable<EmailValidationResponseDTO> {
-        
         return Observable<EmailValidationResponseDTO>.create { observer in
-            
             let data = EmailValidationRequestDTO(email: email)
             let provider = MoyaProvider<MementoAPI>(plugins: [NetworkLoggerPlugin(configuration: .init(logOptions: .verbose))])
             
@@ -110,7 +108,6 @@ final class APIManager {
         refreshToken: String,
         completion: @escaping ( APIResult<RefreshTokenResponseDTO> ) -> Void
     ) {
-        
         let provider = MoyaProvider<MementoAPI>(
             plugins: [NetworkLoggerPlugin(configuration: .init(logOptions: .verbose))]
         )
@@ -120,7 +117,6 @@ final class APIManager {
         )
         
         provider.request(.refreshToken) { result in
-            
             let decoder = JSONDecoder()
             
             switch result {

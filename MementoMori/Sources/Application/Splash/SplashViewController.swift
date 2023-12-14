@@ -21,14 +21,6 @@ final class SplashViewController: BaseViewController {
     
     //MARK: - Protocol Methods
     override func bind() {
-        
-    }
-    
-    override func configureUI() {
-        super.configureUI()
-    }
-    
-    override func configureLayout() {
-        
+        viewModel.startAutoSigninStream()
     }
 }

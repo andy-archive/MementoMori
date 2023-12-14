@@ -36,4 +36,33 @@ extension User {
         self.accessToken = accessToken
         self.refreshToken = refreshToken
     }
+    
+    init(
+        email: String,
+        password: String
+    ) {
+        self.id = nil
+        self.email = email
+        self.password = password
+        self.nickname = nil
+        self.phoneNum = nil
+        self.birthday = nil
+        self.accessToken = nil
+        self.refreshToken = nil
+    }
+    
+    init(
+        email: String,
+        password: String,
+        nickname: String
+    ) {
+        self.id = nil
+        self.email = email
+        self.password = password
+        self.nickname = nickname
+        self.phoneNum = nil
+        self.birthday = nil
+        self.accessToken = nil
+        self.refreshToken = nil
+    }
 }

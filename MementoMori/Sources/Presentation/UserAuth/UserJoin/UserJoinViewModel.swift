@@ -50,7 +50,6 @@ final class UserJoinViewModel: ViewModel {
     
     //MARK: - (5) Protocol Method
     func transform(input: Input) -> Output {
-        
         let checkJoinValidation: () -> Void =  {
             Observable
                 .combineLatest(input.emailText, input.passwordText, input.nicknameText) { [weak self] email, password, nickname in
@@ -67,16 +66,7 @@ final class UserJoinViewModel: ViewModel {
         
         let joinInput = Observable
             .combineLatest(input.emailText, input.passwordText, input.nicknameText) { email, password, nickname in
-                User(
-                    id: nil,
-                    email: email,
-                    password: password,
-                    nickname: nickname,
-                    phoneNum: nil, 
-                    birthday: nil,
-                    accessToken: nil,
-                    refreshToken: nil
-                )
+                User(email: email, password: password, nickname: nickname)
             }
             .share()
         

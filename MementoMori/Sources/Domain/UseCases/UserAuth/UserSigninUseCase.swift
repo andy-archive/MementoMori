@@ -24,35 +24,17 @@ final class UserSigninUseCase: UserSigninUseCaseProtocol {
     
     //MARK: - (3) Private Methods
     private func isAllTokenSaved(user: User) -> Bool {
-        guard let userID = user.id,
-              let accessToken = user.accessToken,
-              let refreshToken = user.refreshToken
+        guard
+            let userID = user.id,
+            let accessToken = user.accessToken,
+            let refreshToken = user.refreshToken
         else { return false }
         
-        let isUserSaved = keychainRepository
-            .save(
-                key: "",
-                value: userID,
-                type: .userID
-            )
+        let isUserSaved = keychainRepository.save( key: "", value: userID, type: .userID )
+        let isTokenSaved = keychainRepository.save( key: userID, value: accessToken, type: .accessToken )
+        let isRefreshTokenSaved = keychainRepository.save( key: userID, value: refreshToken, type: .refreshToken )
         
-        let isTokenSaved = keychainRepository
-            .save(
-                key: userID,
-                value: accessToken,
-                type: .accessToken
-            )
-        
-        let isRefreshTokenSaved = keychainRepository
-            .save(
-                key: userID,
-                value: refreshToken,
-                type: .refreshToken
-            )
-        
-        if isUserSaved && isTokenSaved && isRefreshTokenSaved {
-            return true
-        }
+        if isUserSaved && isTokenSaved && isRefreshTokenSaved { return true }
         
         return false
     }
@@ -68,11 +50,32 @@ final class UserSigninUseCase: UserSigninUseCaseProtocol {
         self.userAuthRepository.signin(user: user)
     }
     
-    func verifySigninProcess(result: APIResult<User>) -> (isCompleted: Bool, message: String) {
+    func checkAutoSignin() -> Observable<Bool> {
+        let keychain = RefreshInterceptor.shared
+        
+        guard
+            let _ = keychain.findToken().accessToken,
+            let _ = keychain.findToken().refreshToken
+        else { return Observable.just(false) }
+        
+        return self.userAuthRepository.refresh()
+            .map { result in
+                switch result {
+                case .suceessData(let authorization):
+                    keychain.saveToken(authorization.accessToken)
+                    return true
+                case .statusCode(let statusCode):
+                    if statusCode == 409 { return true }
+                    return false
+                }
+            }
+            .asObservable()
+    }
+    
+    func authenticate(result: APIResult<User>) -> (isAuthorized: Bool, message: String) {
         switch result {
         case .suceessData(let user):
-            return isAllTokenSaved(user: user) ?
-            (true, "환영합니다 😆") : (false, TokenError.invalidToken.message)
+            return isAllTokenSaved(user: user) ? (true, "환영합니다 😆") : (false, TokenError.invalidToken.message)
         case .statusCode(let statusCode):
             return (false, verifyErrorMessage(statusCode: statusCode))
         }

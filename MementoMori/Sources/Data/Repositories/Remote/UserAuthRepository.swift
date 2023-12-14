@@ -61,12 +61,7 @@ final class UserAuthRepository: UserAuthRepositoryProtocol {
         return singleResult
     }
     
-    func refresh(authorization: Authorization) -> Single<APIResult<Authorization>> {
-        
-        let requestDTO = RefreshTokenRequestDTO(
-            accessToken: authorization.accessToken ?? "",
-            refreshToken: authorization.refreshToken ?? ""
-        )
+    func refresh() -> Single<APIResult<Authorization>> {
         
         let singleResponse = APIManager.shared.request(
             api: .refreshToken,

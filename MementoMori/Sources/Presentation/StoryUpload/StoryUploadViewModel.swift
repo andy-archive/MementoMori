@@ -52,14 +52,12 @@ final class StoryUploadViewModel: ViewModel {
     
     //MARK: - Protocol Method
     func transform(input: Input) -> Output {
-        
         let presentStoryUploadView = PublishRelay<Void>()
         let presentImageUploadView = PublishRelay<Void>()
         let contentToUpload = PublishRelay<String>()
         let imageToUpload = PublishRelay<UIImage>()
         let contentTextToUpload = BehaviorRelay<String>(value: "")
         let imageUploadMessage = PublishRelay<String>()
-        
         let storyPostData = Observable
             .combineLatest(
                 imageToUpload.asObservable(),

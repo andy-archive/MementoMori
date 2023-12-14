@@ -33,4 +33,17 @@ final class SplashViewModel: ViewModel {
     func transform(input: Input) -> Output {
         return Output()
     }
+    
+    func startAutoSigninStream() {
+        self.userSigninUseCase.checkAutoSignin()
+            .subscribe(with: self) { owner, isAuthorized in
+                if isAuthorized {
+                    owner.coordinator?.showTabBarController()
+                } else {
+                    owner.coordinator?.connectSigninModal()
+                    owner.coordinator?.showUserSigninViewController()
+                }
+            }
+            .disposed(by: disposeBag)
+    }
 }

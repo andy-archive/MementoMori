@@ -30,7 +30,6 @@ final class AutoSigninViewModel: ViewModel {
     }
     
     func transform(input: Input) -> Output {
-        
         input
             .otherSigninButtonClicked
             .asDriver(onErrorJustReturn: Void())
