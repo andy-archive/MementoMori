@@ -119,7 +119,7 @@ final class APIManager {
             refreshToken: refreshToken
         )
         
-        provider.request(.refreshToken(model: requestDTO)) { result in
+        provider.request(.refreshToken) { result in
             
             let decoder = JSONDecoder()
             

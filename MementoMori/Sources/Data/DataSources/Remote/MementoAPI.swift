@@ -13,7 +13,7 @@ enum MementoAPI {
     case emailValidation(model: EmailValidationRequestDTO)
     case userJoin(model: UserJoinRequestDTO)
     case userSignin(model: UserSigninRequestDTO)
-    case refreshToken(model: RefreshTokenRequestDTO)
+    case refreshToken
     case storyCreate(model: StoryCreateRequestDTO)
     case storyRead(model: StoryReadRequestDTO)
 }
@@ -36,12 +36,12 @@ extension MementoAPI: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .emailValidation: return .post
-        case .userJoin: return .post
-        case .userSignin: return .post
-        case .refreshToken: return .get
-        case .storyCreate: return .post
-        case .storyRead: return .get
+        case .emailValidation, .userJoin, .userSignin:
+            return .post
+        case .storyCreate:
+            return .post
+        case .refreshToken, .storyRead:
+            return .get
         }
     }
     
@@ -92,26 +92,12 @@ extension MementoAPI: TargetType {
     
     var headers: [String : String]? {
         switch self {
+        case .refreshToken, .storyRead:
+            return [:]
         case .emailValidation, .userJoin, .userSignin:
-            [
-                "Content-Type": "application/json",
-                "SesacKey": "\(MementoAPI.secretKey)"
-            ]
-        case .refreshToken(let data):
-            [
-                "Authorization": "\(data.accessToken)",
-                "SesacKey": "\(MementoAPI.secretKey)",
-                "Refresh": "\(data.refreshToken)"
-            ]
-        case .storyCreate(_):
-            [
-                "Content-Type": "multipart/form-data",
-                "SesacKey": "\(MementoAPI.secretKey)",
-            ]
-        case .storyRead(_):
-            [
-                "SesacKey": "\(MementoAPI.secretKey)",
-            ]
+            return ["Content-Type": "application/json"]
+        case .storyCreate:
+            return ["Content-Type": "multipart/form-data"]
         }
     }
 }

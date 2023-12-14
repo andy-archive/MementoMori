@@ -32,16 +32,19 @@ final class RefreshInterceptor: RequestInterceptor {
         
         let keychain = findToken()
         
-        guard let accessToken = keychain.accessToken,
-              let refreshToken = keychain.refreshToken
+        guard 
+            let accessToken = keychain.accessToken,
+            let refreshToken = keychain.refreshToken
         else {
             completion(.success(urlRequest))
             return
         }
         
         var urlRequest = urlRequest
-        urlRequest.setValue(accessToken, forHTTPHeaderField: "Authorization")
-        urlRequest.setValue(refreshToken, forHTTPHeaderField: "Refresh")
+        urlRequest.setValue(accessToken, forHTTPHeaderField: MementoAPI.HTTPHeaderField.accessToken)
+        urlRequest.setValue(refreshToken, forHTTPHeaderField: MementoAPI.HTTPHeaderField.refreshToken)
+        urlRequest.setValue(MementoAPI.secretKey, forHTTPHeaderField: MementoAPI.HTTPHeaderField.secretKey)
+        
         completion(.success(urlRequest))
     }
     
@@ -50,9 +53,10 @@ final class RefreshInterceptor: RequestInterceptor {
         
         let keychain = findToken()
         
-        guard let statusCode = request.response?.statusCode, statusCode == 419,
-              let accessToken = keychain.accessToken,
-              let refreshToken = keychain.refreshToken
+        guard
+            let statusCode = request.response?.statusCode, statusCode == 419,
+            let accessToken = keychain.accessToken,
+            let refreshToken = keychain.refreshToken
         else {
             completion(.doNotRetryWithError(error))
             return
@@ -76,7 +80,9 @@ final class RefreshInterceptor: RequestInterceptor {
     
     //MARK: - findToken
     func findToken() -> (accessToken: String?, refreshToken: String?) {
-        guard let userID = keychainRepository.find(key: "", type: .userID) else { return (nil, nil) }
+        guard let userID = keychainRepository.find(key: "", type: .userID)
+        else { return (nil, nil) }
+        
         let accessToken = keychainRepository.find(key: userID, type: .accessToken)
         let refreshToken = keychainRepository.find(key: userID, type: .refreshToken)
         
