@@ -20,37 +20,54 @@ final class AppCoordinator: Coordinator {
         self.tabBarController = TabController()
         self.childCoordinators = []
         self.signinModal = UINavigationController()
-        
-        self.tabBarController.configureAppearance()
-        self.navigationController.configureAppearance()
     }
     
     func start() {
-        showStoryUploadViewController()
+        configureCoordinator()
     }
 }
 
+//MARK: - (0 ~ 1) AppCoordinator
 extension AppCoordinator {
     
-    //MARK: - SplashViewController
-    func showStoryUploadViewController() {
-        showAutoSigninViewController()
-        configureTabBarController()
+    //MARK: - (0) AppCoordinator
+    func configureCoordinator() {
+        tabBarController.configureAppearance()
+        navigationController.configureAppearance()
+        navigationController.setNavigationBarHidden(true, animated: false)
+        
+        showSplashViewController()
+        presentAutoSigninModal()
     }
     
-    //MARK: - (Modal 1) AutoSignin
-    private func showAutoSigninViewController() {
-        let viewModel = AutoSigninViewModel(coordinator: self)
-        let autoSigninViewController = AutoSigninViewController(viewModel: viewModel)
-        let signinModal = UINavigationController(rootViewController: autoSigninViewController)
+    //MARK: - (1) SplashViewController
+    func showSplashViewController() {
+        let userSigninUseCase = UserSigninUseCase(
+            userAuthRepository: makeAuthRepository(),
+            keychainRepository: makeKeychainRepository()
+        )
+        let viewModel = SplashViewModel(
+            coordinator: self,
+            userSigninUseCase: userSigninUseCase
+        )
+        let viewController = SplashViewController(viewModel: viewModel)
         
+        navigationController.pushViewController(viewController, animated: false)
+    }
+    
+    //MARK: - (1+) AutoSigninViewController (Modal 1)
+    private func presentAutoSigninModal() {
+        let viewModel = AutoSigninViewModel(coordinator: self)
+        let viewController = AutoSigninViewController(viewModel: viewModel)
+        let modal = UINavigationController(rootViewController: viewController)
+        
+        self.signinModal = modal
         self.signinModal.setNavigationBarHidden(false, animated: false)
-        self.signinModal = signinModal
         self.signinModal.modalPresentationStyle = .fullScreen
         self.navigationController.present(self.signinModal, animated: true)
     }
     
-    //MARK: - (Modal 2-1) UserSignin
+    //MARK: - (1+) UserSigninViewController (Modal 2)
     func showUserSigninViewController() {
         let useCase = UserSigninUseCase(
             userAuthRepository: makeAuthRepository(),
@@ -61,7 +78,7 @@ extension AppCoordinator {
         self.signinModal.pushViewController(viewController, animated: true)
     }
     
-    //MARK: - (Modal 2-2) UserJoin
+    //MARK: - (1+) UserJoinViewController (Modal 2)
     func showUserJoinViewController() {
         let useCase = UserJoinUseCase(userAuthRepository: makeAuthRepository())
         let viewModel = UserJoinViewModel(coordinator: self, userJoinUseCase: useCase)
@@ -69,7 +86,6 @@ extension AppCoordinator {
         self.signinModal.pushViewController(viewController, animated: true)
     }
     
-    //MARK: - Repositories
     private func makeAuthRepository() -> UserAuthRepositoryProtocol {
         return UserAuthRepository()
     }
@@ -79,7 +95,7 @@ extension AppCoordinator {
     }
 }
 
-//MARK: - TabBarController
+//MARK: - (2 ~ 4) TabCoordinator
 private extension AppCoordinator {
     
     //MARK: - TabBar
@@ -91,7 +107,7 @@ private extension AppCoordinator {
         return navigationController
     }
     
-    //MARK: - TabBarController
+    //MARK: - (2) TabBarController
     func configureTabBarController() {
         let tabBarList: [TabBar] = TabBar.allCases
         let navigationControllerList: [UINavigationController] = tabBarList.map { tabBar in
@@ -104,7 +120,7 @@ private extension AppCoordinator {
         navigationController.pushViewController(tabBarController, animated: true)
     }
     
-    //MARK: - NavigationController in TabBarController
+    //MARK: - (3) NavigationController in TabBarController
     func connectTabBarController(_ tabBar: TabBar, _ navigationController: UINavigationController) {
         switch tabBar {
         case .storyList:
@@ -114,7 +130,7 @@ private extension AppCoordinator {
         }
     }
     
-    //MARK: - childCoordinators
+    //MARK: - (4) childCoordinators
     func makeStoryContentCoordinator(_ navigationController: UINavigationController) {
         let storyContentCoordinator = StoryContentCoordinator(navigationController)
         storyContentCoordinator.delegate = self
