@@ -34,7 +34,6 @@ final class AppCoordinator: Coordinator {
 //MARK: - configure
 private extension AppCoordinator {
     
-    //MARK: - (0) AppCoordinator
     func configureCoordinator() {
         let tabBarList: [TabBar] = TabBar.allCases
         let navigationControllerList: [UINavigationController] = tabBarList.map { tabBar in
@@ -54,7 +53,19 @@ private extension AppCoordinator {
     }
 }
 
-//MARK: - (1 ~ 2) SplashViewController x SigninModal
+//MARK: - Repositories
+private extension AppCoordinator {
+    
+    private func makeAuthRepository() -> UserAuthRepositoryProtocol {
+        return UserAuthRepository()
+    }
+    
+    private func makeKeychainRepository() -> KeychainRepositoryProtocol {
+        return KeychainRepository.shared
+    }
+}
+
+//MARK: - Show ViewController
 extension AppCoordinator {
     
     //MARK: - (1) SplashViewController
@@ -112,15 +123,6 @@ extension AppCoordinator {
     func showTabBarController() {
         navigationController.setNavigationBarHidden(true, animated: false)
         navigationController.pushViewController(tabBarController, animated: false)
-    }
-    
-    //MARK: - (DI) Repositories
-    private func makeAuthRepository() -> UserAuthRepositoryProtocol {
-        return UserAuthRepository()
-    }
-    
-    private func makeKeychainRepository() -> KeychainRepositoryProtocol {
-        return KeychainRepository.shared
     }
 }
 

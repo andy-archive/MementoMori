@@ -39,7 +39,7 @@ final class StoryImageCollectionViewCell: BaseCollectionViewCell {
     }
 }
 
-//MARK: - upload image
+//MARK: - Upload Image
 extension StoryImageCollectionViewCell {
     
     func loadImage(path: String?) {

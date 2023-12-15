@@ -8,18 +8,21 @@
 import UIKit
 
 final class StoryContentCoordinator: Coordinator {
-
+    
+    //MARK: - Properties
     weak var delegate: CoordinatorDelegate?
     var navigationController: UINavigationController
     var childCoordinators: [Coordinator]
     
+    //MARK: - Initializer
     init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
         self.childCoordinators = []
     }
     
+    //MARK: - Start
     func start() {
-        self.showStoryListViewController()
+        showStoryListViewController()
     }
 }
 
@@ -46,8 +49,6 @@ extension StoryContentCoordinator {
         viewController.changeToSheetPresentation()
         navigationController.present(viewController, animated: true)
     }
-    
-    
 }
 
 //MARK: - Repositories

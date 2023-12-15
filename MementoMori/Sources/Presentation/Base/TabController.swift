@@ -30,14 +30,18 @@ extension TabController: UITabBarControllerDelegate {
 
 final class MyTransition: NSObject, UIViewControllerAnimatedTransitioning {
     
+    //MARK: - Properties
     private let viewControllers: [UIViewController]?
     private let transitionDuration: Double = 0.3
     
-    init(viewControllers: [UIViewController]?) {
+    //MARK: - Initializer
+    init(
+        viewControllers: [UIViewController]?
+    ) {
         self.viewControllers = viewControllers
     }
     
-    //MARK: - private functions
+    //MARK: - Private Functions
     private func getIndex(forViewController vc: UIViewController) -> Int? {
         guard let vcs = self.viewControllers else { return nil }
         for (index, thisVC) in vcs.enumerated() {
@@ -46,7 +50,7 @@ final class MyTransition: NSObject, UIViewControllerAnimatedTransitioning {
         return nil
     }
     
-    //MARK: - UIViewControllerAnimatedTransitioning
+    //MARK: - Protocol Functions
     func transitionDuration(
         using transitionContext: UIViewControllerContextTransitioning?
     ) -> TimeInterval {
