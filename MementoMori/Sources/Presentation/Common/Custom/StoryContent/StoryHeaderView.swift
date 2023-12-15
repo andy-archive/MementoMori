@@ -7,9 +7,7 @@
 
 import UIKit
 
-final class StoryItemHeaderView: BaseView {
-    
-    var storyPost: StoryPost?
+final class StoryHeaderView: BaseView {
     
     private lazy var userProfileImageView = {
         let view = UIImageView(frame: .zero)
@@ -89,12 +87,10 @@ final class StoryItemHeaderView: BaseView {
     }
 }
 
-extension StoryItemHeaderView {
+extension StoryHeaderView {
     
-    func configure(_ item: StoryPost?) {
-        storyPost = item
-        
-        guard let storyPost = storyPost else { return }
+    func configure(_ storyPost: StoryPost?) {
+        guard let storyPost else { return }
         
         nicknameLabel.text = storyPost.nickname
         

@@ -53,6 +53,10 @@ enum Constant {
                 static let height: CGFloat = 40
                 static let inset: CGFloat = 8
             }
+            
+            enum Comment {
+                static let inset: CGFloat = 12
+            }
         }
         
         enum UserAuth {

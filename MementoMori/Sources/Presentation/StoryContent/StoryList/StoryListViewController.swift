@@ -12,7 +12,7 @@ import RxSwift
 final class StoryListViewController: BaseViewController {
     
     private lazy var headerView = StoryListHeaderView()
-    private lazy var storyView = StoryListView()
+    private lazy var bodyView = StoryListBodyView()
     
     private let viewModel: StoryListViewModel
     
@@ -33,8 +33,8 @@ final class StoryListViewController: BaseViewController {
         output
             .storyList
             .emit(with: self) { owner, postList in
-                owner.storyView.postList = postList
-                owner.storyView.configure()
+                owner.bodyView.postList = postList
+                owner.bodyView.configure()
             }
             .disposed(by: disposeBag)
     }
@@ -43,7 +43,7 @@ final class StoryListViewController: BaseViewController {
         super.configureUI()
         
         view.addSubview(headerView)
-        view.addSubview(storyView)
+        view.addSubview(bodyView)
     }
     
     override func configureLayout() {
@@ -55,12 +55,12 @@ final class StoryListViewController: BaseViewController {
             headerView.heightAnchor.constraint(equalToConstant: Constant.Layout.StoryList.Header.height)
         ])
         
-        storyView.translatesAutoresizingMaskIntoConstraints = false
+        bodyView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            storyView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
-            storyView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            storyView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            storyView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            bodyView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
+            bodyView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            bodyView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            bodyView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 }

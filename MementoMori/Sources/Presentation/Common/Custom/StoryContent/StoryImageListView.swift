@@ -1,5 +1,5 @@
 //
-//  StoryItemView.swift
+//  StoryItemImageListView.swift
 //  MementoMori
 //
 //  Created by Taekwon Lee on 12/5/23.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class StoryItemView: BaseView {
+final class StoryImageListView: BaseView {
     
     typealias DataSource = UICollectionViewDiffableDataSource<Section, String>
     
@@ -35,16 +35,16 @@ final class StoryItemView: BaseView {
     override func configureLayout() {
         imageCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            imageCollectionView.topAnchor.constraint(equalTo: self.topAnchor),
-            imageCollectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            imageCollectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            imageCollectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            imageCollectionView.topAnchor.constraint(equalTo: topAnchor),
+            imageCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            imageCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            imageCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }
 
 //MARK: - UICollectionViewDelegateFlowLayout
-extension StoryItemView: UICollectionViewDelegateFlowLayout {
+extension StoryImageListView: UICollectionViewDelegateFlowLayout {
     
     enum Section: CaseIterable {
         case main
@@ -52,8 +52,8 @@ extension StoryItemView: UICollectionViewDelegateFlowLayout {
     
     private func configureCollectionView() {
         imageCollectionView.register(
-            StoryItemCollectionViewCell.self,
-            forCellWithReuseIdentifier: NSStringFromClass(StoryItemCollectionViewCell.self)
+            StoryImageCollectionViewCell.self,
+            forCellWithReuseIdentifier: NSStringFromClass(StoryImageCollectionViewCell.self)
         )
         imageCollectionView.delegate = self
     }
@@ -63,9 +63,9 @@ extension StoryItemView: UICollectionViewDelegateFlowLayout {
         return DataSource(collectionView: imageCollectionView) { collectionView, indexPath, itemIdentifier in
             
             guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: NSStringFromClass(StoryItemCollectionViewCell.self),
+                withReuseIdentifier: NSStringFromClass(StoryImageCollectionViewCell.self),
                 for: indexPath
-            ) as? StoryItemCollectionViewCell
+            ) as? StoryImageCollectionViewCell
             else { return UICollectionViewCell() }
             
             cell.loadImage(path: itemIdentifier)
@@ -85,7 +85,7 @@ extension StoryItemView: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension StoryItemView {
+extension StoryImageListView {
     
     func configure(_ storyPostItem: StoryPost?) {
         

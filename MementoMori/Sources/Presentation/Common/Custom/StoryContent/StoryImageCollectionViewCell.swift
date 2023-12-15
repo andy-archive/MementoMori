@@ -1,5 +1,5 @@
 //
-//  StoryItemCollectionViewCell.swift
+//  StoryContentImageCollectionViewCell.swift
 //  MementoMori
 //
 //  Created by Taekwon Lee on 12/5/23.
@@ -9,7 +9,7 @@ import UIKit
 
 import Kingfisher
 
-final class StoryItemCollectionViewCell: BaseCollectionViewCell {
+final class StoryImageCollectionViewCell: BaseCollectionViewCell {
     
     private lazy var imageView = {
         let view = UIImageView()
@@ -40,7 +40,7 @@ final class StoryItemCollectionViewCell: BaseCollectionViewCell {
 }
 
 //MARK: - upload image
-extension StoryItemCollectionViewCell {
+extension StoryImageCollectionViewCell {
     
     func loadImage(path: String?) {
         
