@@ -87,6 +87,7 @@ extension StoryListBodyView: UICollectionViewDelegateFlowLayout {
             else {
                 return StoryCollectionViewCell()
             }
+            let keychain = KeychainRepository.shared
             
             cell.configureCell(storyPost: itemIdentifier)
             cell.textContentView.rx.tapGesture()
@@ -94,8 +95,9 @@ extension StoryListBodyView: UICollectionViewDelegateFlowLayout {
                 .withUnretained(self)
                 .subscribe { owner, value in
                     guard let storyID = itemIdentifier.id else { return }
-                    UserDefaults.standard.set(storyID, forKey: "storyID")
-                    owner.textContentViewTap.accept(Void())
+                    if keychain.save(key: "", value: storyID, type: .storyID) {
+                        owner.textContentViewTap.accept(Void())
+                    }
                 }
                 .disposed(by: self.disposeBag)
             

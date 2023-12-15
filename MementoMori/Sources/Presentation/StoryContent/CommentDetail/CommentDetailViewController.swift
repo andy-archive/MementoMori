@@ -9,6 +9,9 @@ import UIKit
 
 final class CommentDetailViewController: BaseViewController {
     
+    //MARK: Properties
+    private let keychain = KeychainRepository.shared
+    
     //MARK: - UI
     private lazy var titleLabel = {
         let label = UILabel()
@@ -41,7 +44,7 @@ final class CommentDetailViewController: BaseViewController {
     override func configureUI() {
         super.configureUI()
         
-        guard let storyID = UserDefaults.standard.string(forKey: "storyID")
+        guard let storyID = keychain.find(key: "", type: .storyID)
         else { return }
         
         titleLabel.text = storyID

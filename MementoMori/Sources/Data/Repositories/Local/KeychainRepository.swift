@@ -9,15 +9,17 @@ import Foundation
 
 final class KeychainRepository: KeychainRepositoryProtocol {
     
+    //MARK: - Properties
     private let keySecurityClass = kSecClassGenericPassword
     
-    //MARK: - (1) logError - private functions
+    //MARK: - Singleton
+    static let shared = KeychainRepository()
+    
+    //MARK: - Private Functions
     private func logError(_ status: OSStatus) {
         let description = SecCopyErrorMessageString(status, nil)
         print(description ?? "Keychain ERROR.")
     }
-
-    //MARK: - (2) update - private functions
     private func update(account: String, value: Data) -> Bool {
         let updateQuery: [CFString: Any] = [kSecValueData: value]
         let searchQuery: [CFString: Any] = [
@@ -34,7 +36,7 @@ final class KeychainRepository: KeychainRepositoryProtocol {
         }
     }
     
-    //MARK: - (1) save - KeychainRepositoryProtocol
+    //MARK: - Protocol Methods
     func save(key: String, value: String, type: KeyType) -> Bool {
         guard let valueData = value.data(using: .utf8) else { return false }
         
@@ -56,7 +58,6 @@ final class KeychainRepository: KeychainRepositoryProtocol {
         }
     }
     
-    //MARK: - (2) find - KeychainRepositoryProtocol
     func find(key: String, type: KeyType) -> String? {
         let account = key + type.rawValue
         let query: [CFString: Any] = [
@@ -85,7 +86,6 @@ final class KeychainRepository: KeychainRepositoryProtocol {
         return token
     }
     
-    //MARK: - (3) delete - KeychainRepositoryProtocol
     func delete(key: String, type: KeyType) -> Bool {
         let account = key + type.rawValue
         let searchQuery: [CFString: Any] = [
