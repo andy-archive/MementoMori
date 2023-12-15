@@ -9,14 +9,14 @@ import UIKit
 
 final class StoryCollectionViewCell: BaseCollectionViewCell {
     
-    //MARK: - (1) UI
+    //MARK: - UI
     private lazy var headerView = StoryHeaderView()
     private lazy var imageListView = StoryImageListView()
     private lazy var footerView = StoryButtonStackView()
     private lazy var textListView = StoryContentTextListView()
     private lazy var separatorView = SeparatorView()
     
-    //MARK: - (2) ContentView Configuration
+    //MARK: - ContentView Configuration
     override func configureUI() {
         super.configureUI()
         
@@ -27,7 +27,7 @@ final class StoryCollectionViewCell: BaseCollectionViewCell {
         contentView.addSubview(separatorView)
     }
     
-    //MARK: - (3) Layouts
+    //MARK: - Layouts
     override func configureLayout() {
         headerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -70,7 +70,7 @@ final class StoryCollectionViewCell: BaseCollectionViewCell {
     }
 }
 
-//MARK: - (4) Data
+//MARK: - Data
 extension StoryCollectionViewCell {
     
     func configureCell(storyPost: StoryPost?) {

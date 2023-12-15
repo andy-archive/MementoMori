@@ -32,9 +32,10 @@ class BaseCollectionViewCell: UICollectionViewCell {
         disposeBag = DisposeBag()
     }
     
+    func bind() { }
     func configureUI() {
         contentView.backgroundColor = Constant.Color.background
     }
-    func configureLayout() {}
-    func bind() {}
+    func configureLayout() { }
+
 }

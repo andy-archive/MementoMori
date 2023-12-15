@@ -30,9 +30,9 @@ class BaseViewController: UIViewController {
         bind()
     }
     
+    func bind() { }
     func configureUI() {
         view.backgroundColor = Constant.Color.background
     }
     func configureLayout() { }
-    func bind() { }
 }
