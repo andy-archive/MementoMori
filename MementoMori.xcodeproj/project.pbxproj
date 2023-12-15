@@ -85,6 +85,8 @@
 		3874640D2B172208009FAB2C /* UserSigninError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874640C2B172208009FAB2C /* UserSigninError.swift */; };
 		387464132B173E2C009FAB2C /* UserJoinError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387464122B173E2C009FAB2C /* UserJoinError.swift */; };
 		387D063F2B2C01D000A012D5 /* StoryContentTextListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387D063E2B2C01D000A012D5 /* StoryContentTextListView.swift */; };
+		387D064C2B2C216C00A012D5 /* CommentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387D064B2B2C216C00A012D5 /* CommentDetailViewController.swift */; };
+		387D064F2B2C25C400A012D5 /* CommentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387D064E2B2C25C400A012D5 /* CommentDetailViewModel.swift */; };
 		388CFD4D2B0F2ED900638EFD /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CFD4C2B0F2ED800638EFD /* NetworkError.swift */; };
 		38B5FB152B24D2AE00F91DDA /* RefreshInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5FB142B24D2AE00F91DDA /* RefreshInterceptor.swift */; };
 		38B9203F2B08AAED006CBD1C /* Constant+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B9203E2B08AAED006CBD1C /* Constant+Network.swift */; };
@@ -187,6 +189,8 @@
 		3874640C2B172208009FAB2C /* UserSigninError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninError.swift; sourceTree = "<group>"; };
 		387464122B173E2C009FAB2C /* UserJoinError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJoinError.swift; sourceTree = "<group>"; };
 		387D063E2B2C01D000A012D5 /* StoryContentTextListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryContentTextListView.swift; sourceTree = "<group>"; };
+		387D064B2B2C216C00A012D5 /* CommentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDetailViewController.swift; sourceTree = "<group>"; };
+		387D064E2B2C25C400A012D5 /* CommentDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDetailViewModel.swift; sourceTree = "<group>"; };
 		388CFD4C2B0F2ED800638EFD /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		38B5FB142B24D2AE00F91DDA /* RefreshInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshInterceptor.swift; sourceTree = "<group>"; };
 		38B9203E2B08AAED006CBD1C /* Constant+Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constant+Network.swift"; sourceTree = "<group>"; };
@@ -512,6 +516,7 @@
 			isa = PBXGroup;
 			children = (
 				387463DD2B163C54009FAB2C /* StoryContentCoordinator.swift */,
+				387D064A2B2C212D00A012D5 /* CommentDetail */,
 				387463DA2B163C01009FAB2C /* StoryList */,
 				387D06452B2C15D800A012D5 /* View */,
 			);
@@ -656,6 +661,15 @@
 				38CA8C212B0385AC00A9C4B7 /* SigninTitleLabel.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		387D064A2B2C212D00A012D5 /* CommentDetail */ = {
+			isa = PBXGroup;
+			children = (
+				387D064B2B2C216C00A012D5 /* CommentDetailViewController.swift */,
+				387D064E2B2C25C400A012D5 /* CommentDetailViewModel.swift */,
+			);
+			path = CommentDetail;
 			sourceTree = "<group>";
 		};
 		38C891862B2AB14E00F15F1B /* Splash */ = {
@@ -823,6 +837,7 @@
 				383ECFD72B15BF2B004675E1 /* UserSigninUseCaseProtocol.swift in Sources */,
 				38CA8C2A2B038CB000A9C4B7 /* UITextField+.swift in Sources */,
 				380646FB2B20872E001B375D /* StoryListUseCaseProtocol.swift in Sources */,
+				387D064F2B2C25C400A012D5 /* CommentDetailViewModel.swift in Sources */,
 				386309382B135C86001973AA /* EmailValidationDTO.swift in Sources */,
 				3863094E2B1457B9001973AA /* AppCoordinator.swift in Sources */,
 				38318DDB2B1F54C2000EED65 /* StoryPostRepositoryProtocol.swift in Sources */,
@@ -835,6 +850,7 @@
 				38318DCE2B1E3A15000EED65 /* StoryImageListView.swift in Sources */,
 				386309632B147637001973AA /* UserAuthRepository.swift in Sources */,
 				38318DC92B1DB666000EED65 /* StoryHeaderView.swift in Sources */,
+				387D064C2B2C216C00A012D5 /* CommentDetailViewController.swift in Sources */,
 				38318DBF2B1CD2D8000EED65 /* BaseView.swift in Sources */,
 				383ECFD12B15B437004675E1 /* UserSigninViewController.swift in Sources */,
 				3847EC442B0252B200E086EB /* BaseViewController.swift in Sources */,
