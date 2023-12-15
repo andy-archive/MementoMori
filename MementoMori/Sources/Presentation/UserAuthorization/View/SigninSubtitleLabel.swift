@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SigninSubtitleLabel: UILabel {
+final class SigninSubtitleLabel: UILabel {
     
     override init(frame: CGRect) {
         super.init(frame: frame)

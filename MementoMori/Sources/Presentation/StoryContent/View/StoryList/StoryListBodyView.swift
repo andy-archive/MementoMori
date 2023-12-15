@@ -1,5 +1,5 @@
 //
-//  StoryListView.swift
+//  StoryListBodyView.swift
 //  MementoMori
 //
 //  Created by Taekwon Lee on 12/3/23.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class StoryListView: BaseView {
+final class StoryListBodyView: BaseView {
     
     typealias DataSource = UICollectionViewDiffableDataSource<Section, StoryPost>
     
@@ -52,7 +52,7 @@ final class StoryListView: BaseView {
 
 //MARK: UICollectionViewDelegateFlowLayout
 
-extension StoryListView: UICollectionViewDelegateFlowLayout {
+extension StoryListBodyView: UICollectionViewDelegateFlowLayout {
     
     enum Section: CaseIterable {
         case main
@@ -60,8 +60,8 @@ extension StoryListView: UICollectionViewDelegateFlowLayout {
     
     private func configureCollectionView() {
         collectionView.register(
-            StoryListCollectionViewCell.self,
-            forCellWithReuseIdentifier: NSStringFromClass(StoryListCollectionViewCell.self)
+            StoryCollectionViewCell.self,
+            forCellWithReuseIdentifier: NSStringFromClass(StoryCollectionViewCell.self)
         )
         collectionView.delegate = self
     }
@@ -71,11 +71,11 @@ extension StoryListView: UICollectionViewDelegateFlowLayout {
         return DataSource(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
             
             guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: NSStringFromClass(StoryListCollectionViewCell.self),
+                withReuseIdentifier: NSStringFromClass(StoryCollectionViewCell.self),
                 for: indexPath)
-                    as? StoryListCollectionViewCell
+                    as? StoryCollectionViewCell
             else {
-                return StoryListCollectionViewCell()
+                return StoryCollectionViewCell()
             }
             
             cell.configureCell(storyPost: itemIdentifier)

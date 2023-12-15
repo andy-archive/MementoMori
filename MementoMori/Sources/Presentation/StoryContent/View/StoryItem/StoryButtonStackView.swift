@@ -1,15 +1,13 @@
 //
-//  StoryItemFooterView.swift
+//  StoryButtonStackView.swift
 //  MementoMori
 //
 //  Created by Taekwon Lee on 12/5/23.
 //
 
-import Foundation
-
 import UIKit
 
-final class StoryItemFooterView: BaseView {
+final class StoryButtonStackView: BaseView {
     
     private lazy var likeButton = {
         let button = UIButton()
