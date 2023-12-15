@@ -33,9 +33,10 @@ class BaseCollectionViewCell: UICollectionViewCell {
     }
     
     func bind() { }
+    
     func configureUI() {
         contentView.backgroundColor = Constant.Color.background
     }
+    
     func configureLayout() { }
-
 }

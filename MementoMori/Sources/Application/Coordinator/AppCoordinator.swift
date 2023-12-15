@@ -89,9 +89,11 @@ extension AppCoordinator {
     
     //MARK: - (1+) UserSigninViewController (Modal 2)
     func showUserSigninViewController() {
+        let keychain = KeychainRepository.shared
+        let authRepository = UserAuthRepository()
         let useCase = UserSigninUseCase(
-            userAuthRepository: makeAuthRepository(),
-            keychainRepository: makeKeychainRepository()
+            userAuthRepository: authRepository,
+            keychainRepository: keychain
         )
         let viewModel = UserSigninViewModel(coordinator: self, userSigninUseCase: useCase)
         let viewController = UserSigninViewController(viewModel: viewModel)
@@ -118,7 +120,7 @@ extension AppCoordinator {
     }
     
     private func makeKeychainRepository() -> KeychainRepositoryProtocol {
-        return KeychainRepository()
+        return KeychainRepository.shared
     }
 }
 

@@ -29,7 +29,7 @@ extension StoryContentCoordinator {
     func showStoryListViewController() {
         let useCase = StoryListUseCase(
             storyPostRepository: StoryPostRepository(),
-            keychainRepository: KeychainRepository()
+            keychainRepository: makeKeychainRepository()
         )
         let viewModel = StoryListViewModel(
             coordinator: self,
@@ -45,5 +45,15 @@ extension StoryContentCoordinator {
         
         viewController.changeToSheetPresentation()
         navigationController.present(viewController, animated: true)
+    }
+    
+    
+}
+
+//MARK: - Repositories
+private extension StoryContentCoordinator {
+    
+    func makeKeychainRepository() -> KeychainRepositoryProtocol {
+        return KeychainRepository.shared
     }
 }

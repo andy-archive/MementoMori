@@ -43,15 +43,28 @@ final class StoryImageCollectionViewCell: BaseCollectionViewCell {
 extension StoryImageCollectionViewCell {
     
     func loadImage(path: String?) {
+        let keychain = KeychainRepository.shared
         
-        guard let path else { return }
+        guard
+            let userID = keychain.find(key: "", type: .userID),
+            let accessToken = keychain.find(key: userID, type: .accessToken),
+            let path
+        else { return }
         
-        let token = RefreshInterceptor.shared.findToken().accessToken
         let urlString = MementoAPI.baseURL + path
         let modifier = AnyModifier { request in
+            
             var result = request
-            result.setValue(token, forHTTPHeaderField: "Authorization")
-            result.setValue(MementoAPI.secretKey, forHTTPHeaderField: "SesacKey")
+            
+            result.setValue(
+                accessToken,
+                forHTTPHeaderField: MementoAPI.HTTPHeaderField.accessToken
+            )
+            result.setValue(
+                MementoAPI.secretKey,
+                forHTTPHeaderField: MementoAPI.HTTPHeaderField.secretKey
+            )
+            
             return result
         }
         

@@ -15,6 +15,8 @@ final class KeychainRepository: KeychainRepositoryProtocol {
     //MARK: - Singleton
     static let shared = KeychainRepository()
     
+    private init () { }
+    
     //MARK: - Private Functions
     private func logError(_ status: OSStatus) {
         let description = SecCopyErrorMessageString(status, nil)
