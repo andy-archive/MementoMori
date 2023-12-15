@@ -10,6 +10,11 @@ import UIKit
 final class CommentDetailViewController: BaseViewController {
     
     //MARK: - UI
+    private lazy var titleLabel = {
+        let label = UILabel()
+        return label
+    }()
+    
     private lazy var titleView = {
         let view = UIView()
         return view
@@ -36,17 +41,23 @@ final class CommentDetailViewController: BaseViewController {
     override func configureUI() {
         super.configureUI()
         
+        guard let storyID = UserDefaults.standard.string(forKey: "storyID")
+        else { return }
+        
+        titleLabel.text = storyID
+        
+        view.addSubview(titleLabel)
         view.addSubview(titleView)
     }
     
     //MARK: - Layouts
     override func configureLayout() {
-        titleView.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            titleView.topAnchor.constraint(equalTo: view.topAnchor, constant: Constant.Layout.StoryItem.Footer.inset),
-            titleView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.StoryItem.Footer.inset),
-            titleView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constant.Layout.StoryItem.Footer.inset),
-            titleView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.3),
+            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: Constant.Layout.StoryItem.Footer.inset),
+            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.StoryItem.Footer.inset),
+            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constant.Layout.StoryItem.Footer.inset),
+            titleLabel.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.3),
         ])
     }
 }

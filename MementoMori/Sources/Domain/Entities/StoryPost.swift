@@ -15,7 +15,7 @@ struct StoryPost: Hashable {
         case location
     }
     
-    let id = UUID()
+    let id: String?
     let userID: String?
     let nickname: String?
     let title: String?
@@ -43,6 +43,7 @@ struct StoryPost: Hashable {
 extension StoryPost {
     
     init(content: String, imageDataList: [Data]?) {
+        self.id = nil
         self.userID = nil
         self.nickname = nil
         self.title = nil
@@ -58,11 +59,13 @@ extension StoryPost {
     }
     
     init(
+        id: String,
         nickname: String,
         content: String,
         imageFilePathList: [String],
         createdAt: String
     ) {
+        self.id = id
         self.userID = nil
         self.nickname = nickname
         self.title = nil

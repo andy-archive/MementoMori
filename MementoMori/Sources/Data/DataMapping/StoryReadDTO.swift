@@ -33,6 +33,7 @@ struct StoryReadResponseDTO: Decodable {
         
         let domain = data.map { story in
             StoryPost(
+                id: story.id,
                 nickname: story.creator.nickname,
                 content: story.content ?? "",
                 imageFilePathList: story.imageFilePathList,

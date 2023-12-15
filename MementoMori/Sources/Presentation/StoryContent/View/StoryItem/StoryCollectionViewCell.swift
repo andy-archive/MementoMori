@@ -7,13 +7,16 @@
 
 import UIKit
 
+import RxGesture
+import RxSwift
+
 final class StoryCollectionViewCell: BaseCollectionViewCell {
     
     //MARK: - UI
     private lazy var headerView = StoryHeaderView()
     private lazy var imageListView = StoryImageListView()
     private lazy var footerView = StoryButtonStackView()
-    private lazy var textListView = StoryContentTextListView()
+    lazy var textContentView = StoryContentTextListView()
     private lazy var separatorView = SeparatorView()
     
     //MARK: - ContentView Configuration
@@ -23,7 +26,7 @@ final class StoryCollectionViewCell: BaseCollectionViewCell {
         contentView.addSubview(headerView)
         contentView.addSubview(imageListView)
         contentView.addSubview(footerView)
-        contentView.addSubview(textListView)
+        contentView.addSubview(textContentView)
         contentView.addSubview(separatorView)
     }
     
@@ -53,12 +56,12 @@ final class StoryCollectionViewCell: BaseCollectionViewCell {
             footerView.heightAnchor.constraint(equalToConstant: Constant.Layout.StoryItem.Footer.height)
         ])
         
-        textListView.translatesAutoresizingMaskIntoConstraints = false
+        textContentView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            textListView.topAnchor.constraint(equalTo: footerView.bottomAnchor),
-            textListView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            textListView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            textListView.bottomAnchor.constraint(equalTo: separatorView.topAnchor)
+            textContentView.topAnchor.constraint(equalTo: footerView.bottomAnchor),
+            textContentView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            textContentView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            textContentView.bottomAnchor.constraint(equalTo: separatorView.topAnchor)
         ])
         
         separatorView.translatesAutoresizingMaskIntoConstraints = false
@@ -76,6 +79,6 @@ extension StoryCollectionViewCell {
     func configureCell(storyPost: StoryPost?) {
         headerView.configure(storyPost)
         imageListView.configure(storyPost)
-        textListView.configure(storyPost)
+        textContentView.configure(storyPost)
     }
 }

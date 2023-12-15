@@ -12,18 +12,24 @@ import RxSwift
 
 final class StoryListViewModel: ViewModel {
     
+    //MARK: - Input
     struct Input {
         let viewWillAppear: Observable<Void>
+        let textContentTap: PublishRelay<Void>
     }
     
+    //MARK: - Output
     struct Output {
         let storyList: Signal<[StoryPost]>
     }
     
+    //MARK: - Properties
     let disposeBag = DisposeBag()
     weak var coordinator: StoryContentCoordinator?
     private let storyListUseCase: StoryListUseCaseProtocol
+    var storyPostList = [StoryPost]()
     
+    //MARK: - Initializer
     init(
         coordinator: StoryContentCoordinator,
         storyListUseCase: StoryListUseCaseProtocol
@@ -32,6 +38,7 @@ final class StoryListViewModel: ViewModel {
         self.storyListUseCase = storyListUseCase
     }
     
+    //MARK: - Transform from Input to Output
     func transform(input: Input) -> Output {
         let storyList = input
             .viewWillAppear
@@ -48,7 +55,15 @@ final class StoryListViewModel: ViewModel {
                 return storyList
             }
             .asSignal(onErrorJustReturn: [StoryPost]())
-            
+        
+        input
+            .textContentTap
+            .asSignal()
+            .emit(with: self) { owner, _ in
+                owner.coordinator?.showCommentDetailViewController()
+            }
+            .disposed(by: disposeBag)
+        
         return Output(
             storyList: storyList
         )

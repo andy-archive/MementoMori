@@ -30,12 +30,12 @@ final class StoryListViewController: BaseViewController {
     //MARK: - Bind with ViewModel
     override func bind() {
         let input = StoryListViewModel.Input(
-            viewWillAppear: rx.viewWillAppear.map { _ in }.throttle(.seconds(1), scheduler: MainScheduler.asyncInstance)
+            viewWillAppear: rx.viewWillAppear.map { _ in }.throttle(.seconds(1), scheduler: MainScheduler.asyncInstance),
+            textContentTap: bodyView.textContentViewTap
         )
         let output = viewModel.transform(input: input)
         
-        output
-            .storyList
+        output.storyList
             .emit(with: self) { owner, postList in
                 owner.bodyView.postList = postList
                 owner.bodyView.configure()

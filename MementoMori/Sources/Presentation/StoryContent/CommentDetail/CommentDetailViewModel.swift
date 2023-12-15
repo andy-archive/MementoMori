@@ -19,12 +19,12 @@ final class CommentDetailViewModel: ViewModel {
     
     //MARK: - Properties
     let disposeBag = DisposeBag()
-    weak var coordinator: Coordinator?
+    weak var coordinator: StoryContentCoordinator?
 //    private let myuseCase: MyUseCaseProtocol
     
     //MARK: - Initializer
     init(
-        coordinator: Coordinator
+        coordinator: StoryContentCoordinator
 //        myuseCase: MyUseCaseProtocol
     ) {
         self.coordinator = coordinator
@@ -33,6 +33,7 @@ final class CommentDetailViewModel: ViewModel {
     
     //MARK: - Transform from Input to Output
     func transform(input: Input) -> Output {
+        
         
         return Output()
     }
