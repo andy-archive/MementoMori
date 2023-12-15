@@ -42,20 +42,8 @@ extension StoryContentCoordinator {
     func showCommentDetailViewController() {
         let viewModel = CommentDetailViewModel(coordinator: self)
         let viewController = CommentDetailViewController(viewModel: viewModel)
-        if let sheet = viewController.sheetPresentationController {
-            sheet.detents = [
-                .custom(identifier: .medium, resolver: { context in
-                    return UIScreen.main.bounds.height * 0.7
-                }),
-                .custom(identifier: .large, resolver: { context in
-                    return UIScreen.main.bounds.height * 0.9
-                }),
-            ]
-            sheet.largestUndimmedDetentIdentifier = .large
-            sheet.prefersGrabberVisible = true
-            sheet.prefersScrollingExpandsWhenScrolledToEdge = true
-            sheet.preferredCornerRadius = 25
-        }
+        
+        viewController.changeToSheetPresentation()
         navigationController.present(viewController, animated: true)
     }
 }
