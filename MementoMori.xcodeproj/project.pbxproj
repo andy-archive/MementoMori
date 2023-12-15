@@ -243,17 +243,10 @@
 		380646FE2B21CCF8001B375D /* StoryUpload */ = {
 			isa = PBXGroup;
 			children = (
+				387D06482B2C166100A012D5 /* View */,
 				380647022B21CD7F001B375D /* StoryUploadCoordinator.swift */,
 				380646FF2B21CD1D001B375D /* StoryUploadViewController.swift */,
 				386FCD8C2B21EFBA00822DFD /* StoryUploadViewModel.swift */,
-			);
-			path = StoryUpload;
-			sourceTree = "<group>";
-		};
-		380647042B21D0D3001B375D /* StoryUpload */ = {
-			isa = PBXGroup;
-			children = (
-				380647052B21D0E9001B375D /* StoryUploadHeaderView.swift */,
 			);
 			path = StoryUpload;
 			sourceTree = "<group>";
@@ -265,35 +258,6 @@
 				384C6D7E2B26D9FF00EE6051 /* AutoSigninViewModel.swift */,
 			);
 			path = AutoSignin;
-			sourceTree = "<group>";
-		};
-		38318DB52B1C6F56000EED65 /* UserAuth */ = {
-			isa = PBXGroup;
-			children = (
-				383ECFD82B15C48D004675E1 /* JoinButton.swift */,
-				38D4066A2B0B29E000B6F783 /* SecureTextButton.swift */,
-				38CA8C262B038AC000A9C4B7 /* SigninButton.swift */,
-				38CA8C242B03893300A9C4B7 /* SigninSubtitleLabel.swift */,
-				3847EC472B02578900E086EB /* SigninTextField.swift */,
-				38CA8C212B0385AC00A9C4B7 /* SigninTitleLabel.swift */,
-			);
-			path = UserAuth;
-			sourceTree = "<group>";
-		};
-		38318DB62B1C6F62000EED65 /* StoryContent */ = {
-			isa = PBXGroup;
-			children = (
-				38318DC52B1CFE47000EED65 /* SeparatorView.swift */,
-				38318DD82B1F3AF8000EED65 /* StoryButtonStackView.swift */,
-				38318DC02B1CE3EB000EED65 /* StoryCollectionViewCell.swift */,
-				387D063E2B2C01D000A012D5 /* StoryContentTextListView.swift */,
-				38318DD32B1ED72B000EED65 /* StoryImageCollectionViewCell.swift */,
-				38318DCD2B1E3A15000EED65 /* StoryImageListView.swift */,
-				38318DC82B1DB666000EED65 /* StoryHeaderView.swift */,
-				38318DBA2B1C8F58000EED65 /* StoryListBodyView.swift */,
-				38318DAF2B1C5C73000EED65 /* StoryListHeaderView.swift */,
-			);
-			path = StoryContent;
 			sourceTree = "<group>";
 		};
 		3840F6912B1865E800C488B6 /* Remote */ = {
@@ -346,10 +310,11 @@
 		3847EC272B022C7900E086EB /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				3847EC422B02527700E086EB /* Base */,
 				38EE8A772B04B65800E629CC /* Common */,
 				387463D92B163BE8009FAB2C /* StoryContent */,
 				380646FE2B21CCF8001B375D /* StoryUpload */,
-				386309532B14672E001973AA /* UserAuth */,
+				386309532B14672E001973AA /* UserAuthorization */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -418,16 +383,6 @@
 				38EE8A832B04D29000E629CC /* ViewModel.swift */,
 			);
 			path = Base;
-			sourceTree = "<group>";
-		};
-		3847EC452B02566000E086EB /* Custom */ = {
-			isa = PBXGroup;
-			children = (
-				38318DB62B1C6F62000EED65 /* StoryContent */,
-				380647042B21D0D3001B375D /* StoryUpload */,
-				38318DB52B1C6F56000EED65 /* UserAuth */,
-			);
-			path = Custom;
 			sourceTree = "<group>";
 		};
 		385F93F82B1968000021D548 /* Local */ = {
@@ -522,14 +477,15 @@
 			path = DataMapping;
 			sourceTree = "<group>";
 		};
-		386309532B14672E001973AA /* UserAuth */ = {
+		386309532B14672E001973AA /* UserAuthorization */ = {
 			isa = PBXGroup;
 			children = (
 				382A6BF82B25B49000036B77 /* AutoSignin */,
 				387463DB2B163C0D009FAB2C /* UserJoin */,
 				387463DC2B163C26009FAB2C /* UserSignin */,
+				387D06492B2C167700A012D5 /* View */,
 			);
-			path = UserAuth;
+			path = UserAuthorization;
 			sourceTree = "<group>";
 		};
 		3863095F2B147029001973AA /* Protocol */ = {
@@ -557,6 +513,7 @@
 			children = (
 				387463DD2B163C54009FAB2C /* StoryContentCoordinator.swift */,
 				387463DA2B163C01009FAB2C /* StoryList */,
+				387D06452B2C15D800A012D5 /* View */,
 			);
 			path = StoryContent;
 			sourceTree = "<group>";
@@ -649,6 +606,58 @@
 			path = Error;
 			sourceTree = "<group>";
 		};
+		387D06452B2C15D800A012D5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				387D06472B2C15F300A012D5 /* StoryItem */,
+				387D06462B2C15E000A012D5 /* StoryList */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		387D06462B2C15E000A012D5 /* StoryList */ = {
+			isa = PBXGroup;
+			children = (
+				38318DBA2B1C8F58000EED65 /* StoryListBodyView.swift */,
+				38318DAF2B1C5C73000EED65 /* StoryListHeaderView.swift */,
+			);
+			path = StoryList;
+			sourceTree = "<group>";
+		};
+		387D06472B2C15F300A012D5 /* StoryItem */ = {
+			isa = PBXGroup;
+			children = (
+				38318DD82B1F3AF8000EED65 /* StoryButtonStackView.swift */,
+				38318DC02B1CE3EB000EED65 /* StoryCollectionViewCell.swift */,
+				387D063E2B2C01D000A012D5 /* StoryContentTextListView.swift */,
+				38318DD32B1ED72B000EED65 /* StoryImageCollectionViewCell.swift */,
+				38318DCD2B1E3A15000EED65 /* StoryImageListView.swift */,
+				38318DC82B1DB666000EED65 /* StoryHeaderView.swift */,
+			);
+			path = StoryItem;
+			sourceTree = "<group>";
+		};
+		387D06482B2C166100A012D5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				380647052B21D0E9001B375D /* StoryUploadHeaderView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		387D06492B2C167700A012D5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				383ECFD82B15C48D004675E1 /* JoinButton.swift */,
+				38D4066A2B0B29E000B6F783 /* SecureTextButton.swift */,
+				38CA8C262B038AC000A9C4B7 /* SigninButton.swift */,
+				38CA8C242B03893300A9C4B7 /* SigninSubtitleLabel.swift */,
+				3847EC472B02578900E086EB /* SigninTextField.swift */,
+				38CA8C212B0385AC00A9C4B7 /* SigninTitleLabel.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		38C891862B2AB14E00F15F1B /* Splash */ = {
 			isa = PBXGroup;
 			children = (
@@ -661,8 +670,7 @@
 		38EE8A772B04B65800E629CC /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				3847EC422B02527700E086EB /* Base */,
-				3847EC452B02566000E086EB /* Custom */,
+				38318DC52B1CFE47000EED65 /* SeparatorView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
