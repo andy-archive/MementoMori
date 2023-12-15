@@ -13,7 +13,7 @@ extension UIViewController {
         if let sheet = self.sheetPresentationController {
             sheet.detents = [
                 .custom(identifier: .medium, resolver: { context in
-                    return UIScreen.main.bounds.height * 0.7
+                    return UIScreen.main.bounds.height * 0.6
                 }),
                 .custom(identifier: .large, resolver: { context in
                     return UIScreen.main.bounds.height * 0.9

@@ -65,5 +65,15 @@ enum Constant {
                 static let height: CGFloat = 50
             }
         }
+        
+        enum CommentDetail {
+            
+            static let inset: CGFloat = 8
+            
+            enum Header {
+                static let height: CGFloat = 70
+                static let inset: CGFloat = 12
+            }
+        }
     }
 }

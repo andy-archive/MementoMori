@@ -9,19 +9,23 @@ import UIKit
 
 final class CommentDetailViewController: BaseViewController {
     
-    //MARK: Properties
-    private let keychain = KeychainRepository.shared
-    
     //MARK: - UI
-    private lazy var titleLabel = {
-        let label = UILabel()
-        return label
-    }()
-    
-    private lazy var titleView = {
+    private lazy var headerView = {
         let view = UIView()
         return view
     }()
+    
+    private lazy var titleLabel = {
+        let label = UILabel()
+        label.font = .boldSystemFont(ofSize: Constant.FontSize.title)
+        label.textColor = Constant.Color.label
+        label.numberOfLines = 1
+        label.text = "댓글"
+        return label
+    }()
+    
+    private lazy var separatorView = SeparatorView()
+    private lazy var tableView = UITableView()
     
     //MARK: - ViewModel
     private let viewModel: CommentDetailViewModel
@@ -44,23 +48,42 @@ final class CommentDetailViewController: BaseViewController {
     override func configureUI() {
         super.configureUI()
         
-        guard let storyID = keychain.find(key: "", type: .storyID)
-        else { return }
+        view.addSubview(headerView)
+        view.addSubview(tableView)
         
-        titleLabel.text = storyID
-        
-        view.addSubview(titleLabel)
-        view.addSubview(titleView)
+        headerView.addSubview(titleLabel)
+        headerView.addSubview(separatorView)
     }
     
     //MARK: - Layouts
     override func configureLayout() {
+        headerView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            headerView.topAnchor.constraint(equalTo: view.topAnchor),
+            headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            headerView.heightAnchor.constraint(equalToConstant: Constant.Layout.CommentDetail.Header.height)
+        ])
+        
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: Constant.Layout.StoryItem.Footer.inset),
-            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.StoryItem.Footer.inset),
-            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constant.Layout.StoryItem.Footer.inset),
-            titleLabel.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.3),
+            titleLabel.bottomAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: -Constant.Layout.CommentDetail.Header.inset),
+            titleLabel.centerXAnchor.constraint(equalTo: headerView.centerXAnchor)
+        ])
+        
+        separatorView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            separatorView.bottomAnchor.constraint(equalTo: headerView.bottomAnchor),
+            separatorView.widthAnchor.constraint(equalTo: headerView.widthAnchor),
+            separatorView.centerXAnchor.constraint(equalTo: headerView.centerXAnchor)
+        ])
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: separatorView.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 }
