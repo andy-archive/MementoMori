@@ -45,7 +45,7 @@ final class StoryUploadViewController: BaseViewController {
     
     private lazy var storyTextView = {
         let view = UITextView()
-        view.text = Constant.Text.inputMessage
+        view.text = Constant.Text.Input.uploadPost
         view.textColor = Constant.Color.secondaryLabel
         view.font = .systemFont(ofSize: Constant.FontSize.title)
         view.isHidden = true
