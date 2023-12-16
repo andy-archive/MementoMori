@@ -99,7 +99,7 @@ extension StoryListBodyView: UICollectionViewDelegateFlowLayout {
                         owner.textContentViewTap.accept(Void())
                     }
                 }
-                .disposed(by: self.disposeBag)
+                .disposed(by: cell.disposeBag)
             
             return cell
         }
