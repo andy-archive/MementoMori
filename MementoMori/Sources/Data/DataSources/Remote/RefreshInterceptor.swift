@@ -12,34 +12,29 @@ import Moya
 
 final class RefreshInterceptor: RequestInterceptor {
     
+    //MARK: - Properties
+    private let keychain = KeychainRepository.shared
+    
     //MARK: - Singleton
-    static let shared = RefreshInterceptor(
-        keychainRepository: KeychainRepository()
-    )
+    static let shared = RefreshInterceptor()
+    private init() { }
     
-    //MARK: - Repository
-    private let keychainRepository: KeychainRepositoryProtocol
-    
-    //MARK: - Initializer
-    private init(
-        keychainRepository: KeychainRepositoryProtocol
-    ) {
-        self.keychainRepository = keychainRepository
-    }
-    
-    //MARK: - adapt (RequestInterceptor)
+    //MARK: - Protocol Methods
     func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
         
-        let keychain = findToken()
-        
-        guard let accessToken = keychain.accessToken,
-              let refreshToken = keychain.refreshToken
+        //MARK: - Find Token from User
+        guard
+            let userID = keychain.find(key: "", type: .userID),
+            let accessToken = keychain.find(key: userID, type: .accessToken),
+            let refreshToken = keychain.find(key: userID, type: .refreshToken)
         else {
             completion(.success(urlRequest))
             return
         }
         
+        //MARK: - Update HTTP Header Field
         var urlRequest = urlRequest
+        
         urlRequest.setValue(accessToken, forHTTPHeaderField: MementoAPI.HTTPHeaderField.accessToken)
         urlRequest.setValue(refreshToken, forHTTPHeaderField: MementoAPI.HTTPHeaderField.refreshToken)
         urlRequest.setValue(MementoAPI.secretKey, forHTTPHeaderField: MementoAPI.HTTPHeaderField.secretKey)
@@ -47,51 +42,38 @@ final class RefreshInterceptor: RequestInterceptor {
         completion(.success(urlRequest))
     }
     
-    //MARK: - retry (RequestInterceptor)
     func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
         
-        let keychain = findToken()
-        
-        guard let statusCode = request.response?.statusCode, statusCode == 419,
-              let accessToken = keychain.accessToken,
-              let refreshToken = keychain.refreshToken
+        //MARK: - Find Token from User & Refresh Token NOT expired
+        guard
+            let userID = keychain.find(key: "", type: .userID),
+            let accessToken = keychain.find(key: userID, type: .accessToken),
+            let refreshToken = keychain.find(key: userID, type: .refreshToken),
+            let statusCode = request.response?.statusCode, statusCode == 419
         else {
             completion(.doNotRetryWithError(error))
             return
         }
         
+        //MARK: - Find Token from User & Refresh Token NOT expired
         APIManager.shared.refresh(
             accessToken: accessToken,
             refreshToken: refreshToken
-        ) { result in
+        ) { [weak self] result in
+            guard let self else { return }
+            
             switch result {
-                //MARK: - 결과 (1) 액세스 토큰 갱신
+                
+            //MARK: - Update Access Token
             case .suceessData(let data):
-                self.saveToken(data.accessToken)
-                completion(.retry)
-                //MARK: - 결과 (2) 리프래시 토큰 만료
+                if self.keychain.save(key: userID, value: data.accessToken, type: .accessToken) {
+                    completion(.retry)
+                }
+            
+            //MARK: - Refresh Token EXPIRED
             case .statusCode(_):
                 completion(.doNotRetryWithError(error))
             }
         }
-    }
-    
-    //MARK: - findToken
-    func findToken() -> (accessToken: String?, refreshToken: String?) {
-        guard let userID = keychainRepository.find(key: "", type: .userID)
-        else { return (nil, nil) }
-        
-        let accessToken = keychainRepository.find(key: userID, type: .accessToken)
-        let refreshToken = keychainRepository.find(key: userID, type: .refreshToken)
-        
-        return (accessToken, refreshToken)
-    }
-    
-    //MARK: - saveToken
-    func saveToken(_ accessToken: String?) {
-        guard let accessToken,
-              let userID = keychainRepository.find(key: "", type: .userID),
-              keychainRepository.save(key: userID, value: accessToken, type: .accessToken)
-        else { return }
     }
 }

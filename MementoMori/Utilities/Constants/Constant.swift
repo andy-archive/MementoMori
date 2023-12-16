@@ -11,7 +11,11 @@ enum Constant {
     
     enum Text {
         static let productID = "MementoMori"
-        static let inputMessage = "문구를 입력하세요..."
+        
+        enum Input {
+            static let uploadPost = "문구를 입력하세요..."
+            static let comment = "댓글 달기..."
+        }
     }
     
     enum FontSize {
@@ -63,6 +67,20 @@ enum Constant {
             
             enum Size {
                 static let height: CGFloat = 50
+            }
+        }
+        
+        enum CommentDetail {
+            
+            static let inset: CGFloat = 8
+            
+            enum Header {
+                static let height: CGFloat = 70
+                static let inset: CGFloat = 12
+            }
+            
+            enum Footer {
+                static let inset: CGFloat = 12
             }
         }
     }

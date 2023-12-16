@@ -51,19 +51,24 @@ final class UserSigninUseCase: UserSigninUseCaseProtocol {
     }
     
     func checkAutoSignin() -> Observable<Bool> {
-        let keychain = RefreshInterceptor.shared
+        
+        let keychain = KeychainRepository.shared
         
         guard
-            let _ = keychain.findToken().accessToken,
-            let _ = keychain.findToken().refreshToken
+            let userID = keychain.find(key: "", type: .userID),
+            let _ = keychain.find(key: userID, type: .accessToken),
+            let _ = keychain.find(key: userID, type: .refreshToken)
         else { return Observable.just(false) }
         
         return self.userAuthRepository.refresh()
             .map { result in
                 switch result {
                 case .suceessData(let authorization):
-                    keychain.saveToken(authorization.accessToken)
-                    return true
+                    guard let updatedToken = authorization.accessToken else { return false }
+                    if keychain.save(key: userID, value: updatedToken, type: .accessToken) {
+                        return true
+                    }
+                    return false
                 case .statusCode(let statusCode):
                     if statusCode == 409 { return true }
                     return false

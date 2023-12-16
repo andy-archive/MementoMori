@@ -11,11 +11,14 @@ import RxSwift
 
 final class StoryListViewController: BaseViewController {
     
+    //MARK: - UI
     private lazy var headerView = StoryListHeaderView()
     private lazy var bodyView = StoryListBodyView()
     
+    //MARK: - ViewModel
     private let viewModel: StoryListViewModel
     
+    //MARK: - Initialzer
     init(
         viewModel: StoryListViewModel
     ) {
@@ -24,14 +27,15 @@ final class StoryListViewController: BaseViewController {
         super.init()
     }
     
+    //MARK: - Bind with ViewModel
     override func bind() {
         let input = StoryListViewModel.Input(
-            viewWillAppear: rx.viewWillAppear.map { _ in }.throttle(.seconds(1), scheduler: MainScheduler.asyncInstance)
+            viewWillAppear: rx.viewWillAppear.map { _ in }.throttle(.seconds(1), scheduler: MainScheduler.asyncInstance),
+            textContentTap: bodyView.textContentViewTap
         )
         let output = viewModel.transform(input: input)
         
-        output
-            .storyList
+        output.storyList
             .emit(with: self) { owner, postList in
                 owner.bodyView.postList = postList
                 owner.bodyView.configure()
@@ -39,6 +43,7 @@ final class StoryListViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
+    //MARK: - View Configuration
     override func configureUI() {
         super.configureUI()
         
@@ -46,6 +51,7 @@ final class StoryListViewController: BaseViewController {
         view.addSubview(bodyView)
     }
     
+    //MARK: - Layouts
     override func configureLayout() {
         headerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

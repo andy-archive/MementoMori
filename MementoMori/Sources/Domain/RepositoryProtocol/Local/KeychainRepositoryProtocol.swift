@@ -9,6 +9,7 @@ import Foundation
 
 enum KeyType: String {
     case userID
+    case storyID
     case accessToken
     case refreshToken
 }

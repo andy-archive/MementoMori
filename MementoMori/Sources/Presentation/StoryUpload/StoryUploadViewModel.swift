@@ -109,7 +109,7 @@ final class StoryUploadViewModel: ViewModel {
             .filter { owner, _ in
                 owner.uploadProcess == .storyUpload &&
                 !contentTextToUpload.value.isEmpty &&
-                contentTextToUpload.value != Constant.Text.inputMessage
+                contentTextToUpload.value != Constant.Text.Input.uploadPost
             }
             .withLatestFrom(storyPostData)
             .withUnretained(self)

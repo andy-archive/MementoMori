@@ -35,12 +35,15 @@ final class APIManager {
         
         return Single.create { single -> Disposable in
             
-            //MARK: - (0-1) Token의 유무 판단
-            let provider = isWithToken
-            ? MoyaProvider<MementoAPI>(
+            let provider = isWithToken ?
+            
+            //MARK: - (0-1) Token 있는 경우 -> Interceptor Session 적용
+            MoyaProvider<MementoAPI>(
                 session: APIManager.session,
-                plugins: [NetworkLoggerPlugin(configuration: .init(logOptions: .verbose))])
-            : MoyaProvider<MementoAPI>(
+                plugins: [NetworkLoggerPlugin(configuration: .init(logOptions: .verbose))]) :
+            
+            //MARK: - (0-2) Token 없는 경우 -> Interceptor Session 미적용
+            MoyaProvider<MementoAPI>(
                 plugins: [NetworkLoggerPlugin(configuration: .init(logOptions: .verbose))])
             
             provider.request(api) { result in
@@ -48,29 +51,29 @@ final class APIManager {
                 switch result {
                 case .success(let response):
                     
-                    //MARK: - (1-1) 요청 성공 & multipart -> 응답 코드
+                    //MARK: - (1-1) 요청 성공 & Multipart -> 응답 코드
                     if apiType == .multipart {
                         return single(.success(.statusCode(response.statusCode)))
                     }
                     
                     let decoder = JSONDecoder()
                     
-                    //MARK: - (1-2) 요청 성공 & json 디코딩 성공 -> 디코딩 한 데이터
+                    //MARK: - (1-2) 요청 성공 & JSON 디코딩 성공 -> 디코딩 한 데이터
                     do {
                         let decodedData = try decoder.decode(T.self, from: response.data)
                         single(.success(.suceessData(decodedData)))
                     } catch {
-                        //MARK: - (2) 요청 성공 & 디코딩 실패 -> 응답 코드
+                        //MARK: - (2-1) 요청 성공 & 디코딩 실패 -> 응답 코드
                         single(.success(.statusCode(response.statusCode)))
                     }
                 case .failure(let error):
                     guard let statusCode = error.response?.statusCode
                     else {
-                        //MARK: - (3) 요청 실패 & 응답 코드가 없을 때 -> 서버 오류 응답 코드
+                        //MARK: - (2-2) 요청 실패 & 응답 코드가 없을 때 -> 응답 코드 (서버 오류)
                         single(.success(.statusCode(NetworkError.internalServerError.rawValue)))
                         return
                     }
-                    //MARK: - (4) 요청 실패 -> 응답 코드
+                    //MARK: - (2-3) 요청 실패 & 응답 코드가 있을 때-> 응답 코드
                     single(.success(.statusCode(statusCode)))
                 }
             }
@@ -78,7 +81,7 @@ final class APIManager {
         }
     }
     
-    //MARK: - (2-1) validateEmail
+    //MARK: - Email Validation
     func validateEmail(email: String) -> Observable<EmailValidationResponseDTO> {
         return Observable<EmailValidationResponseDTO>.create { observer in
             let data = EmailValidationRequestDTO(email: email)
@@ -102,7 +105,7 @@ final class APIManager {
         }
     }
     
-    //MARK: - refresh
+    //MARK: - Refresh Access Token
     func refresh(
         accessToken: String,
         refreshToken: String,
@@ -110,10 +113,6 @@ final class APIManager {
     ) {
         let provider = MoyaProvider<MementoAPI>(
             plugins: [NetworkLoggerPlugin(configuration: .init(logOptions: .verbose))]
-        )
-        let requestDTO = RefreshTokenRequestDTO(
-            accessToken: accessToken,
-            refreshToken: refreshToken
         )
         
         provider.request(.refreshToken) { result in
@@ -138,6 +137,4 @@ final class APIManager {
             }
         }
     }
-    
-    //MARK: - (3) uploadImage
 }

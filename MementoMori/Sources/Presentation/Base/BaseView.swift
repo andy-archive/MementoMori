@@ -26,9 +26,9 @@ class BaseView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func bind() { }
     func configureUI() {
         backgroundColor = Constant.Color.background
     }
     func configureLayout() { }
-    func bind() { }
 }

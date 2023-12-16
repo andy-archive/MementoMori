@@ -7,12 +7,14 @@
 
 import UIKit
 
+import RxCocoa
+import RxGesture
+
 final class StoryListBodyView: BaseView {
     
     typealias DataSource = UICollectionViewDiffableDataSource<Section, StoryPost>
     
-    private var dataSource: DataSource?
-    
+    //MARK: - UI
     lazy var collectionView = UICollectionView(
         frame: .zero,
         collectionViewLayout: .configureFlowLayout(
@@ -23,22 +25,19 @@ final class StoryListBodyView: BaseView {
         )
     )
     
+    //MARK: - Properties
+    private var dataSource: DataSource?
     lazy var postList: [StoryPost] = []
+    let textContentViewTap = PublishRelay<Void>()
     
-    func configure() {
-        configureCollectionView()
-        dataSource = configureDataSource()
-        
-        let snapshot = configureSnapshot(self.postList)
-        dataSource?.apply(snapshot)
-    }
-    
+    //MARK: - View Configuration
     override func configureUI() {
         super.configureUI()
         
         addSubview(collectionView)
     }
     
+    //MARK: - Layouts
     override func configureLayout() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -50,8 +49,19 @@ final class StoryListBodyView: BaseView {
     }
 }
 
-//MARK: UICollectionViewDelegateFlowLayout
+//MARK: - Data
+extension StoryListBodyView {
+    
+    func configure() {
+        configureCollectionView()
+        dataSource = configureDataSource()
+        
+        let snapshot = configureSnapshot(self.postList)
+        dataSource?.apply(snapshot)
+    }
+}
 
+//MARK: - Configure UICollectionView
 extension StoryListBodyView: UICollectionViewDelegateFlowLayout {
     
     enum Section: CaseIterable {
@@ -77,8 +87,19 @@ extension StoryListBodyView: UICollectionViewDelegateFlowLayout {
             else {
                 return StoryCollectionViewCell()
             }
+            let keychain = KeychainRepository.shared
             
             cell.configureCell(storyPost: itemIdentifier)
+            cell.textContentView.rx.tapGesture()
+                .when(.recognized)
+                .withUnretained(self)
+                .subscribe { owner, value in
+                    guard let storyID = itemIdentifier.id else { return }
+                    if keychain.save(key: "", value: storyID, type: .storyID) {
+                        owner.textContentViewTap.accept(Void())
+                    }
+                }
+                .disposed(by: cell.disposeBag)
             
             return cell
         }
