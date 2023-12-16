@@ -9,8 +9,8 @@ import Foundation
 
 //MARK: - Request
 struct CommentCreateRequestDTO: Encodable {
-    let postID: String
     let content: String
+    let postID: String
 }
 
 //MARK: - Response
