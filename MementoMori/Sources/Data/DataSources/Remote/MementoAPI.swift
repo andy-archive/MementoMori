@@ -26,11 +26,16 @@ extension MementoAPI: TargetType {
     
     var path: String {
         switch self {
-        case .emailValidation: return "validation/email"
-        case .userJoin: return "join"
-        case .userSignin: return "login"
-        case .refreshToken: return "refresh"
-        case .storyCreate, .storyRead: return "post"
+        case .emailValidation:
+            return "validation/email"
+        case .userJoin:
+            return "join"
+        case .userSignin:
+            return "login"
+        case .refreshToken:
+            return "refresh"
+        case .storyCreate, .storyRead:
+            return "post"
         }
     }
     

@@ -9,7 +9,7 @@ import UIKit
 
 final class AutoSigninViewController: BaseViewController {
     
-    //MARK: - (1-1) UI - Property 1
+    //MARK: - UI
     private lazy var titleLabel = {
         let label = UILabel()
         label.font = UIFont(name: "Noteworthy", size: 35)
@@ -18,46 +18,50 @@ final class AutoSigninViewController: BaseViewController {
         label.text = "Memento Mori"
         return label
     }()
+    
     private lazy var nicknameLabel = {
         let label = SigninSubtitleLabel()
         return label
     }()
+    
     private lazy var autoSigninButton = {
         let button = SigninButton()
         button.setTitle("로그인", for: .normal)
         return button
     }()
+    
     private lazy var otherSigninButton = {
         let button = JoinButton()
         button.setTitle("다른 계정으로 로그인", for: .normal)
         return button
     }()
+    
     private lazy var joinButton = {
         let button = JoinButton()
         button.setTitle("새 계정 만들기", for: .normal)
         return button
     }()
     
-    //MARK: - (1-2) ViewModel - Property 2
+    //MARK: - ViewModel
     private let viewModel: AutoSigninViewModel
     
-    //MARK: - (2) Initializer
+    //MARK: - Initializer
     init(viewModel: AutoSigninViewModel) {
         self.viewModel = viewModel
         
         super.init()
     }
     
-    //MARK: - (3) Protocol Methods
+    //MARK: - Bind with ViewModel
     override func bind() {
-        
-        let input = AutoSigninViewModel.Input(
+        AutoSigninViewModel.Input(
             autoSigninButtonClicked: autoSigninButton.rx.tap,
             otherSigninButtonClicked: otherSigninButton.rx.tap,
             joinSigninButtonClicked: joinButton.rx.tap
         )
     }
     
+    //MARK: - View Configuration
     override func configureUI() {
         super.configureUI()
         
@@ -68,6 +72,7 @@ final class AutoSigninViewController: BaseViewController {
         view.addSubview(joinButton)
     }
     
+    //MARK: - Layouts
     override func configureLayout() {
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false

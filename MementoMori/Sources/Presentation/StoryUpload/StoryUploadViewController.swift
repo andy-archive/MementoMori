@@ -12,18 +12,21 @@ import RxSwift
 
 final class StoryUploadViewController: BaseViewController {
     
-    //MARK: - (1-1) UI - Property 1
+    //MARK: - UI
     private lazy var headerView = StoryUploadHeaderView()
+    
     private lazy var imageItemView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFit
         return view
     }()
+    
     private lazy var imageListView = {
         let view = UIView()
         view.backgroundColor = .systemGray6
         return view
     }()
+    
     private lazy var selectionGuideLabel = {
         let label = UILabel()
         label.text = "이미지 선택 📸"
@@ -32,12 +35,14 @@ final class StoryUploadViewController: BaseViewController {
         label.font = .boldSystemFont(ofSize: Constant.FontSize.largeTitle)
         return label
     }()
+    
     private lazy var storyThumbnailImageView = {
         let view = UIImageView()
         view.isHidden = true
         view.backgroundColor = .systemYellow.withAlphaComponent(0.2)
         return view
     }()
+    
     private lazy var storyTextView = {
         let view = UITextView()
         view.text = Constant.Text.inputMessage
@@ -46,17 +51,18 @@ final class StoryUploadViewController: BaseViewController {
         view.isHidden = true
         return view
     }()
+    
     private lazy var separatorView = {
         let view = SeparatorView()
         view.isHidden = true
         return view
     }()
     
-    //MARK: - (1-2) ViewModel & ImagePicker - Property 2
+    //MARK: - ViewModel
     private let viewModel: StoryUploadViewModel
     private let imagePicker: ImagePickerController
     
-    //MARK: - (2) Initializer
+    //MARK: - Initializer
     init(
         viewModel: StoryUploadViewModel,
         imagePicker: ImagePickerController
@@ -65,17 +71,11 @@ final class StoryUploadViewController: BaseViewController {
         self.imagePicker = imagePicker
         
         super.init()
-        
-        self.imagePicker.delegate = self
-        self.storyTextView.delegate = self
     }
     
-    //MARK: - (3) Protocol Methods
+    //MARK: - Bind with ViewModel
     override func bind() {
-        
-        let image = imageListView
-            .rx
-            .tapGesture()
+        let image = imageListView.rx.tapGesture()
             .when(.recognized)
             .withUnretained(self)
             .flatMap { owner, _ in
@@ -90,8 +90,7 @@ final class StoryUploadViewController: BaseViewController {
         )
         let output = viewModel.transform(input: input)
         
-        output
-            .resultImage
+        output.resultImage
             .asSignal()
             .emit(with: self) { owner, image in
                 owner.imageItemView.image = image
@@ -99,16 +98,14 @@ final class StoryUploadViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        output
-            .presentStoryUploadView
+        output.presentStoryUploadView
             .asSignal()
             .emit(with: self) { owner, _ in
                 owner.presentStoryUploadView()
             }
             .disposed(by: disposeBag)
         
-        output
-            .presentImageUploadView
+        output.presentImageUploadView
             .asSignal()
             .emit(with: self) { owner, _ in
                 owner.presentImageUploadView()
@@ -116,8 +113,12 @@ final class StoryUploadViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
+    //MARK: - View Configuration
     override func configureUI() {
         super.configureUI()
+        
+        imagePicker.delegate = self
+        storyTextView.delegate = self
         
         view.addSubview(headerView)
         view.addSubview(imageItemView)
@@ -130,7 +131,7 @@ final class StoryUploadViewController: BaseViewController {
     
     override func configureLayout() {
         
-        //MARK: - View Layouts (1) uploadImageView
+        //MARK: - Layout (1) uploadImageView
         headerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -161,7 +162,7 @@ final class StoryUploadViewController: BaseViewController {
             selectionGuideLabel.centerYAnchor.constraint(equalTo: imageListView.centerYAnchor)
         ])
         
-        //MARK: - View Layouts (2) storyUploadView
+        //MARK: - Layout (2) storyUploadView
         storyThumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             storyThumbnailImageView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: Constant.Layout.Common.Inset.vertical),
@@ -187,13 +188,13 @@ final class StoryUploadViewController: BaseViewController {
         ])
     }
     
-    //MARK: - dismiss keyboard in touch
+    //MARK: - Dismiss Keyboard in Touch
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
 }
 
-//MARK: - transition view
+//MARK: - View Transition
 extension StoryUploadViewController {
     
     private func presentImageUploadView() {
@@ -224,12 +225,18 @@ extension StoryUploadViewController: UITextViewDelegate {
         headerView.cancelButton.isHidden = true
         headerView.newPostLabel.text = "문구"
         
-        guard textView.textColor == Constant.Color.secondaryLabel else { return }
+        guard textView.textColor == Constant.Color.secondaryLabel
+        else { return }
+        
         textView.text = nil
         textView.textColor = Constant.Color.label
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = Constant.Text.Input.comment
+            textView.textColor = Constant.Color.secondaryLabel
+        }
         headerView.cancelButton.isHidden = false
         headerView.newPostLabel.text = "새 게시물"
     }

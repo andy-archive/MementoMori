@@ -41,16 +41,18 @@ final class MyTransition: NSObject, UIViewControllerAnimatedTransitioning {
         self.viewControllers = viewControllers
     }
     
-    //MARK: - Private Functions
+    //MARK: - Private Methods
     private func getIndex(forViewController vc: UIViewController) -> Int? {
         guard let vcs = self.viewControllers else { return nil }
+        
         for (index, thisVC) in vcs.enumerated() {
             if thisVC == vc { return index }
         }
+        
         return nil
     }
     
-    //MARK: - Protocol Functions
+    //MARK: - Protocol Methods
     func transitionDuration(
         using transitionContext: UIViewControllerContextTransitioning?
     ) -> TimeInterval {
@@ -61,14 +63,13 @@ final class MyTransition: NSObject, UIViewControllerAnimatedTransitioning {
     func animateTransition(
         using transitionContext: UIViewControllerContextTransitioning
     ) {
-        guard let fromVC = transitionContext.viewController(
-            forKey: UITransitionContextViewControllerKey.from),
-              let fromView = fromVC.view,
-              let fromIndex = getIndex(forViewController: fromVC),
-              let toVC = transitionContext.viewController(
-                forKey: UITransitionContextViewControllerKey.to),
-              let toView = toVC.view,
-              let toIndex = getIndex(forViewController: toVC)
+        guard
+            let fromVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from),
+            let fromView = fromVC.view,
+            let fromIndex = getIndex(forViewController: fromVC),
+            let toVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to),
+            let toView = toVC.view,
+                let toIndex = getIndex(forViewController: toVC)
         else {
             transitionContext.completeTransition(false)
             return
@@ -90,6 +91,7 @@ final class MyTransition: NSObject, UIViewControllerAnimatedTransitioning {
         
         DispatchQueue.main.async {
             transitionContext.containerView.addSubview(toView)
+            
             UIView.animate(
                 withDuration: self.transitionDuration,
                 animations: {

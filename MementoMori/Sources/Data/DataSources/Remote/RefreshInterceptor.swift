@@ -17,12 +17,12 @@ final class RefreshInterceptor: RequestInterceptor {
     
     //MARK: - Singleton
     static let shared = RefreshInterceptor()
-    
     private init() { }
     
-    //MARK: - Protocol Functions
+    //MARK: - Protocol Methods
     func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
         
+        //MARK: - Find Token from User
         guard
             let userID = keychain.find(key: "", type: .userID),
             let accessToken = keychain.find(key: userID, type: .accessToken),
@@ -31,6 +31,8 @@ final class RefreshInterceptor: RequestInterceptor {
             completion(.success(urlRequest))
             return
         }
+        
+        //MARK: - Update HTTP Header Field
         var urlRequest = urlRequest
         
         urlRequest.setValue(accessToken, forHTTPHeaderField: MementoAPI.HTTPHeaderField.accessToken)
@@ -42,6 +44,7 @@ final class RefreshInterceptor: RequestInterceptor {
     
     func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
         
+        //MARK: - Find Token from User & Refresh Token NOT expired
         guard
             let userID = keychain.find(key: "", type: .userID),
             let accessToken = keychain.find(key: userID, type: .accessToken),
@@ -52,21 +55,21 @@ final class RefreshInterceptor: RequestInterceptor {
             return
         }
         
+        //MARK: - Find Token from User & Refresh Token NOT expired
         APIManager.shared.refresh(
             accessToken: accessToken,
             refreshToken: refreshToken
         ) { [weak self] result in
-            
             guard let self else { return }
             
             switch result {
                 
-            //MARK: - Access Token Updated
+            //MARK: - Update Access Token
             case .suceessData(let data):
                 if self.keychain.save(key: userID, value: data.accessToken, type: .accessToken) {
                     completion(.retry)
                 }
-                
+            
             //MARK: - Refresh Token EXPIRED
             case .statusCode(_):
                 completion(.doNotRetryWithError(error))
