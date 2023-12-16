@@ -48,6 +48,7 @@ final class StoryUploadViewController: BaseViewController {
         view.text = Constant.Text.Input.uploadPost
         view.textColor = Constant.Color.secondaryLabel
         view.font = .systemFont(ofSize: Constant.FontSize.title)
+        view.keyboardType = .twitter
         view.isHidden = true
         return view
     }()
@@ -131,7 +132,8 @@ final class StoryUploadViewController: BaseViewController {
     
     override func configureLayout() {
         
-        //MARK: - Layout (1) uploadImageView
+        //MARK: - Layouts
+        /// (1) uploadImageView
         headerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -162,7 +164,7 @@ final class StoryUploadViewController: BaseViewController {
             selectionGuideLabel.centerYAnchor.constraint(equalTo: imageListView.centerYAnchor)
         ])
         
-        //MARK: - Layout (2) storyUploadView
+        /// (2) storyUploadView
         storyThumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             storyThumbnailImageView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: Constant.Layout.Common.Inset.vertical),
@@ -188,16 +190,17 @@ final class StoryUploadViewController: BaseViewController {
         ])
     }
     
-    //MARK: - Dismiss Keyboard in Touch
+    /// Dismiss Keyboard in Touch
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
 }
 
-//MARK: - View Transition
-extension StoryUploadViewController {
+//MARK: - Private Functions
+/// View Transition
+private extension StoryUploadViewController {
     
-    private func presentImageUploadView() {
+    func presentImageUploadView() {
         headerView.cancelButton.setImage(Constant.Image.System.xMark, for: .normal)
         headerView.nextButton.setTitle("다음", for: .normal)
         imageListView.isHidden.toggle()
@@ -207,7 +210,7 @@ extension StoryUploadViewController {
         separatorView.isHidden.toggle()
     }
     
-    private func presentStoryUploadView() {
+    func presentStoryUploadView() {
         headerView.cancelButton.setImage(Constant.Image.System.chevronLeft, for: .normal)
         headerView.nextButton.setTitle("공유", for: .normal)
         imageListView.isHidden.toggle()
