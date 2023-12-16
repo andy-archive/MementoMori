@@ -36,7 +36,7 @@
 		38318DDB2B1F54C2000EED65 /* StoryPostRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DDA2B1F54C2000EED65 /* StoryPostRepositoryProtocol.swift */; };
 		38318DDD2B1F55BB000EED65 /* StoryCreateDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DDC2B1F55BB000EED65 /* StoryCreateDTO.swift */; };
 		38318DDF2B203645000EED65 /* StoryReadDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DDE2B203645000EED65 /* StoryReadDTO.swift */; };
-		38318DE12B2037EB000EED65 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DE02B2037EB000EED65 /* Story.swift */; };
+		38318DE12B2037EB000EED65 /* StoryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DE02B2037EB000EED65 /* StoryDTO.swift */; };
 		38318DE32B20380A000EED65 /* Creator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DE22B20380A000EED65 /* Creator.swift */; };
 		38318DE52B20411A000EED65 /* StoryCreateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DE42B20411A000EED65 /* StoryCreateError.swift */; };
 		38318DE72B204286000EED65 /* StoryReadError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DE62B204286000EED65 /* StoryReadError.swift */; };
@@ -90,6 +90,8 @@
 		388CFD4D2B0F2ED900638EFD /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CFD4C2B0F2ED800638EFD /* NetworkError.swift */; };
 		38909D252B2C70EB00474FE6 /* UIViewController+SheetPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38909D242B2C70EB00474FE6 /* UIViewController+SheetPresentation.swift */; };
 		38909D292B2DE19400474FE6 /* CommentCreateDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38909D282B2DE19400474FE6 /* CommentCreateDTO.swift */; };
+		38909D2F2B2DE67C00474FE6 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38909D2E2B2DE67C00474FE6 /* Comment.swift */; };
+		38909D312B2DE7CA00474FE6 /* CommentDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38909D302B2DE7CA00474FE6 /* CommentDTO.swift */; };
 		38B5FB152B24D2AE00F91DDA /* RefreshInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5FB142B24D2AE00F91DDA /* RefreshInterceptor.swift */; };
 		38B9203F2B08AAED006CBD1C /* Constant+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B9203E2B08AAED006CBD1C /* Constant+Network.swift */; };
 		38C891852B29F7F400F15F1B /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C891842B29F7F400F15F1B /* TabController.swift */; };
@@ -141,7 +143,7 @@
 		38318DDA2B1F54C2000EED65 /* StoryPostRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryPostRepositoryProtocol.swift; sourceTree = "<group>"; };
 		38318DDC2B1F55BB000EED65 /* StoryCreateDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCreateDTO.swift; sourceTree = "<group>"; };
 		38318DDE2B203645000EED65 /* StoryReadDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryReadDTO.swift; sourceTree = "<group>"; };
-		38318DE02B2037EB000EED65 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
+		38318DE02B2037EB000EED65 /* StoryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryDTO.swift; sourceTree = "<group>"; };
 		38318DE22B20380A000EED65 /* Creator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creator.swift; sourceTree = "<group>"; };
 		38318DE42B20411A000EED65 /* StoryCreateError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCreateError.swift; sourceTree = "<group>"; };
 		38318DE62B204286000EED65 /* StoryReadError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryReadError.swift; sourceTree = "<group>"; };
@@ -196,6 +198,8 @@
 		388CFD4C2B0F2ED800638EFD /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		38909D242B2C70EB00474FE6 /* UIViewController+SheetPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+SheetPresentation.swift"; sourceTree = "<group>"; };
 		38909D282B2DE19400474FE6 /* CommentCreateDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCreateDTO.swift; sourceTree = "<group>"; };
+		38909D2E2B2DE67C00474FE6 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		38909D302B2DE7CA00474FE6 /* CommentDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDTO.swift; sourceTree = "<group>"; };
 		38B5FB142B24D2AE00F91DDA /* RefreshInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshInterceptor.swift; sourceTree = "<group>"; };
 		38B9203E2B08AAED006CBD1C /* Constant+Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constant+Network.swift"; sourceTree = "<group>"; };
 		38C891842B29F7F400F15F1B /* TabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
@@ -426,6 +430,7 @@
 			isa = PBXGroup;
 			children = (
 				38C8918B2B2AE5FD00F15F1B /* Authorization.swift */,
+				38909D2E2B2DE67C00474FE6 /* Comment.swift */,
 				38318DD62B1EDEC8000EED65 /* StoryImage.swift */,
 				38318DBC2B1C97CE000EED65 /* StoryPost.swift */,
 				386309302B135752001973AA /* User.swift */,
@@ -474,12 +479,13 @@
 		3863092F2B135740001973AA /* DataMapping */ = {
 			isa = PBXGroup;
 			children = (
+				38909D282B2DE19400474FE6 /* CommentCreateDTO.swift */,
+				38909D302B2DE7CA00474FE6 /* CommentDTO.swift */,
 				38318DE22B20380A000EED65 /* Creator.swift */,
 				386309372B135C86001973AA /* EmailValidationDTO.swift */,
-				38909D282B2DE19400474FE6 /* CommentCreateDTO.swift */,
 				38318DA72B1A11EB000EED65 /* RefreshTokenDTO.swift */,
-				38318DE02B2037EB000EED65 /* Story.swift */,
 				38318DDC2B1F55BB000EED65 /* StoryCreateDTO.swift */,
+				38318DE02B2037EB000EED65 /* StoryDTO.swift */,
 				38318DDE2B203645000EED65 /* StoryReadDTO.swift */,
 				386309322B1357A8001973AA /* UserJoinDTO.swift */,
 				383ECFDB2B15CB29004675E1 /* UserSigninDTO.swift */,
@@ -802,6 +808,7 @@
 				3847EC322B022FF800E086EB /* Constant.swift in Sources */,
 				386309272B132A5A001973AA /* UserAuthRepositoryProtocol.swift in Sources */,
 				387464022B170C3B009FAB2C /* KeychainRepository.swift in Sources */,
+				38909D2F2B2DE67C00474FE6 /* Comment.swift in Sources */,
 				38C891852B29F7F400F15F1B /* TabController.swift in Sources */,
 				3863093C2B141C93001973AA /* Coordinator.swift in Sources */,
 				387463DE2B163C54009FAB2C /* StoryContentCoordinator.swift in Sources */,
@@ -867,7 +874,7 @@
 				3847EC112B022C1200E086EB /* AppDelegate.swift in Sources */,
 				384C6D7F2B26D9FF00EE6051 /* AutoSigninViewModel.swift in Sources */,
 				388CFD4D2B0F2ED900638EFD /* NetworkError.swift in Sources */,
-				38318DE12B2037EB000EED65 /* Story.swift in Sources */,
+				38318DE12B2037EB000EED65 /* StoryDTO.swift in Sources */,
 				3847EC132B022C1200E086EB /* SceneDelegate.swift in Sources */,
 				38318DC12B1CE3EC000EED65 /* StoryCollectionViewCell.swift in Sources */,
 				38D4066D2B0B40DE00B6F783 /* String+.swift in Sources */,
@@ -878,6 +885,7 @@
 				387463CF2B160815009FAB2C /* TabBar.swift in Sources */,
 				38318DD42B1ED72B000EED65 /* StoryImageCollectionViewCell.swift in Sources */,
 				38909D252B2C70EB00474FE6 /* UIViewController+SheetPresentation.swift in Sources */,
+				38909D312B2DE7CA00474FE6 /* CommentDTO.swift in Sources */,
 				3847EC402B0251A500E086EB /* UserJoinViewController.swift in Sources */,
 				38061A292B26FC7600D36726 /* StoryUploadUseCaseProtocol.swift in Sources */,
 				38B5FB152B24D2AE00F91DDA /* RefreshInterceptor.swift in Sources */,

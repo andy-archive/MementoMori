@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Story: Decodable {
+struct StoryDTO: Decodable {
     let id: String
     let title: String?
     let content: String?
@@ -29,16 +29,5 @@ struct Story: Decodable {
         case createdAt = "time"
         case location = "content1"
         case productID = "product_id"
-    }
-}
-
-struct Comment: Decodable {
-    let id: String
-    let content: String
-    let time: String
-    
-    enum CodingKeys: String, CodingKey {
-        case id = "_id"
-        case content, time
     }
 }
