@@ -25,7 +25,6 @@ final class CommentUseCase: CommentUseCaseProtocol {
     }
     
     //MARK: - Private Methods
-    
     /// 댓글 작성 요청
     private func requestPOST(comment: Comment) -> Single<APIResult<Void>> {
         let keychain = KeychainRepository.shared
@@ -55,7 +54,6 @@ final class CommentUseCase: CommentUseCaseProtocol {
     }
     
     //MARK: - Protocol Methods
-    
     /// 댓글 작성 (비즈니스 로직)
     func create(comment: Comment) -> Observable<Bool> {
         let observable =  Observable.just(Void())

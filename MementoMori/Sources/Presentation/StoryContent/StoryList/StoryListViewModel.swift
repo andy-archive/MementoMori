@@ -40,7 +40,6 @@ final class StoryListViewModel: ViewModel {
     
     //MARK: - Transform Input into Output
     func transform(input: Input) -> Output {
-        
         /// viewWillAppear일 때 게시글 요청 (GET)
         let storyList = input.viewWillAppear
             .withUnretained(self)

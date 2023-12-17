@@ -11,10 +11,9 @@ import RxSwift
 
 final class UserJoinUseCase: UserJoinUseCaseProtocol {
     
-    //MARK: - (1) Properties
+    //MARK: - Properties
     private let userAuthRepository: UserAuthRepositoryProtocol
     
-    //MARK: - (2) Initializer
     //MARK: - Initializer
     init(
         userAuthRepository: UserAuthRepositoryProtocol
@@ -22,7 +21,7 @@ final class UserJoinUseCase: UserJoinUseCaseProtocol {
         self.userAuthRepository = userAuthRepository
     }
     
-    //MARK: - (3) Protocol Method
+    //MARK: - Protocol Method
     func join(user: User) -> Single<APIResult<User>> {
         return self.userAuthRepository.join(user: user)
     }

@@ -95,7 +95,8 @@ final class UserJoinViewModel: ViewModel {
         
         input.emailText
             .subscribe(with: self) { owner, value in
-                if owner.requestedEmail.isEmpty { /// 이메일 검증 요청 이전
+                /// 이메일 검증 요청 이전
+                if owner.requestedEmail.isEmpty {
                     if !value.isEmpty && value.validateEmail() {
                         isEmailValidationButtonEnabled.accept(true)
                     } else {
@@ -179,7 +180,7 @@ final class UserJoinViewModel: ViewModel {
                 switch result {
                 case .suceessData(let user):
                     joinResponse.accept(.suceessData(user.nickname ?? ""))
-                    owner.coordinator?.signinModal.popViewController(animated: true) /// 회원 가입 성공 시 이전 화면 돌아 가기
+                    owner.coordinator?.signinModal.popViewController(animated: true) /// 회원 가입 성공 시 이전 화면으로 전환
                 case .statusCode(let statusCode):
                     let message = UserJoinError(rawValue: statusCode)?.message ??
                     NetworkError(rawValue: statusCode)?.message ??

@@ -9,11 +9,11 @@ import RxSwift
 
 final class UserSigninUseCase: UserSigninUseCaseProtocol {
             
-    //MARK: - (1) Properties
+    //MARK: - Properties
     private let userAuthRepository: UserAuthRepositoryProtocol
     private let keychainRepository: KeychainRepositoryProtocol
     
-    //MARK: - (2) Initializer
+    //MARK: - Initializer
     init(
         userAuthRepository: UserAuthRepositoryProtocol,
         keychainRepository: KeychainRepositoryProtocol
@@ -22,7 +22,7 @@ final class UserSigninUseCase: UserSigninUseCaseProtocol {
         self.keychainRepository = keychainRepository
     }
     
-    //MARK: - (3) Private Methods
+    //MARK: - Private Methods
     private func isAllTokenSaved(user: User) -> Bool {
         guard
             let userID = user.id,
@@ -45,7 +45,7 @@ final class UserSigninUseCase: UserSigninUseCaseProtocol {
         NetworkError.internalServerError.message
     }
     
-    //MARK: - (4) Protocol Methods
+    //MARK: - Protocol Methods
     func signin(user: User) -> Single<APIResult<User>> {
         self.userAuthRepository.signin(user: user)
     }

@@ -53,7 +53,6 @@ final class StoryListUseCase: StoryListUseCaseProtocol {
     }
     
     //MARK: - Protocol Methods
-    
     /// 게시글 조회 (비즈니스 로직)
     func readStoryList() -> Observable<[StoryPost]> {
         var limit = String(pagination)
