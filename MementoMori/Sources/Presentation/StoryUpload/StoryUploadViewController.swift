@@ -74,10 +74,9 @@ final class StoryUploadViewController: BaseViewController {
         super.init()
     }
     
-    //MARK: - Bind with ViewModel
+    //MARK: - Bind ViewController to ViewModel
     override func bind() {
-        let image = imageListView.rx.tapGesture()
-            .when(.recognized)
+        let image = imageListView.rx.tapGesture().when(.recognized)
             .withUnretained(self)
             .flatMap { owner, _ in
                 owner.imagePicker.pickImage()

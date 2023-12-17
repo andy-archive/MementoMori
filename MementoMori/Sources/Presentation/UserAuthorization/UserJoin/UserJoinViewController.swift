@@ -7,8 +7,11 @@
 
 import UIKit
 
+import RxCocoa
+
 final class UserJoinViewController: BaseViewController {
     
+    //MARK: - UI
     private lazy var titleLabel = SigninTitleLabel()
     private lazy var requiredSubtitleLabel = SigninSubtitleLabel()
     private lazy var emailTextField = SigninTextField()
@@ -23,20 +26,20 @@ final class UserJoinViewController: BaseViewController {
     private lazy var birthdayTextField = SigninTextField()
     private lazy var nextButton = SigninButton()
     
+    //MARK: - ViewModel
     private let viewModel: UserJoinViewModel
     
-    init(viewModel: UserJoinViewModel) {
+    //MARK: - Initializer
+    init(
+        viewModel: UserJoinViewModel
+    ) {
         self.viewModel = viewModel
         
         super.init()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
+    //MARK: - Bind ViewController to ViewModel
     override func bind() {
-        
         let input = UserJoinViewModel.Input(
             emailText: emailTextField.rx.text.orEmpty,
             passwordText: passwordTextField.rx.text.orEmpty,
@@ -47,41 +50,39 @@ final class UserJoinViewController: BaseViewController {
         )
         let output = viewModel.transform(input: input)
         
-        output
-            .isEmailTextValid
-            .bind(with: self) { owner, value in
+        output.isEmailTextValid
+            .asSignal()
+            .emit(with: self) { owner, value in
                 let color = value ? Constant.Color.Label.valid : Constant.Color.Label.notValid
                 owner.emailValidationLabel.textColor = color
                 owner.emailTextField.layer.borderColor = color.cgColor
             }
             .disposed(by: disposeBag)
         
-        output
-            .isPasswordTextValid
-            .bind(with: self) { owner, value in
+        output.isPasswordTextValid
+            .asSignal()
+            .emit(with: self) { owner, value in
                 let textFieldColor = value ? Constant.Color.TextField.valid : Constant.Color.TextField.notValid
                 owner.passwordTextField.layer.borderColor = textFieldColor.cgColor
             }
             .disposed(by: disposeBag)
         
-        output
-            .isNicknameTextValid
-            .bind(with: self) { owner, value in
+        output.isNicknameTextValid
+            .asSignal()
+            .emit(with: self) { owner, value in
                 let textFieldColor = value ? Constant.Color.TextField.valid : Constant.Color.TextField.notValid
                 owner.nicknameTextField.layer.borderColor = textFieldColor.cgColor
             }
             .disposed(by: disposeBag)
         
-        output
-            .emailValidationMessage
+        output.emailValidationMessage
             .asDriver()
             .drive(with: self) { owner, value in
                 owner.emailValidationLabel.text = value
             }
             .disposed(by: disposeBag)
         
-        output
-            .isPasswordSecure
+        output.isPasswordSecure
             .asDriver()
             .drive(with: self) { owner, value in
                 let image = value ? Constant.Image.System.eye : Constant.Image.System.eyeSlash
@@ -90,9 +91,9 @@ final class UserJoinViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        output
-            .isEmailValidationButtonEnabled
-            .bind(with: self) { owner, value in
+        output.isEmailValidationButtonEnabled
+            .asDriver()
+            .drive(with: self) { owner, value in
                 let color = value ? Constant.Color.Button.valid : Constant.Color.Button.notValid
                 owner.emailValidationButton.backgroundColor = color
                 owner.emailValidationButton.isEnabled = value
@@ -109,45 +110,40 @@ final class UserJoinViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
+    //MARK: - UI Configuration
     override func configureUI() {
         super.configureUI()
         
+        /// Delegate
         emailTextField.delegate = self
         passwordTextField.delegate = self
         nicknameTextField.delegate = self
         
+        /// Assignment
         titleLabel.text = "회원 가입"
-        
         requiredSubtitleLabel.text = "필수 입력 사항"
-        
         emailTextField.placeholder = "📧 이메일"
         emailTextField.keyboardType = .emailAddress
         emailTextField.returnKeyType = .continue
         emailTextField.becomeFirstResponder()
         emailTextField.rightViewMode = .always
         emailTextField.rightView = emailValidationButton
-        
         emailValidationButton.setTitle("확인", for: .normal)
         emailValidationButton.layer.cornerRadius = 10
-        
         passwordTextField.placeholder = "🔒 비밀번호 (8자리 이상)"
         passwordTextField.returnKeyType = .continue
         passwordTextField.rightViewMode = .always
         passwordTextField.rightView = passwordSecureTextButton
-        
         nicknameTextField.placeholder = "🔖 닉네임 (2~20 자)"
         nicknameTextField.returnKeyType = .continue
-        
         selectiveSubtitleLabel.text = "선택 입력 사항"
-        
         phoneNumberTextField.placeholder = "📱 휴대전화번호"
         phoneNumberTextField.keyboardType = .numberPad
-        
         birthdayTextField.placeholder = "📅 생년월일 8자리"
         birthdayTextField.keyboardType = .numberPad
-        
         nextButton.setTitle("다음 ", for: .normal)
         
+        /// View Hierarchy
         view.addSubview(titleLabel)
         view.addSubview(requiredSubtitleLabel)
         view.addSubview(emailTextField)
@@ -161,9 +157,8 @@ final class UserJoinViewController: BaseViewController {
         view.addSubview(nextButton)
     }
     
+    //MARK: - Layouts
     override func configureLayout() {
-        super.configureLayout()
-        
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Constant.Layout.Common.Inset.vertical),
@@ -248,13 +243,13 @@ final class UserJoinViewController: BaseViewController {
         ])
     }
     
+    //MARK: - Dismiss Keyboard when Tapped
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
 }
 
 //MARK: UITextFieldDelegate
-
 extension UserJoinViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

@@ -19,7 +19,7 @@ final class SplashViewController: BaseViewController {
         super.init()
     }
     
-    //MARK: - Protocol Methods
+    //MARK: - Bind ViewController to ViewModel
     override func bind() {
         viewModel.startAutoSigninStream()
     }
