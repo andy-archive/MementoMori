@@ -60,7 +60,7 @@ final class UserSigninUseCase: UserSigninUseCaseProtocol {
             let _ = keychain.find(key: userID, type: .refreshToken)
         else { return Observable.just(false) }
         
-        return self.userAuthRepository.refresh()
+        return userAuthRepository.refresh()
             .map { result in
                 switch result {
                 case .suceessData(let authorization):
