@@ -120,25 +120,25 @@ final class UserJoinViewModel: ViewModel {
             }
             .disposed(by: disposeBag)
         
+        /// 이메일 확인 버튼 클릭 시 네트워크 요청 (POST)
         input.emailValidationButtonClicked
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
-            .withLatestFrom(input.emailText) { [weak self] _, query in
-                self?.requestedEmail = query
-                return query
+            .withLatestFrom(input.emailText) { [weak self] _, emailText in
+                self?.requestedEmail = emailText
+                return emailText
             }
-            .flatMap { query in
-                APIManager.shared.validateEmail(email: query)
+            .withUnretained(self)
+            .flatMap { owner, email in
+                owner.userJoinUseCase.validate(email: email)
             }
-            .subscribe(with: self) { owner, response in
-                let message = response.message
-                emailValidationMessage.accept(message)
-                
-                if message == Constant.NetworkResponse.EmailValidation.Message.validEmail {
-                    owner.isEmailValidationMessageValid = true
+            .bind(with: self) { owner, isEmailValid in
+                if isEmailValid {
+                    emailValidationMessage.accept(Constant.Text.Message.validEmail)
                     isEmailTextValid.accept(true)
                     isEmailValidationButtonEnabled.accept(false)
                     checkJoinValidation() /// 이메일 검증 성공 시 가입 버튼을 누를 수 있는지 확인
                 } else {
+                    emailValidationMessage.accept(Constant.Text.Message.notValidEmail)
                     isEmailTextValid.accept(false)
                 }
             }

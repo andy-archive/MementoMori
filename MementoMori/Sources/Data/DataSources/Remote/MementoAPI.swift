@@ -104,7 +104,9 @@ extension MementoAPI: TargetType {
         switch self {
         case .refreshToken, .storyRead:
             return [:]
-        case .emailValidation, .userJoin, .userSignin, .commentCreate:
+        case .emailValidation, .userJoin, .userSignin:
+            return [MementoAPI.HTTPHeaderField.secretKey: MementoAPI.secretKey]
+        case .commentCreate:
             return ["Content-Type": "application/json"]
         case .storyCreate:
             return ["Content-Type": "multipart/form-data"]

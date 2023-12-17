@@ -10,5 +10,6 @@ import Foundation
 import RxSwift
 
 protocol UserJoinUseCaseProtocol {
+    func validate(email: String) -> Observable<Bool>
     func join(user: User) -> Single<APIResult<User>>
 }

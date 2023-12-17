@@ -81,30 +81,6 @@ final class APIManager {
         }
     }
     
-    //MARK: - Email Validation
-    func validateEmail(email: String) -> Observable<EmailValidationResponseDTO> {
-        return Observable<EmailValidationResponseDTO>.create { observer in
-            let data = EmailValidationRequestDTO(email: email)
-            let provider = MoyaProvider<MementoAPI>(plugins: [NetworkLoggerPlugin(configuration: .init(logOptions: .verbose))])
-            
-            provider.request(.emailValidation(model: data)) { result in
-                switch result {
-                case .success(let value):
-                    do {
-                        let data = try JSONDecoder().decode(EmailValidationResponseDTO.self, from: value.data)
-                        observer.onNext(data)
-                    } catch {
-                        observer.onError(error)
-                    }
-                    
-                case .failure(let error):
-                    observer.onError(error)
-                }
-            }
-            return Disposables.create()
-        }
-    }
-    
     //MARK: - Refresh Access Token
     func refresh(
         accessToken: String,
