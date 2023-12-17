@@ -9,15 +9,14 @@ import Foundation
 
 import RxSwift
 
-/// CommentRepositoryProtocol
-final class CommentRepository {
+final class CommentRepository: CommentRepositoryProtocol {
     
     //MARK: - Create Comment
-    func create(comment: StoryPost, postID: String) -> Single<APIResult<Void>> {
+    func create(comment: Comment, postID: String) -> Single<APIResult<Void>> {
         
         let requestDTO = CommentCreateRequestDTO(
-            content: <#T##String#>,
-            postID: <#T##String#>
+            content: comment.content ?? "",
+            postID: postID
         )
         
         let resonseSingle = APIManager.shared.request(

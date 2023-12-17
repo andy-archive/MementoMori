@@ -94,6 +94,7 @@
 		38909D2D2B2DE5A700474FE6 /* CommentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38909D2C2B2DE5A700474FE6 /* CommentRepository.swift */; };
 		38909D2F2B2DE67C00474FE6 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38909D2E2B2DE67C00474FE6 /* Comment.swift */; };
 		38909D312B2DE7CA00474FE6 /* CommentDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38909D302B2DE7CA00474FE6 /* CommentDTO.swift */; };
+		38909D332B2E82ED00474FE6 /* CommentRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38909D322B2E82ED00474FE6 /* CommentRepositoryProtocol.swift */; };
 		38B5FB152B24D2AE00F91DDA /* RefreshInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5FB142B24D2AE00F91DDA /* RefreshInterceptor.swift */; };
 		38B9203F2B08AAED006CBD1C /* Constant+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B9203E2B08AAED006CBD1C /* Constant+Network.swift */; };
 		38C891852B29F7F400F15F1B /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C891842B29F7F400F15F1B /* TabController.swift */; };
@@ -204,6 +205,7 @@
 		38909D2C2B2DE5A700474FE6 /* CommentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRepository.swift; sourceTree = "<group>"; };
 		38909D2E2B2DE67C00474FE6 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		38909D302B2DE7CA00474FE6 /* CommentDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDTO.swift; sourceTree = "<group>"; };
+		38909D322B2E82ED00474FE6 /* CommentRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRepositoryProtocol.swift; sourceTree = "<group>"; };
 		38B5FB142B24D2AE00F91DDA /* RefreshInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshInterceptor.swift; sourceTree = "<group>"; };
 		38B9203E2B08AAED006CBD1C /* Constant+Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constant+Network.swift"; sourceTree = "<group>"; };
 		38C891842B29F7F400F15F1B /* TabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
@@ -414,6 +416,7 @@
 		385F93F92B1968030021D548 /* Remote */ = {
 			isa = PBXGroup;
 			children = (
+				38909D322B2E82ED00474FE6 /* CommentRepositoryProtocol.swift */,
 				38318DDA2B1F54C2000EED65 /* StoryPostRepositoryProtocol.swift */,
 				386309262B132A5A001973AA /* UserAuthRepositoryProtocol.swift */,
 			);
@@ -856,6 +859,7 @@
 				387464132B173E2C009FAB2C /* UserJoinError.swift in Sources */,
 				383ECFD72B15BF2B004675E1 /* UserSigninUseCaseProtocol.swift in Sources */,
 				38CA8C2A2B038CB000A9C4B7 /* UITextField+.swift in Sources */,
+				38909D332B2E82ED00474FE6 /* CommentRepositoryProtocol.swift in Sources */,
 				380646FB2B20872E001B375D /* StoryListUseCaseProtocol.swift in Sources */,
 				387D064F2B2C25C400A012D5 /* CommentDetailViewModel.swift in Sources */,
 				386309382B135C86001973AA /* EmailValidationDTO.swift in Sources */,
