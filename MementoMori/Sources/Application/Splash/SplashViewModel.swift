@@ -16,9 +16,9 @@ final class SplashViewModel: ViewModel {
     struct Output { }
     
     //MARK: - Properties
-    let disposeBag = DisposeBag()
     weak var coordinator: AppCoordinator?
     private let userSigninUseCase: UserSigninUseCaseProtocol
+    private let disposeBag = DisposeBag()
     
     //MARK: - Initializer
     init(
@@ -29,13 +29,14 @@ final class SplashViewModel: ViewModel {
         self.userSigninUseCase = userSigninUseCase
     }
     
-    //MARK: - Protocol Methods
+    //MARK: - Transform Input into Output
     func transform(input: Input) -> Output {
         return Output()
     }
     
+    //MARK: - Check Auto Signin
     func startAutoSigninStream() {
-        self.userSigninUseCase.checkAutoSignin()
+        userSigninUseCase.checkAutoSignin()
             .subscribe(with: self) { owner, isAuthorized in
                 if isAuthorized {
                     owner.coordinator?.showTabBarController()

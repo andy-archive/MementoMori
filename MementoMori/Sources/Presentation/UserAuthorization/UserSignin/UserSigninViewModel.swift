@@ -12,6 +12,7 @@ import RxSwift
 
 final class UserSigninViewModel: ViewModel {
     
+    //MARK: - Input
     struct Input {
         let emailText: ControlProperty<String>
         let passwordText: ControlProperty<String>
@@ -19,6 +20,7 @@ final class UserSigninViewModel: ViewModel {
         let joinButtonClicked: ControlEvent<Void>
     }
     
+    //MARK: - Output
     struct Output {
         let isEmailTextValid: PublishRelay<Bool>
         let isPasswordTextValid: PublishRelay<Bool>
@@ -27,10 +29,12 @@ final class UserSigninViewModel: ViewModel {
         let signinValidationText: PublishRelay<String>
     }
     
-    let disposeBag = DisposeBag()
+    //MARK: - Properties
     weak var coordinator: AppCoordinator?
     private let userSigninUseCase: UserSigninUseCaseProtocol
+    private let disposeBag = DisposeBag()
     
+    //MARK: - Initializer
     init(
         coordinator: AppCoordinator,
         userSigninUseCase: UserSigninUseCaseProtocol

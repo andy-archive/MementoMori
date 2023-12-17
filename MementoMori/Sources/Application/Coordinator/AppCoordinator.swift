@@ -24,7 +24,7 @@ final class AppCoordinator: Coordinator {
         self.signinModal = UINavigationController()
     }
     
-    //MARK: - Protocol Method
+    //MARK: - Protocol Methods
     func start() {
         configureCoordinator()
         showSplashViewController()

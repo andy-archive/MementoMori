@@ -20,13 +20,13 @@ final class StoryListViewModel: ViewModel {
     
     //MARK: - Output
     struct Output {
-        let storyList: Signal<[StoryPost]>
+        let storyList: Observable<[StoryPost]>
     }
     
     //MARK: - Properties
-    let disposeBag = DisposeBag()
     weak var coordinator: StoryContentCoordinator?
     private let storyListUseCase: StoryListUseCaseProtocol
+    private let disposeBag = DisposeBag()
     var storyPostList = [StoryPost]()
     
     //MARK: - Initializer
@@ -38,10 +38,11 @@ final class StoryListViewModel: ViewModel {
         self.storyListUseCase = storyListUseCase
     }
     
-    //MARK: - Transform from Input to Output
+    //MARK: - Transform Input into Output
     func transform(input: Input) -> Output {
-        let storyList = input
-            .viewWillAppear
+        
+        /// viewWillAppear일 때 게시글 요청 (GET)
+        let storyList = input.viewWillAppear
             .withUnretained(self)
             .flatMap { owner, _ in
                 owner.storyListUseCase.fetchStoryListStream()
@@ -54,10 +55,9 @@ final class StoryListViewModel: ViewModel {
                 }
                 return storyList
             }
-            .asSignal(onErrorJustReturn: [StoryPost]())
         
-        input
-            .textContentTap
+        /// 게시글 및 댓글 입력 시 댓글 화면 이동
+        input.textContentTap
             .asSignal()
             .emit(with: self) { owner, _ in
                 owner.coordinator?.showCommentDetailViewController()

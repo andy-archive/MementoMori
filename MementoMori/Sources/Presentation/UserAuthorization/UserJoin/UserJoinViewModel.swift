@@ -10,7 +10,7 @@ import RxSwift
 
 final class UserJoinViewModel: ViewModel {
     
-    //MARK: - (1) Input
+    //MARK: - Input
     struct Input {
         let emailText: ControlProperty<String>
         let passwordText: ControlProperty<String>
@@ -20,7 +20,7 @@ final class UserJoinViewModel: ViewModel {
         let nextButtonClicked: ControlEvent<Void>
     }
     
-    //MARK: - (2) Output
+    //MARK: - Output
     struct Output {
         let isEmailTextValid: PublishRelay<Bool>
         let isPasswordTextValid: PublishRelay<Bool>
@@ -32,14 +32,14 @@ final class UserJoinViewModel: ViewModel {
         let joinResponse: PublishRelay<APIResult<String>>
     }
     
-    //MARK: - (3) Properties
-    let disposeBag = DisposeBag()
+    //MARK: - Properties
     weak var coordinator: AppCoordinator?
     private let userJoinUseCase: UserJoinUseCaseProtocol
+    private let disposeBag = DisposeBag()
     private var requestedEmail = String()
     private var isEmailValidationMessageValid = false
     
-    //MARK: - (4) Initializer
+    //MARK: - Initializer
     init(
         coordinator: AppCoordinator,
         userJoinUseCase: UserJoinUseCaseProtocol
@@ -48,7 +48,7 @@ final class UserJoinViewModel: ViewModel {
         self.userJoinUseCase = userJoinUseCase
     }
     
-    //MARK: - (5) Protocol Method
+    //MARK: - Transform Input into Output
     func transform(input: Input) -> Output {
         let checkJoinValidation: () -> Void =  {
             Observable

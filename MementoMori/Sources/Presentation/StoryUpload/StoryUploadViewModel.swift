@@ -12,13 +12,13 @@ import RxSwift
 
 final class StoryUploadViewModel: ViewModel {
     
-    //MARK: - (0) Type
+    //MARK: - Type
     enum UploadProcessType {
         case imageUpload
         case storyUpload
     }
     
-    //MARK: - (1) Input
+    //MARK: - Input
     struct Input {
         let imageSelectionViewClicked: Observable<UIImage>
         let nextButtonClicked: ControlEvent<Void>
@@ -26,7 +26,7 @@ final class StoryUploadViewModel: ViewModel {
         let contentText: ControlProperty<String>
     }
     
-    //MARK: - (2) Output
+    //MARK: - Output
     struct Output {
         let resultImage: PublishRelay<UIImage>
         let presentStoryUploadView: PublishRelay<Void>
@@ -34,14 +34,14 @@ final class StoryUploadViewModel: ViewModel {
         let imageUploadMessage: PublishRelay<String>
     }
     
-    //MARK: - (3) Properties
-    let disposeBag = DisposeBag()
+    //MARK: - Properties
     weak var coordinator: StoryUploadCoordinator?
     private let storyUploadUseCase: StoryUploadUseCaseProtocol
+    private let disposeBag = DisposeBag()
     private lazy var uploadProcess: UploadProcessType = .imageUpload
     private lazy var imageList: [Data] = []
     
-    //MARK: - (4) Initializer
+    //MARK: - Initializer
     init(
         coordinator: StoryUploadCoordinator,
         storyUploadUseCase: StoryUploadUseCaseProtocol
@@ -50,7 +50,7 @@ final class StoryUploadViewModel: ViewModel {
         self.storyUploadUseCase = storyUploadUseCase
     }
     
-    //MARK: - Protocol Method
+    //MARK: - Transform Input into Output
     func transform(input: Input) -> Output {
         let presentStoryUploadView = PublishRelay<Void>()
         let presentImageUploadView = PublishRelay<Void>()

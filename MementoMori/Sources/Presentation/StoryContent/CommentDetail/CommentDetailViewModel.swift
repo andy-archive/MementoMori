@@ -25,9 +25,9 @@ final class CommentDetailViewModel: ViewModel {
     }
     
     //MARK: - Properties
-    let disposeBag = DisposeBag()
     weak var coordinator: StoryContentCoordinator?
     private let commentUseCase: CommentUseCaseProtocol
+    private let disposeBag = DisposeBag()
     
     //MARK: - Initializer
     init(
@@ -38,7 +38,7 @@ final class CommentDetailViewModel: ViewModel {
         self.commentUseCase = commentUseCase
     }
     
-    //MARK: - Transform from Input to Output
+    //MARK: - Transform Input into Output
     func transform(input: Input) -> Output {
         let commentValidation = BehaviorRelay(value: false)
         let reloadView = PublishRelay<Void>()
