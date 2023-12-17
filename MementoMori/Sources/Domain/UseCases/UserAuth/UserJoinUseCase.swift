@@ -5,7 +5,8 @@
 //  Created by Taekwon Lee on 11/27/23.
 //
 
-import RxRelay
+import Foundation
+
 import RxSwift
 
 final class UserJoinUseCase: UserJoinUseCaseProtocol {

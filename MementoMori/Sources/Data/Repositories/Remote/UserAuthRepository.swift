@@ -5,6 +5,8 @@
 //  Created by Taekwon Lee on 11/27/23.
 //
 
+import Foundation
+
 import RxSwift
 
 final class UserAuthRepository: UserAuthRepositoryProtocol {
