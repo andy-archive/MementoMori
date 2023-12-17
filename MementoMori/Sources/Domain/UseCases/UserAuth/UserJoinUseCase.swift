@@ -13,16 +13,9 @@ final class UserJoinUseCase: UserJoinUseCaseProtocol {
     
     //MARK: - (1) Properties
     private let userAuthRepository: UserAuthRepositoryProtocol
-    var isEmailTextValid = PublishRelay<Bool>()
-    var isPasswordTextValid = PublishRelay<Bool>()
-    var isNicknameTextValid = PublishRelay<Bool>()
-    var emailValidationMessage = BehaviorRelay<String>(value: "")
-    var isPasswordSecure = BehaviorRelay<Bool>(value: true)
-    var isEmailValidationButtonEnabled = BehaviorRelay<Bool>(value: false)
-    var isJoinButtonEnabled = BehaviorRelay<Bool>(value: false)
-    var joinResponse = PublishRelay<APIResult<String>>()
     
     //MARK: - (2) Initializer
+    //MARK: - Initializer
     init(
         userAuthRepository: UserAuthRepositoryProtocol
     ) {
