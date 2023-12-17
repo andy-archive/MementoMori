@@ -48,16 +48,39 @@ final class CommentDetailViewController: BaseViewController {
     }()
     
     private lazy var commentTableView = UITableView()
-    private lazy var commentInputView = UIView()
+    
+    private lazy var commentInputView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray6
+        return view
+    }()
     
     private lazy var commentInputTextView = {
         let view = UITextView()
-        view.text = Constant.Text.Input.comment
-        view.textColor = Constant.Color.secondaryLabel
+        view.textColor = Constant.Color.label
         view.font = .systemFont(ofSize: Constant.FontSize.title)
         view.layer.cornerRadius = 20
         view.keyboardType = .twitter
         return view
+    }()
+    
+    private lazy var inputPlaceholderLabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: Constant.FontSize.subtitle)
+        label.text = Constant.Text.Input.comment
+        label.textColor = Constant.Color.secondaryLabel
+        label.numberOfLines = 0
+        label.isUserInteractionEnabled = false
+        return label
+    }()
+    
+    private lazy var createPostButton = {
+        let button = UIButton()
+        button.setImage(
+            Constant.Image.System.arrowUp,
+            for: .normal
+        )
+        return button
     }()
     
     //MARK: - ViewModel
@@ -74,15 +97,22 @@ final class CommentDetailViewController: BaseViewController {
     
     //MARK: - Bind with ViewModel
     override func bind() {
+        let input = CommentDetailViewModel.Input(
+            commentTextToUpload: commentInputTextView.rx.text.orEmpty
+        )
+        let output = viewModel.transform(input: input)
         
+        output.isCommentValid
+            .drive(with: self) { owner, isCommentValid in
+                owner.inputPlaceholderLabel.isHidden = isCommentValid
+                owner.createPostButton.isHidden = !isCommentValid
+            }
+            .disposed(by: disposeBag)
     }
     
     //MARK: - View Configuration
     override func configureUI() {
         super.configureUI()
-        
-        /// Delegate
-        commentInputTextView.delegate = self
         
         /// View Hierarchy
         view.addSubview(scrollView)
@@ -94,6 +124,8 @@ final class CommentDetailViewController: BaseViewController {
         headerView.addSubview(titleLabel)
         headerView.addSubview(separatorView)
         commentInputView.addSubview(commentInputTextView)
+        commentInputView.addSubview(inputPlaceholderLabel)
+        commentInputView.addSubview(createPostButton)
     }
     
     //MARK: - Layouts
@@ -172,6 +204,19 @@ final class CommentDetailViewController: BaseViewController {
             commentInputTextView.bottomAnchor.constraint(equalTo: commentInputView.bottomAnchor, constant: -Constant.Layout.CommentDetail.inset),
             commentInputTextView.heightAnchor.constraint(greaterThanOrEqualToConstant: 40)
         ])
+        
+        inputPlaceholderLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            inputPlaceholderLabel.leadingAnchor.constraint(equalTo: commentInputTextView.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal / 2),
+            inputPlaceholderLabel.trailingAnchor.constraint(lessThanOrEqualTo: commentInputTextView.trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal),
+            inputPlaceholderLabel.centerYAnchor.constraint(equalTo: commentInputTextView.centerYAnchor)
+        ])
+        
+        createPostButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            createPostButton.trailingAnchor.constraint(equalTo: commentInputTextView.trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal),
+            createPostButton.centerYAnchor.constraint(equalTo: commentInputTextView.centerYAnchor)
+        ])
     }
     
     //MARK: - Dismiss Keyboard in Touch
@@ -186,24 +231,5 @@ extension CommentDetailViewController {
     func configure(_ storyPost: StoryPost?) {
         guard let storyPost else { return }
         
-    }
-}
-
-//MARK: - UITextViewDelegate
-extension CommentDetailViewController: UITextViewDelegate {
-    
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        guard textView.textColor == Constant.Color.secondaryLabel
-        else { return }
-        
-        textView.text = nil
-        textView.textColor = Constant.Color.label
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            textView.text = Constant.Text.Input.comment
-            textView.textColor = Constant.Color.secondaryLabel
-        }
     }
 }

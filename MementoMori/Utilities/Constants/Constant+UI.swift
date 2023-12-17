@@ -51,6 +51,7 @@ extension Constant {
             static let plusSquareFill = UIImage(systemName: "plus.square.fill")?.withTintColor(.label, renderingMode: .alwaysOriginal)
             static let xMark = UIImage(systemName: "xmark")?.withTintColor(.label, renderingMode: .alwaysOriginal)
             static let chevronLeft = UIImage(systemName: "chevron.left")?.withTintColor(.label, renderingMode: .alwaysOriginal)
+            static let arrowUp = UIImage(systemName: "arrow.up.circle")?.withTintColor(.systemCyan, renderingMode: .alwaysOriginal)
         }
     }
 }

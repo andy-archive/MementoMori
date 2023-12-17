@@ -7,15 +7,20 @@
 
 import Foundation
 
+import RxCocoa
 import RxSwift
 
 final class CommentDetailViewModel: ViewModel {
     
     //MARK: - Input
-    struct Input { }
+    struct Input {
+        let commentTextToUpload: ControlProperty<String>
+    }
     
     //MARK: - Output
-    struct Output { }
+    struct Output {
+        let isCommentValid: Driver<Bool>
+    }
     
     //MARK: - Properties
     let disposeBag = DisposeBag()
@@ -34,7 +39,20 @@ final class CommentDetailViewModel: ViewModel {
     //MARK: - Transform from Input to Output
     func transform(input: Input) -> Output {
         
+        let commentValidation = BehaviorRelay(value: false)
         
-        return Output()
+        input.commentTextToUpload
+            .withUnretained(self)
+            .map { owner, text in
+                !text.isEmpty
+            }
+            .bind(with: self) { owner, isTextValid in
+                commentValidation.accept(isTextValid)
+            }
+            .disposed(by: disposeBag)
+        
+        return Output(
+            isCommentValid: commentValidation.asDriver()
+        )
     }
 }
