@@ -94,6 +94,7 @@ final class UserSigninViewModel: ViewModel {
                 let authentication = owner.userSigninUseCase.authenticate(result: result)
                 if authentication.isAuthorized {
                     owner.coordinator?.dismissViewController()
+                    owner.coordinator?.showTabBarController()
                 } else {
                     isSigninCompleted.accept(authentication.isAuthorized)
                     errorMessage.accept(authentication.message)
