@@ -18,7 +18,7 @@ final class UserJoinUseCase: UserJoinUseCaseProtocol {
     var emailValidationMessage = BehaviorRelay<String>(value: "")
     var isPasswordSecure = BehaviorRelay<Bool>(value: true)
     var isEmailValidationButtonEnabled = BehaviorRelay<Bool>(value: false)
-    var isNextButtonEnabled = BehaviorRelay<Bool>(value: false)
+    var isJoinButtonEnabled = BehaviorRelay<Bool>(value: false)
     var joinResponse = PublishRelay<APIResult<String>>()
     
     //MARK: - (2) Initializer

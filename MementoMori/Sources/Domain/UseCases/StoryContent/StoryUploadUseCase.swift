@@ -30,14 +30,17 @@ final class StoryUploadUseCase: StoryUploadUseCaseProtocol {
     }
     
     //MARK: - Protocol Methods
+    /// 이미지 변환
     func convertImageToData(image: UIImage) -> Data? {
-        return image.jpegData(compressionQuality: 0.5)
+        return image.jpegData(compressionQuality: 0.3)
     }
     
+    /// 게시글 추가 요청
     func fetchStoryUpload(storyPost: StoryPost, imageDataList: [Data]) -> Single<APIResult<Void>> {
         self.storyPostRepository.create(storyPost: storyPost, imageDataList: imageDataList)
     }
     
+    /// 게시글 추가 요청의 프로세스 확인
     func verifyStoryUploadProcess(result: APIResult<Void>) -> (isCompleted: Bool, message: String) {
         switch result {
         case .suceessData(_):

@@ -35,7 +35,7 @@ final class SplashViewModel: ViewModel {
     }
     
     //MARK: - Check Auto Signin
-    func startAutoSigninStream() {
+    func checkAutoSignin() {
         userSigninUseCase.checkAutoSignin()
             .subscribe(with: self) { owner, isAuthorized in
                 if isAuthorized {

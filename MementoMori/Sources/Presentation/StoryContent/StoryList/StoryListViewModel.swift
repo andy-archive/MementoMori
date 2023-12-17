@@ -45,14 +45,11 @@ final class StoryListViewModel: ViewModel {
         let storyList = input.viewWillAppear
             .withUnretained(self)
             .flatMap { owner, _ in
-                owner.storyListUseCase.fetchStoryListStream()
+                owner.storyListUseCase.readStoryList()
             }
             .withUnretained(self)
             .map { owner, storyList in
-                guard let storyList = storyList else {
-                    owner.coordinator?.finish()
-                    return [StoryPost]()
-                }
+                owner.coordinator?.finish()
                 return storyList
             }
         

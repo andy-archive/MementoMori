@@ -21,6 +21,6 @@ final class SplashViewController: BaseViewController {
     
     //MARK: - Bind ViewController to ViewModel
     override func bind() {
-        viewModel.startAutoSigninStream()
+        viewModel.checkAutoSignin()
     }
 }

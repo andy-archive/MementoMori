@@ -71,16 +71,14 @@ final class StoryUploadViewModel: ViewModel {
             }
             .share()
         
-        input
-            .contentText
+        input.contentText
             .bind(with: self) { owner, text in
                 contentTextToUpload.accept(text)
             }
             .disposed(by: disposeBag)
         
-        input
-            .imageSelectionViewClicked
-            .subscribe(with: self) { owner, image in
+        input.imageSelectionViewClicked
+            .bind(with: self) { owner, image in
                 imageToUpload.accept(image)
                 guard let imageData = owner.storyUploadUseCase.convertImageToData(image: image)
                 else { return }
@@ -88,8 +86,7 @@ final class StoryUploadViewModel: ViewModel {
             }
             .disposed(by: disposeBag)
         
-        input
-            .nextButtonClicked
+        input.nextButtonClicked
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .withUnretained(self)
             .filter { owner, _ in
@@ -102,8 +99,7 @@ final class StoryUploadViewModel: ViewModel {
             }
             .disposed(by: disposeBag)
         
-        input
-            .nextButtonClicked
+        input.nextButtonClicked
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .withUnretained(self)
             .filter { owner, _ in
@@ -124,9 +120,8 @@ final class StoryUploadViewModel: ViewModel {
             }
             .disposed(by: disposeBag)
         
-        input
-            .cancelButtonClicked
-            .subscribe(with: self) { owner, _ in
+        input.cancelButtonClicked
+            .bind(with: self) { owner, _ in
                 switch owner.uploadProcess {
                 case .imageUpload:
                     owner.coordinator?.finish()
@@ -137,9 +132,8 @@ final class StoryUploadViewModel: ViewModel {
             }
             .disposed(by: disposeBag)
         
-        input
-            .contentText
-            .subscribe(with: self) { owner, text in
+        input.contentText
+            .bind(with: self) { owner, text in
                 contentToUpload.accept(text)
             }
             .disposed(by: disposeBag)

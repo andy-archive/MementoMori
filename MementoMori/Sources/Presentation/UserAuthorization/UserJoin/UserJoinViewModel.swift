@@ -50,58 +50,77 @@ final class UserJoinViewModel: ViewModel {
     
     //MARK: - Transform Input into Output
     func transform(input: Input) -> Output {
+        var isEmailTextValid = PublishRelay<Bool>()
+        var isPasswordTextValid = PublishRelay<Bool>()
+        var isNicknameTextValid = PublishRelay<Bool>()
+        var emailValidationMessage = BehaviorRelay<String>(value: "")
+        var isPasswordSecure = BehaviorRelay<Bool>(value: false)
+        var isEmailValidationButtonEnabled = BehaviorRelay<Bool>(value: false)
+        var isJoinButtonEnabled = BehaviorRelay<Bool>(value: false)
+        var joinResponse = PublishRelay<APIResult<String>>()
+        
+        /// 가입 버튼 클릭 가능 여부에 대한 로직
         let checkJoinValidation: () -> Void =  {
-            Observable
-                .combineLatest(input.emailText, input.passwordText, input.nicknameText) { [weak self] email, password, nickname in
-                    self?.isEmailValidationMessageValid ?? false &&
-                    email.validateEmail() &&
-                    password.validatePassword() &&
-                    nickname.validateNickname()
+            Observable.combineLatest(
+                input.emailText,
+                input.passwordText,
+                input.nicknameText
+            )
+            .map { [weak self] email, password, nickname in
+                guard let self else { return false }
+                
+                if self.isEmailValidationMessageValid && email.validateEmail() &&
+                    password.validatePassword() && nickname.validateNickname() {
+                    return true
+                } else {
+                    return false
                 }
-                .subscribe(with: self) { owner, value in
-                    owner.userJoinUseCase.isNextButtonEnabled.accept(value)
-                }
-                .disposed(by: self.disposeBag)
+            }
+            .subscribe(with: self) { owner, value in
+                isJoinButtonEnabled.accept(value)
+            }
+            .disposed(by: self.disposeBag)
         }
         
-        let joinInput = Observable
-            .combineLatest(input.emailText, input.passwordText, input.nicknameText) { email, password, nickname in
-                User(email: email, password: password, nickname: nickname)
-            }
+        let joinInput = Observable.combineLatest(
+            input.emailText,
+            input.passwordText,
+            input.nicknameText
+        ) { email, password, nickname in
+            User(email: email, password: password, nickname: nickname)
+        }
             .share()
         
-        input
-            .emailText
+        input.emailText
             .subscribe(with: self) { owner, value in
-                if owner.requestedEmail.isEmpty { // 이메일 검증 요청 이전
+                if owner.requestedEmail.isEmpty { /// 이메일 검증 요청 이전
                     if !value.isEmpty && value.validateEmail() {
-                        owner.userJoinUseCase.isEmailValidationButtonEnabled.accept(true)
+                        isEmailValidationButtonEnabled.accept(true)
                     } else {
-                        owner.userJoinUseCase.isEmailValidationButtonEnabled.accept(false)
+                        isEmailValidationButtonEnabled.accept(false)
                     }
-                } else { // 이메일 검증 요청 이후
+                } else { /// 이메일 검증 요청 이후
                     if !owner.isEmailValidationMessageValid && value.validateEmail() {
-                        owner.userJoinUseCase.isEmailValidationButtonEnabled.accept(true)
+                        isEmailValidationButtonEnabled.accept(true)
                     } else {
-                        owner.userJoinUseCase.isEmailValidationButtonEnabled.accept(false)
+                        isEmailValidationButtonEnabled.accept(false)
                     }
                     
-                    // 이메일 검증 요청 성공 이후 다시 이메일을 바꿨을 때
+                    /// 이메일 검증 요청 성공 이후 다시 이메일을 바꿨을 때
                     if value != owner.requestedEmail && owner.isEmailValidationMessageValid {
-                        owner.userJoinUseCase.emailValidationMessage.accept("이메일을 다시 입력하세요")
                         owner.isEmailValidationMessageValid = false
-                        owner.userJoinUseCase.isEmailTextValid.accept(false)
-                        owner.userJoinUseCase.isEmailValidationButtonEnabled.accept(true)
+                        emailValidationMessage.accept("이메일을 다시 입력하세요")
+                        isEmailTextValid.accept(false)
+                        isEmailValidationButtonEnabled.accept(true)
                     }
                 }
             }
             .disposed(by: disposeBag)
         
-        input
-            .emailValidationButtonClicked
+        input.emailValidationButtonClicked
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
-            .withLatestFrom(input.emailText) { _, query in
-                self.requestedEmail = query
+            .withLatestFrom(input.emailText) { [weak self] _, query in
+                self?.requestedEmail = query
                 return query
             }
             .flatMap { query in
@@ -109,49 +128,45 @@ final class UserJoinViewModel: ViewModel {
             }
             .subscribe(with: self) { owner, response in
                 let message = response.message
-                self.userJoinUseCase.emailValidationMessage.accept(message)
+                emailValidationMessage.accept(message)
                 
                 if message == Constant.NetworkResponse.EmailValidation.Message.validEmail {
                     owner.isEmailValidationMessageValid = true
-                    owner.userJoinUseCase.isEmailTextValid.accept(true)
-                    owner.userJoinUseCase.isEmailValidationButtonEnabled.accept(false)
-                    checkJoinValidation() // 성공 시 가입 버튼을 누를 수 있는지 검사
+                    isEmailTextValid.accept(true)
+                    isEmailValidationButtonEnabled.accept(false)
+                    checkJoinValidation() /// 이메일 검증 성공 시 가입 버튼을 누를 수 있는지 확인
                 } else {
-                    owner.userJoinUseCase.isEmailTextValid.accept(false)
+                    isEmailTextValid.accept(false)
                 }
             }
             .disposed(by: disposeBag)
         
-        input
-            .passwordText
+        input.passwordText
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
-            .subscribe(with: self) { owner, text in
-                if !text.isEmpty {
-                    owner.userJoinUseCase.isPasswordTextValid.accept(text.validatePassword())
+            .subscribe(with: self) { _, passwordText in
+                if !passwordText.isEmpty {
+                    isPasswordTextValid.accept(passwordText.validatePassword())
                 }
             }
             .disposed(by: disposeBag)
         
-        input
-            .nicknameText
+        input.nicknameText
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
-            .subscribe(with: self) { owner, text in
-                if !text.isEmpty {
-                    owner.userJoinUseCase.isNicknameTextValid.accept(text.validateNickname())
+            .subscribe(with: self) { _, nicknameText in
+                if !nicknameText.isEmpty {
+                    isNicknameTextValid.accept(nicknameText.validateNickname())
                 }
             }
             .disposed(by: disposeBag)
         
-        input
-            .passwordSecureButtonClicked
-            .subscribe(with: self) { owner, _ in
-                let value = owner.userJoinUseCase.isPasswordSecure.value
-                owner.userJoinUseCase.isPasswordSecure.accept(!value)
+        input.passwordSecureButtonClicked
+            .subscribe(with: self) { _, _ in
+                let result = !isPasswordSecure.value
+                isPasswordSecure.accept(result)
             }
             .disposed(by: disposeBag)
         
-        input
-            .nextButtonClicked
+        input.nextButtonClicked
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(joinInput)
             .withUnretained(self)
@@ -161,28 +176,28 @@ final class UserJoinViewModel: ViewModel {
             .bind(with: self) { owner, result in
                 switch result {
                 case .suceessData(let user):
-                    owner.userJoinUseCase.joinResponse.accept(.suceessData(user.nickname ?? ""))
-                    owner.coordinator?.signinModal.popViewController(animated: true)
+                    joinResponse.accept(.suceessData(user.nickname ?? ""))
+                    owner.coordinator?.signinModal.popViewController(animated: true) /// 회원 가입 성공 시 이전 화면 돌아 가기
                 case .statusCode(let statusCode):
                     let message = UserJoinError(rawValue: statusCode)?.message ??
                     NetworkError(rawValue: statusCode)?.message ??
                     NetworkError.internalServerError.message
-                    owner.userJoinUseCase.emailValidationMessage.accept(message)
-                    owner.userJoinUseCase.isEmailTextValid.accept(false)
-                    owner.userJoinUseCase.isPasswordTextValid.accept(false)
+                    emailValidationMessage.accept(message)
+                    isEmailTextValid.accept(false)
+                    isPasswordTextValid.accept(false)
                 }
             }
             .disposed(by: disposeBag)
         
         return Output(
-            isEmailTextValid: userJoinUseCase.isEmailTextValid,
-            isPasswordTextValid: self.userJoinUseCase.isPasswordTextValid,
-            isNicknameTextValid: self.userJoinUseCase.isNicknameTextValid,
-            emailValidationMessage: self.userJoinUseCase.emailValidationMessage,
-            isPasswordSecure: self.userJoinUseCase.isPasswordSecure,
-            isEmailValidationButtonEnabled: self.userJoinUseCase.isEmailValidationButtonEnabled,
-            isNextButtonEnabled: self.userJoinUseCase.isNextButtonEnabled,
-            joinResponse: self.userJoinUseCase.joinResponse
+            isEmailTextValid: isEmailTextValid,
+            isPasswordTextValid: isPasswordTextValid,
+            isNicknameTextValid: isNicknameTextValid,
+            emailValidationMessage: emailValidationMessage,
+            isPasswordSecure: isPasswordSecure,
+            isEmailValidationButtonEnabled: isEmailValidationButtonEnabled,
+            isNextButtonEnabled: isJoinButtonEnabled,
+            joinResponse: joinResponse
         )
     }
 }

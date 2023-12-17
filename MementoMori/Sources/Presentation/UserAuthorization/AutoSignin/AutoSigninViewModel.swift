@@ -35,17 +35,15 @@ final class AutoSigninViewModel: ViewModel {
     
     //MARK: - Transform Input into Output
     func transform(input: Input) -> Output {
-        input
-            .otherSigninButtonClicked
-            .asDriver(onErrorJustReturn: Void())
+        input.otherSigninButtonClicked
+            .asDriver()
             .drive(with: self) { owner, _ in
                 owner.coordinator?.showUserSigninViewController()
             }
             .disposed(by: disposeBag)
         
-        input
-            .joinSigninButtonClicked
-            .asDriver(onErrorJustReturn: Void())
+        input.joinSigninButtonClicked
+            .asDriver()
             .drive(with: self) { owner, _ in
                 owner.coordinator?.showUserJoinViewController()
             }
