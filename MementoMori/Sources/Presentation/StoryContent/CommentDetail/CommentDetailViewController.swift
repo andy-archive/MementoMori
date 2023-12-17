@@ -98,7 +98,8 @@ final class CommentDetailViewController: BaseViewController {
     //MARK: - Bind with ViewModel
     override func bind() {
         let input = CommentDetailViewModel.Input(
-            commentTextToUpload: commentInputTextView.rx.text.orEmpty
+            commentTextToUpload: commentInputTextView.rx.text.orEmpty,
+            uploadButtonTap: createPostButton.rx.tap
         )
         let output = viewModel.transform(input: input)
         
@@ -106,6 +107,12 @@ final class CommentDetailViewController: BaseViewController {
             .drive(with: self) { owner, isCommentValid in
                 owner.inputPlaceholderLabel.isHidden = isCommentValid
                 owner.createPostButton.isHidden = !isCommentValid
+            }
+            .disposed(by: disposeBag)
+        
+        output.reloadCommentTableView
+            .emit(with: self) { owner, _ in
+                owner.commentTableView.reloadData()
             }
             .disposed(by: disposeBag)
     }

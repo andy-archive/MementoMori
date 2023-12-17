@@ -15,11 +15,13 @@ final class CommentDetailViewModel: ViewModel {
     //MARK: - Input
     struct Input {
         let commentTextToUpload: ControlProperty<String>
+        let uploadButtonTap: ControlEvent<Void>
     }
     
     //MARK: - Output
     struct Output {
         let isCommentValid: Driver<Bool>
+        let reloadCommentTableView: Signal<Void>
     }
     
     //MARK: - Properties
@@ -38,8 +40,10 @@ final class CommentDetailViewModel: ViewModel {
     
     //MARK: - Transform from Input to Output
     func transform(input: Input) -> Output {
-        
         let commentValidation = BehaviorRelay(value: false)
+        let reloadView = PublishRelay<Void>()
+        let keychain = KeychainRepository.shared
+        let storyPostID = keychain.find(key: "", type: .storyID) ?? ""
         
         input.commentTextToUpload
             .withUnretained(self)
@@ -51,8 +55,27 @@ final class CommentDetailViewModel: ViewModel {
             }
             .disposed(by: disposeBag)
         
+        input.uploadButtonTap
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+            .withLatestFrom(input.commentTextToUpload) { _, commentText in
+                let comment = Comment(
+                    content: commentText,
+                    storyPostID: storyPostID
+                )
+                return comment
+            }
+            .withUnretained(self)
+            .flatMap { owner, comment in
+                owner.commentUseCase.create(comment: comment)
+            }
+            .bind(with: self) { owner, isCommentUploaded in
+                if isCommentUploaded { reloadView.accept(Void()) }
+            }
+            .disposed(by: disposeBag)
+        
         return Output(
-            isCommentValid: commentValidation.asDriver()
+            isCommentValid: commentValidation.asDriver(),
+            reloadCommentTableView: reloadView.asSignal()
         )
     }
 }

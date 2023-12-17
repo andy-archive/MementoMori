@@ -29,10 +29,11 @@ final class CommentUseCase: CommentUseCaseProtocol {
         let keychain = KeychainRepository.shared
         
         if let storyID = keychain.find(key: "", type: .storyID) {
-            let response = self.commentRepository.create(
+            let response = commentRepository.create(
                 comment: comment,
                 postID: storyID
             )
+            return response
         }
         
         let single = Single<APIResult<Void>>.just(
