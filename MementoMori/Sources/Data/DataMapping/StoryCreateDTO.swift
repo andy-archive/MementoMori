@@ -29,7 +29,7 @@ struct StoryCreateResponseDTO: Decodable {
 //    let likes: [String]
 //    let hashTags: [String]
 //    let comments: [String]
-    let creator: Creator
+    let creator: CreatorDTO
     let time: String
     
     enum CodingKeys: String, CodingKey {
