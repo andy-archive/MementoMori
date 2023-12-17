@@ -30,8 +30,8 @@ final class StoryListUseCase: StoryListUseCaseProtocol {
     
     //MARK: - Private Methods
     
-    /// 게시글 조회 요청
-    private func requestGET(
+    /// 게시글 전체 조회 요청
+    private func requestStoryList(
         nextCursor: String? = nil,
         limit: String,
         productID: String = Constant.Text.productID
@@ -53,13 +53,13 @@ final class StoryListUseCase: StoryListUseCaseProtocol {
     }
     
     //MARK: - Protocol Methods
-    /// 게시글 조회 (비즈니스 로직)
+    /// 게시글 전체 조회 (비즈니스 로직)
     func readStoryList() -> Observable<[StoryPost]> {
         var limit = String(pagination)
         let observable = Observable.just(Void())
             .withUnretained(self)
             .flatMap { owner, _ in
-                owner.requestGET(
+                owner.requestStoryList(
                     nextCursor: owner.nextCursor,
                     limit: limit
                 )
@@ -77,6 +77,27 @@ final class StoryListUseCase: StoryListUseCaseProtocol {
         
         return observable
     }
+    
+    /// 게시글 단일 조회 (비즈니스 로직)
+    func readStoryItem(storyPostID: String) -> Observable<StoryPost?> {
+        let observable = Observable.just(Void())
+            .withUnretained(self)
+            .flatMap { owner, _ in
+                owner.storyPostRepository.read(storyPostID: storyPostID)
+            }
+            .asObservable()
+            .map { result in
+                switch result {
+                case .suceessData(let data):
+                    return Optional(data)
+                case .statusCode:
+                    return nil
+                }
+            }
+        
+        return observable
+    }
+    
     
     //TODO: - pagination
     //        single

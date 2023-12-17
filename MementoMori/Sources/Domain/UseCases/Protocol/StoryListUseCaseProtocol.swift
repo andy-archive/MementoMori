@@ -11,4 +11,5 @@ import RxSwift
 
 protocol StoryListUseCaseProtocol {
     func readStoryList() -> Observable<[StoryPost]>
+    func readStoryItem(storyPostID: String) -> Observable<StoryPost?>
 }

@@ -16,4 +16,14 @@ struct CommentDTO: Decodable {
         case id = "_id"
         case content, time
     }
+    
+    func toDomain() -> Comment {
+        let comment = Comment(
+            id: id,
+            content: content,
+            createdAt: time,
+            storyPostID: nil
+        )
+        return comment
+    }
 }

@@ -60,4 +60,26 @@ final class StoryPostRepository: StoryPostRepositoryProtocol {
         
         return resultSingle
     }
+    
+    func read(storyPostID: String) -> Single<APIResult<StoryPost>> {
+        let requestDTO = StoryItemRequestDTO(
+            id: storyPostID,
+            productID: Constant.Text.productID
+        )
+        let resonseSingle = APIManager.shared.request(
+            api: .storySingleRead(model: requestDTO),
+            responseType: StoryItemResponseDTO.self
+        )
+        
+        let resultSingle = resonseSingle.flatMap { result in
+            switch result {
+            case .suceessData(let responseDTO):
+                return Single<APIResult>.just(.suceessData(responseDTO.toDomain()))
+            case .statusCode(let statusCode):
+                return Single<APIResult>.just(.statusCode(statusCode))
+            }
+        }
+        
+        return resultSingle
+    }
 }

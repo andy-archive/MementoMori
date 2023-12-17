@@ -36,7 +36,7 @@
 		38318DDB2B1F54C2000EED65 /* StoryPostRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DDA2B1F54C2000EED65 /* StoryPostRepositoryProtocol.swift */; };
 		38318DDD2B1F55BB000EED65 /* StoryCreateDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DDC2B1F55BB000EED65 /* StoryCreateDTO.swift */; };
 		38318DDF2B203645000EED65 /* StoryReadDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DDE2B203645000EED65 /* StoryReadDTO.swift */; };
-		38318DE12B2037EB000EED65 /* StoryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DE02B2037EB000EED65 /* StoryDTO.swift */; };
+		38318DE12B2037EB000EED65 /* StoryItemDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DE02B2037EB000EED65 /* StoryItemDTO.swift */; };
 		38318DE32B20380A000EED65 /* CreatorDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DE22B20380A000EED65 /* CreatorDTO.swift */; };
 		38318DE52B20411A000EED65 /* StoryCreateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DE42B20411A000EED65 /* StoryCreateError.swift */; };
 		38318DE72B204286000EED65 /* StoryReadError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DE62B204286000EED65 /* StoryReadError.swift */; };
@@ -147,7 +147,7 @@
 		38318DDA2B1F54C2000EED65 /* StoryPostRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryPostRepositoryProtocol.swift; sourceTree = "<group>"; };
 		38318DDC2B1F55BB000EED65 /* StoryCreateDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCreateDTO.swift; sourceTree = "<group>"; };
 		38318DDE2B203645000EED65 /* StoryReadDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryReadDTO.swift; sourceTree = "<group>"; };
-		38318DE02B2037EB000EED65 /* StoryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryDTO.swift; sourceTree = "<group>"; };
+		38318DE02B2037EB000EED65 /* StoryItemDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryItemDTO.swift; sourceTree = "<group>"; };
 		38318DE22B20380A000EED65 /* CreatorDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorDTO.swift; sourceTree = "<group>"; };
 		38318DE42B20411A000EED65 /* StoryCreateError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCreateError.swift; sourceTree = "<group>"; };
 		38318DE62B204286000EED65 /* StoryReadError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryReadError.swift; sourceTree = "<group>"; };
@@ -495,7 +495,7 @@
 				386309372B135C86001973AA /* EmailValidationDTO.swift */,
 				38318DA72B1A11EB000EED65 /* RefreshTokenDTO.swift */,
 				38318DDC2B1F55BB000EED65 /* StoryCreateDTO.swift */,
-				38318DE02B2037EB000EED65 /* StoryDTO.swift */,
+				38318DE02B2037EB000EED65 /* StoryItemDTO.swift */,
 				38318DDE2B203645000EED65 /* StoryReadDTO.swift */,
 				386309322B1357A8001973AA /* UserJoinDTO.swift */,
 				383ECFDB2B15CB29004675E1 /* UserSigninDTO.swift */,
@@ -890,7 +890,7 @@
 				3847EC112B022C1200E086EB /* AppDelegate.swift in Sources */,
 				384C6D7F2B26D9FF00EE6051 /* AutoSigninViewModel.swift in Sources */,
 				388CFD4D2B0F2ED900638EFD /* NetworkError.swift in Sources */,
-				38318DE12B2037EB000EED65 /* StoryDTO.swift in Sources */,
+				38318DE12B2037EB000EED65 /* StoryItemDTO.swift in Sources */,
 				3847EC132B022C1200E086EB /* SceneDelegate.swift in Sources */,
 				38318DC12B1CE3EC000EED65 /* StoryCollectionViewCell.swift in Sources */,
 				38D4066D2B0B40DE00B6F783 /* String+.swift in Sources */,

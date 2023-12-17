@@ -11,7 +11,7 @@ struct StoryImage: Hashable {
     
     let id: String
     let userId: String
-    let storyPostId: String
+    let storyPostID: String
         
     static func == (lhs: StoryImage, rhs: StoryImage) -> Bool {
         lhs.id == rhs.id

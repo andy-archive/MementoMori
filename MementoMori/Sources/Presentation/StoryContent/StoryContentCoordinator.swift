@@ -31,16 +31,12 @@ extension StoryContentCoordinator {
     
     /// 게시글 목록 화면
     func showStoryListViewController() {
-        let repository = StoryPostRepository()
-        let useCase = StoryListUseCase(
-            storyPostRepository: repository,
-            keychainRepository: makeKeychainRepository()
-        )
         let viewModel = StoryListViewModel(
             coordinator: self,
-            storyListUseCase: useCase
+            storyListUseCase: makeStoryListUseCase()
         )
         let viewController =  StoryListViewController(viewModel: viewModel)
+        
         navigationController.pushViewController(viewController, animated: false)
     }
     
@@ -53,7 +49,8 @@ extension StoryContentCoordinator {
         )
         let viewModel = CommentDetailViewModel(
             coordinator: self,
-            commentUseCase: useCase
+            commentUseCase: useCase,
+            storyListUseCase: makeStoryListUseCase()
         )
         let viewController = CommentDetailViewController(viewModel: viewModel)
         
@@ -68,5 +65,19 @@ private extension StoryContentCoordinator {
     /// Keychain
     func makeKeychainRepository() -> KeychainRepositoryProtocol {
         return KeychainRepository.shared
+    }
+}
+
+//MARK: - UseCases
+private extension StoryContentCoordinator {
+    
+    /// StoryList
+    func makeStoryListUseCase() -> StoryListUseCaseProtocol {
+        let repository = StoryPostRepository()
+        let useCase = StoryListUseCase(
+            storyPostRepository: repository,
+            keychainRepository: makeKeychainRepository()
+        )
+        return useCase
     }
 }

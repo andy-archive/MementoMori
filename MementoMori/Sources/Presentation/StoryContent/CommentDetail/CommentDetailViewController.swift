@@ -98,6 +98,7 @@ final class CommentDetailViewController: BaseViewController {
     //MARK: - Bind ViewController to ViewModel
     override func bind() {
         let input = CommentDetailViewModel.Input(
+            viewDidAppear: rx.viewDidAppear.map { _ in },
             commentTextToUpload: commentInputTextView.rx.text.orEmpty,
             uploadButtonTap: createPostButton.rx.tap
         )
@@ -113,6 +114,12 @@ final class CommentDetailViewController: BaseViewController {
         output.reloadCommentTableView
             .emit(with: self) { owner, _ in
                 owner.commentTableView.reloadData()
+            }
+            .disposed(by: disposeBag)
+        
+        output.storyItemDidFetch
+            .emit(with: self) { owner, storyPost in
+                owner.configure(storyPost)
             }
             .disposed(by: disposeBag)
     }
@@ -238,5 +245,6 @@ extension CommentDetailViewController {
     func configure(_ storyPost: StoryPost?) {
         guard let storyPost else { return }
         
+        writerContentLabel.text = storyPost.content
     }
 }

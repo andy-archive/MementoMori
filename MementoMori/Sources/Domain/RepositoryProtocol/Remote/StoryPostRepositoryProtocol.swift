@@ -12,4 +12,5 @@ import RxSwift
 protocol StoryPostRepositoryProtocol {
     func create(storyPost: StoryPost, imageDataList: [Data]) -> Single<APIResult<Void>>
     func read(next: String?, limit: String, productID: String) -> Single<APIResult<(storyList: [StoryPost], nextCursor: String)>>
+    func read(storyPostID: String) -> Single<APIResult<StoryPost>>
 }

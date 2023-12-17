@@ -14,6 +14,7 @@ final class CommentDetailViewModel: ViewModel {
     
     //MARK: - Input
     struct Input {
+        let viewDidAppear: Observable<Void>
         let commentTextToUpload: ControlProperty<String>
         let uploadButtonTap: ControlEvent<Void>
     }
@@ -22,28 +23,44 @@ final class CommentDetailViewModel: ViewModel {
     struct Output {
         let isCommentValid: Driver<Bool>
         let reloadCommentTableView: Signal<Void>
+        let storyItemDidFetch: Signal<StoryPost?>
     }
     
     //MARK: - Properties
     weak var coordinator: StoryContentCoordinator?
     private let commentUseCase: CommentUseCaseProtocol
+    private let storyListUseCase: StoryListUseCaseProtocol
     private let disposeBag = DisposeBag()
     
     //MARK: - Initializer
     init(
         coordinator: StoryContentCoordinator,
-        commentUseCase: CommentUseCaseProtocol
+        commentUseCase: CommentUseCaseProtocol,
+        storyListUseCase: StoryListUseCaseProtocol
     ) {
         self.coordinator = coordinator
         self.commentUseCase = commentUseCase
+        self.storyListUseCase = storyListUseCase
     }
     
     //MARK: - Transform Input into Output
     func transform(input: Input) -> Output {
         let commentValidation = BehaviorRelay(value: false)
         let reloadView = PublishRelay<Void>()
+        let storyPostItem = PublishRelay<StoryPost?>()
         let keychain = KeychainRepository.shared
         let storyPostID = keychain.find(key: "", type: .storyID) ?? ""
+        
+        /// 댓글 화면이 나타난 이후 게시글 요청 (GET)
+        input.viewDidAppear
+            .withUnretained(self)
+            .flatMap { owner, value in
+                owner.storyListUseCase.readStoryItem(storyPostID: storyPostID)
+            }
+            .bind(with: self) { owner, item in
+                storyPostItem.accept(item)
+            }
+            .disposed(by: disposeBag)
         
         /// 댓글 입력 텍스트 유효성 검사
         input.commentTextToUpload
@@ -77,7 +94,8 @@ final class CommentDetailViewModel: ViewModel {
         
         return Output(
             isCommentValid: commentValidation.asDriver(),
-            reloadCommentTableView: reloadView.asSignal()
+            reloadCommentTableView: reloadView.asSignal(),
+            storyItemDidFetch: storyPostItem.asSignal()
         )
     }
 }
