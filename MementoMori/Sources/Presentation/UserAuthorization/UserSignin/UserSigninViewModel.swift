@@ -16,8 +16,8 @@ final class UserSigninViewModel: ViewModel {
     struct Input {
         let emailText: ControlProperty<String>
         let passwordText: ControlProperty<String>
-        let signinButtonClicked: ControlEvent<Void>
-        let joinButtonClicked: ControlEvent<Void>
+        let signinButtonTap: ControlEvent<Void>
+        let joinButtonTap: ControlEvent<Void>
     }
     
     //MARK: - Output
@@ -83,7 +83,7 @@ final class UserSigninViewModel: ViewModel {
             }
             .disposed(by: disposeBag)
         
-        input.signinButtonClicked
+        input.signinButtonTap
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(userInfo)
             .withUnretained(self)
@@ -102,7 +102,7 @@ final class UserSigninViewModel: ViewModel {
             }
             .disposed(by: disposeBag)
         
-        input.joinButtonClicked
+        input.joinButtonTap
             .bind(with: self) { owner, _ in
                 owner.coordinator?.showUserJoinViewController()
             }

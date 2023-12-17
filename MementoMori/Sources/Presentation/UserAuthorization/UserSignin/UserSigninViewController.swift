@@ -35,8 +35,8 @@ final class UserSigninViewController: BaseViewController {
         let input = UserSigninViewModel.Input(
             emailText: emailTextField.rx.text.orEmpty,
             passwordText: passwordTextField.rx.text.orEmpty,
-            signinButtonClicked: signinButton.rx.tap,
-            joinButtonClicked: joinButton.rx.tap
+            signinButtonTap: signinButton.rx.tap,
+            joinButtonTap: joinButton.rx.tap
         )
         let output = viewModel.transform(input: input)
         

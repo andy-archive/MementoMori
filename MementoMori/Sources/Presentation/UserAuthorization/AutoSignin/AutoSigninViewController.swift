@@ -55,9 +55,9 @@ final class AutoSigninViewController: BaseViewController {
     //MARK: - Bind ViewController to ViewModel
     override func bind() {
         let _ = AutoSigninViewModel.Input(
-            autoSigninButtonClicked: autoSigninButton.rx.tap,
-            otherSigninButtonClicked: otherSigninButton.rx.tap,
-            joinSigninButtonClicked: joinButton.rx.tap
+            autoSigninButtonTap: autoSigninButton.rx.tap,
+            otherSigninButtonTap: otherSigninButton.rx.tap,
+            joinSigninButtonTap: joinButton.rx.tap
         )
     }
     

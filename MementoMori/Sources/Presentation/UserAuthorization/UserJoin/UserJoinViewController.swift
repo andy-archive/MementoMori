@@ -44,9 +44,9 @@ final class UserJoinViewController: BaseViewController {
             emailText: emailTextField.rx.text.orEmpty,
             passwordText: passwordTextField.rx.text.orEmpty,
             nicknameText: nicknameTextField.rx.text.orEmpty,
-            emailValidationButtonClicked: emailValidationButton.rx.tap,
-            passwordSecureButtonClicked: passwordSecureTextButton.rx.tap,
-            nextButtonClicked: nextButton.rx.tap
+            emailValidationButtonTap: emailValidationButton.rx.tap,
+            passwordSecureButtonTap: passwordSecureTextButton.rx.tap,
+            nextButtonTap: nextButton.rx.tap
         )
         let output = viewModel.transform(input: input)
         

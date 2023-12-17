@@ -20,10 +20,10 @@ final class StoryUploadViewModel: ViewModel {
     
     //MARK: - Input
     struct Input {
-        let imageSelectionViewClicked: Observable<UIImage>
-        let nextButtonClicked: ControlEvent<Void>
-        let cancelButtonClicked: ControlEvent<Void>
-        let contentText: ControlProperty<String>
+        let imageSelectionViewTap: Observable<UIImage>
+        let nextButtonTap: ControlEvent<Void>
+        let cancelButtonTap: ControlEvent<Void>
+        let contentTextToUpload: ControlProperty<String>
     }
     
     //MARK: - Output
@@ -61,7 +61,7 @@ final class StoryUploadViewModel: ViewModel {
         let storyPostData = Observable
             .combineLatest(
                 imageToUpload.asObservable(),
-                input.contentText
+                input.contentTextToUpload
             ) { [weak self] image, text in
                 
                 StoryPost(
@@ -71,13 +71,13 @@ final class StoryUploadViewModel: ViewModel {
             }
             .share()
         
-        input.contentText
+        input.contentTextToUpload
             .bind(with: self) { owner, text in
                 contentTextToUpload.accept(text)
             }
             .disposed(by: disposeBag)
         
-        input.imageSelectionViewClicked
+        input.imageSelectionViewTap
             .bind(with: self) { owner, image in
                 imageToUpload.accept(image)
                 guard let imageData = owner.storyUploadUseCase.convertImageToData(image: image)
@@ -86,7 +86,7 @@ final class StoryUploadViewModel: ViewModel {
             }
             .disposed(by: disposeBag)
         
-        input.nextButtonClicked
+        input.nextButtonTap
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .withUnretained(self)
             .filter { owner, _ in
@@ -99,7 +99,7 @@ final class StoryUploadViewModel: ViewModel {
             }
             .disposed(by: disposeBag)
         
-        input.nextButtonClicked
+        input.nextButtonTap
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .withUnretained(self)
             .filter { owner, _ in
@@ -120,7 +120,7 @@ final class StoryUploadViewModel: ViewModel {
             }
             .disposed(by: disposeBag)
         
-        input.cancelButtonClicked
+        input.cancelButtonTap
             .bind(with: self) { owner, _ in
                 switch owner.uploadProcess {
                 case .imageUpload:
@@ -132,7 +132,7 @@ final class StoryUploadViewModel: ViewModel {
             }
             .disposed(by: disposeBag)
         
-        input.contentText
+        input.contentTextToUpload
             .bind(with: self) { owner, text in
                 contentToUpload.accept(text)
             }

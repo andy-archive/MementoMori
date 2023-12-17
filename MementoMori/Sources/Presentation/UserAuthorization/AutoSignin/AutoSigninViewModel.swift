@@ -14,9 +14,9 @@ final class AutoSigninViewModel: ViewModel {
     
     //MARK: - Input
     struct Input {
-        let autoSigninButtonClicked: ControlEvent<Void>
-        let otherSigninButtonClicked: ControlEvent<Void>
-        let joinSigninButtonClicked: ControlEvent<Void>
+        let autoSigninButtonTap: ControlEvent<Void>
+        let otherSigninButtonTap: ControlEvent<Void>
+        let joinSigninButtonTap: ControlEvent<Void>
     }
     
     //MARK: - Output
@@ -35,14 +35,14 @@ final class AutoSigninViewModel: ViewModel {
     
     //MARK: - Transform Input into Output
     func transform(input: Input) -> Output {
-        input.otherSigninButtonClicked
+        input.otherSigninButtonTap
             .asDriver()
             .drive(with: self) { owner, _ in
                 owner.coordinator?.showUserSigninViewController()
             }
             .disposed(by: disposeBag)
         
-        input.joinSigninButtonClicked
+        input.joinSigninButtonTap
             .asDriver()
             .drive(with: self) { owner, _ in
                 owner.coordinator?.showUserJoinViewController()

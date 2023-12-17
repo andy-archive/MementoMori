@@ -17,9 +17,9 @@ final class UserJoinViewModel: ViewModel {
         let emailText: ControlProperty<String>
         let passwordText: ControlProperty<String>
         let nicknameText: ControlProperty<String>
-        let emailValidationButtonClicked: ControlEvent<Void>
-        let passwordSecureButtonClicked: ControlEvent<Void>
-        let nextButtonClicked: ControlEvent<Void>
+        let emailValidationButtonTap: ControlEvent<Void>
+        let passwordSecureButtonTap: ControlEvent<Void>
+        let nextButtonTap: ControlEvent<Void>
     }
     
     //MARK: - Output
@@ -121,7 +121,7 @@ final class UserJoinViewModel: ViewModel {
             .disposed(by: disposeBag)
         
         /// 이메일 확인 버튼 클릭 시 네트워크 요청 (POST)
-        input.emailValidationButtonClicked
+        input.emailValidationButtonTap
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(input.emailText) { [weak self] _, emailText in
                 self?.requestedEmail = emailText
@@ -162,14 +162,14 @@ final class UserJoinViewModel: ViewModel {
             }
             .disposed(by: disposeBag)
         
-        input.passwordSecureButtonClicked
+        input.passwordSecureButtonTap
             .subscribe(with: self) { _, _ in
                 let result = !isPasswordSecure.value
                 isPasswordSecure.accept(result)
             }
             .disposed(by: disposeBag)
         
-        input.nextButtonClicked
+        input.nextButtonTap
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(joinInput)
             .withUnretained(self)
