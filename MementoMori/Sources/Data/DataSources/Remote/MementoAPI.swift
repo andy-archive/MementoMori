@@ -16,6 +16,7 @@ enum MementoAPI {
     case refreshToken
     case storyCreate(model: StoryCreateRequestDTO)
     case storyRead(model: StoryReadRequestDTO)
+    case commentCreate(model: CommentCreateRequestDTO)
 }
 
 extension MementoAPI: TargetType {
@@ -36,6 +37,8 @@ extension MementoAPI: TargetType {
             return "refresh"
         case .storyCreate, .storyRead:
             return "post"
+        case .commentCreate(let data):
+            return "post/\(data.postID)/comment"
         }
     }
     
@@ -43,7 +46,7 @@ extension MementoAPI: TargetType {
         switch self {
         case .emailValidation, .userJoin, .userSignin:
             return .post
-        case .storyCreate:
+        case .storyCreate, .commentCreate:
             return .post
         case .refreshToken, .storyRead:
             return .get
@@ -92,6 +95,8 @@ extension MementoAPI: TargetType {
                 parameters: ["next": next, "limit": data.limit, "product_id": productID],
                 encoding: URLEncoding.queryString
             )
+        case .commentCreate(let data):
+            return .requestJSONEncodable(data)
         }
     }
     
@@ -99,7 +104,7 @@ extension MementoAPI: TargetType {
         switch self {
         case .refreshToken, .storyRead:
             return [:]
-        case .emailValidation, .userJoin, .userSignin:
+        case .emailValidation, .userJoin, .userSignin, .commentCreate:
             return ["Content-Type": "application/json"]
         case .storyCreate:
             return ["Content-Type": "multipart/form-data"]

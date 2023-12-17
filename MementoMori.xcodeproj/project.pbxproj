@@ -36,7 +36,7 @@
 		38318DDB2B1F54C2000EED65 /* StoryPostRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DDA2B1F54C2000EED65 /* StoryPostRepositoryProtocol.swift */; };
 		38318DDD2B1F55BB000EED65 /* StoryCreateDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DDC2B1F55BB000EED65 /* StoryCreateDTO.swift */; };
 		38318DDF2B203645000EED65 /* StoryReadDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DDE2B203645000EED65 /* StoryReadDTO.swift */; };
-		38318DE12B2037EB000EED65 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DE02B2037EB000EED65 /* Story.swift */; };
+		38318DE12B2037EB000EED65 /* StoryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DE02B2037EB000EED65 /* StoryDTO.swift */; };
 		38318DE32B20380A000EED65 /* Creator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DE22B20380A000EED65 /* Creator.swift */; };
 		38318DE52B20411A000EED65 /* StoryCreateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DE42B20411A000EED65 /* StoryCreateError.swift */; };
 		38318DE72B204286000EED65 /* StoryReadError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DE62B204286000EED65 /* StoryReadError.swift */; };
@@ -89,6 +89,14 @@
 		387D064F2B2C25C400A012D5 /* CommentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387D064E2B2C25C400A012D5 /* CommentDetailViewModel.swift */; };
 		388CFD4D2B0F2ED900638EFD /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CFD4C2B0F2ED800638EFD /* NetworkError.swift */; };
 		38909D252B2C70EB00474FE6 /* UIViewController+SheetPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38909D242B2C70EB00474FE6 /* UIViewController+SheetPresentation.swift */; };
+		38909D292B2DE19400474FE6 /* CommentCreateDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38909D282B2DE19400474FE6 /* CommentCreateDTO.swift */; };
+		38909D2B2B2DE53800474FE6 /* CommentCreateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38909D2A2B2DE53800474FE6 /* CommentCreateError.swift */; };
+		38909D2D2B2DE5A700474FE6 /* CommentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38909D2C2B2DE5A700474FE6 /* CommentRepository.swift */; };
+		38909D2F2B2DE67C00474FE6 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38909D2E2B2DE67C00474FE6 /* Comment.swift */; };
+		38909D312B2DE7CA00474FE6 /* CommentDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38909D302B2DE7CA00474FE6 /* CommentDTO.swift */; };
+		38909D332B2E82ED00474FE6 /* CommentRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38909D322B2E82ED00474FE6 /* CommentRepositoryProtocol.swift */; };
+		38909D352B2E844300474FE6 /* CommentUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38909D342B2E844300474FE6 /* CommentUseCase.swift */; };
+		38909D372B2E8E7000474FE6 /* CommentUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38909D362B2E8E7000474FE6 /* CommentUseCaseProtocol.swift */; };
 		38B5FB152B24D2AE00F91DDA /* RefreshInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5FB142B24D2AE00F91DDA /* RefreshInterceptor.swift */; };
 		38B9203F2B08AAED006CBD1C /* Constant+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B9203E2B08AAED006CBD1C /* Constant+Network.swift */; };
 		38C891852B29F7F400F15F1B /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C891842B29F7F400F15F1B /* TabController.swift */; };
@@ -140,7 +148,7 @@
 		38318DDA2B1F54C2000EED65 /* StoryPostRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryPostRepositoryProtocol.swift; sourceTree = "<group>"; };
 		38318DDC2B1F55BB000EED65 /* StoryCreateDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCreateDTO.swift; sourceTree = "<group>"; };
 		38318DDE2B203645000EED65 /* StoryReadDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryReadDTO.swift; sourceTree = "<group>"; };
-		38318DE02B2037EB000EED65 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
+		38318DE02B2037EB000EED65 /* StoryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryDTO.swift; sourceTree = "<group>"; };
 		38318DE22B20380A000EED65 /* Creator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creator.swift; sourceTree = "<group>"; };
 		38318DE42B20411A000EED65 /* StoryCreateError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCreateError.swift; sourceTree = "<group>"; };
 		38318DE62B204286000EED65 /* StoryReadError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryReadError.swift; sourceTree = "<group>"; };
@@ -194,6 +202,14 @@
 		387D064E2B2C25C400A012D5 /* CommentDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDetailViewModel.swift; sourceTree = "<group>"; };
 		388CFD4C2B0F2ED800638EFD /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		38909D242B2C70EB00474FE6 /* UIViewController+SheetPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+SheetPresentation.swift"; sourceTree = "<group>"; };
+		38909D282B2DE19400474FE6 /* CommentCreateDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCreateDTO.swift; sourceTree = "<group>"; };
+		38909D2A2B2DE53800474FE6 /* CommentCreateError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCreateError.swift; sourceTree = "<group>"; };
+		38909D2C2B2DE5A700474FE6 /* CommentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRepository.swift; sourceTree = "<group>"; };
+		38909D2E2B2DE67C00474FE6 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		38909D302B2DE7CA00474FE6 /* CommentDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDTO.swift; sourceTree = "<group>"; };
+		38909D322B2E82ED00474FE6 /* CommentRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRepositoryProtocol.swift; sourceTree = "<group>"; };
+		38909D342B2E844300474FE6 /* CommentUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentUseCase.swift; sourceTree = "<group>"; };
+		38909D362B2E8E7000474FE6 /* CommentUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentUseCaseProtocol.swift; sourceTree = "<group>"; };
 		38B5FB142B24D2AE00F91DDA /* RefreshInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshInterceptor.swift; sourceTree = "<group>"; };
 		38B9203E2B08AAED006CBD1C /* Constant+Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constant+Network.swift"; sourceTree = "<group>"; };
 		38C891842B29F7F400F15F1B /* TabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
@@ -240,6 +256,7 @@
 		380646F62B2084DD001B375D /* StoryContent */ = {
 			isa = PBXGroup;
 			children = (
+				38909D342B2E844300474FE6 /* CommentUseCase.swift */,
 				380646F82B2084F1001B375D /* StoryListUseCase.swift */,
 				38061A2A2B26FCA900D36726 /* StoryUploadUseCase.swift */,
 			);
@@ -269,6 +286,7 @@
 		3840F6912B1865E800C488B6 /* Remote */ = {
 			isa = PBXGroup;
 			children = (
+				38909D2C2B2DE5A700474FE6 /* CommentRepository.swift */,
 				38318DE82B20473D000EED65 /* StoryPostRepository.swift */,
 				386309622B147637001973AA /* UserAuthRepository.swift */,
 			);
@@ -403,6 +421,7 @@
 		385F93F92B1968030021D548 /* Remote */ = {
 			isa = PBXGroup;
 			children = (
+				38909D322B2E82ED00474FE6 /* CommentRepositoryProtocol.swift */,
 				38318DDA2B1F54C2000EED65 /* StoryPostRepositoryProtocol.swift */,
 				386309262B132A5A001973AA /* UserAuthRepositoryProtocol.swift */,
 			);
@@ -424,6 +443,7 @@
 			isa = PBXGroup;
 			children = (
 				38C8918B2B2AE5FD00F15F1B /* Authorization.swift */,
+				38909D2E2B2DE67C00474FE6 /* Comment.swift */,
 				38318DD62B1EDEC8000EED65 /* StoryImage.swift */,
 				38318DBC2B1C97CE000EED65 /* StoryPost.swift */,
 				386309302B135752001973AA /* User.swift */,
@@ -472,14 +492,16 @@
 		3863092F2B135740001973AA /* DataMapping */ = {
 			isa = PBXGroup;
 			children = (
+				38909D282B2DE19400474FE6 /* CommentCreateDTO.swift */,
+				38909D302B2DE7CA00474FE6 /* CommentDTO.swift */,
+				38318DE22B20380A000EED65 /* Creator.swift */,
 				386309372B135C86001973AA /* EmailValidationDTO.swift */,
-				386309322B1357A8001973AA /* UserJoinDTO.swift */,
-				383ECFDB2B15CB29004675E1 /* UserSigninDTO.swift */,
 				38318DA72B1A11EB000EED65 /* RefreshTokenDTO.swift */,
 				38318DDC2B1F55BB000EED65 /* StoryCreateDTO.swift */,
+				38318DE02B2037EB000EED65 /* StoryDTO.swift */,
 				38318DDE2B203645000EED65 /* StoryReadDTO.swift */,
-				38318DE02B2037EB000EED65 /* Story.swift */,
-				38318DE22B20380A000EED65 /* Creator.swift */,
+				386309322B1357A8001973AA /* UserJoinDTO.swift */,
+				383ECFDB2B15CB29004675E1 /* UserSigninDTO.swift */,
 			);
 			path = DataMapping;
 			sourceTree = "<group>";
@@ -498,6 +520,7 @@
 		3863095F2B147029001973AA /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				38909D362B2E8E7000474FE6 /* CommentUseCaseProtocol.swift */,
 				380646FA2B20872E001B375D /* StoryListUseCaseProtocol.swift */,
 				38061A282B26FC7600D36726 /* StoryUploadUseCaseProtocol.swift */,
 				386309292B1340ED001973AA /* UserJoinUseCaseProtocol.swift */,
@@ -602,14 +625,15 @@
 		387464112B172CF0009FAB2C /* Error */ = {
 			isa = PBXGroup;
 			children = (
+				38909D2A2B2DE53800474FE6 /* CommentCreateError.swift */,
 				388CFD4C2B0F2ED800638EFD /* NetworkError.swift */,
 				3859E5552B18C31000987F75 /* RefreshError.swift */,
 				387464082B171D70009FAB2C /* ReusableError.swift */,
+				38318DE42B20411A000EED65 /* StoryCreateError.swift */,
+				38318DE62B204286000EED65 /* StoryReadError.swift */,
 				3874640A2B172013009FAB2C /* TokenError.swift */,
 				387464122B173E2C009FAB2C /* UserJoinError.swift */,
 				3874640C2B172208009FAB2C /* UserSigninError.swift */,
-				38318DE42B20411A000EED65 /* StoryCreateError.swift */,
-				38318DE62B204286000EED65 /* StoryReadError.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -792,13 +816,16 @@
 				3859E5562B18C31000987F75 /* RefreshError.swift in Sources */,
 				38318DE52B20411A000EED65 /* StoryCreateError.swift in Sources */,
 				38318DB02B1C5C73000EED65 /* StoryListHeaderView.swift in Sources */,
+				38909D2D2B2DE5A700474FE6 /* CommentRepository.swift in Sources */,
 				380646F52B207619001B375D /* MockData.swift in Sources */,
 				38061A2B2B26FCA900D36726 /* StoryUploadUseCase.swift in Sources */,
+				38909D372B2E8E7000474FE6 /* CommentUseCaseProtocol.swift in Sources */,
 				38CA8C252B03893300A9C4B7 /* SigninSubtitleLabel.swift in Sources */,
 				3847EC372B02307100E086EB /* UINavigationController+.swift in Sources */,
 				3847EC322B022FF800E086EB /* Constant.swift in Sources */,
 				386309272B132A5A001973AA /* UserAuthRepositoryProtocol.swift in Sources */,
 				387464022B170C3B009FAB2C /* KeychainRepository.swift in Sources */,
+				38909D2F2B2DE67C00474FE6 /* Comment.swift in Sources */,
 				38C891852B29F7F400F15F1B /* TabController.swift in Sources */,
 				3863093C2B141C93001973AA /* Coordinator.swift in Sources */,
 				387463DE2B163C54009FAB2C /* StoryContentCoordinator.swift in Sources */,
@@ -812,6 +839,7 @@
 				38EE8A822B04D0AC00E629CC /* UserJoinViewModel.swift in Sources */,
 				380647032B21CD7F001B375D /* StoryUploadCoordinator.swift in Sources */,
 				3863092A2B1340ED001973AA /* UserJoinUseCaseProtocol.swift in Sources */,
+				38909D352B2E844300474FE6 /* CommentUseCase.swift in Sources */,
 				38318DE92B20473D000EED65 /* StoryPostRepository.swift in Sources */,
 				38318DCC2B1E35DB000EED65 /* StoryListViewModel.swift in Sources */,
 				38D4066B2B0B29E000B6F783 /* SecureTextButton.swift in Sources */,
@@ -839,9 +867,11 @@
 				387464132B173E2C009FAB2C /* UserJoinError.swift in Sources */,
 				383ECFD72B15BF2B004675E1 /* UserSigninUseCaseProtocol.swift in Sources */,
 				38CA8C2A2B038CB000A9C4B7 /* UITextField+.swift in Sources */,
+				38909D332B2E82ED00474FE6 /* CommentRepositoryProtocol.swift in Sources */,
 				380646FB2B20872E001B375D /* StoryListUseCaseProtocol.swift in Sources */,
 				387D064F2B2C25C400A012D5 /* CommentDetailViewModel.swift in Sources */,
 				386309382B135C86001973AA /* EmailValidationDTO.swift in Sources */,
+				38909D292B2DE19400474FE6 /* CommentCreateDTO.swift in Sources */,
 				3863094E2B1457B9001973AA /* AppCoordinator.swift in Sources */,
 				38318DDB2B1F54C2000EED65 /* StoryPostRepositoryProtocol.swift in Sources */,
 				386309332B1357A8001973AA /* UserJoinDTO.swift in Sources */,
@@ -863,17 +893,19 @@
 				3847EC112B022C1200E086EB /* AppDelegate.swift in Sources */,
 				384C6D7F2B26D9FF00EE6051 /* AutoSigninViewModel.swift in Sources */,
 				388CFD4D2B0F2ED900638EFD /* NetworkError.swift in Sources */,
-				38318DE12B2037EB000EED65 /* Story.swift in Sources */,
+				38318DE12B2037EB000EED65 /* StoryDTO.swift in Sources */,
 				3847EC132B022C1200E086EB /* SceneDelegate.swift in Sources */,
 				38318DC12B1CE3EC000EED65 /* StoryCollectionViewCell.swift in Sources */,
 				38D4066D2B0B40DE00B6F783 /* String+.swift in Sources */,
 				387464002B170B18009FAB2C /* KeychainRepositoryProtocol.swift in Sources */,
+				38909D2B2B2DE53800474FE6 /* CommentCreateError.swift in Sources */,
 				387464092B171D70009FAB2C /* ReusableError.swift in Sources */,
 				38B9203F2B08AAED006CBD1C /* Constant+Network.swift in Sources */,
 				38318DBD2B1C97CE000EED65 /* StoryPost.swift in Sources */,
 				387463CF2B160815009FAB2C /* TabBar.swift in Sources */,
 				38318DD42B1ED72B000EED65 /* StoryImageCollectionViewCell.swift in Sources */,
 				38909D252B2C70EB00474FE6 /* UIViewController+SheetPresentation.swift in Sources */,
+				38909D312B2DE7CA00474FE6 /* CommentDTO.swift in Sources */,
 				3847EC402B0251A500E086EB /* UserJoinViewController.swift in Sources */,
 				38061A292B26FC7600D36726 /* StoryUploadUseCaseProtocol.swift in Sources */,
 				38B5FB152B24D2AE00F91DDA /* RefreshInterceptor.swift in Sources */,

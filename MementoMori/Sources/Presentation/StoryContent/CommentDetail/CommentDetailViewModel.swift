@@ -7,34 +7,77 @@
 
 import Foundation
 
+import RxCocoa
 import RxSwift
 
 final class CommentDetailViewModel: ViewModel {
     
     //MARK: - Input
-    struct Input { }
+    struct Input {
+        let commentTextToUpload: ControlProperty<String>
+        let uploadButtonTap: ControlEvent<Void>
+    }
     
     //MARK: - Output
-    struct Output { }
+    struct Output {
+        let isCommentValid: Driver<Bool>
+        let reloadCommentTableView: Signal<Void>
+    }
     
     //MARK: - Properties
     let disposeBag = DisposeBag()
     weak var coordinator: StoryContentCoordinator?
-//    private let myuseCase: MyUseCaseProtocol
+    private let commentUseCase: CommentUseCaseProtocol
     
     //MARK: - Initializer
     init(
-        coordinator: StoryContentCoordinator
-//        myuseCase: MyUseCaseProtocol
+        coordinator: StoryContentCoordinator,
+        commentUseCase: CommentUseCaseProtocol
     ) {
         self.coordinator = coordinator
-//        self.myuseCase = myuseCase
+        self.commentUseCase = commentUseCase
     }
     
     //MARK: - Transform from Input to Output
     func transform(input: Input) -> Output {
+        let commentValidation = BehaviorRelay(value: false)
+        let reloadView = PublishRelay<Void>()
+        let keychain = KeychainRepository.shared
+        let storyPostID = keychain.find(key: "", type: .storyID) ?? ""
         
+        /// 댓글 입력 텍스트 유효성 검사
+        input.commentTextToUpload
+            .withUnretained(self)
+            .map { owner, text in
+                !text.isEmpty
+            }
+            .bind(with: self) { owner, isTextValid in
+                commentValidation.accept(isTextValid)
+            }
+            .disposed(by: disposeBag)
         
-        return Output()
+        /// 댓글 입력 버튼 클릭 시 네트워크 요청 (POST)
+        input.uploadButtonTap
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+            .withLatestFrom(input.commentTextToUpload) { _, commentText in
+                let comment = Comment(
+                    content: commentText,
+                    storyPostID: storyPostID
+                )
+                return comment
+            }
+            .withUnretained(self)
+            .flatMap { owner, comment in
+                owner.commentUseCase.create(comment: comment)
+            }
+            .bind(with: self) { owner, isCommentUploaded in
+                if isCommentUploaded { reloadView.accept(Void()) }
+            }
+            .disposed(by: disposeBag)
+        
+        return Output(
+            isCommentValid: commentValidation.asDriver(),
+            reloadCommentTableView: reloadView.asSignal()
+        )
     }
 }
