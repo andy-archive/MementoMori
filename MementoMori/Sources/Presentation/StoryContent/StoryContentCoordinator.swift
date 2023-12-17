@@ -29,6 +29,7 @@ final class StoryContentCoordinator: Coordinator {
 //MARK: - ViewControllers
 extension StoryContentCoordinator {
     
+    /// 게시글 목록 화면
     func showStoryListViewController() {
         let useCase = StoryListUseCase(
             storyPostRepository: StoryPostRepository(),
@@ -42,8 +43,17 @@ extension StoryContentCoordinator {
         navigationController.pushViewController(viewController, animated: false)
     }
     
+    /// 댓글 화면 (in SheetPresentation)
     func showCommentDetailViewController() {
-        let viewModel = CommentDetailViewModel(coordinator: self)
+        let repository = CommentRepository()
+        let useCase = CommentUseCase(
+            commentRepository: repository,
+            keychainRepository: makeKeychainRepository()
+        )
+        let viewModel = CommentDetailViewModel(
+            coordinator: self,
+            commentUseCase: useCase
+        )
         let viewController = CommentDetailViewController(viewModel: viewModel)
         
         viewController.changeToSheetPresentation()
@@ -54,6 +64,7 @@ extension StoryContentCoordinator {
 //MARK: - Repositories
 private extension StoryContentCoordinator {
     
+    /// Keychain
     func makeKeychainRepository() -> KeychainRepositoryProtocol {
         return KeychainRepository.shared
     }

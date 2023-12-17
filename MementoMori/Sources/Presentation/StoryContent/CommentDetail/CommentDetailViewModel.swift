@@ -20,15 +20,15 @@ final class CommentDetailViewModel: ViewModel {
     //MARK: - Properties
     let disposeBag = DisposeBag()
     weak var coordinator: StoryContentCoordinator?
-//    private let myuseCase: MyUseCaseProtocol
+    private let commentUseCase: CommentUseCaseProtocol
     
     //MARK: - Initializer
     init(
-        coordinator: StoryContentCoordinator
-//        myuseCase: MyUseCaseProtocol
+        coordinator: StoryContentCoordinator,
+        commentUseCase: CommentUseCaseProtocol
     ) {
         self.coordinator = coordinator
-//        self.myuseCase = myuseCase
+        self.commentUseCase = commentUseCase
     }
     
     //MARK: - Transform from Input to Output

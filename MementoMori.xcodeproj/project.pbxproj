@@ -95,6 +95,8 @@
 		38909D2F2B2DE67C00474FE6 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38909D2E2B2DE67C00474FE6 /* Comment.swift */; };
 		38909D312B2DE7CA00474FE6 /* CommentDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38909D302B2DE7CA00474FE6 /* CommentDTO.swift */; };
 		38909D332B2E82ED00474FE6 /* CommentRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38909D322B2E82ED00474FE6 /* CommentRepositoryProtocol.swift */; };
+		38909D352B2E844300474FE6 /* CommentUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38909D342B2E844300474FE6 /* CommentUseCase.swift */; };
+		38909D372B2E8E7000474FE6 /* CommentUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38909D362B2E8E7000474FE6 /* CommentUseCaseProtocol.swift */; };
 		38B5FB152B24D2AE00F91DDA /* RefreshInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5FB142B24D2AE00F91DDA /* RefreshInterceptor.swift */; };
 		38B9203F2B08AAED006CBD1C /* Constant+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B9203E2B08AAED006CBD1C /* Constant+Network.swift */; };
 		38C891852B29F7F400F15F1B /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C891842B29F7F400F15F1B /* TabController.swift */; };
@@ -206,6 +208,8 @@
 		38909D2E2B2DE67C00474FE6 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		38909D302B2DE7CA00474FE6 /* CommentDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDTO.swift; sourceTree = "<group>"; };
 		38909D322B2E82ED00474FE6 /* CommentRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRepositoryProtocol.swift; sourceTree = "<group>"; };
+		38909D342B2E844300474FE6 /* CommentUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentUseCase.swift; sourceTree = "<group>"; };
+		38909D362B2E8E7000474FE6 /* CommentUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentUseCaseProtocol.swift; sourceTree = "<group>"; };
 		38B5FB142B24D2AE00F91DDA /* RefreshInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshInterceptor.swift; sourceTree = "<group>"; };
 		38B9203E2B08AAED006CBD1C /* Constant+Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constant+Network.swift"; sourceTree = "<group>"; };
 		38C891842B29F7F400F15F1B /* TabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
@@ -252,6 +256,7 @@
 		380646F62B2084DD001B375D /* StoryContent */ = {
 			isa = PBXGroup;
 			children = (
+				38909D342B2E844300474FE6 /* CommentUseCase.swift */,
 				380646F82B2084F1001B375D /* StoryListUseCase.swift */,
 				38061A2A2B26FCA900D36726 /* StoryUploadUseCase.swift */,
 			);
@@ -515,6 +520,7 @@
 		3863095F2B147029001973AA /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				38909D362B2E8E7000474FE6 /* CommentUseCaseProtocol.swift */,
 				380646FA2B20872E001B375D /* StoryListUseCaseProtocol.swift */,
 				38061A282B26FC7600D36726 /* StoryUploadUseCaseProtocol.swift */,
 				386309292B1340ED001973AA /* UserJoinUseCaseProtocol.swift */,
@@ -813,6 +819,7 @@
 				38909D2D2B2DE5A700474FE6 /* CommentRepository.swift in Sources */,
 				380646F52B207619001B375D /* MockData.swift in Sources */,
 				38061A2B2B26FCA900D36726 /* StoryUploadUseCase.swift in Sources */,
+				38909D372B2E8E7000474FE6 /* CommentUseCaseProtocol.swift in Sources */,
 				38CA8C252B03893300A9C4B7 /* SigninSubtitleLabel.swift in Sources */,
 				3847EC372B02307100E086EB /* UINavigationController+.swift in Sources */,
 				3847EC322B022FF800E086EB /* Constant.swift in Sources */,
@@ -832,6 +839,7 @@
 				38EE8A822B04D0AC00E629CC /* UserJoinViewModel.swift in Sources */,
 				380647032B21CD7F001B375D /* StoryUploadCoordinator.swift in Sources */,
 				3863092A2B1340ED001973AA /* UserJoinUseCaseProtocol.swift in Sources */,
+				38909D352B2E844300474FE6 /* CommentUseCase.swift in Sources */,
 				38318DE92B20473D000EED65 /* StoryPostRepository.swift in Sources */,
 				38318DCC2B1E35DB000EED65 /* StoryListViewModel.swift in Sources */,
 				38D4066B2B0B29E000B6F783 /* SecureTextButton.swift in Sources */,
