@@ -13,7 +13,6 @@ final class CommentRepository: CommentRepositoryProtocol {
     
     //MARK: - Create Comment
     func create(comment: Comment, postID: String) -> Single<APIResult<Void>> {
-        
         let requestDTO = CommentCreateRequestDTO(
             content: comment.content ?? "",
             postID: postID
