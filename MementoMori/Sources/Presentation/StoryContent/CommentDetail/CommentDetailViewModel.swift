@@ -45,6 +45,7 @@ final class CommentDetailViewModel: ViewModel {
         let keychain = KeychainRepository.shared
         let storyPostID = keychain.find(key: "", type: .storyID) ?? ""
         
+        /// 댓글 입력 텍스트 유효성 검사
         input.commentTextToUpload
             .withUnretained(self)
             .map { owner, text in
@@ -55,6 +56,7 @@ final class CommentDetailViewModel: ViewModel {
             }
             .disposed(by: disposeBag)
         
+        /// 댓글 입력 버튼 클릭 시 네트워크 요청 (POST)
         input.uploadButtonTap
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(input.commentTextToUpload) { _, commentText in
