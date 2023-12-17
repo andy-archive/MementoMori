@@ -9,7 +9,7 @@ import UIKit
 
 final class UserSigninViewController: BaseViewController {
     
-    //MARK: - (1-1) UI - Property 1
+    //MARK: - UI
     private lazy var titleLabel = SigninTitleLabel()
     private lazy var subtitleLabel = SigninSubtitleLabel()
     private lazy var emailTextField = SigninTextField()
@@ -18,38 +18,38 @@ final class UserSigninViewController: BaseViewController {
     private lazy var signinValidationLabel = SigninSubtitleLabel()
     private lazy var joinButton = JoinButton()
     
-    //MARK: - (1-2) ViewModel - Property 2
+    //MARK: - ViewModel
     private let viewModel: UserSigninViewModel
     
-    //MARK: - (2) Initializer
-    init(viewModel: UserSigninViewModel) {
+    //MARK: - Initializer
+    init(
+        viewModel: UserSigninViewModel
+    ) {
         self.viewModel = viewModel
         
         super.init()
     }
     
-    //MARK: - (3-1) Protocol Methods
+    //MARK: - Bind ViewController to ViewModel
     override func bind() {
         let input = UserSigninViewModel.Input(
             emailText: emailTextField.rx.text.orEmpty,
             passwordText: passwordTextField.rx.text.orEmpty,
-            signinButtonClicked: signinButton.rx.tap,
-            joinButtonClicked: joinButton.rx.tap
+            signinButtonTap: signinButton.rx.tap,
+            joinButtonTap: joinButton.rx.tap
         )
-        
         let output = viewModel.transform(input: input)
         
-        output
-            .isSigninButtonEnabled
-            .bind(with: self) { owner, value in
+        output.isSigninButtonEnabled
+            .asDriver()
+            .drive(with: self) { owner, value in
                 let color = value ? Constant.Color.Button.valid : Constant.Color.Button.notValid
                 owner.signinButton.backgroundColor = color
                 owner.signinButton.isEnabled = value
             }
             .disposed(by: disposeBag)
         
-        output
-            .isSigninProcessValid
+        output.isSigninProcessValid
             .asSignal()
             .emit(with: self) { owner, isProcessValid in
                 let color = isProcessValid ? Constant.Color.Label.valid : Constant.Color.Label.notValid
@@ -59,8 +59,7 @@ final class UserSigninViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        output
-            .signinValidationText
+        output.signinValidationText
             .asSignal()
             .emit(with: self) { owner, validationText in
                 owner.signinValidationLabel.text = validationText
@@ -68,29 +67,28 @@ final class UserSigninViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
+    //MARK: - UI Configuration
     override func configureUI() {
         super.configureUI()
         
+        /// Delegate
         emailTextField.delegate = self
         passwordTextField.delegate = self
         
+        /// Assignment
         titleLabel.text = "로그인"
-        
         subtitleLabel.text = "이메일과 비밀번호를 입력하세요"
-        
         emailTextField.placeholder = "📧 이메일"
         emailTextField.keyboardType = .emailAddress
         emailTextField.returnKeyType = .continue
         emailTextField.becomeFirstResponder()
-        
         passwordTextField.placeholder = "🔒 비밀번호 (8자리 이상)"
         passwordTextField.returnKeyType = .go
         passwordTextField.isSecureTextEntry = true
-        
         signinButton.setTitle("다음 ", for: .normal)
-        
         signinValidationLabel.textColor = .systemRed
         
+        /// View Hierarchy
         view.addSubview(titleLabel)
         view.addSubview(subtitleLabel)
         view.addSubview(emailTextField)
@@ -100,6 +98,7 @@ final class UserSigninViewController: BaseViewController {
         view.addSubview(joinButton)
     }
     
+    //MARK: - Layouts
     override func configureLayout() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -155,7 +154,7 @@ final class UserSigninViewController: BaseViewController {
         ])
     }
     
-    //MARK: - (3-2) Class Methods
+    //MARK: - Dismiss Keyboard when Tapped
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }

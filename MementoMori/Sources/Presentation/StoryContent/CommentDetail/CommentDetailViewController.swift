@@ -95,7 +95,7 @@ final class CommentDetailViewController: BaseViewController {
         super.init()
     }
     
-    //MARK: - Bind with ViewModel
+    //MARK: - Bind ViewController to ViewModel
     override func bind() {
         let input = CommentDetailViewModel.Input(
             commentTextToUpload: commentInputTextView.rx.text.orEmpty,
@@ -117,7 +117,7 @@ final class CommentDetailViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
-    //MARK: - View Configuration
+    //MARK: - UI Configuration
     override func configureUI() {
         super.configureUI()
         
@@ -226,7 +226,7 @@ final class CommentDetailViewController: BaseViewController {
         ])
     }
     
-    //MARK: - Dismiss Keyboard in Touch
+    //MARK: - Dismiss Keyboard when Tapped
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }

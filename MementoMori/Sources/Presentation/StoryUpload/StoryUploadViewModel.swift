@@ -12,21 +12,21 @@ import RxSwift
 
 final class StoryUploadViewModel: ViewModel {
     
-    //MARK: - (0) Type
+    //MARK: - Type
     enum UploadProcessType {
         case imageUpload
         case storyUpload
     }
     
-    //MARK: - (1) Input
+    //MARK: - Input
     struct Input {
-        let imageSelectionViewClicked: Observable<UIImage>
-        let nextButtonClicked: ControlEvent<Void>
-        let cancelButtonClicked: ControlEvent<Void>
-        let contentText: ControlProperty<String>
+        let imageSelectionViewTap: Observable<UIImage>
+        let nextButtonTap: ControlEvent<Void>
+        let cancelButtonTap: ControlEvent<Void>
+        let contentTextToUpload: ControlProperty<String>
     }
     
-    //MARK: - (2) Output
+    //MARK: - Output
     struct Output {
         let resultImage: PublishRelay<UIImage>
         let presentStoryUploadView: PublishRelay<Void>
@@ -34,14 +34,14 @@ final class StoryUploadViewModel: ViewModel {
         let imageUploadMessage: PublishRelay<String>
     }
     
-    //MARK: - (3) Properties
-    let disposeBag = DisposeBag()
+    //MARK: - Properties
     weak var coordinator: StoryUploadCoordinator?
     private let storyUploadUseCase: StoryUploadUseCaseProtocol
+    private let disposeBag = DisposeBag()
     private lazy var uploadProcess: UploadProcessType = .imageUpload
     private lazy var imageList: [Data] = []
     
-    //MARK: - (4) Initializer
+    //MARK: - Initializer
     init(
         coordinator: StoryUploadCoordinator,
         storyUploadUseCase: StoryUploadUseCaseProtocol
@@ -50,7 +50,7 @@ final class StoryUploadViewModel: ViewModel {
         self.storyUploadUseCase = storyUploadUseCase
     }
     
-    //MARK: - Protocol Method
+    //MARK: - Transform Input into Output
     func transform(input: Input) -> Output {
         let presentStoryUploadView = PublishRelay<Void>()
         let presentImageUploadView = PublishRelay<Void>()
@@ -61,7 +61,7 @@ final class StoryUploadViewModel: ViewModel {
         let storyPostData = Observable
             .combineLatest(
                 imageToUpload.asObservable(),
-                input.contentText
+                input.contentTextToUpload
             ) { [weak self] image, text in
                 
                 StoryPost(
@@ -71,16 +71,14 @@ final class StoryUploadViewModel: ViewModel {
             }
             .share()
         
-        input
-            .contentText
+        input.contentTextToUpload
             .bind(with: self) { owner, text in
                 contentTextToUpload.accept(text)
             }
             .disposed(by: disposeBag)
         
-        input
-            .imageSelectionViewClicked
-            .subscribe(with: self) { owner, image in
+        input.imageSelectionViewTap
+            .bind(with: self) { owner, image in
                 imageToUpload.accept(image)
                 guard let imageData = owner.storyUploadUseCase.convertImageToData(image: image)
                 else { return }
@@ -88,8 +86,7 @@ final class StoryUploadViewModel: ViewModel {
             }
             .disposed(by: disposeBag)
         
-        input
-            .nextButtonClicked
+        input.nextButtonTap
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .withUnretained(self)
             .filter { owner, _ in
@@ -102,8 +99,7 @@ final class StoryUploadViewModel: ViewModel {
             }
             .disposed(by: disposeBag)
         
-        input
-            .nextButtonClicked
+        input.nextButtonTap
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .withUnretained(self)
             .filter { owner, _ in
@@ -124,9 +120,8 @@ final class StoryUploadViewModel: ViewModel {
             }
             .disposed(by: disposeBag)
         
-        input
-            .cancelButtonClicked
-            .subscribe(with: self) { owner, _ in
+        input.cancelButtonTap
+            .bind(with: self) { owner, _ in
                 switch owner.uploadProcess {
                 case .imageUpload:
                     owner.coordinator?.finish()
@@ -137,9 +132,8 @@ final class StoryUploadViewModel: ViewModel {
             }
             .disposed(by: disposeBag)
         
-        input
-            .contentText
-            .subscribe(with: self) { owner, text in
+        input.contentTextToUpload
+            .bind(with: self) { owner, text in
                 contentToUpload.accept(text)
             }
             .disposed(by: disposeBag)

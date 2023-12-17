@@ -16,6 +16,11 @@ enum Constant {
             static let uploadPost = "문구를 입력하세요..."
             static let comment = "댓글 달기..."
         }
+        
+        enum Message {
+            static let validEmail = "사용 가능한 이메일입니다."
+            static let notValidEmail = "사용할 수 없는 이메일입니다."
+        }
     }
     
     enum FontSize {

@@ -17,7 +17,7 @@ struct StoryDTO: Decodable {
 //    let hashTags: [String]
     let createdAt: String
     let location: String?
-    let creator: Creator
+    let creator: CreatorDTO
     let productID: String?
     
     enum CodingKeys: String, CodingKey {

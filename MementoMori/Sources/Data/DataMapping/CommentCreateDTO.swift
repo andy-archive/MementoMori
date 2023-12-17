@@ -17,7 +17,7 @@ struct CommentCreateRequestDTO: Encodable {
 struct CommentCreateResponseDTO: Decodable {
     let id: String
     let content: String
-    let creator: Creator
+    let creator: CreatorDTO
     let createdAt: String
     
     enum CodingKeys: String, CodingKey {

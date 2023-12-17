@@ -37,7 +37,7 @@
 		38318DDD2B1F55BB000EED65 /* StoryCreateDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DDC2B1F55BB000EED65 /* StoryCreateDTO.swift */; };
 		38318DDF2B203645000EED65 /* StoryReadDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DDE2B203645000EED65 /* StoryReadDTO.swift */; };
 		38318DE12B2037EB000EED65 /* StoryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DE02B2037EB000EED65 /* StoryDTO.swift */; };
-		38318DE32B20380A000EED65 /* Creator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DE22B20380A000EED65 /* Creator.swift */; };
+		38318DE32B20380A000EED65 /* CreatorDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DE22B20380A000EED65 /* CreatorDTO.swift */; };
 		38318DE52B20411A000EED65 /* StoryCreateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DE42B20411A000EED65 /* StoryCreateError.swift */; };
 		38318DE72B204286000EED65 /* StoryReadError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DE62B204286000EED65 /* StoryReadError.swift */; };
 		38318DE92B20473D000EED65 /* StoryPostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38318DE82B20473D000EED65 /* StoryPostRepository.swift */; };
@@ -98,7 +98,6 @@
 		38909D352B2E844300474FE6 /* CommentUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38909D342B2E844300474FE6 /* CommentUseCase.swift */; };
 		38909D372B2E8E7000474FE6 /* CommentUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38909D362B2E8E7000474FE6 /* CommentUseCaseProtocol.swift */; };
 		38B5FB152B24D2AE00F91DDA /* RefreshInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5FB142B24D2AE00F91DDA /* RefreshInterceptor.swift */; };
-		38B9203F2B08AAED006CBD1C /* Constant+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B9203E2B08AAED006CBD1C /* Constant+Network.swift */; };
 		38C891852B29F7F400F15F1B /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C891842B29F7F400F15F1B /* TabController.swift */; };
 		38C891882B2AB15D00F15F1B /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C891872B2AB15D00F15F1B /* SplashViewController.swift */; };
 		38C8918A2B2AB16300F15F1B /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C891892B2AB16300F15F1B /* SplashViewModel.swift */; };
@@ -149,7 +148,7 @@
 		38318DDC2B1F55BB000EED65 /* StoryCreateDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCreateDTO.swift; sourceTree = "<group>"; };
 		38318DDE2B203645000EED65 /* StoryReadDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryReadDTO.swift; sourceTree = "<group>"; };
 		38318DE02B2037EB000EED65 /* StoryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryDTO.swift; sourceTree = "<group>"; };
-		38318DE22B20380A000EED65 /* Creator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creator.swift; sourceTree = "<group>"; };
+		38318DE22B20380A000EED65 /* CreatorDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorDTO.swift; sourceTree = "<group>"; };
 		38318DE42B20411A000EED65 /* StoryCreateError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCreateError.swift; sourceTree = "<group>"; };
 		38318DE62B204286000EED65 /* StoryReadError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryReadError.swift; sourceTree = "<group>"; };
 		38318DE82B20473D000EED65 /* StoryPostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryPostRepository.swift; sourceTree = "<group>"; };
@@ -211,7 +210,6 @@
 		38909D342B2E844300474FE6 /* CommentUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentUseCase.swift; sourceTree = "<group>"; };
 		38909D362B2E8E7000474FE6 /* CommentUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentUseCaseProtocol.swift; sourceTree = "<group>"; };
 		38B5FB142B24D2AE00F91DDA /* RefreshInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshInterceptor.swift; sourceTree = "<group>"; };
-		38B9203E2B08AAED006CBD1C /* Constant+Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constant+Network.swift"; sourceTree = "<group>"; };
 		38C891842B29F7F400F15F1B /* TabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
 		38C891872B2AB15D00F15F1B /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		38C891892B2AB16300F15F1B /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
@@ -390,7 +388,6 @@
 			isa = PBXGroup;
 			children = (
 				3847EC312B022FF800E086EB /* Constant.swift */,
-				38B9203E2B08AAED006CBD1C /* Constant+Network.swift */,
 				3847EC342B02303200E086EB /* Constant+UI.swift */,
 			);
 			path = Constants;
@@ -494,7 +491,7 @@
 			children = (
 				38909D282B2DE19400474FE6 /* CommentCreateDTO.swift */,
 				38909D302B2DE7CA00474FE6 /* CommentDTO.swift */,
-				38318DE22B20380A000EED65 /* Creator.swift */,
+				38318DE22B20380A000EED65 /* CreatorDTO.swift */,
 				386309372B135C86001973AA /* EmailValidationDTO.swift */,
 				38318DA72B1A11EB000EED65 /* RefreshTokenDTO.swift */,
 				38318DDC2B1F55BB000EED65 /* StoryCreateDTO.swift */,
@@ -831,7 +828,7 @@
 				387463DE2B163C54009FAB2C /* StoryContentCoordinator.swift in Sources */,
 				38C8918A2B2AB16300F15F1B /* SplashViewModel.swift in Sources */,
 				38318DA82B1A11EB000EED65 /* RefreshTokenDTO.swift in Sources */,
-				38318DE32B20380A000EED65 /* Creator.swift in Sources */,
+				38318DE32B20380A000EED65 /* CreatorDTO.swift in Sources */,
 				380647002B21CD1D001B375D /* StoryUploadViewController.swift in Sources */,
 				386FCD8B2B21DA8200822DFD /* UIImagePicker+Reactive.swift in Sources */,
 				38C8918C2B2AE5FD00F15F1B /* Authorization.swift in Sources */,
@@ -900,7 +897,6 @@
 				387464002B170B18009FAB2C /* KeychainRepositoryProtocol.swift in Sources */,
 				38909D2B2B2DE53800474FE6 /* CommentCreateError.swift in Sources */,
 				387464092B171D70009FAB2C /* ReusableError.swift in Sources */,
-				38B9203F2B08AAED006CBD1C /* Constant+Network.swift in Sources */,
 				38318DBD2B1C97CE000EED65 /* StoryPost.swift in Sources */,
 				387463CF2B160815009FAB2C /* TabBar.swift in Sources */,
 				38318DD42B1ED72B000EED65 /* StoryImageCollectionViewCell.swift in Sources */,

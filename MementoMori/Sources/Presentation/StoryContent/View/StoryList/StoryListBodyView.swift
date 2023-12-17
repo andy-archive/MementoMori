@@ -41,10 +41,10 @@ final class StoryListBodyView: BaseView {
     override func configureLayout() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: self.topAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
 }
@@ -56,7 +56,7 @@ extension StoryListBodyView {
         configureCollectionView()
         dataSource = configureDataSource()
         
-        let snapshot = configureSnapshot(self.postList)
+        let snapshot = configureSnapshot(postList)
         dataSource?.apply(snapshot)
     }
 }

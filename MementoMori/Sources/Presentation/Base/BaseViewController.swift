@@ -13,6 +13,7 @@ class BaseViewController: UIViewController {
     
     var disposeBag = DisposeBag()
     
+    //MARK: - Initializer
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -30,9 +31,14 @@ class BaseViewController: UIViewController {
         bind()
     }
     
+    //MARK: - Bind ViewController to ViewModel
     func bind() { }
+    
+    //MARK: - UI Configuration
     func configureUI() {
         view.backgroundColor = Constant.Color.background
     }
+    
+    //MARK: - Layouts
     func configureLayout() { }
 }

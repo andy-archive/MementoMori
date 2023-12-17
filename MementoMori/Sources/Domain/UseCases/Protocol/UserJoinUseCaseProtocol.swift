@@ -5,17 +5,11 @@
 //  Created by Taekwon Lee on 11/26/23.
 //
 
-import RxRelay
+import Foundation
+
 import RxSwift
 
 protocol UserJoinUseCaseProtocol {
-    var isEmailTextValid: PublishRelay<Bool> { get }
-    var isPasswordTextValid: PublishRelay<Bool> { get }
-    var isNicknameTextValid: PublishRelay<Bool> { get }
-    var emailValidationMessage: BehaviorRelay<String> { get }
-    var isPasswordSecure: BehaviorRelay<Bool> { get }
-    var isEmailValidationButtonEnabled: BehaviorRelay<Bool> { get }
-    var isNextButtonEnabled: BehaviorRelay<Bool> { get }
-    var joinResponse: PublishRelay<APIResult<String>> { get }
+    func validate(email: String) -> Observable<Bool>
     func join(user: User) -> Single<APIResult<User>>
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Creator: Codable {
+struct CreatorDTO: Codable {
     let id: String
     let nickname: String
     

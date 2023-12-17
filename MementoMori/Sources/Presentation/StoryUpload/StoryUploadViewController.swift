@@ -74,20 +74,19 @@ final class StoryUploadViewController: BaseViewController {
         super.init()
     }
     
-    //MARK: - Bind with ViewModel
+    //MARK: - Bind ViewController to ViewModel
     override func bind() {
-        let image = imageListView.rx.tapGesture()
-            .when(.recognized)
+        let image = imageListView.rx.tapGesture().when(.recognized)
             .withUnretained(self)
             .flatMap { owner, _ in
                 owner.imagePicker.pickImage()
             }
             .share()
         let input = StoryUploadViewModel.Input(
-            imageSelectionViewClicked: image,
-            nextButtonClicked: headerView.nextButton.rx.tap,
-            cancelButtonClicked: headerView.cancelButton.rx.tap,
-            contentText: storyTextView.rx.text.orEmpty
+            imageSelectionViewTap: image,
+            nextButtonTap: headerView.nextButton.rx.tap,
+            cancelButtonTap: headerView.cancelButton.rx.tap,
+            contentTextToUpload: storyTextView.rx.text.orEmpty
         )
         let output = viewModel.transform(input: input)
         
@@ -130,10 +129,9 @@ final class StoryUploadViewController: BaseViewController {
         imageListView.addSubview(selectionGuideLabel)
     }
     
+    //MARK: - Layouts
     override func configureLayout() {
-        
-        //MARK: - Layouts
-        /// (1) uploadImageView
+        /// 게시글 이미지 업로드 화면
         headerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -164,7 +162,7 @@ final class StoryUploadViewController: BaseViewController {
             selectionGuideLabel.centerYAnchor.constraint(equalTo: imageListView.centerYAnchor)
         ])
         
-        /// (2) storyUploadView
+        /// 게시글 텍스트 입력 화면
         storyThumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             storyThumbnailImageView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: Constant.Layout.Common.Inset.vertical),
@@ -197,9 +195,8 @@ final class StoryUploadViewController: BaseViewController {
 }
 
 //MARK: - Private Functions
-/// View Transition
 private extension StoryUploadViewController {
-    
+    /// (화면 전환) 게시글 이미지 업로드
     func presentImageUploadView() {
         headerView.cancelButton.setImage(Constant.Image.System.xMark, for: .normal)
         headerView.nextButton.setTitle("다음", for: .normal)
@@ -209,7 +206,7 @@ private extension StoryUploadViewController {
         storyTextView.isHidden.toggle()
         separatorView.isHidden.toggle()
     }
-    
+    /// (화면 전환) 게시글 텍스트 입력
     func presentStoryUploadView() {
         headerView.cancelButton.setImage(Constant.Image.System.chevronLeft, for: .normal)
         headerView.nextButton.setTitle("공유", for: .normal)

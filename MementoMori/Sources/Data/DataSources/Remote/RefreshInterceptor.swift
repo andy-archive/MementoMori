@@ -66,7 +66,7 @@ final class RefreshInterceptor: RequestInterceptor {
                 
             //MARK: - Update Access Token
             case .suceessData(let data):
-                if self.keychain.save(key: userID, value: data.accessToken, type: .accessToken) {
+                if keychain.save(key: userID, value: data.accessToken, type: .accessToken) {
                     completion(.retry)
                 }
             

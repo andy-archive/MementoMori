@@ -31,8 +31,9 @@ extension StoryContentCoordinator {
     
     /// 게시글 목록 화면
     func showStoryListViewController() {
+        let repository = StoryPostRepository()
         let useCase = StoryListUseCase(
-            storyPostRepository: StoryPostRepository(),
+            storyPostRepository: repository,
             keychainRepository: makeKeychainRepository()
         )
         let viewModel = StoryListViewModel(

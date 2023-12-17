@@ -7,6 +7,7 @@
 
 import UIKit
 
+import RxCocoa
 import RxSwift
 
 final class StoryListViewController: BaseViewController {
@@ -27,7 +28,7 @@ final class StoryListViewController: BaseViewController {
         super.init()
     }
     
-    //MARK: - Bind with ViewModel
+    //MARK: - Bind ViewController to ViewModel
     override func bind() {
         let input = StoryListViewModel.Input(
             viewWillAppear: rx.viewWillAppear.map { _ in }.throttle(.seconds(1), scheduler: MainScheduler.asyncInstance),
@@ -36,6 +37,7 @@ final class StoryListViewController: BaseViewController {
         let output = viewModel.transform(input: input)
         
         output.storyList
+            .asSignal(onErrorJustReturn: [])
             .emit(with: self) { owner, postList in
                 owner.bodyView.postList = postList
                 owner.bodyView.configure()
@@ -43,7 +45,7 @@ final class StoryListViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
-    //MARK: - View Configuration
+    //MARK: - UI Configuration
     override func configureUI() {
         super.configureUI()
         

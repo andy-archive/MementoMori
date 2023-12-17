@@ -12,13 +12,15 @@ import RxSwift
 
 final class UserSigninViewModel: ViewModel {
     
+    //MARK: - Input
     struct Input {
         let emailText: ControlProperty<String>
         let passwordText: ControlProperty<String>
-        let signinButtonClicked: ControlEvent<Void>
-        let joinButtonClicked: ControlEvent<Void>
+        let signinButtonTap: ControlEvent<Void>
+        let joinButtonTap: ControlEvent<Void>
     }
     
+    //MARK: - Output
     struct Output {
         let isEmailTextValid: PublishRelay<Bool>
         let isPasswordTextValid: PublishRelay<Bool>
@@ -27,10 +29,12 @@ final class UserSigninViewModel: ViewModel {
         let signinValidationText: PublishRelay<String>
     }
     
-    let disposeBag = DisposeBag()
+    //MARK: - Properties
     weak var coordinator: AppCoordinator?
     private let userSigninUseCase: UserSigninUseCaseProtocol
+    private let disposeBag = DisposeBag()
     
+    //MARK: - Initializer
     init(
         coordinator: AppCoordinator,
         userSigninUseCase: UserSigninUseCaseProtocol
@@ -39,44 +43,47 @@ final class UserSigninViewModel: ViewModel {
         self.userSigninUseCase = userSigninUseCase
     }
     
+    //MARK: - Transform Input into Output
     func transform(input: Input) -> Output {
         let isEmailTextValid = PublishRelay<Bool>()
         let isPasswordTextValid = PublishRelay<Bool>()
         let isSigninButtonEnabled = BehaviorRelay(value: false)
         let isSigninCompleted = PublishRelay<Bool>()
         let errorMessage = PublishRelay<String>()
-        let userInfo = Observable
-            .combineLatest(input.emailText, input.passwordText) { email, password in
-                User(email: email, password: password)
-            }
         
-        Observable
-            .combineLatest(input.emailText, input.passwordText) { email, password in
-                email.validateEmail() && password.validatePassword()
-            }
-            .subscribe(with: self) { _, value in
-                isSigninButtonEnabled.accept(value)
-            }
-            .disposed(by: self.disposeBag)
+        let userInfo = Observable.combineLatest(
+            input.emailText,
+            input.passwordText
+        ) { email, password in
+            User(email: email, password: password)
+        }
         
-        input
-            .emailText
-            .subscribe(with: self) { owner, value in
+        Observable.combineLatest(
+            input.emailText,
+            input.passwordText
+        ) { email, password in
+            email.validateEmail() && password.validatePassword()
+        }
+        .subscribe(with: self) { _, value in
+            isSigninButtonEnabled.accept(value)
+        }
+        .disposed(by: self.disposeBag)
+        
+        input.emailText
+            .bind(with: self) { owner, value in
                 if !value.isEmpty {
                     isEmailTextValid.accept(true)
                 }
             }
             .disposed(by: disposeBag)
         
-        input
-            .passwordText
-            .subscribe(with: self) { owner, value in
+        input.passwordText
+            .bind(with: self) { owner, value in
                 if !value.isEmpty { isPasswordTextValid.accept(true) }
             }
             .disposed(by: disposeBag)
         
-        input
-            .signinButtonClicked
+        input.signinButtonTap
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(userInfo)
             .withUnretained(self)
@@ -87,6 +94,7 @@ final class UserSigninViewModel: ViewModel {
                 let authentication = owner.userSigninUseCase.authenticate(result: result)
                 if authentication.isAuthorized {
                     owner.coordinator?.dismissViewController()
+                    owner.coordinator?.showTabBarController()
                 } else {
                     isSigninCompleted.accept(authentication.isAuthorized)
                     errorMessage.accept(authentication.message)
@@ -94,9 +102,8 @@ final class UserSigninViewModel: ViewModel {
             }
             .disposed(by: disposeBag)
         
-        input
-            .joinButtonClicked
-            .subscribe(with: self) { owner, _ in
+        input.joinButtonTap
+            .bind(with: self) { owner, _ in
                 owner.coordinator?.showUserJoinViewController()
             }
             .disposed(by: disposeBag)

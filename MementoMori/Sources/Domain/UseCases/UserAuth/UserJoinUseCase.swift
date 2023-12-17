@@ -5,31 +5,53 @@
 //  Created by Taekwon Lee on 11/27/23.
 //
 
-import RxRelay
+import Foundation
+
 import RxSwift
 
 final class UserJoinUseCase: UserJoinUseCaseProtocol {
     
-    //MARK: - (1) Properties
+    //MARK: - Properties
     private let userAuthRepository: UserAuthRepositoryProtocol
-    var isEmailTextValid = PublishRelay<Bool>()
-    var isPasswordTextValid = PublishRelay<Bool>()
-    var isNicknameTextValid = PublishRelay<Bool>()
-    var emailValidationMessage = BehaviorRelay<String>(value: "")
-    var isPasswordSecure = BehaviorRelay<Bool>(value: true)
-    var isEmailValidationButtonEnabled = BehaviorRelay<Bool>(value: false)
-    var isNextButtonEnabled = BehaviorRelay<Bool>(value: false)
-    var joinResponse = PublishRelay<APIResult<String>>()
     
-    //MARK: - (2) Initializer
+    //MARK: - Initializer
     init(
         userAuthRepository: UserAuthRepositoryProtocol
     ) {
         self.userAuthRepository = userAuthRepository
     }
     
-    //MARK: - (3) Protocol Method
+    //MARK: - Private Methods
+    /// 이메일 검증 요청
+    private func requestPOST(email: String) -> Single<APIResult<Void>> {
+        let response = userAuthRepository.validate(email: email)
+        return response
+    }
+    
+    //MARK: - Protocol Methods
+    /// 이메일 검증 요청
+    func validate(email: String) -> Observable<Bool> {
+        let observable = Observable.just(Void())
+            .withUnretained(self)
+            .flatMap { owner, _ in
+                owner.requestPOST(email: email)
+            }
+            .map { result in
+                switch result {
+                case .suceessData:
+                    return true
+                case .statusCode(let statusCode):
+                    if statusCode == 200 { return true }
+                    return false
+                }
+            }
+            .asObservable()
+        
+        return observable
+    }
+    
+    /// 가입 요청
     func join(user: User) -> Single<APIResult<User>> {
-        return self.userAuthRepository.join(user: user)
+        return userAuthRepository.join(user: user)
     }
 }

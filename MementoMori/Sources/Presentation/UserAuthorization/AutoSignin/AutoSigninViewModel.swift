@@ -12,35 +12,38 @@ import RxSwift
 
 final class AutoSigninViewModel: ViewModel {
     
+    //MARK: - Input
     struct Input {
-        let autoSigninButtonClicked: ControlEvent<Void>
-        let otherSigninButtonClicked: ControlEvent<Void>
-        let joinSigninButtonClicked: ControlEvent<Void>
+        let autoSigninButtonTap: ControlEvent<Void>
+        let otherSigninButtonTap: ControlEvent<Void>
+        let joinSigninButtonTap: ControlEvent<Void>
     }
     
+    //MARK: - Output
     struct Output { }
     
-    let disposeBag = DisposeBag()
+    //MARK: - Properties
     weak var coordinator: AppCoordinator?
+    private let disposeBag = DisposeBag()
     
+    //MARK: - Initializer
     init(
         coordinator: AppCoordinator
     ) {
         self.coordinator = coordinator
     }
     
+    //MARK: - Transform Input into Output
     func transform(input: Input) -> Output {
-        input
-            .otherSigninButtonClicked
-            .asDriver(onErrorJustReturn: Void())
+        input.otherSigninButtonTap
+            .asDriver()
             .drive(with: self) { owner, _ in
                 owner.coordinator?.showUserSigninViewController()
             }
             .disposed(by: disposeBag)
         
-        input
-            .joinSigninButtonClicked
-            .asDriver(onErrorJustReturn: Void())
+        input.joinSigninButtonTap
+            .asDriver()
             .drive(with: self) { owner, _ in
                 owner.coordinator?.showUserJoinViewController()
             }

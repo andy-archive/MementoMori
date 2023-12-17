@@ -45,31 +45,31 @@ final class StoryUploadHeaderView: BaseView {
     override func configureLayout() {
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            cancelButton.topAnchor.constraint(equalTo: self.topAnchor),
-            cancelButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
+            cancelButton.topAnchor.constraint(equalTo: topAnchor),
+            cancelButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
             cancelButton.trailingAnchor.constraint(lessThanOrEqualTo: nextButton.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
-            cancelButton.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+            cancelButton.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
         
         newPostLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            newPostLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            newPostLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+            newPostLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            newPostLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
         
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            nextButton.topAnchor.constraint(equalTo: self.topAnchor),
-            nextButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal),
-            nextButton.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+            nextButton.topAnchor.constraint(equalTo: topAnchor),
+            nextButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal),
+            nextButton.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
         
         separatorView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            separatorView.topAnchor.constraint(greaterThanOrEqualTo: self.topAnchor),
-            separatorView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            separatorView.widthAnchor.constraint(equalTo: self.widthAnchor),
-            separatorView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+            separatorView.topAnchor.constraint(greaterThanOrEqualTo: topAnchor),
+            separatorView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            separatorView.widthAnchor.constraint(equalTo: widthAnchor),
+            separatorView.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
     }
 }

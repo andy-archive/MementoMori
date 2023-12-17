@@ -8,7 +8,7 @@
 import Foundation
 
 //MARK: - Entity
-struct User: Hashable {
+struct User {
     let id: String?
     let email: String?
     let password: String?

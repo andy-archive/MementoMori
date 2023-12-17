@@ -57,25 +57,25 @@ final class StoryListHeaderView: BaseView {
     override func configureLayout() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: self.topAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
             titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: buttonStackView.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal),
             titleLabel.bottomAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: -Constant.Layout.Common.Inset.vertical / 2)
         ])
         
         buttonStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            buttonStackView.topAnchor.constraint(equalTo: self.topAnchor),
-            buttonStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal),
+            buttonStackView.topAnchor.constraint(equalTo: topAnchor),
+            buttonStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constant.Layout.Common.Inset.horizontal),
             buttonStackView.bottomAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: -Constant.Layout.Common.Inset.vertical / 2)
         ])
         
         separatorView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             separatorView.topAnchor.constraint(greaterThanOrEqualTo: titleLabel.bottomAnchor),
-            separatorView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            separatorView.widthAnchor.constraint(equalTo: self.widthAnchor),
-            separatorView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+            separatorView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            separatorView.widthAnchor.constraint(equalTo: widthAnchor),
+            separatorView.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
     }
 }

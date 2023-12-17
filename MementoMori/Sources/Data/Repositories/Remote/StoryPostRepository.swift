@@ -12,7 +12,6 @@ import RxSwift
 final class StoryPostRepository: StoryPostRepositoryProtocol {
     
     func create(storyPost: StoryPost, imageDataList: [Data]) -> Single<APIResult<Void>> {
-        
         let requestDTO = StoryCreateRequestDTO(
             content: storyPost.content,
             imageDataList: imageDataList,
@@ -39,7 +38,6 @@ final class StoryPostRepository: StoryPostRepositoryProtocol {
     }
     
     func read(next: String?, limit: String, productID: String) -> Single<APIResult<(storyList: [StoryPost], nextCursor: String)>> {
-        
         let requestDTO = StoryReadRequestDTO(
             next: next,
             limit: limit,
