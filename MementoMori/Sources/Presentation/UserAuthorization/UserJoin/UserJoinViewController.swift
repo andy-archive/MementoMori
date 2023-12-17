@@ -100,8 +100,7 @@ final class UserJoinViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        output
-            .isNextButtonEnabled
+        output.isNextButtonEnabled
             .bind(with: self) { owner, value in
                 let color = value ? Constant.Color.Button.valid : Constant.Color.Button.notValid
                 owner.nextButton.backgroundColor = color

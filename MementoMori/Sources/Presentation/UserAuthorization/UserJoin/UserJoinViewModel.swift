@@ -52,14 +52,14 @@ final class UserJoinViewModel: ViewModel {
     
     //MARK: - Transform Input into Output
     func transform(input: Input) -> Output {
-        var isEmailTextValid = PublishRelay<Bool>()
-        var isPasswordTextValid = PublishRelay<Bool>()
-        var isNicknameTextValid = PublishRelay<Bool>()
-        var emailValidationMessage = BehaviorRelay<String>(value: "")
-        var isPasswordSecure = BehaviorRelay<Bool>(value: false)
-        var isEmailValidationButtonEnabled = BehaviorRelay<Bool>(value: false)
-        var isJoinButtonEnabled = BehaviorRelay<Bool>(value: false)
-        var joinResponse = PublishRelay<APIResult<String>>()
+        let isEmailTextValid = PublishRelay<Bool>()
+        let isPasswordTextValid = PublishRelay<Bool>()
+        let isNicknameTextValid = PublishRelay<Bool>()
+        let emailValidationMessage = BehaviorRelay<String>(value: "")
+        let isPasswordSecure = BehaviorRelay<Bool>(value: false)
+        let isEmailValidationButtonEnabled = BehaviorRelay<Bool>(value: false)
+        let isJoinButtonEnabled = BehaviorRelay<Bool>(value: false)
+        let joinResponse = PublishRelay<APIResult<String>>()
         
         /// 가입 버튼 클릭 가능 여부에 대한 로직
         let checkJoinValidation: () -> Void =  {
@@ -81,7 +81,7 @@ final class UserJoinViewModel: ViewModel {
             .subscribe(with: self) { owner, value in
                 isJoinButtonEnabled.accept(value)
             }
-            .disposed(by: self.disposeBag)
+            .dispose()
         }
         
         let joinInput = Observable.combineLatest(

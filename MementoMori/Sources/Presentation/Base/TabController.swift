@@ -43,7 +43,7 @@ final class MyTransition: NSObject, UIViewControllerAnimatedTransitioning {
     
     //MARK: - Private Methods
     private func getIndex(forViewController vc: UIViewController) -> Int? {
-        guard let vcs = self.viewControllers else { return nil }
+        guard let vcs = viewControllers else { return nil }
         
         for (index, thisVC) in vcs.enumerated() {
             if thisVC == vc { return index }

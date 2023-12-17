@@ -63,26 +63,26 @@ final class StoryHeaderView: BaseView {
     override func configureLayout() {
         userProfileImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            userProfileImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constant.Layout.StoryItem.Header.inset),
-            userProfileImageView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.8),
-            userProfileImageView.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.8),
-            userProfileImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+            userProfileImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constant.Layout.StoryItem.Header.inset),
+            userProfileImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.8),
+            userProfileImageView.widthAnchor.constraint(equalTo: heightAnchor, multiplier: 0.8),
+            userProfileImageView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
         
         labelVerticalStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             labelVerticalStackView.leadingAnchor.constraint(equalTo: userProfileImageView.trailingAnchor, constant: Constant.Layout.Common.Inset.horizontal / 2),
             labelVerticalStackView.trailingAnchor.constraint(equalTo: ellipsisButton.leadingAnchor, constant: Constant.Layout.Common.Inset.horizontal / 2),
-            labelVerticalStackView.heightAnchor.constraint(equalTo: self.heightAnchor),
-            labelVerticalStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+            labelVerticalStackView.heightAnchor.constraint(equalTo: heightAnchor),
+            labelVerticalStackView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
 
         ellipsisButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            ellipsisButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constant.Layout.StoryItem.Header.inset),
-            ellipsisButton.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.8),
-            ellipsisButton.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.8),
-            ellipsisButton.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+            ellipsisButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constant.Layout.StoryItem.Header.inset),
+            ellipsisButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.8),
+            ellipsisButton.widthAnchor.constraint(equalTo: heightAnchor, multiplier: 0.8),
+            ellipsisButton.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
 }

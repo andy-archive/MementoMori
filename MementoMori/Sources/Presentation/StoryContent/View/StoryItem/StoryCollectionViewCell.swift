@@ -59,8 +59,8 @@ final class StoryCollectionViewCell: BaseCollectionViewCell {
         textContentView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             textContentView.topAnchor.constraint(equalTo: footerView.bottomAnchor),
-            textContentView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            textContentView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            textContentView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            textContentView.trailingAnchor.constraint(equalTo: trailingAnchor),
             textContentView.bottomAnchor.constraint(equalTo: separatorView.topAnchor)
         ])
         
