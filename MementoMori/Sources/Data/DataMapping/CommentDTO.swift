@@ -7,6 +7,7 @@
 
 import Foundation
 
+//MARK: - Response
 struct CommentDTO: Decodable {
     let id: String
     let content: String

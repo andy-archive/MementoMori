@@ -47,7 +47,17 @@ final class CommentDetailViewController: BaseViewController {
         return label
     }()
     
-    private lazy var commentTableView = UITableView()
+    private lazy var commentTableView = {
+        let tableView = UITableView(
+            frame: .zero,
+            style: .plain
+        )
+        tableView.register(
+            UITableViewCell.classForCoder(),
+            forCellReuseIdentifier: "cell"
+        )
+        return tableView
+    }()
     
     private lazy var commentInputView = {
         let view = UIView()
@@ -83,6 +93,9 @@ final class CommentDetailViewController: BaseViewController {
         return button
     }()
     
+    //MARK: - Properties
+    private var dataSource: DataSource?
+    
     //MARK: - ViewModel
     private let viewModel: CommentDetailViewModel
     
@@ -111,15 +124,16 @@ final class CommentDetailViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        output.reloadCommentTableView
-            .emit(with: self) { owner, _ in
-                owner.commentTableView.reloadData()
-            }
-            .disposed(by: disposeBag)
-        
         output.storyItemDidFetch
             .emit(with: self) { owner, storyPost in
                 owner.configure(storyPost)
+            }
+            .disposed(by: disposeBag)
+        
+        output.updatedCommentList
+            .drive(with: self) { owner, commentList in
+                let newSnapshot = owner.updateSnapshot(commentList)
+                owner.dataSource?.apply(newSnapshot, animatingDifferences: true)
             }
             .disposed(by: disposeBag)
     }
@@ -200,7 +214,7 @@ final class CommentDetailViewController: BaseViewController {
             commentTableView.topAnchor.constraint(equalTo: writerContentLabel.bottomAnchor),
             commentTableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             commentTableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            commentTableView.bottomAnchor.constraint(lessThanOrEqualTo: commentInputView.topAnchor),
+            commentTableView.bottomAnchor.constraint(equalTo: commentInputView.topAnchor),
         ])
         
         commentInputView.translatesAutoresizingMaskIntoConstraints = false
@@ -243,8 +257,54 @@ final class CommentDetailViewController: BaseViewController {
 extension CommentDetailViewController {
     
     func configure(_ storyPost: StoryPost?) {
-        guard let storyPost else { return }
+        guard
+            let storyPost,
+            let commentList = storyPost.commentList
+        else { return }
+        
+        dataSource = configureDataSource()
+        let snapshot = createSnapshot(commentList)
+        
+        dataSource?.apply(snapshot)
         
         writerContentLabel.text = storyPost.content
+    }
+}
+
+//MARK: - Configure UITableView
+private extension CommentDetailViewController {
+    
+    /// Typealias
+    typealias DataSource = UITableViewDiffableDataSource<Section, Comment>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Comment>
+    
+    enum Section: CaseIterable {
+        case main
+    }
+    
+    /// DataSource
+    func configureDataSource() -> DataSource {
+        let dataSource = DataSource(tableView: commentTableView) { tableView, indexPath, itemIdentifier in
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            cell.textLabel?.text = itemIdentifier.content
+            return cell
+        }
+        
+        return dataSource
+    }
+    
+    /// Snapshot
+    func createSnapshot(_ comment: [Comment]) -> Snapshot {
+        var snapshot = Snapshot()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(comment, toSection: .main)
+        
+        return snapshot
+    }
+    
+    func updateSnapshot(_ comment: [Comment]) -> Snapshot {
+        let newSnapshot = createSnapshot(comment)
+        
+        return newSnapshot
     }
 }

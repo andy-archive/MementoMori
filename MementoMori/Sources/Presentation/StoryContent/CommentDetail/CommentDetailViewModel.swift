@@ -22,8 +22,8 @@ final class CommentDetailViewModel: ViewModel {
     //MARK: - Output
     struct Output {
         let isCommentValid: Driver<Bool>
-        let reloadCommentTableView: Signal<Void>
         let storyItemDidFetch: Signal<StoryPost?>
+        let updatedCommentList: Driver<[Comment]>
     }
     
     //MARK: - Properties
@@ -46,8 +46,8 @@ final class CommentDetailViewModel: ViewModel {
     //MARK: - Transform Input into Output
     func transform(input: Input) -> Output {
         let commentValidation = BehaviorRelay(value: false)
-        let reloadView = PublishRelay<Void>()
         let storyPostItem = PublishRelay<StoryPost?>()
+        let commentList = BehaviorRelay<[Comment]>(value: [])
         let keychain = KeychainRepository.shared
         let storyPostID = keychain.find(key: "", type: .storyID) ?? ""
         
@@ -59,6 +59,7 @@ final class CommentDetailViewModel: ViewModel {
             }
             .bind(with: self) { owner, item in
                 storyPostItem.accept(item)
+                commentList.accept(item?.commentList ?? [])
             }
             .disposed(by: disposeBag)
         
@@ -87,15 +88,18 @@ final class CommentDetailViewModel: ViewModel {
             .flatMap { owner, comment in
                 owner.commentUseCase.create(comment: comment)
             }
-            .bind(with: self) { owner, isCommentUploaded in
-                if isCommentUploaded { reloadView.accept(Void()) }
+            .bind(with: self) { owner, comment in
+                guard let comment else { return }
+                var newCommentList = commentList.value
+                newCommentList.append(comment)
+                commentList.accept(newCommentList)
             }
             .disposed(by: disposeBag)
         
         return Output(
             isCommentValid: commentValidation.asDriver(),
-            reloadCommentTableView: reloadView.asSignal(),
-            storyItemDidFetch: storyPostItem.asSignal()
+            storyItemDidFetch: storyPostItem.asSignal(),
+            updatedCommentList: commentList.asDriver()
         )
     }
 }

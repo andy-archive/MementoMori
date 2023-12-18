@@ -10,5 +10,5 @@ import Foundation
 import RxSwift
 
 protocol CommentUseCaseProtocol {
-    func create(comment: Comment) -> Observable<Bool>
+    func create(comment: Comment) -> Observable<Comment?>
 }

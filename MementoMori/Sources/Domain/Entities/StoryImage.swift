@@ -7,8 +7,8 @@
 
 import Foundation
 
+//MARK: - Entity
 struct StoryImage: Hashable {
-    
     let id: String
     let userId: String
     let storyPostID: String

@@ -7,8 +7,8 @@
 
 import Foundation
 
-//MARK: - Response
-struct StoryItemRequestDTO: Encodable{
+//MARK: - Request
+struct StoryItemRequestDTO: Encodable {
     let id: String
     let productID: String
     
@@ -17,6 +17,7 @@ struct StoryItemRequestDTO: Encodable{
     }
 }
 
+//MARK: - Response
 struct StoryItemResponseDTO: Decodable {
     let id: String
     let title: String?
