@@ -13,6 +13,7 @@ import RxGesture
 final class StoryListBodyView: BaseView {
     
     typealias DataSource = UICollectionViewDiffableDataSource<Section, StoryPost>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, StoryPost>
     
     //MARK: - UI
     lazy var collectionView = UICollectionView(
@@ -30,7 +31,7 @@ final class StoryListBodyView: BaseView {
     lazy var postList: [StoryPost] = []
     let textContentViewTap = PublishRelay<Void>()
     
-    //MARK: - View Configuration
+    //MARK: - UI Configuration
     override func configureUI() {
         super.configureUI()
         
@@ -77,8 +78,7 @@ extension StoryListBodyView: UICollectionViewDelegateFlowLayout {
     }
     
     private func configureDataSource() -> DataSource {
-        
-        return DataSource(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
+        let dataSource = DataSource(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
             
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: NSStringFromClass(StoryCollectionViewCell.self),
@@ -103,10 +103,12 @@ extension StoryListBodyView: UICollectionViewDelegateFlowLayout {
             
             return cell
         }
+        
+        return dataSource
     }
     
-    private func configureSnapshot(_ postList: [StoryPost]) -> NSDiffableDataSourceSnapshot<Section, StoryPost> {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, StoryPost>()
+    private func configureSnapshot(_ postList: [StoryPost]) -> Snapshot {
+        var snapshot = Snapshot()
         snapshot.appendSections([.main])
         snapshot.appendItems(postList, toSection: .main)
         

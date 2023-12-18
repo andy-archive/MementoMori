@@ -7,6 +7,7 @@
 
 import Foundation
 
+//MARK: - Response
 struct CommentDTO: Decodable {
     let id: String
     let content: String
@@ -15,5 +16,15 @@ struct CommentDTO: Decodable {
     enum CodingKeys: String, CodingKey {
         case id = "_id"
         case content, time
+    }
+    
+    func toDomain() -> Comment {
+        let comment = Comment(
+            id: id,
+            content: content,
+            createdAt: time,
+            storyPostID: nil
+        )
+        return comment
     }
 }

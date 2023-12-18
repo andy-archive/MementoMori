@@ -21,7 +21,7 @@ struct StoryReadRequestDTO: Encodable {
 
 //MARK: - Response
 struct StoryReadResponseDTO: Decodable {
-    let data: [StoryDTO]
+    let data: [StoryItemResponseDTO]
     let nextCursor: String
     
     enum CodingKeys: String, CodingKey {

@@ -41,13 +41,23 @@ final class CommentDetailViewController: BaseViewController {
     
     private lazy var writerContentLabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: Constant.FontSize.subtitle)
+        label.font = .systemFont(ofSize: Constant.FontSize.title)
         label.textColor = Constant.Color.label
         label.numberOfLines = 0
         return label
     }()
     
-    private lazy var commentTableView = UITableView()
+    private lazy var commentTableView = {
+        let tableView = UITableView(
+            frame: .zero,
+            style: .plain
+        )
+        tableView.register(
+            UITableViewCell.classForCoder(),
+            forCellReuseIdentifier: "cell"
+        )
+        return tableView
+    }()
     
     private lazy var commentInputView = {
         let view = UIView()
@@ -83,6 +93,9 @@ final class CommentDetailViewController: BaseViewController {
         return button
     }()
     
+    //MARK: - Properties
+    private var dataSource: DataSource?
+    
     //MARK: - ViewModel
     private let viewModel: CommentDetailViewModel
     
@@ -98,6 +111,7 @@ final class CommentDetailViewController: BaseViewController {
     //MARK: - Bind ViewController to ViewModel
     override func bind() {
         let input = CommentDetailViewModel.Input(
+            viewDidAppear: rx.viewDidAppear.map { _ in },
             commentTextToUpload: commentInputTextView.rx.text.orEmpty,
             uploadButtonTap: createPostButton.rx.tap
         )
@@ -110,9 +124,16 @@ final class CommentDetailViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        output.reloadCommentTableView
-            .emit(with: self) { owner, _ in
-                owner.commentTableView.reloadData()
+        output.storyItemDidFetch
+            .emit(with: self) { owner, storyPost in
+                owner.configure(storyPost)
+            }
+            .disposed(by: disposeBag)
+        
+        output.updatedCommentList
+            .drive(with: self) { owner, commentList in
+                let newSnapshot = owner.updateSnapshot(commentList)
+                owner.dataSource?.apply(newSnapshot, animatingDifferences: true)
             }
             .disposed(by: disposeBag)
     }
@@ -190,10 +211,10 @@ final class CommentDetailViewController: BaseViewController {
         
         commentTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            commentTableView.topAnchor.constraint(equalTo: writerContentLabel.bottomAnchor),
+            commentTableView.topAnchor.constraint(equalTo: writerContentLabel.bottomAnchor, constant: Constant.Layout.CommentDetail.inset),
             commentTableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             commentTableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            commentTableView.bottomAnchor.constraint(lessThanOrEqualTo: commentInputView.topAnchor),
+            commentTableView.bottomAnchor.constraint(equalTo: commentInputView.topAnchor),
         ])
         
         commentInputView.translatesAutoresizingMaskIntoConstraints = false
@@ -236,7 +257,54 @@ final class CommentDetailViewController: BaseViewController {
 extension CommentDetailViewController {
     
     func configure(_ storyPost: StoryPost?) {
-        guard let storyPost else { return }
+        guard
+            let storyPost,
+            let commentList = storyPost.commentList
+        else { return }
         
+        dataSource = configureDataSource()
+        let snapshot = createSnapshot(commentList)
+        
+        dataSource?.apply(snapshot)
+        
+        writerContentLabel.text = storyPost.content
+    }
+}
+
+//MARK: - Configure UITableView
+private extension CommentDetailViewController {
+    
+    /// Typealias
+    typealias DataSource = UITableViewDiffableDataSource<Section, Comment>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Comment>
+    
+    enum Section: CaseIterable {
+        case main
+    }
+    
+    /// DataSource
+    func configureDataSource() -> DataSource {
+        let dataSource = DataSource(tableView: commentTableView) { tableView, indexPath, itemIdentifier in
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            cell.textLabel?.text = itemIdentifier.content
+            return cell
+        }
+        
+        return dataSource
+    }
+    
+    /// Snapshot
+    func createSnapshot(_ commentList: [Comment]) -> Snapshot {
+        var snapshot = Snapshot()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(commentList, toSection: .main)
+        
+        return snapshot
+    }
+    
+    func updateSnapshot(_ commentList: [Comment]) -> Snapshot {
+        let newSnapshot = createSnapshot(commentList)
+        
+        return newSnapshot
     }
 }

@@ -22,7 +22,7 @@ struct StoryPost: Hashable {
     let content: String
     let imageDataList: [Data]?
     let imageFilePathList: [String]?
-    let commentList: [String]?
+    let commentList: [Comment]?
     let location: String?
     let isLiked: Bool?
     let isSavedToMyCollection: Bool?
@@ -73,6 +73,28 @@ extension StoryPost {
         self.imageDataList = nil
         self.imageFilePathList = imageFilePathList
         self.commentList = []
+        self.location = nil
+        self.isLiked = false
+        self.isSavedToMyCollection = false
+        self.createdAt = createdAt
+        self.storyType = .location
+    }
+    
+    init(
+        id: String,
+        nickname: String,
+        content: String,
+        commentList: [Comment],
+        createdAt: String
+    ) {
+        self.id = id
+        self.userID = nil
+        self.nickname = nickname
+        self.title = nil
+        self.content = content
+        self.imageDataList = nil
+        self.imageFilePathList = nil
+        self.commentList = commentList
         self.location = nil
         self.isLiked = false
         self.isSavedToMyCollection = false
