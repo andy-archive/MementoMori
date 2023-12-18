@@ -41,7 +41,7 @@ final class CommentDetailViewController: BaseViewController {
     
     private lazy var writerContentLabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: Constant.FontSize.subtitle)
+        label.font = .systemFont(ofSize: Constant.FontSize.title)
         label.textColor = Constant.Color.label
         label.numberOfLines = 0
         return label
@@ -211,7 +211,7 @@ final class CommentDetailViewController: BaseViewController {
         
         commentTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            commentTableView.topAnchor.constraint(equalTo: writerContentLabel.bottomAnchor),
+            commentTableView.topAnchor.constraint(equalTo: writerContentLabel.bottomAnchor, constant: Constant.Layout.CommentDetail.inset),
             commentTableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             commentTableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             commentTableView.bottomAnchor.constraint(equalTo: commentInputView.topAnchor),
