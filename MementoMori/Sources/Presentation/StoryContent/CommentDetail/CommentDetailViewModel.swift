@@ -91,7 +91,7 @@ final class CommentDetailViewModel: ViewModel {
             .bind(with: self) { owner, comment in
                 guard let comment else { return }
                 var newCommentList = commentList.value
-                newCommentList.append(comment)
+                newCommentList.insert(comment, at: 0)
                 commentList.accept(newCommentList)
             }
             .disposed(by: disposeBag)

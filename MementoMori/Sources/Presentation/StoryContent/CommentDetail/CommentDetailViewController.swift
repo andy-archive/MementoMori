@@ -294,16 +294,16 @@ private extension CommentDetailViewController {
     }
     
     /// Snapshot
-    func createSnapshot(_ comment: [Comment]) -> Snapshot {
+    func createSnapshot(_ commentList: [Comment]) -> Snapshot {
         var snapshot = Snapshot()
         snapshot.appendSections([.main])
-        snapshot.appendItems(comment, toSection: .main)
+        snapshot.appendItems(commentList, toSection: .main)
         
         return snapshot
     }
     
-    func updateSnapshot(_ comment: [Comment]) -> Snapshot {
-        let newSnapshot = createSnapshot(comment)
+    func updateSnapshot(_ commentList: [Comment]) -> Snapshot {
+        let newSnapshot = createSnapshot(commentList)
         
         return newSnapshot
     }
