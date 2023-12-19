@@ -10,10 +10,7 @@ import UIKit
 final class UserProfileViewController: BaseViewController {
     
     //MARK: - UI
-    private lazy var myView = {
-        let view = UIView()
-        return view
-    }()
+    private lazy var headerView = UserProfileHeaderView()
     
     //MARK: - ViewModel
     private let viewModel: UserProfileViewModel
@@ -37,21 +34,17 @@ final class UserProfileViewController: BaseViewController {
         super.configureUI()
         
         /// View Hierarchy
-        view.addSubview(myView)
+        view.addSubview(headerView)
     }
     
     //MARK: - Layouts
     override func configureLayout() {
-        myView.translatesAutoresizingMaskIntoConstraints = false
+        headerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            myView.topAnchor.constraint(equalTo: view.topAnchor, constant: Constant.Layout.StoryItem.Footer.inset),
-            myView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constant.Layout.StoryItem.Footer.inset),
-            myView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constant.Layout.StoryItem.Footer.inset),
-            myView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Constant.Layout.StoryItem.Footer.inset),
-            myView.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.8),
-            myView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.8),
-            myView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            myView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            headerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            headerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            headerView.heightAnchor.constraint(equalToConstant: Constant.Layout.StoryList.Header.height)
         ])
     }
 }

@@ -54,6 +54,8 @@ extension Constant {
             static let arrowUp = UIImage(systemName: "arrow.up.circle")?.withTintColor(.systemCyan, renderingMode: .alwaysOriginal)
             static let personCircle = UIImage(systemName: "person.circle")?.withTintColor(.label, renderingMode: .alwaysOriginal)
             static let personCircleFill = UIImage(systemName: "person.circle.fill")?.withTintColor(.label, renderingMode: .alwaysOriginal)
+            static let listDash = UIImage(systemName: "list.dash")?.withTintColor(.label, renderingMode: .alwaysOriginal)
+            
         }
     }
 }

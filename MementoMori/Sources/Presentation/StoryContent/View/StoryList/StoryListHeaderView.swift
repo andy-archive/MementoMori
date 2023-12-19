@@ -11,7 +11,7 @@ final class StoryListHeaderView: BaseView {
     
     private let titleLabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Noteworthy", size: 25)
+        label.font = UIFont(name: "Noteworthy", size: Constant.FontSize.headerTitle)
         label.textColor = Constant.Color.label
         label.numberOfLines = 1
         label.text = "Memento Mori"
