@@ -20,15 +20,15 @@ final class UserProfileViewModel: ViewModel {
     
     //MARK: - Properties
     let disposeBag = DisposeBag()
-//    weak var coordinator: FooCoordinator?
+    weak var coordinator: UserProfileCoordinator?
     //    private let myUseCase: MyUseCaseProtocol
     
     //MARK: - Initializer
     init(
-//        coordinator:
+        coordinator: UserProfileCoordinator
 //        myUseCase: myUseCaseProtocol
     ) {
-//        self.coordinator = coordinator
+        self.coordinator = coordinator
 //        self.myUseCase = myUseCase
     }
     

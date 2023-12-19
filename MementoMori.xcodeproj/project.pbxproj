@@ -100,6 +100,7 @@
 		38B5FB152B24D2AE00F91DDA /* RefreshInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5FB142B24D2AE00F91DDA /* RefreshInterceptor.swift */; };
 		38C75B122B31CBFF0082AC7B /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C75B112B31CBFF0082AC7B /* UserProfileViewController.swift */; };
 		38C75B142B31CC4A0082AC7B /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C75B132B31CC4A0082AC7B /* UserProfileViewModel.swift */; };
+		38C75B172B31CD800082AC7B /* UserProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C75B162B31CD800082AC7B /* UserProfileCoordinator.swift */; };
 		38C891852B29F7F400F15F1B /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C891842B29F7F400F15F1B /* TabController.swift */; };
 		38C891882B2AB15D00F15F1B /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C891872B2AB15D00F15F1B /* SplashViewController.swift */; };
 		38C8918A2B2AB16300F15F1B /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C891892B2AB16300F15F1B /* SplashViewModel.swift */; };
@@ -214,6 +215,7 @@
 		38B5FB142B24D2AE00F91DDA /* RefreshInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshInterceptor.swift; sourceTree = "<group>"; };
 		38C75B112B31CBFF0082AC7B /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		38C75B132B31CC4A0082AC7B /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
+		38C75B162B31CD800082AC7B /* UserProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCoordinator.swift; sourceTree = "<group>"; };
 		38C891842B29F7F400F15F1B /* TabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
 		38C891872B2AB15D00F15F1B /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		38C891892B2AB16300F15F1B /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
@@ -704,6 +706,7 @@
 		38C75B0E2B31CBB70082AC7B /* UserProfile */ = {
 			isa = PBXGroup;
 			children = (
+				38C75B162B31CD800082AC7B /* UserProfileCoordinator.swift */,
 				38C75B112B31CBFF0082AC7B /* UserProfileViewController.swift */,
 				38C75B132B31CC4A0082AC7B /* UserProfileViewModel.swift */,
 			);
@@ -845,6 +848,7 @@
 				38318DE32B20380A000EED65 /* CreatorDTO.swift in Sources */,
 				380647002B21CD1D001B375D /* StoryUploadViewController.swift in Sources */,
 				386FCD8B2B21DA8200822DFD /* UIImagePicker+Reactive.swift in Sources */,
+				38C75B172B31CD800082AC7B /* UserProfileCoordinator.swift in Sources */,
 				38C8918C2B2AE5FD00F15F1B /* Authorization.swift in Sources */,
 				380647062B21D0E9001B375D /* StoryUploadHeaderView.swift in Sources */,
 				38EE8A822B04D0AC00E629CC /* UserJoinViewModel.swift in Sources */,
