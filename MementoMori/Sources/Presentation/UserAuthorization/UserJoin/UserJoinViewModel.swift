@@ -24,14 +24,14 @@ final class UserJoinViewModel: ViewModel {
     
     //MARK: - Output
     struct Output {
-        let isEmailTextValid: PublishRelay<Bool>
-        let isPasswordTextValid: PublishRelay<Bool>
-        let isNicknameTextValid: PublishRelay<Bool>
-        let emailValidationMessage: BehaviorRelay<String>
-        let isPasswordSecure: BehaviorRelay<Bool>
-        let isEmailValidationButtonEnabled: BehaviorRelay<Bool>
-        let isNextButtonEnabled: BehaviorRelay<Bool>
-        let joinResponse: PublishRelay<APIResult<String>>
+        let isEmailTextValid: Signal<Bool>
+        let isPasswordTextValid: Signal<Bool>
+        let isNicknameTextValid: Signal<Bool>
+        let emailValidationMessage: Driver<String>
+        let isPasswordSecure: Driver<Bool>
+        let isEmailValidationButtonEnabled: Driver<Bool>
+        let isNextButtonEnabled: Driver<Bool>
+        let joinResponse: Signal<APIResult<String>>
     }
     
     //MARK: - Properties
@@ -195,14 +195,14 @@ final class UserJoinViewModel: ViewModel {
             .disposed(by: disposeBag)
         
         return Output(
-            isEmailTextValid: isEmailTextValid,
-            isPasswordTextValid: isPasswordTextValid,
-            isNicknameTextValid: isNicknameTextValid,
-            emailValidationMessage: emailValidationMessage,
-            isPasswordSecure: isPasswordSecure,
-            isEmailValidationButtonEnabled: isEmailValidationButtonEnabled,
-            isNextButtonEnabled: isJoinButtonEnabled,
-            joinResponse: joinResponse
+            isEmailTextValid: isEmailTextValid.asSignal(),
+            isPasswordTextValid: isPasswordTextValid.asSignal(),
+            isNicknameTextValid: isNicknameTextValid.asSignal(),
+            emailValidationMessage: emailValidationMessage.asDriver(),
+            isPasswordSecure: isPasswordSecure.asDriver(),
+            isEmailValidationButtonEnabled: isEmailValidationButtonEnabled.asDriver(),
+            isNextButtonEnabled: isJoinButtonEnabled.asDriver(),
+            joinResponse: joinResponse.asSignal()
         )
     }
 }
