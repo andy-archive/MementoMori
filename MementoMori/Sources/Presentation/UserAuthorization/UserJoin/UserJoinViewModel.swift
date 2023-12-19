@@ -24,22 +24,20 @@ final class UserJoinViewModel: ViewModel {
     
     //MARK: - Output
     struct Output {
-        let isEmailTextValid: PublishRelay<Bool>
-        let isPasswordTextValid: PublishRelay<Bool>
-        let isNicknameTextValid: PublishRelay<Bool>
-        let emailValidationMessage: BehaviorRelay<String>
-        let isPasswordSecure: BehaviorRelay<Bool>
-        let isEmailValidationButtonEnabled: BehaviorRelay<Bool>
-        let isNextButtonEnabled: BehaviorRelay<Bool>
-        let joinResponse: PublishRelay<APIResult<String>>
+        let isEmailTextValid: Signal<Bool>
+        let isPasswordTextValid: Signal<Bool>
+        let isNicknameTextValid: Signal<Bool>
+        let emailValidationMessage: Driver<String>
+        let isPasswordSecure: Driver<Bool>
+        let isEmailValidationButtonEnabled: Driver<Bool>
+        let isNextButtonEnabled: Driver<Bool>
+        let joinResponse: Signal<APIResult<String>>
     }
     
     //MARK: - Properties
     weak var coordinator: AppCoordinator?
     private let userJoinUseCase: UserJoinUseCaseProtocol
     private let disposeBag = DisposeBag()
-    private var requestedEmail = String()
-    private var isEmailValidationMessageValid = false
     
     //MARK: - Initializer
     init(
@@ -56,6 +54,8 @@ final class UserJoinViewModel: ViewModel {
         let isPasswordTextValid = PublishRelay<Bool>()
         let isNicknameTextValid = PublishRelay<Bool>()
         let emailValidationMessage = BehaviorRelay<String>(value: "")
+        let isEmailValidationMessageValid = BehaviorRelay<Bool>(value: false)
+        let requestedEmail = BehaviorRelay<String>(value: "")
         let isPasswordSecure = BehaviorRelay<Bool>(value: false)
         let isEmailValidationButtonEnabled = BehaviorRelay<Bool>(value: false)
         let isJoinButtonEnabled = BehaviorRelay<Bool>(value: false)
@@ -68,11 +68,11 @@ final class UserJoinViewModel: ViewModel {
                 input.passwordText,
                 input.nicknameText
             )
-            .map { [weak self] email, password, nickname in
-                guard let self else { return false }
-                
-                if self.isEmailValidationMessageValid && email.validateEmail() &&
-                    password.validatePassword() && nickname.validateNickname() {
+            .map { email, password, nickname in
+                if isEmailValidationMessageValid.value &&
+                    email.validateEmail() &&
+                    password.validatePassword() &&
+                    nickname.validateNickname() {
                     return true
                 } else {
                     return false
@@ -96,23 +96,24 @@ final class UserJoinViewModel: ViewModel {
         input.emailText
             .subscribe(with: self) { owner, value in
                 /// 이메일 검증 요청 이전
-                if owner.requestedEmail.isEmpty {
+                if requestedEmail.value.isEmpty {
                     if !value.isEmpty && value.validateEmail() {
                         isEmailValidationButtonEnabled.accept(true)
                     } else {
                         isEmailValidationButtonEnabled.accept(false)
                     }
                 } else { /// 이메일 검증 요청 이후
-                    if !owner.isEmailValidationMessageValid && value.validateEmail() {
+                    if !isEmailValidationMessageValid.value &&
+                        value.validateEmail() {
                         isEmailValidationButtonEnabled.accept(true)
                     } else {
                         isEmailValidationButtonEnabled.accept(false)
                     }
                     
                     /// 이메일 검증 요청 성공 이후 다시 이메일을 바꿨을 때
-                    if value != owner.requestedEmail && owner.isEmailValidationMessageValid {
-                        owner.isEmailValidationMessageValid = false
+                    if value != requestedEmail.value && isEmailValidationMessageValid.value {
                         emailValidationMessage.accept("이메일을 다시 입력하세요")
+                        isEmailValidationMessageValid.accept(false)
                         isEmailTextValid.accept(false)
                         isEmailValidationButtonEnabled.accept(true)
                     }
@@ -123,8 +124,8 @@ final class UserJoinViewModel: ViewModel {
         /// 이메일 확인 버튼 클릭 시 네트워크 요청 (POST)
         input.emailValidationButtonTap
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
-            .withLatestFrom(input.emailText) { [weak self] _, emailText in
-                self?.requestedEmail = emailText
+            .withLatestFrom(input.emailText) { _, emailText in
+                requestedEmail.accept(emailText)
                 return emailText
             }
             .withUnretained(self)
@@ -135,6 +136,7 @@ final class UserJoinViewModel: ViewModel {
                 if isEmailValid {
                     emailValidationMessage.accept(Constant.Text.Message.validEmail)
                     isEmailTextValid.accept(true)
+                    isEmailValidationMessageValid.accept(true)
                     isEmailValidationButtonEnabled.accept(false)
                     checkJoinValidation() /// 이메일 검증 성공 시 가입 버튼을 누를 수 있는지 확인
                 } else {
@@ -193,14 +195,14 @@ final class UserJoinViewModel: ViewModel {
             .disposed(by: disposeBag)
         
         return Output(
-            isEmailTextValid: isEmailTextValid,
-            isPasswordTextValid: isPasswordTextValid,
-            isNicknameTextValid: isNicknameTextValid,
-            emailValidationMessage: emailValidationMessage,
-            isPasswordSecure: isPasswordSecure,
-            isEmailValidationButtonEnabled: isEmailValidationButtonEnabled,
-            isNextButtonEnabled: isJoinButtonEnabled,
-            joinResponse: joinResponse
+            isEmailTextValid: isEmailTextValid.asSignal(),
+            isPasswordTextValid: isPasswordTextValid.asSignal(),
+            isNicknameTextValid: isNicknameTextValid.asSignal(),
+            emailValidationMessage: emailValidationMessage.asDriver(),
+            isPasswordSecure: isPasswordSecure.asDriver(),
+            isEmailValidationButtonEnabled: isEmailValidationButtonEnabled.asDriver(),
+            isNextButtonEnabled: isJoinButtonEnabled.asDriver(),
+            joinResponse: joinResponse.asSignal()
         )
     }
 }

@@ -7,8 +7,6 @@
 
 import UIKit
 
-import RxCocoa
-
 final class UserJoinViewController: BaseViewController {
     
     //MARK: - UI
@@ -51,7 +49,6 @@ final class UserJoinViewController: BaseViewController {
         let output = viewModel.transform(input: input)
         
         output.isEmailTextValid
-            .asSignal()
             .emit(with: self) { owner, value in
                 let color = value ? Constant.Color.Label.valid : Constant.Color.Label.notValid
                 owner.emailValidationLabel.textColor = color
@@ -60,7 +57,6 @@ final class UserJoinViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         output.isPasswordTextValid
-            .asSignal()
             .emit(with: self) { owner, value in
                 let textFieldColor = value ? Constant.Color.TextField.valid : Constant.Color.TextField.notValid
                 owner.passwordTextField.layer.borderColor = textFieldColor.cgColor
@@ -68,7 +64,6 @@ final class UserJoinViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         output.isNicknameTextValid
-            .asSignal()
             .emit(with: self) { owner, value in
                 let textFieldColor = value ? Constant.Color.TextField.valid : Constant.Color.TextField.notValid
                 owner.nicknameTextField.layer.borderColor = textFieldColor.cgColor
@@ -76,14 +71,12 @@ final class UserJoinViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         output.emailValidationMessage
-            .asDriver()
             .drive(with: self) { owner, value in
                 owner.emailValidationLabel.text = value
             }
             .disposed(by: disposeBag)
         
         output.isPasswordSecure
-            .asDriver()
             .drive(with: self) { owner, value in
                 let image = value ? Constant.Image.System.eye : Constant.Image.System.eyeSlash
                 owner.passwordSecureTextButton.setImage(image, for: .normal)
@@ -92,7 +85,6 @@ final class UserJoinViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         output.isEmailValidationButtonEnabled
-            .asDriver()
             .drive(with: self) { owner, value in
                 let color = value ? Constant.Color.Button.valid : Constant.Color.Button.notValid
                 owner.emailValidationButton.backgroundColor = color
@@ -101,7 +93,7 @@ final class UserJoinViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         output.isNextButtonEnabled
-            .bind(with: self) { owner, value in
+            .drive(with: self) { owner, value in
                 let color = value ? Constant.Color.Button.valid : Constant.Color.Button.notValid
                 owner.nextButton.backgroundColor = color
                 owner.nextButton.isEnabled = value
