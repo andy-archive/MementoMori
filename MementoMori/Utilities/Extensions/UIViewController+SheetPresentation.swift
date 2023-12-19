@@ -19,7 +19,7 @@ extension UIViewController {
                     return UIScreen.main.bounds.height * 0.9
                 }),
             ]
-            sheet.selectedDetentIdentifier = .medium
+            sheet.selectedDetentIdentifier = .large
             sheet.prefersGrabberVisible = true
             sheet.prefersScrollingExpandsWhenScrolledToEdge = true
             sheet.preferredCornerRadius = 25
