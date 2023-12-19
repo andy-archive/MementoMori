@@ -19,6 +19,7 @@ final class CommentDetailViewController: BaseViewController {
         let view = UIScrollView()
         view.isScrollEnabled = true
         view.backgroundColor = Constant.Color.background
+        view.keyboardDismissMode = .onDrag
         return view
     }()
     
@@ -56,6 +57,7 @@ final class CommentDetailViewController: BaseViewController {
             UITableViewCell.classForCoder(),
             forCellReuseIdentifier: "cell"
         )
+        tableView.keyboardDismissMode = .onDrag
         return tableView
     }()
     
@@ -71,6 +73,7 @@ final class CommentDetailViewController: BaseViewController {
         view.font = .systemFont(ofSize: Constant.FontSize.title)
         view.layer.cornerRadius = 20
         view.keyboardType = .twitter
+        view.becomeFirstResponder()
         return view
     }()
     
@@ -219,9 +222,9 @@ final class CommentDetailViewController: BaseViewController {
         
         commentInputView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            commentInputView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            commentInputView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            commentInputView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            commentInputView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor),
+            commentInputView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor),
+            commentInputView.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor),
             commentInputView.heightAnchor.constraint(equalToConstant: 90)
         ])
         
