@@ -9,6 +9,7 @@ import UIKit
 
 final class UserProfileHeaderView: BaseView {
     
+    //MARK: - UI
     private lazy var titleLabel = {
         let label = UILabel()
         label.textColor = Constant.Color.label
@@ -20,10 +21,6 @@ final class UserProfileHeaderView: BaseView {
     
     private lazy var addButton = {
         let button = UIButton()
-        button.setImage(
-            Constant.Image.System.plusSquare,
-            for: .normal
-        )
         var config = UIButton.Configuration.filled()
         config.image = Constant.Image.System.plusSquare
         config.buttonSize = .medium
@@ -46,6 +43,7 @@ final class UserProfileHeaderView: BaseView {
     
     private lazy var separatorView = SeparatorView()
     
+    //MARK: - View Configuration
     override func configureUI() {
         super.configureUI()
         
@@ -55,6 +53,7 @@ final class UserProfileHeaderView: BaseView {
         addSubview(separatorView)
     }
     
+    //MARK: - Layouts
     override func configureLayout() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

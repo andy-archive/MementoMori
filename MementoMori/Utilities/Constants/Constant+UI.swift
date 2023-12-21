@@ -20,6 +20,7 @@ extension Constant {
         enum Button {
             static let valid = UIColor.systemBlue
             static let notValid = UIColor.systemGray
+            static let configuration = UIColor.systemGray5
         }
         
         enum Label {
@@ -40,20 +41,23 @@ extension Constant {
             static let houseFill = UIImage(systemName: "house.fill")
             static let eye = UIImage(systemName: "eye")?.withTintColor(.label.withAlphaComponent(0.6), renderingMode: .alwaysOriginal)
             static let eyeSlash = UIImage(systemName: "eye.slash")?.withTintColor(.label.withAlphaComponent(0.6), renderingMode: .alwaysOriginal)
-            static let personTwo = UIImage(systemName: "person.2")?.withTintColor(.label, renderingMode: .alwaysOriginal)
             static let star = UIImage(systemName: "star")?.withTintColor(.label, renderingMode: .alwaysOriginal)
             static let heart = UIImage(systemName: "heart")?.withTintColor(.label, renderingMode: .alwaysOriginal)
             static let bubbleTwo = UIImage(systemName: "bubble.left")?.withTintColor(.label, renderingMode: .alwaysOriginal)
             static let paperplane = UIImage(systemName: "paperplane")?.withTintColor(.label, renderingMode: .alwaysOriginal)
             static let ellipsis = UIImage(systemName: "ellipsis")?.withTintColor(.label, renderingMode: .alwaysOriginal)
             static let bookmark = UIImage(systemName: "bookmark")?.withTintColor(.label, renderingMode: .alwaysOriginal)
+            static let personTwo = UIImage(systemName: "person.2")?.withTintColor(.label, renderingMode: .alwaysOriginal)
+            static let personCircle = UIImage(systemName: "person.circle")?.withTintColor(.label, renderingMode: .alwaysOriginal)
+            static let personCircleFill = UIImage(systemName: "person.circle.fill")?.withTintColor(.label, renderingMode: .alwaysOriginal)
+            static let personCirclePlus = UIImage(systemName: "person.crop.circle.badge.plus")?.withTintColor(.label, renderingMode: .alwaysOriginal)
             static let plusSquare = UIImage(systemName: "plus.square")?.withTintColor(.label, renderingMode: .alwaysOriginal)
             static let plusSquareFill = UIImage(systemName: "plus.square.fill")?.withTintColor(.label, renderingMode: .alwaysOriginal)
+            static let plusCircleFill = UIImage(systemName: "plus.circle.fill")?.withTintColor(.systemBlue, renderingMode: .alwaysOriginal)
             static let xMark = UIImage(systemName: "xmark")?.withTintColor(.label, renderingMode: .alwaysOriginal)
             static let chevronLeft = UIImage(systemName: "chevron.left")?.withTintColor(.label, renderingMode: .alwaysOriginal)
             static let arrowUp = UIImage(systemName: "arrow.up.circle")?.withTintColor(.systemCyan, renderingMode: .alwaysOriginal)
-            static let personCircle = UIImage(systemName: "person.circle")?.withTintColor(.label, renderingMode: .alwaysOriginal)
-            static let personCircleFill = UIImage(systemName: "person.circle.fill")?.withTintColor(.label, renderingMode: .alwaysOriginal)
+
             static let listDash = UIImage(systemName: "list.dash")?.withTintColor(.label, renderingMode: .alwaysOriginal)
             
         }

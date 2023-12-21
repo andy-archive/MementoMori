@@ -72,6 +72,7 @@
 		3863094E2B1457B9001973AA /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3863094D2B1457B9001973AA /* AppCoordinator.swift */; };
 		386309612B14703E001973AA /* UserJoinUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309602B14703E001973AA /* UserJoinUseCase.swift */; };
 		386309632B147637001973AA /* UserAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386309622B147637001973AA /* UserAuthRepository.swift */; };
+		38692CBD2B340C2000148217 /* UserProfileBodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38692CBC2B340C2000148217 /* UserProfileBodyView.swift */; };
 		386FCD8B2B21DA8200822DFD /* UIImagePicker+Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386FCD8A2B21DA8200822DFD /* UIImagePicker+Reactive.swift */; };
 		386FCD8D2B21EFBA00822DFD /* StoryUploadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386FCD8C2B21EFBA00822DFD /* StoryUploadViewModel.swift */; };
 		386FCDC92B22E2FB00822DFD /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 386FCDC82B22E2FB00822DFD /* RxGesture */; };
@@ -189,6 +190,7 @@
 		3863094D2B1457B9001973AA /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		386309602B14703E001973AA /* UserJoinUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJoinUseCase.swift; sourceTree = "<group>"; };
 		386309622B147637001973AA /* UserAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthRepository.swift; sourceTree = "<group>"; };
+		38692CBC2B340C2000148217 /* UserProfileBodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileBodyView.swift; sourceTree = "<group>"; };
 		386FCD8A2B21DA8200822DFD /* UIImagePicker+Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImagePicker+Reactive.swift"; sourceTree = "<group>"; };
 		386FCD8C2B21EFBA00822DFD /* StoryUploadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryUploadViewModel.swift; sourceTree = "<group>"; };
 		387463CE2B160815009FAB2C /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
@@ -720,6 +722,7 @@
 			isa = PBXGroup;
 			children = (
 				38C75B192B31CFBF0082AC7B /* UserProfileHeaderView.swift */,
+				38692CBC2B340C2000148217 /* UserProfileBodyView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -912,6 +915,7 @@
 				38318DC92B1DB666000EED65 /* StoryHeaderView.swift in Sources */,
 				387D064C2B2C216C00A012D5 /* CommentDetailViewController.swift in Sources */,
 				38318DBF2B1CD2D8000EED65 /* BaseView.swift in Sources */,
+				38692CBD2B340C2000148217 /* UserProfileBodyView.swift in Sources */,
 				383ECFD12B15B437004675E1 /* UserSigninViewController.swift in Sources */,
 				3847EC442B0252B200E086EB /* BaseViewController.swift in Sources */,
 				38318DD72B1EDEC8000EED65 /* StoryImage.swift in Sources */,

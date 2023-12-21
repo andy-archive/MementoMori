@@ -11,6 +11,7 @@ final class UserProfileViewController: BaseViewController {
     
     //MARK: - UI
     private lazy var headerView = UserProfileHeaderView()
+    private lazy var bodyView = UserProfileBodyView()
     
     //MARK: - ViewModel
     private let viewModel: UserProfileViewModel
@@ -35,6 +36,7 @@ final class UserProfileViewController: BaseViewController {
         
         /// View Hierarchy
         view.addSubview(headerView)
+        view.addSubview(bodyView)
     }
     
     //MARK: - Layouts
@@ -45,6 +47,14 @@ final class UserProfileViewController: BaseViewController {
             headerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             headerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             headerView.heightAnchor.constraint(equalToConstant: Constant.Layout.StoryList.Header.height)
+        ])
+        
+        bodyView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            bodyView.topAnchor.constraint(equalTo: headerView.safeAreaLayoutGuide.bottomAnchor),
+            bodyView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            bodyView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            bodyView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
 }

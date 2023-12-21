@@ -77,7 +77,6 @@ enum Constant {
         }
         
         enum CommentDetail {
-            
             static let inset: CGFloat = 8
             
             enum Header {
@@ -87,6 +86,17 @@ enum Constant {
             
             enum Footer {
                 static let inset: CGFloat = 12
+            }
+        }
+        
+        enum UserProfile {
+            static let profileImageSize: CGFloat = 100
+            
+            enum EditStack {
+                static let buttonHeight: CGFloat = 35
+                static let buttonWidthRatio: CGFloat = 0.4
+                static let findFriendWidthRatio: CGFloat = 0.1
+                static let inset: CGFloat = 8
             }
         }
     }
