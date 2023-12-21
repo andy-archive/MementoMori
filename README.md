@@ -5,7 +5,7 @@
   - [LSLP) MVVM x Input-Output x RxSwift로 이메일 검증 네트워크 요청하기 (feat. withLatestFrom & flatMap)](https://andy-archive.tistory.com/158)
   - [LSLP) MVVM과 RxSwift를 이용한 반응형 이메일 입력 화면 구현 (feat: Input-Output & BehaviorRelay)](https://andy-archive.tistory.com/156)
 ## I. 구조
-### (1) 파일 트리 구조 (MVVM-C x Clean Architecture)
+### (1) 디렉토리 트리 구조 (Directory Structure)
 ```bash
 📦 MementoMori # 프로젝트 최상위 디렉토리
 ├──📄 README.md # 프로젝트 설명
@@ -34,17 +34,22 @@
 └──📂 MementoMori.xcodeproj
 ```
 
-### (2) 코디네이터 트리 구조 (Coordinator)
+### (2) 코디네이터 트리 구조 (Coordinator Structure)
 ```
 📦 AppCoordinator # by SceneDelegate
-├──📱 AutoSigninViewController # 자동 로그인
-├──📂 UserAuthCoordinator # 로그인 & 회원가입
-│   ├──📱 UserSigninViewController
-│   ├──📱 UserJoinViewController
-└──📂 TabBarCoordinator  # 탭 바
-    ├──📂 StoryContentCoordinator
-    └──📂 StoryUploadCoordinator
+├──📱 SplashViewController # (0) 자동 로그인 여부 판단
+├──📂 SigninModal # (1) 토큰 만료 시 모달 화면 띄우기 
+│   ├──📱 AutoSigninViewController # 자동 로그인
+│   ├──📱 UserSigninViewController # 다른 유저로 로그인 
+│   └──📱 UserJoinViewController # 회원가입
+└──📂 TabBarCoordinator # (2) 자동 로그인/일반 로그인 성공 시 전환
+    ├──📂 StoryContentCoordinator # 게시글 조회
+    └──📂 StoryUploadCoordinator # 게시글 작성
 ```
+
+### (3) 클린 아키텍처 구조 (MVVM-C x Clean Architecture)
+- [기술 블로그 링크](https://andy-archive.tistory.com/177)
+<img width="1417" alt="MVVM-C x Clean Architecture 구조" src="https://github.com/andy-archive/MementoMori/assets/102043891/f8b80437-d6a8-4347-8163-63d206983c55">
 
 ## II. 구현 화면
 ### (1) 로그인/회원 가입
@@ -87,20 +92,42 @@
 
 ## IV. MVVM-C x 클린 아키텍처 적용
 - [#9 MVVM에서 클린 아키텍처 구조(+ Coordinator)로 변경](https://github.com/andy-archive/MementoMori/pull/9)
-### (1) MVVM-C 적용
-- (문제점) MVVM을 적용하는 중에 역할의 분리가 필요해 보였습니다.
-    - ViewModel의 역할의 증가
-        - 화면 전환 로직, 비즈니스 로직의 공존
-    - ViewModel은 Network에 의존
-- (해결책) Cooridnator 패턴을 도입하여 ViewModel의 화면 전환 로직을 분리하였습니다.
-- (특이 사항) 아직은 UseCase에 대한 사용이 익숙하지 않아 UseCase의 역할이 부족해 보입니다. 다른 여러 프로젝트를 보면서 UseCase의 로직을 개선해야 할 것 같습니다. 
+### (0) 도입 배경
+<img width="1417" alt="MVVM-C x Clean Architecture 도입 배경" src="https://github.com/andy-archive/MementoMori/assets/102043891/3e8b5208-1eaa-4874-9b0c-bbaf39f49764">
+
+- (문제점) MVVM을 도입한 이후 비즈니스의 로직이 점차 증가하여 로직을 분리할 필요성을 느낌
+  - (1) ViewModel의 역할의 증가
+    - 화면 전환 로직, 비즈니스 로직의 공존
+  - (2) 의존성 문제 발생
+    - VC는 VM에, VM은 Network에 의존하게 됨
+- (해결책)
+  - (1) Cooridnator 패턴을 도입하여 ViewModel의 화면 전환 로직을 분리하였습니다.
+  - (2) UseCase를 활용하여 VM의 자세한 비즈니스 로직을 분리하였습니다.
+- (특이 사항) UseCase에 대한 사용이 익숙하지 않아 UseCase의 역할이 부족해 보입니다.
+  - 실제 적용을 거듭하며 UseCase의 로직을 개선해야 할 것 같습니다.
+
+### (1) 적용 후 변화
+#### (1-1) ViewModel의 역할 분리
+<img width="1417" alt="MVVM-C x Clean Architecture 도입 후 변화 1 - ViewModel의 역할 분리" src="https://github.com/andy-archive/MementoMori/assets/102043891/11f61f72-6f82-44a5-8d3f-34acb5786c89">
+
+#### (1-2) 의존성 주입(DI; Dependency Injection)
+<img width="1415" alt="MVVM-C x Clean Architecture 도입 후 변화 2 - DI" src="https://github.com/andy-archive/MementoMori/assets/102043891/da3a8a6d-8fa5-4dc8-8952-fa6cffc38e25">
+
+- VC/VM/UseCase의 인스턴스를 외부(Coordinator)에 생성
+- 각 계층의 클래스에 다른 계층의 프로토콜만을 프로퍼티로 정의
+  - 의존성을 줄이고 응집도를 높이도록 했습니다.
+  - 예시
+    - [#11 키체인/토큰 매니저 생성](https://github.com/andy-archive/mementoMori/pull/12)
+
+#### (1-3) 의존성 역전 원칙(DIP; Dependency Inversion Principle)
+<img width="1415" alt="MVVM-C x Clean Architecture 도입 후 변화 3 - DIP" src="https://github.com/andy-archive/MementoMori/assets/102043891/9032055f-8cb5-4ad1-aeb3-8c45ad52b6b1">
+
+- (이전) VC → VM → UseCase → Repository (일방향 의존성)
+- (이후) VC → VM → UseCase 🔙 Repository Protocol → Repository (의존성 <u>역전</u>)
+
 ### (2) 클린 아키텍처 적용
 #### 의존성 주입
-- ViewController/ViewModel/UseCase 등과 같은 인스턴스를 외부(Coordinator)에 생성했습니다.
-- 각 계층의 클래스에 다른 계층의 프로토콜만을 프로퍼티로 정의하여, 의존성을 줄이고 응집도를 높이도록 했습니다.
-  - 예시 [#11 키체인/토큰 매니저 생성](https://github.com/andy-archive/mementoMori/pull/12) 
-
-### (3) 예시
+### (3) 코드 예시
 #### [#11 토큰 매니저 생성](https://github.com/andy-archive/mementoMori/pull/12)
 ##### (3-1) 키체인 프로토콜 정의
 - `MementoMori/Sources/Data/DataSources/Local/KeychainManager.swift`
