@@ -12,6 +12,7 @@ final class UserProfileViewController: BaseViewController {
     //MARK: - UI
     private lazy var headerView = UserProfileHeaderView()
     private lazy var bodyView = UserProfileBodyView()
+    private lazy var postThumbnailTableView = UITableView()
     
     //MARK: - ViewModel
     private let viewModel: UserProfileViewModel
@@ -37,6 +38,7 @@ final class UserProfileViewController: BaseViewController {
         /// View Hierarchy
         view.addSubview(headerView)
         view.addSubview(bodyView)
+        view.addSubview(postThumbnailTableView)
     }
     
     //MARK: - Layouts
@@ -54,7 +56,15 @@ final class UserProfileViewController: BaseViewController {
             bodyView.topAnchor.constraint(equalTo: headerView.safeAreaLayoutGuide.bottomAnchor),
             bodyView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             bodyView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            bodyView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            bodyView.heightAnchor.constraint(lessThanOrEqualTo: view.heightAnchor, multiplier: 0.4)
+        ])
+        
+        postThumbnailTableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            postThumbnailTableView.topAnchor.constraint(equalTo: bodyView.bottomAnchor),
+            postThumbnailTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            postThumbnailTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            postThumbnailTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
 }
@@ -66,4 +76,3 @@ extension UserProfileViewController {
         guard let user else { return }
     }
 }
-
