@@ -11,6 +11,7 @@ enum TabBar: Int, CaseIterable {
     
     case storyList = 0
     case storyUpload
+    case userProfile
     
     var tabBarItem: UITabBarItem {
         switch self {
@@ -25,6 +26,12 @@ enum TabBar: Int, CaseIterable {
                 title: "",
                 image: Constant.Image.System.plusSquare,
                 selectedImage: Constant.Image.System.plusSquareFill
+            )
+        case .userProfile:
+            return UITabBarItem(
+                title: "",
+                image: Constant.Image.System.personCircle,
+                selectedImage: Constant.Image.System.personCircleFill
             )
         }
     }

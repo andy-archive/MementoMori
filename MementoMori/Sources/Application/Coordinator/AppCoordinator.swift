@@ -145,6 +145,8 @@ private extension AppCoordinator {
             makeStoryContentCoordinator(navigationController)
         case .storyUpload:
             makeStoryUploadCoordinator(navigationController)
+        case .userProfile:
+            makeUserProfileCoordinator(navigationController)
         }
     }
     
@@ -161,6 +163,13 @@ private extension AppCoordinator {
         storyUploadCoordinator.delegate = self
         storyUploadCoordinator.start()
         childCoordinators.append(storyUploadCoordinator)
+    }
+    
+    func makeUserProfileCoordinator(_ navigationController: UINavigationController) {
+        let userProfileCoordinator = UserProfileCoordinator(navigationController)
+        userProfileCoordinator.delegate = self
+        userProfileCoordinator.start()
+        childCoordinators.append(userProfileCoordinator)
     }
 }
 
